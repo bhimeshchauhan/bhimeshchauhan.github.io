@@ -1,2 +1,13 @@
-# react-personal-portfolio
-react personal portfolio for the databases
+### My Personal website based on various inspirations
+
+#### INSPIRATIONS
+> DEMO
+
+#### DESIGN
+> DEMO
+
+#### CODE
+> DEMO
+
+#### CONTAINERIZE
+> DEMO
