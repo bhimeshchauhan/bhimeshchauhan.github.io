@@ -1,13 +1,14 @@
-[**Personal Portfolio Website**](https://github.com/bhimeshchauhan/react-personal-portfolio)
--
-Hello world 👋. <br/>
-This site is developed using [**Gatsby**](https://www.gatsbyjs.org/)🚀.<br/>
--
-![Preview Me](src/assets/images/coding_me.gif)
+## [**Personal Portfolio Website**](https://github.com/bhimeshchauhan/react-personal-portfolio)
+
+#### My personal web-app
+
+> Access using login and password only
+> Hosting coming up
+
+![Preview Me](src/assets/images/coding-all-night.gif)
 
 
-**Run Locally**
--
+#### **Run Locally**
  1.  Clone this repository and go into its src folder.
  2.  Run  `npm install`
  3.  Run  `gatsby develop`
