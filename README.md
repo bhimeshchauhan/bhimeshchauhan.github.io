@@ -2,7 +2,7 @@
 
 #### My personal web-app
 
-> Access using login and password only
+> Access using login and password only \
 > Hosting coming up
 
 ![Preview Me](src/assets/images/coding-all-night.gif)
