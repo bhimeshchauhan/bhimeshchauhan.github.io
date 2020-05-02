@@ -2,11 +2,12 @@ html {
   font-family: 'Signika', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  background-color: #1D1E20;
+  background-color: #1D1E20 !important;
+  height: 100%;
 }
 body {
   margin: 0;
-  background-color: #1D1E20;;
+  background-color: #1D1E20;
 }
 article,
 aside,
@@ -620,10 +621,10 @@ div,p{
   background-image: url('../assets/images/blue-bg.png');
   width: 100%;
   background-repeat: no-repeat;
-  background-size: cover;
   min-height: 100vh;
+  background-size: contain;
   height: auto;
-  background-position: bottom;
+  background-position: inherit;
   padding: 5% 8%;
   position: relative;
 }
@@ -663,7 +664,7 @@ div.footerInitial{
     height: auto;
   }
   div.defaultFooter{
-    padding: 5% 0 0;
+    padding: 5% 6% 0;
     margin: 8% auto 0;
     text-align: CENTER;
     bottom: 0;

@@ -1,4 +1,4 @@
-import favicon from '../assets/images/bhimesh-favicon.png'
+import favicon from '../assets/images/bhimesh-favicon.svg'
 
 export const aboutWebsite = {
     "@context": "http://schema.org",

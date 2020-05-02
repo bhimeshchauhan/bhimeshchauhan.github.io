@@ -4,7 +4,7 @@ import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import { siteMeta } from '../data/Seo'
 import Helmet from 'react-helmet'
-import favicon from '../assets/images/bhimesh-favicon.png'
+import favicon from '../assets/images/bhimesh-favicon.svg'
 import blueBg from '../assets/images/blue-bg.png'
 import { Location } from '@reach/router'
 
@@ -19,10 +19,10 @@ const Wrapper = styled.div`
   background-image: url(${blueBg});
   width: 100%;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   min-height: 100vh;
   height: auto;
-  background-position: bottom;
+  background-position: inherit;
   padding: 5% 8%;
   position: relative;
   @media (max-width: 700px) {

@@ -6,13 +6,13 @@ const Footer = ({ footerClass }) => (
 		<p>
 			This site is hosted on{" "}
 			<a
-				href=""
+				href="/#"
 				target="_blank"
 			>
 				Github
 			</a>{" "}
-			| Designer{" "}
-			<a href="" target="_blank">
+			| &#9400; Designed with &#10084; by {" "}
+			<a href="/#" target="_blank">
 				Bhimesh
 			</a>
 		</p>

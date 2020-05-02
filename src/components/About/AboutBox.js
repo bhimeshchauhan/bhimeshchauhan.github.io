@@ -37,6 +37,14 @@ const Box = styled.div`
     color: #7fa1e8;
     text-decoration: none;
   }
+  @media (max-width: 1170px) {
+    width: 100%;
+    min-height: auto;
+    max-width: 100%;
+    padding: 5%;
+    margin: 3% 0;
+  }
+
   @media (max-width: 700px) {
     width: 100%;
     min-height: auto;
