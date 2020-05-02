@@ -1,32 +1,33 @@
 import React from 'react'
-import RashSelfIcon from '../assets/images/coding.gif'
-import AboutBox from '../components/About/AboutBox'
-import about from '../data/About'
-import { UserWrapper, UserTitle, UserDescription, DownloadButton, UserTopic } from '../styles/indexStyle.js'
-import Layout from '../components/layout'
+import {navigate} from 'gatsby'
+import '../styles/account.css'
+import accountItem from '../data/account.js'
 
 const IndexPage = () => {
-  return <Layout>
-  <UserWrapper>
-    <UserTitle>Bhimesh <span>Chauhan</span></UserTitle>
-    <UserDescription>
-      <div>
-        <p>
-        Hello there, welcome to my portfolio. I am a
-        Full-Stack Developer with specialization in Machine Learning
-        and Computer Vision.
-        </p>
-        <DownloadButton href="https://github.com/bhimeshchauhan/react-personal-portfolio/raw/master/resume.pdf"  download title="Resume">Download Resume</DownloadButton>
-      </div>
-      <img src={RashSelfIcon} alt="bhimesh self" />
-    </UserDescription>
-    <UserTopic>
-      {
-        about.map(item => (<AboutBox key={item.id} info={item} />))
-      }
-    </UserTopic>
-  </UserWrapper>
-  </Layout>
+  return (
+    <div className="wrapper">
+    	<h1>Who are you?</h1>
+    	<div className="profile-wrap">
+      {accountItem.map(item => (
+    		<div className="profile" key={item.id}>
+    			<div
+            className={`profile-icon ${item.title}`}
+            style={{backgroundImage: `url(${item.icon})`}}
+            onClick={() => {navigate(item.linkTo)}}
+            onKeyDown={() => {}}
+            role="button"
+            tabIndex={0}
+          >
+    			</div>
+    			<div className="profile-name">
+            {item.title}
+          </div>
+    		</div>
+        )
+      )}
+    	</div>
+    </div>
+  )
 }
 
 export default IndexPage

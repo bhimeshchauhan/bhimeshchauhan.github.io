@@ -1,0 +1,30 @@
+.backButton {
+  transition: transform ease 730ms;
+  transform: rotate(180deg) scale(0.5);
+  animation: blink 1500ms linear 500ms infinite;
+  transition: all ease 1000ms;
+  cursor: pointer;
+}
+.arrow circle {
+  transform: translateX(0px);
+}
+.arrow.hide {
+  transform: scaleY(0.0);
+}
+
+circle {
+  fill: #E1F1F6;
+  transition: transform ease 400ms;
+}
+circle.middle {
+  transition: transform ease 500ms;
+}
+circle.back {
+  transition: transform ease 600ms;
+}
+
+@keyframes blink {
+    0%   {opacity: 0.15;}
+    50%  {opacity: 0.75;}
+    100%  {opacity: 0.15;}
+}

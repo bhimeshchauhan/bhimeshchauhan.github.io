@@ -22,5 +22,8 @@ module.exports = {
         head: false,
       }
     },
+    {
+      resolve: `gatsby-transformer-sharp`
+    }
   ],
 }

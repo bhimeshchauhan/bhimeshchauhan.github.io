@@ -1,0 +1,14 @@
+.fa-icon {
+  visibility: hidden;
+}
+.nav-label {
+  visibility: visible;
+}
+@media only screen and (max-width: 1050px) {
+  .fa-icon {
+    visibility: visible;
+  }
+  .nav-label {
+    visibility: hidden;
+  }
+}

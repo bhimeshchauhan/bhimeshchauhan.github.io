@@ -34,7 +34,7 @@ const Experience = () => (
 										<h3>{item.designation}</h3>
 										<a
 											href={item.companyLink}
-											target="_blank"
+											// target="_blank"
 										>
 											{item.name}
 										</a>
