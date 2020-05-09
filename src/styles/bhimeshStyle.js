@@ -110,7 +110,7 @@ export const UserTopic = styled.div`
   display: flex;
   justify-content: center;
   /* margin-top: -5%; */
-  padding: 6% 0%;
+  padding: 1% 0%;
   @media (max-width: 1170px) {
     flex-direction: column;
   }

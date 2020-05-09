@@ -8,7 +8,13 @@
 }
 .nav-list {
   line-height: 0px;
+  display: flex;
 }
+.nav-list > a{
+    margin : 0;
+    padding: 0;
+}
+
 .wrapper {
   background: #1D1E20;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
