@@ -45,7 +45,7 @@ export const UserDescription = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-evenly;
-  /* margin-bottom: 10%; */
+  margin-bottom: 10%;
   p{
     color: #E2F2F7;
     max-width: 90%;

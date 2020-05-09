@@ -1,10 +1,11 @@
 export default [
     {
         id: 1,
-        name: "B M S College of Engineering",
-        major: "Computer Science",
+        name: "Iowa State University",
+        major: "Electrical Engineering",
+        minor: "Entrepreneurial Studies",
+        emphasis: "Software Development, Computer Vision and Graphics",
         degree: "Bachelor",
-        dated: "2011 - 2015",
-        cgpa: "9.12"
+        dated: "2014 - 2018"
     },
 ];

@@ -19,11 +19,11 @@ const Wrapper = styled.div`
   background-image: url(${blueBg});
   width: 100%;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   min-height: 100vh;
   height: auto;
-  background-position: inherit;
-  padding: 5% 8%;
+  background-position: right;
+  padding: 8%;
   position: relative;
   @media (max-width: 700px) {
     min-height: 100vh;

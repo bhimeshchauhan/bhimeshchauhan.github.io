@@ -64,11 +64,11 @@ const Experience = () => (
 				<EdContent>
 					{grad.map(item => (
 						<div key={item.id}>
+						    <h4>{item.dated}</h4>
 							<p>
 								Graduated with a {item.degree}'s Degree majored
-								in {item.major} from {item.name} with a CGPA of{" "}
-								{item.cgpa} <br />
-								{item.dated}
+								in <strong>{item.major}</strong> and minor in {item.minor} from <strong>{item.name}</strong>&nbsp;
+								with emphasis on {item.emphasis}.
 							</p>
 						</div>
 					))}

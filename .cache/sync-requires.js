@@ -12,6 +12,7 @@ exports.components = {
   "component---src-pages-experience-js": hot(preferDefault(require("/Users/bhimeshchauhan/Desktop/react-personal-portfolio/src/pages/experience.js"))),
   "component---src-pages-index-js": hot(preferDefault(require("/Users/bhimeshchauhan/Desktop/react-personal-portfolio/src/pages/index.js"))),
   "component---src-pages-projects-js": hot(preferDefault(require("/Users/bhimeshchauhan/Desktop/react-personal-portfolio/src/pages/projects.js"))),
-  "component---src-pages-recommendation-js": hot(preferDefault(require("/Users/bhimeshchauhan/Desktop/react-personal-portfolio/src/pages/recommendation.js")))
+  "component---src-pages-recommendation-js": hot(preferDefault(require("/Users/bhimeshchauhan/Desktop/react-personal-portfolio/src/pages/recommendation.js"))),
+  "component---src-pages-blog-js": hot(preferDefault(require("/Users/bhimeshchauhan/Desktop/react-personal-portfolio/src/pages/blog.js")))
 }
 
