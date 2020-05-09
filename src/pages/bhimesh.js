@@ -14,8 +14,8 @@ const BhimeshPage = () => {
       <div>
         <p>
         Hello there, welcome to my portfolio. I am a
-        Full-Stack Developer with specialization in Machine Learning
-        and Computer Vision.
+        Full-Stack Engineer with specialization in Machine Learning,
+        Computer Vision and .
         </p>
         <DownloadButton href="https://github.com/bhimeshchauhan/react-personal-portfolio/raw/master/resume.pdf"  download title="Resume">Download Resume</DownloadButton>
       </div>
