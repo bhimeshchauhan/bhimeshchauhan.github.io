@@ -14,10 +14,10 @@ const Wrapper = styled.div`
   width: 100%;
   background-repeat: no-repeat;
   min-height: 100vh;
-  background-size: contain;
+  background-size: cover;
   height: auto;
-  background-position: inherit;
-  padding: 5% 8%;
+  background-position: right;
+  padding: 8%;
   position: relative;
   @media (max-width: 700px) {
     min-height: 100vh;
