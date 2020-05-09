@@ -1,25 +1,21 @@
 import React from 'react'
-import Blog from '../data/blog'
-import { BlogWrapper, BlogBox, BlogDes } from '../styles/blogStyle'
+//import Blog from '../data/blog'
+//import { BlogWrapper, BlogBox, BlogDes } from '../styles/blogStyle'
+import { BlogWrapper, Blogs } from '../styles/blogStyle'
 import Layout from '../components/layout'
-import BlogCard from '../components/blog/blogCard'
+import { BlogCard } from '../components/blog/blogCard'
 
 const BlogLayout = () => (
   <Layout>
-  <BlogWrapper>
-    <h1>Blog</h1>
-    <BlogCard/>
-    {
-      Blog.map(item => (<BlogBox key={item.id} >
-      <h3><a href={item.userLink}>{item.name}</a></h3>
-        <p>{item.designation}</p>
-        <p>{item.dated}</p>
-        <BlogDes>{item.description}</BlogDes>
-        <hr/>
-      </BlogBox>
-      ))
-    }
-  </BlogWrapper>
+      <BlogWrapper>
+        <h1>Blog</h1>
+        <Blogs className="blog-container">
+            <BlogCard id={'0'}/>
+            <BlogCard id={'1'}/>
+            <BlogCard id={'2'}/>
+            <BlogCard id={'3'}/>
+        </Blogs>
+      </BlogWrapper>
   </Layout>
 )
 

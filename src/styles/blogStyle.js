@@ -12,6 +12,12 @@ export const BlogWrapper = styled.div`
     padding: 10% 0 20%;
   }
 `
+export const Blogs = styled.div`
+  display: flex;
+  @media (max-width: 700px) {
+    display: block;
+  }
+`
 export const BlogBox = styled.div`
   margin-top: 10%;
   color: #eeeeee;

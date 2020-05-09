@@ -5,15 +5,17 @@ p {
   line-height: 1.5;
 }
 
-.container {
-  max-width: 800px;
+.blog-container {
+  width: 100%;
   margin: 0 auto;
+}
+
+.blog-wrapper {
+    width: 100%;
 }
 
 /* Cards */
 .card-column {
-  width: 50%;
-  float: left;
   padding: 4%;
   box-sizing: border-box;
 }
@@ -55,14 +57,13 @@ p {
   left: -6%;
 }
 
-.card-color-0 {
-  background-color: #eb5160;
+.card-color{
+  background-color: rgb(24, 26, 27);
 }
 
 /* The cover (expanding background) */
 .cover {
   position: fixed;
-  background: #eb5160;
   z-index: 100;
   transform-origin: 50% 50%;
 }
@@ -71,14 +72,14 @@ p {
 .open-content {
   width: 100%;
   z-index: 110;
-  position: absolute;
+  position: relative;
   opacity: 0;
   pointer-events: none;
 }
 
 .open-content img {
   position: relative;
-  width: 90%;
+  width: 50%;
   margin-left: 3%;
   margin-top: 20px;
   z-index: 5;
@@ -88,9 +89,9 @@ p {
   background: #fff;
   margin-top: -56%;
   padding: 60% 5% 5% 5%;
-  width: 80%;
-  margin-left: 5%;
   margin-bottom: 5%;
+  width: 90%;
+  margin-left: 3%;
 }
 
 .open-content .text h1,
@@ -101,12 +102,12 @@ p {
 }
 
 .close-content {
-  display: block;
-  position: absolute;
-  right: 12px;
-  top: 12px;
-  width: 30px;
-  height: 30px;
+    display: block;
+    position: absolute;
+    right: -16px;
+    top: -26px;
+    width: 40px;
+    height: 40px;
 }
 
 .close-content span {
@@ -147,6 +148,31 @@ p {
   transition: opacity 200ms linear 120ms, transform 200ms ease-in 120ms;
 }
 
+.blog-head{
+    display: flex;
+}
+
+.blog-head > h1 {
+    padding: 3%;
+    color: #303030;
+    text-transform: uppercase;
+    word-break: break-word;
+    position: absolute;
+    top: 8%;
+    left: 52%;
+    z-index: 3;
+    margin: 0;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 0px;
+    /* font-size: 102px; */
+    text-shadow: 25px -15px rgba(25, 42, 46, 0.04);
+    color: #142124;
+    mix-blend-mode: overlay;
+    text-align: left;
+    width: 41%;
+}
+
 /* Clicked card */
 .card.clicked img {
   transform: translate3d(0px, -40px, 0px);
@@ -182,6 +208,9 @@ p {
   opacity: 1;
   pointer-events: all;
   transition-delay: 1000ms;
+  transform: translate(-10%, -70%);
+  width: 95%;
+  position: absolute;
 }
 
 /*
@@ -199,5 +228,17 @@ p {
 
   .open-content img {
     margin-top: 40px;
+  }
+
+  .open-content.open {
+    opacity: 1;
+    pointer-events: all;
+    -webkit-transition-delay: 1000ms;
+    transition-delay: 1000ms;
+    -webkit-transform: translate(-10%, -70%);
+    transform: translate(-10%, -103%);
+    width: 95%;
+    position: absolute;
+    max-height: 75%;
   }
 }
