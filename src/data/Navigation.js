@@ -1,9 +1,10 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faBrain, faProjectDiagram, faComments, faBlog, faBullseye, faAddressBook } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faBrain, faProjectDiagram, faComments, faBlog, faBullseye, faAddressBook, faChartLine } from '@fortawesome/free-solid-svg-icons'
 
 const home = <FontAwesomeIcon className="fa-icon fa-fw" icon={ faHome } />;
 const brain = <FontAwesomeIcon className="fa-icon fa-fw" icon={ faBrain } />;
+const skills = <FontAwesomeIcon className="fa-icon fa-fw" icon={ faChartLine } />;
 const projects = <FontAwesomeIcon className="fa-icon fa-fw " icon={ faProjectDiagram } />;
 const recommendation = <FontAwesomeIcon className="fa-icon fa-fw " icon={ faComments } />;
 const blog = <FontAwesomeIcon className="fa-icon fa-fw " icon={ faBlog } />;
@@ -14,6 +15,11 @@ export default [
     icon: home,
     label: 'Home',
     path: '/bhimesh',
+  },
+  {
+    icon: skills,
+    label: 'Skills',
+    path: '/experience',
   },
   {
     icon: brain,
