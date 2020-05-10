@@ -205,7 +205,7 @@ export const BlogCard = (props) => {
     useEffect(() => {
         console.log('Firing')
         init(props.id)
-    }, [ ]);
+    }, [props.id]);
 
 
     return (
