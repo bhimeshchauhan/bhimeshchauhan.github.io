@@ -22,12 +22,13 @@ const Wrapper = styled.div`
   background-size: cover;
   min-height: 100vh;
   height: auto;
-  background-position: right;
+  background-position: bottom;
   padding: 8%;
   position: relative;
   @media (max-width: 700px) {
     min-height: 100vh;
     height: auto;
+    overflow: hidden;
   }
 `;
 

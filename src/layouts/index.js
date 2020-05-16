@@ -16,12 +16,13 @@ const Wrapper = styled.div`
   min-height: 100vh;
   background-size: cover;
   height: auto;
-  background-position: right;
+  background-position: bottom;
   padding: 8%;
   position: relative;
   @media (max-width: 700px) {
     min-height: 100vh;
     height: auto;
+    overflow: hidden;
   }
 `;
 export default class Layout extends Component {

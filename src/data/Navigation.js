@@ -19,7 +19,7 @@ export default [
   {
     icon: skills,
     label: 'Skills',
-    path: '/experience',
+    path: '/skills',
   },
   {
     icon: brain,
@@ -43,7 +43,7 @@ export default [
   },
   {
     icon: goals,
-    label: 'Goals-2020',
+    label: 'Goals',
     path: '/goals',
   },
   {

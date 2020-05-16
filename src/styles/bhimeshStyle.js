@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const UserWrapper = styled.div`
-  margin: 10% auto;
+  margin: 2% auto;
   /* animation: fade-in 500ms ease 200ms 1 forwards;
   @keyframes fade-in {
     0% {
@@ -29,6 +29,9 @@ export const UserWrapper = styled.div`
       transform: scale(1);
     }
   } */
+  @media (max-width: 1170px) {
+    margin: 15% auto;
+  }
 `;
 export const UserTitle = styled.h1`
   font-size: 4.2em;
@@ -45,7 +48,7 @@ export const UserDescription = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-evenly;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
   p{
     color: #E2F2F7;
     max-width: 90%;
