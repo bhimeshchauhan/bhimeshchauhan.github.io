@@ -20,7 +20,7 @@ console.log('id are ', id)
   openContent = document.getElementById('open-content');
   openContentText = document.getElementById('open-content-text');
   openContentImage = document.querySelector('.blog-head > #open-content-image');
-  openContentHeader = document.querySelector('.blog-head > h1');
+  openContentHeader = document.querySelector('.blog-head');
   openBlogWrapper = document.querySelector('.blog-container');
   closeContent = document.getElementById('close-content');
 }
@@ -60,10 +60,12 @@ function onCardClick(card, i) {
   // Set Header
   var x = window.matchMedia("(max-width: 700px)")
   if (x.matches) {
-      openContentHeader.style.fontSize='25px';
-      openBlogWrapper.style.display='flex';
+      openContentHeader.style.display='block';
+      openContent.style.display='block';
+      openBlogWrapper.style.position='fixed';
   } else {
-      openContentHeader.style.fontSize='100px';
+      openContentHeader.style.display='flex';
+      openBlogWrapper.style.position='relative';
   }
 }
 
@@ -86,7 +88,7 @@ function animateCoverUp(card) {
   scaleCoverToFillWindow(cardPosition);
   // update the content of the opened page
   openContentText.innerHTML = '<h1>'+card.children[2].textContent+'</h1>'+paragraphText;
-  openContentImage.src = card.children[1].src;
+  openContentImage.style.backgroundImage = 'url(' + card.children[1].src + ')' ;
   setTimeout(function() {
     // update the scroll position to 0 (so it is at the top of the 'opened' page)
     window.scroll(0, 0);
@@ -105,7 +107,7 @@ function animateCoverBack(card) {
   setTimeout(function() {
     // set content back to empty
     openContentText.innerHTML = '';
-    openContentImage.src = '';
+    openContentImage.style.backgroundImage = '';
     // style the cover to 0x0 so it is hidden
     cover.style.width = '0px';
     cover.style.height = '0px';
@@ -143,11 +145,13 @@ function onCloseClick() {
   var x = window.matchMedia("(max-width: 700px)")
   if (x.matches) {
     openBlogWrapper.style.display='block';
+    openContent.style.display='none';
+    openBlogWrapper.style.position='relative';
   } else {
     openBlogWrapper.style.display='flex';
   }
   // Set Header
-  openContentHeader.style.fontSize='0px';
+//  openContentHeader.style.fontSize='0px';
   // remove the open class so the page content animates out
   openContent.className = openContent.className.replace(' open', '');
   // animate the cover back to the original position card and size
@@ -225,10 +229,8 @@ export const BlogCard = (props) => {
         <div id="open-content" className="open-content">
           <button id="close-content" className="close-content"><span className="x-1"></span><span className="x-2"></span></button>
           <div className="blog-head">
-              <img alt="blogTextImg" id="open-content-image" src="" />
-              <h1>Awesome Working</h1>
-          </div>
-          <div className="text" id="open-content-text">
+              <div id="open-content-image"></div>
+              <div className="text" id="open-content-text"></div>
           </div>
         </div>
     </div>
