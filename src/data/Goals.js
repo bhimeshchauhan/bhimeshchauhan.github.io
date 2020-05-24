@@ -1,9 +1,3 @@
-import dr from "../assets/images/experience/bhimesh/datarobot.png";
-import pitchly from "../assets/images/experience/bhimesh/pitchly.png";
-import sodima from "../assets/images/experience/bhimesh/sodima.png";
-import nebullam from "../assets/images/experience/bhimesh/nebullam.png";
-import solum from "../assets/images/experience/bhimesh/solum.png";
-
 export default [
 	{
 		id: 1,

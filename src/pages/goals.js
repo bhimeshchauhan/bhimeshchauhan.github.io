@@ -1,14 +1,9 @@
 import React from 'react'
 import "../styles/stepper.css";
 import goal from "../data/Goals";
-import grad from "../data/Edu";
-import lang from "../data/Language";
-import hobby from "../data/Interests";
 import {
 	ExperienceWrapper,
 	WorkWrapper,
-	EdWrapper,
-	EdContent,
 	Stepper,
 	StepperHead
 } from "../styles/workStyle.js";

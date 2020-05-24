@@ -22,7 +22,7 @@ const Skills = () => {
                         data-layers="1,2,3,4"
                         data-stack-embed="true"
                         href="https://embed.stackshare.io/stacks/embed/6210fd28c5d2f9a1d3251ca79032f7"
-                     ></a>
+                    ></a>
                 </WorkWrapper>
             </ExperienceWrapper>
         </Layout>
