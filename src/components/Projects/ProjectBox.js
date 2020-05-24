@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Box = styled.div`
-  max-width: 450px;
-  width: 35%;
+//  max-width: 450px;
+  width: 100%;
   min-height: 470px;
   border-radius: 8px;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
@@ -21,7 +21,7 @@ const Box = styled.div`
   @media (max-width: 700px) {
     width: 100%;
     min-height: auto;
-    max-width: fit-content;
+    max-width: initial;
   }
   @media (min-width: 768px) and (max-width: 1030px) {
     width: 100%;
@@ -43,18 +43,19 @@ const BoxIcon = styled.div`
   border-bottom-right-radius: 0;
   background-color: rgba(127, 161, 232, 0.3);
   img{
-    width: 25%;
-    margin-right: 5%;
+    width: 10%;
+    margin-right: 3%;
     margin-bottom: 0;
+    margin-left: -3%;
   }
   h3{
     margin: 0;
     flex:1;
     color: #0f1645;
   }
-  @media (min-width: 768px) and (max-width: 1030px) {
+  @media (max-width: 700px) {
     img{
-      width: 10%;
+      width: 40%;
     }
   }
 `
@@ -74,6 +75,13 @@ const BoxDescription = styled.div`
     margin:0 0 10px;
     text-decoration: none;
   }
+  .row {
+    display:flex;
+    img {
+        max-width: 50%;
+        margin: 1%;
+    }
+  }
 `
 const BoxStack = styled.div`
   margin-top: auto;
@@ -88,7 +96,15 @@ const ProjectBox = ({ info }) => (
         <h3>{info.title}</h3>
       </BoxIcon>
       <BoxDescription>
-        <p> {info.description}</p>
+        {
+            info.iframe ?
+            <div dangerouslySetInnerHTML={{__html:info.iframe}} /> :
+            <div className='row'>
+                {info.media.map((item) =>
+                    <img src={item} alt='project icon'></img>
+                )}
+            </div>
+        }
         <BoxStack>
           {
             info.githubPath != null ?
@@ -98,6 +114,7 @@ const ProjectBox = ({ info }) => (
             info.demoPath != null ?
             <a href={info.demoPath}>Project Demo </a> : ''
           }
+          <p>Summary - {info.description}</p>
           <p>Development year - {info.year} </p>
           <p>Technology stack - {info.techUsed} </p>
         </BoxStack>
