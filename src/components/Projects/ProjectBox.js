@@ -82,6 +82,9 @@ const BoxDescription = styled.div`
         margin: 1%;
     }
   }
+  iframe {
+    min-height: 40em;
+  }
 `
 const BoxStack = styled.div`
   margin-top: auto;
