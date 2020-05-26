@@ -83,7 +83,7 @@ const BoxDescription = styled.div`
     }
   }
   iframe {
-    min-height: 40em;
+    min-height: 50em;
   }
 `
 const BoxStack = styled.div`

@@ -15,6 +15,10 @@ export default [
 		        desc: 'Apply for Express Entry and move to Canada ',
 		        fin: false
 		    },
+		    {
+		        desc: 'Selected for Forbes 30 Under 30 ',
+		        fin: false
+		    },
 		]
 	},
 	{

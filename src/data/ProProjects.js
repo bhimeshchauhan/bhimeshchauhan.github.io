@@ -10,15 +10,22 @@ import nebullam5 from '../assets/images/nebullam-5.png';
 export default [
 	{
 		id: 1,
-		title: "NLP mood detector",
+		title: "Connect Four - AI Game",
 		icon: movie,
-		description: "Type a sentence to detect what mood you are in.",
-		githubPath: "/#",
+		description: "There are 4,531,985,219,092 possible connect-4 boards and you can win in 1,905,333,170,621 ways. That is a probability of 0.42"+
+		"\n There are two modes - MINIMAX and NAIVE AI, Feel free to play both and see which you beat.",
+		githubPath: "https://github.com/bhimeshchauhan/connect_four",
 		media: [],
-//		demoPath: "/#",
-        iframe: '<iframe width="100%" height="300" src="//jsfiddle.net/bchauhan/gcph3uqf/37/embedded/result,js,html,css/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>',
-		year: "",
-		techUsed: "Python, NPM, Bower, BeautifulSoup, PIP, Worksheet API"
+		demoPath: "https://codesandbox.io/s/connect-four-game-fq1oz?file=/src/App.js",
+        iframe: '<iframe '+
+            'src="https://codesandbox.io/embed/connect-four-game-fq1oz?fontsize=14&hidenavigation=1&theme=dark&view=preview" '+
+            'style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" '+
+            'title="Connect-Four-Game" '+
+            'allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking" '+
+            'sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts allow-autoplay"> '+
+            '</iframe>',
+		year: "2019-2020",
+		techUsed: "React JS, Redux, NodeJS, MinMax Algorithm, Decision tree, Github"
 	},
 	{
 		id: 1,
