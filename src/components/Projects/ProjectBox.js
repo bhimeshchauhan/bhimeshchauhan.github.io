@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const Box = styled.div`
 //  max-width: 450px;
+
   width: 100%;
   min-height: 470px;
   border-radius: 8px;
@@ -10,7 +11,7 @@ const Box = styled.div`
             0 3px 1px -2px rgba(0,0,0,0.12),
             0 1px 5px 0 rgba(0,0,0,0.2);
   transition: box-shadow 0.3s ease-out;
-  background-color: #fff;
+  background-color: #17191B;
   margin: 0 4% 4%;
   :hover {
     box-shadow:  0 8px 17px 2px rgba(0,0,0,0.14),
@@ -51,7 +52,7 @@ const BoxIcon = styled.div`
   h3{
     margin: 0;
     flex:1;
-    color: #0f1645;
+    color: #FFF;
   }
   @media (max-width: 700px) {
     img{
@@ -65,7 +66,7 @@ const BoxDescription = styled.div`
   display: FLEX;
   height: calc(100% - 120px);
   p{
-    color: #0f1645;
+    color: #FFF;
   }
   a{
     color: #7fa1e8;
@@ -75,8 +76,31 @@ const BoxDescription = styled.div`
     margin:0 0 10px;
     text-decoration: none;
   }
-  .row {
+  .projectItem {
     display:flex;
+    overflow-x: scroll !important;
+    /* width */
+    ::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px grey;
+      border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: rgb(127, 178, 232);
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(127, 178, 232, 0.5);
+    }
+
     img {
         max-width: 50%;
         margin: 1%;
@@ -87,13 +111,13 @@ const BoxDescription = styled.div`
   }
 `
 const BoxStack = styled.div`
-  margin-top: auto;
+  margin-top: 4%;
   p{
     margin: 0;
   }
 `
 const ProjectBox = ({ info }) => (
-    <Box>
+    <Box className="projectBox">
       <BoxIcon>
         <img src={info.icon} alt="bhimesh project icon" />
         <h3>{info.title}</h3>
@@ -102,7 +126,7 @@ const ProjectBox = ({ info }) => (
         {
             info.iframe ?
             <div dangerouslySetInnerHTML={{__html:info.iframe}} /> :
-            <div className='row'>
+            <div className='projectItem'>
                 {info.media.map((item) =>
                     <img src={item} alt='project icon'></img>
                 )}

@@ -2,6 +2,9 @@ import styled from 'styled-components'
 
 export const ProjectsWrapper = styled.div`
   padding-top: 5%;
+  @media (max-width: 700px) {
+    margin-bottom: 20%;
+  }
 `
 export const ProjectsSection = styled.div`
   display: flex;

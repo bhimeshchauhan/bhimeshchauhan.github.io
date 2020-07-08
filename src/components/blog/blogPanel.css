@@ -1,0 +1,255 @@
+@font-face {
+  font-family: Gilroy-Bold;
+  src: local(
+      "https://dj4bodrxy955u.cloudfront.net/fonts/Gilroy/Gilroy-Bold.otf"
+    ),
+    url(https://dj4bodrxy955u.cloudfront.net/fonts/Gilroy/Gilroy-Bold.otf)
+      format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: Gilroy-Medium;
+  src: local(
+      "https://dj4bodrxy955u.cloudfront.net/fonts/Gilroy/Gilroy-Medium.otf"
+    ),
+    url(https://dj4bodrxy955u.cloudfront.net/fonts/Gilroy/Gilroy-Medium.otf)
+      format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.container {
+    width: 100%;
+}
+a {
+  text-decoration: none !important;
+  color: black;
+}
+.best-post {
+  width: 100%;
+  height: 35em;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  border-radius: 15px;
+  transition: 1s;
+  background-color: #000;
+}
+.best-post:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  pointer: cursor;
+}
+
+.best-post:hover .best-post-image {
+  border-radius: 15px 0 0 15px;
+  pointer: cursor;
+}
+.best-post-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 60%;
+  height: 100%;
+  border-radius: 15px;
+  margin-right: 25px;
+  transition: 1s;
+}
+
+.best-post-content{
+    height: 100%;
+    padding-top: 3%;
+}
+
+.best-post-content-title {
+  font-family: Gilroy-Bold;
+  font-size: 3rem;
+  margin-bottom: 15px;
+  line-height: 1;
+  color: #FFF;
+}
+
+.best-post-content-sub {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  color: #FFF;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  overflow-y: scroll;
+  height: 31rem;
+  width: 97%;
+  box-shadow: inset 0px 0px 25px 0px rgba(255, 255, 255, 0.15);
+  padding: 5%;
+  border-radius: 15px;
+}
+
+.best-post-content-sub::-webkit-scrollbar {
+  width: 16px;
+}
+.best-post-content-sub::-webkit-scrollbar-thumb {
+  min-height: 50px;
+  background-color: #dadce0;
+  background-clip: padding-box;
+  border: 4px solid transparent;
+  border-radius: inherit;
+  box-shadow: none;
+}
+.best-post-content-sub::-webkit-scrollbar-track {
+  background: none;
+  border: none;
+}
+
+.row {
+  margin: 0 !important;
+}
+
+@media screen and (max-width: 500px) {
+
+  .best-post {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    border-radius: 15px;
+    transition: 1s;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .best-post-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    border-radius: 15px;
+    margin-right: 25px;
+    transition: 1s;
+    margin-bottom: 15px;
+    height: 14em;
+  }
+  .best-post:hover .best-post-image {
+    border-radius: 15px;
+    pointer: cursor;
+  }
+}
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Inter:700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Maven+Pro&display=swap");
+body {
+  margin: 0;
+  padding: 0;
+}
+.header {
+  width: 100%;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  display: block;
+  left: 0;
+  right: 0;
+}
+.back {
+  font-family: "Montserrat", sans-serif;
+  padding-left: 4rem;
+  padding-top: 1.5rem;
+  display: block;
+  float: left;
+  font-size: 24px;
+}
+dribbble {
+  float: right;
+  padding-right: 4rem;
+  padding-top: 1.5rem;
+  display: block;
+}
+
+.main {
+  text-align: center;
+  padding-top: 5rem;
+}
+.main h5 {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin: 0;
+}
+.main h1 {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  margin: 0.75rem 2rem 0.75rem;
+}
+.main .authorlink {
+  text-align: center;
+  font-size: 16px;
+  color: #FFF;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  display: block;
+  font-family: sans-serif;
+}
+.main figure {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.fl {
+  float: left;
+}
+
+.main .share {
+  height: 60px;
+  display: flex;
+  position: absolute;
+  background: white;
+  padding-top: 0.75rem;
+  padding-left: 1rem;
+  padding-bottom: 0.75rem;
+  align-items: center;
+  justify-content: center;
+}
+.main .share a {
+  text-decoration: none;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+}
+
+.main .share a svg {
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  margin: 0 auto;
+  display: inline-block;
+}
+content {
+  font-family: "Maven Pro", sans-serif;
+  text-align: left;
+  width: 100%;
+  display: block;
+  margin: 1rem 0 0 0rem;
+  line-height: 1.5;
+}
+content h1,
+h2,
+h3 {
+  font-family: "Inter", sans-serif;
+}

@@ -1,0 +1,53 @@
+const experience = ["Begineer", "Intermediary", "Expert"]
+const experienceColor = ["#1F8D00", "#FFE000", "#FF7200"]
+
+export default [
+	{
+		id: 1,
+		title: "Postman",
+		icon: "https://img.stackshare.io/service/1336/xWMRvm_5_400x400.png",
+		experience: experience[1],
+		experienceColor: experienceColor[1],
+		url: "https://github.com/bhimeshchauhan/connect_four",
+	},
+	{
+		id: 2,
+		title: "Github Pages",
+		icon: "https://img.stackshare.io/service/683/sBsvBbjY.png",
+		experience: experience[2],
+		experienceColor: experienceColor[2],
+		url: "https://github.com/bhimeshchauhan/connect_four",
+	},
+	{
+		id: 3,
+		title: "Stripe",
+		icon: "https://img.stackshare.io/service/97/eW6tXeq3.png",
+		experience: experience[1],
+		experienceColor: experienceColor[1],
+		url: "https://github.com/bhimeshchauhan/connect_four",
+	},
+	{
+		id: 4,
+		title: "Twillio",
+		icon: "https://img.stackshare.io/service/130/VrwpNfjh_400x400.png",
+		experience: experience[1],
+		experienceColor: experienceColor[1],
+		url: "https://github.com/bhimeshchauhan/connect_four",
+	},
+	{
+		id: 5,
+		title: "OAuth2",
+		icon: "https://img.stackshare.io/service/4507/oauth2-logo.png",
+		experience: experience[1],
+		experienceColor: experienceColor[1],
+		url: "https://github.com/bhimeshchauhan/connect_four",
+	},
+	{
+		id: 6,
+		title: "Google API",
+		icon: "https://img.stackshare.io/service/2038/PSpUS-Hp_400x400.jpg",
+		experience: experience[0],
+		experienceColor: experienceColor[0],
+		url: "https://github.com/bhimeshchauhan/connect_four",
+	},
+]

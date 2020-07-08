@@ -11,4 +11,7 @@
   .nav-label {
     visibility: hidden;
   }
+  .nav-list > a {
+    min-width: 14%;
+  }
 }
