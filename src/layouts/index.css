@@ -636,7 +636,7 @@ div.cutBackground{
   text-align: center;
 }
 .defaultFooter p {
-  color: #0f1645;
+  color: #FFF;
 }
 .defaultFooter a {
   color: #7fa1e8;
@@ -651,10 +651,11 @@ div.cutBackground{
   position: absolute;
   width: 100%;
   box-sizing: border-box;
-  background-color: #eeeeee;
+  background-color: #1D1E20;
 }
 div.footerInitial{
   position: inherit;
+  color: #FFF;
 }
 @media only screen and (max-width: 480px) {
   html {

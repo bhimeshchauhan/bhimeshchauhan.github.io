@@ -1,5 +1,10 @@
 import React, {useEffect} from "react";
 import Layout from "../components/layout";
+import '../styles/skillStyle.css';
+import skill from '../data/skills';
+import util from '../data/utilskills';
+import devops from '../data/devopskills';
+import business from '../data/businessSkills';
 import { ExperienceWrapper, WorkWrapper } from "../styles/workStyle.js";
 const Skills = () => {
     useEffect(() => {
@@ -11,18 +16,108 @@ const Skills = () => {
 
         document.body.appendChild(script);
       }, []);
+
     return(
         <Layout className="my-stacks">
             <ExperienceWrapper>
                 <WorkWrapper>
                     <h1>Skills</h1>
-                    <a
-                        frameBorder="0"
-                        data-theme="light"
-                        data-layers="1,2,3,4"
-                        data-stack-embed="true"
-                        href="https://embed.stackshare.io/stacks/embed/6210fd28c5d2f9a1d3251ca79032f7"
-                    ></a>
+                    <div className="sectionHeader"><h2>Application & Data</h2></div>
+                    <div className="techPanel">
+                        {
+                            skill.map(item => (
+                                <article className="techItemWrapper">
+                                    <div className="techItem">
+                                        <div
+                                        className="techItemImage"
+                                        style={{
+                                            backgroundImage: "url("+ item.icon +")"
+                                        }}
+                                        ></div>
+                                        <div className="techItemPanel">
+                                            <div className="techName">
+                                                <div className="techTag" style={{backgroundColor: item.experienceColor}}>{item.experience}</div>
+                                                <h5 className="techSubTitle">{item.title}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            ))
+                        }
+
+                    </div>
+
+                    <div className="sectionHeader"><h2>Utilities</h2></div>
+                    <div className="techPanel">
+                        {
+                            util.map(item => (
+                                <article className="techItemWrapper">
+                                    <div className="techItem">
+                                        <div
+                                        className="techItemImage"
+                                        style={{
+                                            backgroundImage: "url("+ item.icon +")"
+                                        }}
+                                        ></div>
+                                        <div className="techItemPanel">
+                                            <div className="techName">
+                                                <div className="techTag" style={{backgroundColor: item.experienceColor}}>{item.experience}</div>
+                                                <h5 className="techSubTitle">{item.title}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            ))
+                        }
+
+                    </div>
+                    <div className="sectionHeader"><h2>DevOps</h2></div>
+                    <div className="techPanel">
+                        {
+                            devops.map(item => (
+                                <article className="techItemWrapper">
+                                    <div className="techItem">
+                                        <div
+                                        className="techItemImage"
+                                        style={{
+                                            backgroundImage: "url("+ item.icon +")"
+                                        }}
+                                        ></div>
+                                        <div className="techItemPanel">
+                                            <div className="techName">
+                                                <div className="techTag" style={{backgroundColor: item.experienceColor}}>{item.experience}</div>
+                                                <h5 className="techSubTitle">{item.title}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            ))
+                        }
+
+                    </div>
+                    <div className="sectionHeader"><h2>Business Tools</h2></div>
+                    <div className="techPanel">
+                        {
+                            business.map(item => (
+                                <article className="techItemWrapper">
+                                    <div className="techItem">
+                                        <div
+                                        className="techItemImage"
+                                        style={{
+                                            backgroundImage: "url("+ item.icon +")"
+                                        }}
+                                        ></div>
+                                        <div className="techItemPanel">
+                                            <div className="techName">
+                                                <div className="techTag" style={{backgroundColor: item.experienceColor}}>{item.experience}</div>
+                                                <h5 className="techSubTitle">{item.title}</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            ))
+                        }
+                    </div>
                 </WorkWrapper>
             </ExperienceWrapper>
         </Layout>
