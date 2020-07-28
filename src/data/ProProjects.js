@@ -55,7 +55,7 @@ export default [
 		id: 3,
 		title: "SpaceFlight - Unity Game",
 		icon: website,
-		description: "Space Flight game built in Unity.",
+		description: "Space Flight game built in Unity. Controls : W - Forward; A - left turn; D - right turn; Q - Roll left; E - Roll right; Z - pitch up; X pitch down",
 		githubPath: "https://github.com/bhimeshchauhan/SpaceExpo",
 		media: [],
 		demoPath: "https://simmer.io/@bchauhan/spaceshooter",
