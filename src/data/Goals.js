@@ -4,11 +4,11 @@ export default [
 		name: "YEAR - 2020",
 		todo: [
 		    {
-		        desc: 'Work at Finance industry and implement ML learning ',
+		        desc: 'Work at Finance industry and implement ML models ',
 		        fin: false
 		    },
 		    {
-		        desc: 'Learn to Invest ',
+		        desc: 'Learn about types of investments and devise a plan ',
 		        fin: false
 		    },
 		    {
@@ -16,7 +16,11 @@ export default [
 		        fin: false
 		    },
 		    {
-		        desc: 'Selected for Forbes 30 Under 30 ',
+		        desc: 'Work on creating you own business ',
+		        fin: false
+		    },
+		    {
+		        desc: 'Do one passion project every quarter ',
 		        fin: false
 		    },
 		]
@@ -26,11 +30,15 @@ export default [
 		name: "YEAR - 2019",
 		todo: [
 		    {
-		        desc: 'Lear Machine Learning and Data Science principles',
+		        desc: 'Learn Machine Learning and Data Science principles',
 		        fin: true
 		    },
 		    {
-		        desc: 'Lear Machine Learning and Data Science principles',
+		        desc: 'Learn SDLC process including CI/CD, QA, Naturalization, Cloud-OPS',
+		        fin: true
+		    },
+		    {
+		        desc: 'Move to a bigger city',
 		        fin: true
 		    }
 		]
