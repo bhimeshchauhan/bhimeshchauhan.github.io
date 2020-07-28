@@ -43,7 +43,7 @@ export default [
 		id: 2,
 		title: "Procedural Terrain Generation",
 		icon: website,
-		description: " ",
+		description: "Procedurally generated wave-esque terrain.",
 		githubPath: "/#",
 		media: [],
 //		demoPath: "/#",
@@ -53,15 +53,15 @@ export default [
 	},
 	{
 		id: 3,
-		title: "Package Listing - Integrations coming up",
+		title: "SpaceFlight - Unity Game",
 		icon: website,
-		description: " ",
-		githubPath: "/#",
+		description: "Space Flight game built in Unity.",
+		githubPath: "https://github.com/bhimeshchauhan/SpaceExpo",
 		media: [],
-//		demoPath: "/#",
-        iframe: '<iframe width="100%" height="300" src="//jsfiddle.net/bchauhan/ft4xpvLo/embedded/js,html,css,result/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>',
-		year: "",
-		techUsed: "Python, NPM, Bower, BeautifulSoup, PIP, Worksheet API"
+		demoPath: "https://simmer.io/@bchauhan/spaceshooter",
+        iframe: '<iframe src="https://i.simmer.io/@bchauhan/spaceshooter" style="width:960px;height:600px"></iframe>',
+		year: "2020",
+		techUsed: "Unity, WebGL, OpenGL, C#, Blender"
 	},
 	{
 		id: 4,
