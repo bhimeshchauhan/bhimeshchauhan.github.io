@@ -16,7 +16,7 @@ const IndexPage = () => {
         Hello there, thank you for checking out my website. I am a
         Full-Stack Engineer with specialization in Computer Vision and Graphic utilizing ML.
         </p>
-        <DownloadButton href="https://github.com/bhimeshchauhan/react-personal-portfolio/raw/master/resume.pdf"  download title="Resume">Download Resume</DownloadButton>
+        <DownloadButton href="https://pdfhost.io/v/WSqSdrSWI_Microsoft_Word_Resumedoc.pdf"  download title="Resume">Download Resume</DownloadButton>
       </div>
       <img src={BhimeshIcon} alt="bhimesh self" />
     </UserDescription>

@@ -4,7 +4,7 @@ import favicon from '../../assets/images/bhimesh-favicon.svg';
 
 const parseTemplate = (tag, html) => {
     if(tag === "img") {
-        return(<img class='uk-width-1-1' src={html}/>);
+        return(<img class='uk-width-1-1' src={html} alt="blog"/>);
     } else if(tag === "h4") {
         return(<h4>{html}</h4>);
     } else if(tag === "h3") {
@@ -20,6 +20,8 @@ const parseTemplate = (tag, html) => {
                 return(`<strong>${value}</strong>`);
             } else if(key === 'code') {
                 return(`<code>${value}</code>`);
+            } else {
+                return ``;
             }
         });
         data += "</p>"
@@ -39,6 +41,8 @@ const parseTemplate = (tag, html) => {
                 return(`<code>${value}</code>`);
             } else if(key === 'br') {
                 return(`<br>`);
+            } else {
+                return ``;
             }
         });
         data += "</pre>";
