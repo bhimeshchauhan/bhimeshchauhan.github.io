@@ -5,6 +5,14 @@ export default [
 		todo: [
 		    {
 		        desc: 'Work at Finance industry and implement ML models ',
+		        fin: true
+			},
+			{
+		        desc: 'Lear sign language ',
+		        fin: false
+			},
+			{
+		        desc: 'CPR certification ',
 		        fin: false
 		    },
 		    {
@@ -13,15 +21,15 @@ export default [
 		    },
 		    {
 		        desc: 'Apply for Express Entry and move to Canada ',
-		        fin: false
+		        fin: true
 		    },
 		    {
 		        desc: 'Work on creating you own business ',
-		        fin: false
+		        fin: true
 		    },
 		    {
 		        desc: 'Do one passion project every quarter ',
-		        fin: false
+		        fin: true
 		    },
 		]
 	},
