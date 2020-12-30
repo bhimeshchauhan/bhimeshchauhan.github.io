@@ -58,7 +58,7 @@ export const UserDescription = styled.div`
     margin-bottom: 15%;
   }
   img{
-    margin-top: -15%;
+    margin-top: -10%;
     max-width: 50%;
   }
   @media (max-width: 1000px) and (min-width: 701px) {
