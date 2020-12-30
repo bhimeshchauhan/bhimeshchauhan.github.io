@@ -3,10 +3,23 @@ import pitchly from "../assets/images/experience/bhimesh/pitchly.png";
 import sodima from "../assets/images/experience/bhimesh/sodima.png";
 import nebullam from "../assets/images/experience/bhimesh/nebullam.png";
 import solum from "../assets/images/experience/bhimesh/solum.png";
+import preply from "../assets/images/experience/bhimesh/preply.png";
 
 export default [
 	{
 		id: 1,
+		name: "Preply Inc.",
+		designation: "Senior Full Stack Software Engineer",
+		dated: "",
+		logo: preply,
+		companyLink: "https://www.preply.com/",
+		description:
+			'• Developed Application in React to connect users on their learning journey with tutors<br/>' +
+			'• Launch and own progressive A/B test driving product to better serve clients and increase NSS metrics for the company<br/>' +
+			'• Monitor the test data and make business decision on feature release for various markets'
+	},
+	{
+		id: 2,
 		name: "DataRobot Inc.",
 		designation: "Full Stack Software Engineer",
 		dated: "",
@@ -17,7 +30,7 @@ export default [
 			'• Integrated Datarobot Tools to third party applications like Microsoft Excel, Snowflake, Tableau. Integrated testing process using Jenkins.'
 	},
 	{
-		id: 2,
+		id: 3,
 		name: "Pitchly Inc.",
 		designation: "Applications Engineer",
 		dated: "",
@@ -28,7 +41,7 @@ export default [
             '• Wrote two applications in Meteor to use GraphQL endpoints in an ecosystem to help financial & legal institutions streamline data.'
 	},
 	{
-		id: 3,
+		id: 4,
 		name: "Nebullam Inc.",
 		designation: "Android Application Engineer and Data Scientist",
 		dated: "",
@@ -39,7 +52,7 @@ export default [
             '• Implemented a neural network using TensorFlow to study and automate the generation of plant growth which helped raise investment.'
 	},
 	{
-		id: 4,
+		id: 5,
 		name: "Sodima Solutions",
 		designation: "Full Stack Software Engineer",
 		dated: "",
@@ -50,7 +63,7 @@ export default [
             '• Developed MVP architecture for an app in GraphQL to build NLP chatbot.'
 	},
 	{
-		id: 5,
+		id: 6,
 		name: "Solum Labs - Climate Corporation",
 		designation: "Full Stack Software Engineer",
 		dated: "",
