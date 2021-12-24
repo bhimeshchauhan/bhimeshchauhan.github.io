@@ -11,7 +11,7 @@ const Footer = ({ footerClass }) => (
 			>
 				Github
 			</a>{" "}
-			| &#9400; Designed with &#10084; by {" "}
+			| &#9400; 2022 | Designed with &#10084; by {" "}
 			<a href="/#" target="_blank">
 				Bhimesh
 			</a>
