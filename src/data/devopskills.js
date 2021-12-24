@@ -5,10 +5,10 @@ export default [
 	{
 		id: 1,
 		title: "GitHub",
-		icon: "https://img.stackshare.io/service/683/sBsvBbjY.png",
+		icon: "https://img.stackshare.io/service/27/sBsvBbjY.png",
 		experience: experience[2],
 		experienceColor: experienceColor[2],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 2,
@@ -16,7 +16,7 @@ export default [
 		icon: "https://img.stackshare.io/service/1046/git.png",
 		experience: experience[2],
 		experienceColor: experienceColor[2],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 3,
@@ -24,7 +24,7 @@ export default [
 		icon: "https://img.stackshare.io/service/586/n4u37v9t_400x400.png",
 		experience: experience[1],
 		experienceColor: experienceColor[1],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 4,
@@ -32,7 +32,7 @@ export default [
 		icon: "https://img.stackshare.io/service/4202/Visual_Studio_Code_logo.png",
 		experience: experience[2],
 		experienceColor: experienceColor[2],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 5,
@@ -40,7 +40,7 @@ export default [
 		icon: "https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png",
 		experience: experience[2],
 		experienceColor: experienceColor[2],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 6,
@@ -48,7 +48,7 @@ export default [
 		icon: "https://img.stackshare.io/service/670/jenkins.png",
 		experience: experience[1],
 		experienceColor: experienceColor[1],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 7,
@@ -56,7 +56,7 @@ export default [
 		icon: "https://img.stackshare.io/service/880/lmalkclL.png",
 		experience: experience[2],
 		experienceColor: experienceColor[2],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 8,
@@ -64,7 +64,7 @@ export default [
 		icon: "https://img.stackshare.io/service/28/35O2KIRX_400x400.jpg",
 		experience: experience[2],
 		experienceColor: experienceColor[2],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 9,
@@ -72,7 +72,7 @@ export default [
 		icon: "https://img.stackshare.io/service/1682/IMG_4636.PNG",
 		experience: experience[1],
 		experienceColor: experienceColor[1],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 10,
@@ -80,7 +80,7 @@ export default [
 		icon: "https://img.stackshare.io/service/774/vbox_94px.png",
 		experience: experience[1],
 		experienceColor: experienceColor[1],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 11,
@@ -88,15 +88,15 @@ export default [
 		icon: "https://img.stackshare.io/service/1447/AyreX9yf.jpeg",
 		experience: experience[2],
 		experienceColor: experienceColor[2],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 12,
 		title: "Atom",
-		icon: "https://img.stackshare.io/service/648/QbnVqgX4.png",
+		icon: "https://img.stackshare.io/service/648/default_92414794b88a328cecc4ae62413ea91ea0593726.png",
 		experience: experience[2],
 		experienceColor: experienceColor[2],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 13,
@@ -104,7 +104,7 @@ export default [
 		icon: "https://img.stackshare.io/service/3136/docker-compose.png",
 		experience: experience[1],
 		experienceColor: experienceColor[1],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 14,
@@ -112,7 +112,7 @@ export default [
 		icon: "https://img.stackshare.io/service/1722/Image_2019-05-20_at_4.53.31_PM.png",
 		experience: experience[1],
 		experienceColor: experienceColor[1],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 15,
@@ -120,7 +120,7 @@ export default [
 		icon: "https://img.stackshare.io/service/844/iruTC031.png",
 		experience: experience[1],
 		experienceColor: experienceColor[1],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 16,
@@ -128,7 +128,7 @@ export default [
 		icon: "https://img.stackshare.io/service/2739/-1wfGjNw.png",
 		experience: experience[1],
 		experienceColor: experienceColor[1],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 17,
@@ -136,7 +136,7 @@ export default [
 		icon: "https://img.stackshare.io/service/3337/Q4L7Jncy.jpg",
 		experience: experience[1],
 		experienceColor: experienceColor[1],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 18,
@@ -144,7 +144,7 @@ export default [
 		icon: "https://img.stackshare.io/service/5848/44mC-kJ3.jpg",
 		experience: experience[1],
 		experienceColor: experienceColor[1],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 19,
@@ -152,7 +152,7 @@ export default [
 		icon: "https://img.stackshare.io/service/1517/sbUizSli_400x400.jpg",
 		experience: experience[1],
 		experienceColor: experienceColor[1],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 20,
@@ -160,7 +160,7 @@ export default [
 		icon: "https://img.stackshare.io/service/460/Lu6cGu0z_400x400.png",
 		experience: experience[1],
 		experienceColor: experienceColor[1],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 21,
@@ -168,7 +168,7 @@ export default [
 		icon: "https://img.stackshare.io/service/1908/amazon-ecs.png",
 		experience: experience[1],
 		experienceColor: experienceColor[1],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 22,
@@ -176,7 +176,7 @@ export default [
 		icon: "https://img.stackshare.io/service/190/CvqrSSFs_400x400.jpg",
 		experience: experience[1],
 		experienceColor: experienceColor[1],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 23,
@@ -184,15 +184,15 @@ export default [
 		icon: "https://img.stackshare.io/service/830/jest.png",
 		experience: experience[2],
 		experienceColor: experienceColor[2],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 24,
 		title: "Cypress",
-		icon: "https://img.stackshare.io/service/9231/pXI1GDHW_400x400.jpg",
+		icon: "https://img.stackshare.io/service/9231/default_66c5c1a197dcd0232e41e4ab6299d119b4e165b3.png",
 		experience: experience[2],
 		experienceColor: experienceColor[2],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	},
 	{
 		id: 25,
@@ -200,6 +200,6 @@ export default [
 		icon: "https://img.stackshare.io/service/1725/chai.png",
 		experience: experience[2],
 		experienceColor: experienceColor[2],
-		url: "https://github.com/bhimeshchauhan/connect_four",
+		url: "https://github.com/bhimeshchauhan",
 	}
 ]
