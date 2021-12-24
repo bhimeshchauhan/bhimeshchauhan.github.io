@@ -1,36 +1,42 @@
 export default [
   {
     id: 1,
-    name: "YEAR - 2021",
+    name: "YEAR - 2022",
     todo: [
       {
-        desc: "Learn sign language ",
+        desc: "Learn ASL",
         fin: false,
       },
       {
-        desc: "Learn Spanish ",
+        desc: "Learn Spanish",
         fin: false,
       },
       {
-        desc: "CPR certification ",
+        desc: "CPR certification",
         fin: false,
       },
       {
-        desc: "Canadian immigration ",
-        fin: false,
-      },
-      {
-        desc: "visit two country in Europe a month",
-        fin: false,
-      },
-      {
-        desc: "IELTS preparation ",
+        desc: "Canadian immigration",
         fin: false,
       },
       {
         desc: "GMAT preparation ",
-        fin: false,
-      }
+        fin: true,
+      },
+    ],
+  },
+  {
+    id: 1,
+    name: "YEAR - 2021",
+    todo: [
+      {
+        desc: "IELTS preparation ",
+        fin: true,
+      },
+      {
+        desc: "Help a friend achieve their goal ",
+        fin: true,
+      },
     ],
   },
   {
