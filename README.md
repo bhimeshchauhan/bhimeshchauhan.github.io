@@ -5,8 +5,6 @@
 > Access using login and password only \
 > Hosting coming up
 
-![Preview Me](src/assets/images/study.gif)
-
 
 #### **Run Locally**
  1.  Clone this repository and go into its src folder.
