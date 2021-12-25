@@ -1,20 +1,20 @@
 import React from "react";
 import "../styles/tabs.css";
-import proProjects from "../data/ProProjects";
-import ProjectBox from "../components/Projects/ProjectBox";
+import videos from "../data/VideoLinks";
+import VideoBox from "../components/Videos/VideoBox";
 import { ProjectsWrapper, ProjectsSection } from "../styles/projectsStyle.js";
 import Layout from "../components/layout";
 
-const Projects = () => (
+const Videos = () => (
   <Layout>
     <ProjectsWrapper>
       <ProjectsSection>
-        {proProjects.map((item) => (
-          <ProjectBox key={item.id} info={item} iframe={item.iframe} />
+        {videos.map((item) => (
+          <VideoBox key={item.id} info={item} iframe={item.iframe} />
         ))}
       </ProjectsSection>
     </ProjectsWrapper>
   </Layout>
 );
 
-export default Projects;
+export default Videos;

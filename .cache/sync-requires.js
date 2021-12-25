@@ -15,6 +15,7 @@ exports.components = {
   "component---src-pages-netflix-js": hot(preferDefault(require("/Users/bhimeshchauhan/Desktop/bhimeshchauhan.github.io/src/pages/netflix.js"))),
   "component---src-pages-projects-js": hot(preferDefault(require("/Users/bhimeshchauhan/Desktop/bhimeshchauhan.github.io/src/pages/projects.js"))),
   "component---src-pages-recommendation-js": hot(preferDefault(require("/Users/bhimeshchauhan/Desktop/bhimeshchauhan.github.io/src/pages/recommendation.js"))),
-  "component---src-pages-skills-js": hot(preferDefault(require("/Users/bhimeshchauhan/Desktop/bhimeshchauhan.github.io/src/pages/skills.js")))
+  "component---src-pages-skills-js": hot(preferDefault(require("/Users/bhimeshchauhan/Desktop/bhimeshchauhan.github.io/src/pages/skills.js"))),
+  "component---src-pages-videos-js": hot(preferDefault(require("/Users/bhimeshchauhan/Desktop/bhimeshchauhan.github.io/src/pages/videos.js")))
 }
 

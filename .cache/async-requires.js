@@ -12,6 +12,7 @@ exports.components = {
   "component---src-pages-netflix-js": () => import("./../../../src/pages/netflix.js" /* webpackChunkName: "component---src-pages-netflix-js" */),
   "component---src-pages-projects-js": () => import("./../../../src/pages/projects.js" /* webpackChunkName: "component---src-pages-projects-js" */),
   "component---src-pages-recommendation-js": () => import("./../../../src/pages/recommendation.js" /* webpackChunkName: "component---src-pages-recommendation-js" */),
-  "component---src-pages-skills-js": () => import("./../../../src/pages/skills.js" /* webpackChunkName: "component---src-pages-skills-js" */)
+  "component---src-pages-skills-js": () => import("./../../../src/pages/skills.js" /* webpackChunkName: "component---src-pages-skills-js" */),
+  "component---src-pages-videos-js": () => import("./../../../src/pages/videos.js" /* webpackChunkName: "component---src-pages-videos-js" */)
 }
 
