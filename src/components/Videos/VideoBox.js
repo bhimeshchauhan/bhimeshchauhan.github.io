@@ -1,22 +1,20 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const Box = styled.div`
-//  max-width: 450px;
+  //  max-width: 450px;
 
   width: 100%;
   min-height: 470px;
   border-radius: 8px;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
-            0 3px 1px -2px rgba(0,0,0,0.12),
-            0 1px 5px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
   transition: box-shadow 0.3s ease-out;
-  background-color: #17191B;
+  background-color: #17191b;
   margin: 0 4% 4%;
   :hover {
-    box-shadow:  0 8px 17px 2px rgba(0,0,0,0.14),
-            0 3px 14px 2px rgba(0,0,0,0.12),
-            0 5px 5px -3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
+      0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
     transition: box-shadow 0.3s;
   }
   @media (max-width: 700px) {
@@ -31,7 +29,7 @@ const Box = styled.div`
     max-width: 100%;
     margin: 0 0 4%;
   }
-`
+`;
 const BoxIcon = styled.div`
   height: 120px;
   display: flex;
@@ -43,41 +41,41 @@ const BoxIcon = styled.div`
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   background-color: rgba(127, 161, 232, 0.3);
-  img{
+  img {
     width: 10%;
     margin-right: 3%;
     margin-bottom: 0;
     margin-left: -3%;
   }
-  h3{
+  h3 {
     margin: 0;
-    flex:1;
-    color: #FFF;
+    flex: 1;
+    color: #fff;
   }
   @media (max-width: 700px) {
-    img{
+    img {
       width: 40%;
     }
   }
-`
+`;
 const BoxDescription = styled.div`
   padding: 5%;
   flex-direction: column;
   display: FLEX;
   height: calc(100% - 120px);
-  p{
-    color: #FFF;
+  p {
+    color: #fff;
   }
-  a{
+  a {
     color: #7fa1e8;
     font-size: 20px;
     font-weight: bold;
     display: block;
-    margin:0 0 10px;
+    margin: 0 0 10px;
     text-decoration: none;
   }
-  .projectItem {
-    display:flex;
+  .videoItem {
+    display: flex;
     overflow-x: scroll !important;
     /* width */
     ::-webkit-scrollbar {
@@ -102,33 +100,34 @@ const BoxDescription = styled.div`
     }
 
     img {
-        max-width: 50%;
-        margin: 1%;
+      max-width: 50%;
+      margin: 1%;
     }
   }
   iframe {
     min-height: 50em;
+    width: 100%;
   }
-`
+`;
 
 const VideoBox = ({ info }) => (
-    <Box className="videoBox">
-      <BoxIcon>
-        <img src={info.icon} alt="bhimesh video icon" />
-        <h3>{info.title}</h3>
-      </BoxIcon>
-      <BoxDescription>
-        {
-            info.iframe ?
-            <div dangerouslySetInnerHTML={{__html:info.iframe}} /> :
-            <div className='projectItem'>
-                {info.media.map((item) =>
-                    <img src={item} alt='project icon'></img>
-                )}
-            </div>
-        }
-      </BoxDescription>
-    </Box>
+  <Box className="videoBox">
+    <BoxIcon>
+      <img src={info.icon} alt="bhimesh video icon" />
+      <h3>{info.title}</h3>
+    </BoxIcon>
+    <BoxDescription>
+      {info.iframe ? (
+        <div dangerouslySetInnerHTML={{ __html: info.iframe }} />
+      ) : (
+        <div className="videoItem">
+          {info.media.map((item) => (
+            <img src={item} alt="project icon"></img>
+          ))}
+        </div>
+      )}
+    </BoxDescription>
+  </Box>
 );
 
 export default VideoBox;
