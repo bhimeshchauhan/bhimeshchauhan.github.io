@@ -34,22 +34,26 @@ const BoxIcon = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 4%;
+  padding: 1%;
   box-sizing: border-box;
   border-radius: inherit;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   background-color: rgba(127, 161, 232, 0.3);
   img {
-    width: 10%;
+    width: 5%;
     margin-right: 3%;
     margin-bottom: 0;
-    margin-left: -3%;
   }
   h3 {
     margin: 0;
     flex: 1;
     color: #fff;
+    font-size: 1.2rem;
+    margin-left: 3%;
+    @media only screen and (max-width: 480px) {
+      margin-left: 0;
+    }
   }
   @media only screen and (max-width: 480px) {
     img {
