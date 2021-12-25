@@ -1,22 +1,18 @@
 "use strict";
 
+var _interopRequireWildcard = require("@babel/runtime/helpers/interopRequireWildcard");
+
 exports.__esModule = true;
 exports.errorMap = exports.reportError = exports.clearError = void 0;
-const overlayPackage = process.env.GATSBY_HOT_LOADER !== `fast-refresh` ? require(`react-error-overlay`) : require(`@pmmmwh/react-refresh-webpack-plugin/overlay`);
-const ErrorOverlay = {
-  showCompileError: process.env.GATSBY_HOT_LOADER !== `fast-refresh` ? overlayPackage.reportBuildError : overlayPackage.showCompileError,
-  clearCompileError: process.env.GATSBY_HOT_LOADER !== `fast-refresh` ? overlayPackage.dismissBuildError : overlayPackage.clearCompileError
-};
 
-if (process.env.GATSBY_HOT_LOADER !== `fast-refresh`) {
-  // Report runtime errors
-  overlayPackage.startReportingRuntimeErrors({
-    onError: () => {},
-    filename: `/commons.js`
-  });
-  overlayPackage.setEditorHandler(errorLocation => window.fetch(`/__open-stack-frame-in-editor?fileName=` + window.encodeURIComponent(errorLocation.fileName) + `&lineNumber=` + window.encodeURIComponent(errorLocation.lineNumber || 1)));
-}
+var ErrorOverlay = _interopRequireWildcard(require("react-error-overlay"));
 
+// Report runtime errors
+ErrorOverlay.startReportingRuntimeErrors({
+  onError: () => {},
+  filename: `/commons.js`
+});
+ErrorOverlay.setEditorHandler(errorLocation => window.fetch(`/__open-stack-frame-in-editor?fileName=` + window.encodeURIComponent(errorLocation.fileName) + `&lineNumber=` + window.encodeURIComponent(errorLocation.lineNumber || 1)));
 const errorMap = {};
 exports.errorMap = errorMap;
 
@@ -47,9 +43,9 @@ const handleErrorOverlay = () => {
   }
 
   if (errorStringsToDisplay.length > 0) {
-    ErrorOverlay.showCompileError(errorStringsToDisplay.join(`\n\n`));
+    ErrorOverlay.reportBuildError(errorStringsToDisplay.join(`\n\n`));
   } else {
-    ErrorOverlay.clearCompileError();
+    ErrorOverlay.dismissBuildError();
   }
 };
 
