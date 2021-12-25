@@ -3,13 +3,13 @@ import video from "../assets/images/projects/video.svg";
 export default [
   {
     id: 1,
-    title: "WEBB",
+    title: "Where is WEBB?",
     icon: video,
-    description: "ISS",
+    description: "Where is WEBB?",
     githubPath: null,
     media: [],
     demoPath: null,
-    iframe: `<iframe width="1190" height="669" src="https://www.youtube.com/embed/eJ3dzX5XiuI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
+    iframe: `<iframe width="1190" height="669" src="https://www.youtube.com/embed/eJ3dzX5XiuI?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
     year: "2021",
   },
   {
