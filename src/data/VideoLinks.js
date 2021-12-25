@@ -9,7 +9,7 @@ export default [
     githubPath: null,
     media: [],
     demoPath: null,
-    iframe: `<iframe width="1190" height="669" src="https://www.youtube.com/embed/IHu9QuSn8L8" title="YouTube video player" frameborder="0" autoplay="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
+    iframe: `<iframe width="1190" height="669" src="https://www.youtube.com/embed/IHu9QuSn8L8?autoplay=1" title="YouTube video player" frameborder="0" autoplay="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
     year: "2021",
   },
   {
@@ -20,7 +20,7 @@ export default [
     githubPath: null,
     media: [],
     demoPath: null,
-    iframe: `<iframe width="1190" height="669" src="https://www.youtube.com/embed/W-uHDGaXtqE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
+    iframe: `<iframe width="1190" height="669" src="https://www.youtube.com/embed/W-uHDGaXtqE?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
     year: "2021",
   },
   {
@@ -31,7 +31,7 @@ export default [
     githubPath: null,
     media: [],
     demoPath: null,
-    iframe: `<iframe width="1190" height="669" src="https://www.youtube.com/embed/kE5jztr7OlQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
+    iframe: `<iframe width="1190" height="669" src="https://www.youtube.com/embed/kE5jztr7OlQ?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
     year: "2021",
   },
   {
@@ -42,7 +42,7 @@ export default [
     githubPath: null,
     media: [],
     demoPath: null,
-    iframe: `<iframe width="1190" height="669" src="https://www.youtube.com/embed/86YLFOog4GM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
+    iframe: `<iframe width="1190" height="669" src="https://www.youtube.com/embed/86YLFOog4GM?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
     year: "2021",
   },
 ];
