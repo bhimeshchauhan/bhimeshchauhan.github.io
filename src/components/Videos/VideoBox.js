@@ -31,7 +31,6 @@ const Box = styled.div`
   }
 `;
 const BoxIcon = styled.div`
-  height: 120px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -52,9 +51,10 @@ const BoxIcon = styled.div`
     flex: 1;
     color: #fff;
   }
-  @media (max-width: 700px) {
+  @media only screen and (max-width: 480px) {
     img {
-      width: 40%;
+      width: 25%;
+      margin: 3%;
     }
   }
 `;
@@ -106,6 +106,11 @@ const BoxDescription = styled.div`
   }
   iframe {
     min-height: 50em;
+    @media only screen and (max-width: 480px) {
+      /* smartphones, Android phones, landscape iPhone */
+      min-height: unset;
+      height: 20em;
+    }
     width: 100%;
   }
 `;

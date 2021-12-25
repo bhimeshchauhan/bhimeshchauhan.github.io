@@ -1,10 +1,10 @@
-import website from "../assets/images/projects/website.svg";
+import video from "../assets/images/projects/video.svg";
 
 export default [
   {
     id: 1,
     title: "James Webb Telescope",
-    icon: website,
+    icon: video,
     description: "The launch of James Webb Telescope in 2021",
     githubPath: null,
     media: [],
@@ -15,7 +15,7 @@ export default [
   {
     id: 2,
     title: "James Webb Telescope",
-    icon: website,
+    icon: video,
     description: "The launch of James Webb Telescope in 2021",
     githubPath: null,
     media: [],
@@ -26,7 +26,7 @@ export default [
   {
     id: 3,
     title: "James Webb Telescope",
-    icon: website,
+    icon: video,
     description: "The launch of James Webb Telescope in 2021",
     githubPath: null,
     media: [],
@@ -37,7 +37,7 @@ export default [
   {
     id: 4,
     title: "ISS",
-    icon: website,
+    icon: video,
     description: "ISS",
     githubPath: null,
     media: [],
