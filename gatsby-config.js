@@ -4,6 +4,20 @@ module.exports = {
     siteUrl: "http://bhimeshchauhan.github.io",
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          "G-MXN2LDQ2MB", // Google Analytics / GA
+        ],
+        // This object is used for configuration specific to this plugin
+        pluginConfig: {
+          // Puts tracking script in the head instead of the body
+          head: true,
+        },
+      },
+    },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-styled-components",
     {
@@ -17,22 +31,6 @@ module.exports = {
     },
     {
       resolve: `gatsby-transformer-sharp`,
-    },
-    {
-      resolve: `gatsby-plugin-google-gtag`,
-      options: {
-        trackingIds: [
-          "G-MXN2LDQ2MB", // Google Analytics / GA
-        ],
-        gtagConfig: {
-          anonymize_ip: true,
-          cookie_expires: 0,
-          send_page_view: true,
-        },
-        pluginConfig: {
-          head: true,
-        },
-      },
     },
   ],
 };
