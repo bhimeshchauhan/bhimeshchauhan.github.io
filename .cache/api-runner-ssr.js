@@ -3,13 +3,16 @@ var plugins = [{
       options: {"plugins":[]},
     },{
       plugin: require('/Users/bhimeshchauhan/Desktop/bhimeshchauhan.github.io/node_modules/gatsby-plugin-styled-components/gatsby-ssr'),
-      options: {"plugins":[]},
+      options: {"plugins":[],"displayName":true,"fileName":true,"minify":true,"namespace":"","transpileTemplateLiterals":true,"pure":false},
     },{
       plugin: require('/Users/bhimeshchauhan/Desktop/bhimeshchauhan.github.io/node_modules/gatsby-plugin-google-fonts/gatsby-ssr'),
       options: {"plugins":[],"fonts":["Signika","source sans pro:300,400,600"]},
     },{
       plugin: require('/Users/bhimeshchauhan/Desktop/bhimeshchauhan.github.io/node_modules/gatsby-plugin-google-analytics/gatsby-ssr'),
-      options: {"plugins":[],"trackingId":"UA-130172537-1","head":false},
+      options: {"plugins":[],"trackingId":"UA-130172537-1","head":false,"anonymize":false,"respectDNT":false,"exclude":[],"pageTransitionDelay":0},
+    },{
+      plugin: require('/Users/bhimeshchauhan/Desktop/bhimeshchauhan.github.io/node_modules/gatsby-plugin-google-analytics/gatsby-ssr'),
+      options: {"plugins":[],"trackingId":"G-MXN2LDQ2MB","head":true,"anonymize":true,"respectDNT":true,"exclude":[],"pageTransitionDelay":0,"optimizeId":"YOUR_GOOGLE_OPTIMIZE_TRACKING_ID","experimentId":"YOUR_GOOGLE_EXPERIMENT_ID","variationId":"YOUR_GOOGLE_OPTIMIZE_VARIATION_ID","defer":false,"sampleRate":5,"siteSpeedSampleRate":10,"cookieDomain":"github.io","enableWebVitalsTracking":true},
     }]
 // During bootstrap, we write requires at top of this file which looks like:
 // var plugins = [
