@@ -9,7 +9,7 @@ export default [
     githubPath: null,
     media: [],
     demoPath: null,
-    iframe: `<iframe width="1190" height="669" src="https://www.youtube.com/embed/zHrPq7S51CA?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
+    iframe: `<iframe width="1664" height="769" src="https://www.youtube.com/embed/r8NhyRjBxnE?autoplay=1&mute=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`,
     year: "2021",
   },
   {
