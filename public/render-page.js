@@ -134,7 +134,8 @@ var plugins = [{
     "plugins": [],
     "fonts": ["Signika", "source sans pro:300,400,600"]
   }
-}]; // During bootstrap, we write requires at top of this file which looks like:
+}];
+// During bootstrap, we write requires at top of this file which looks like:
 // var plugins = [
 //   {
 //     plugin: require("/path/to/plugin1/gatsby-ssr.js"),
@@ -146,35 +147,32 @@ var plugins = [{
 //   },
 // ]
 
-const apis = __webpack_require__(/*! ./api-ssr-docs */ "./.cache/api-ssr-docs.js"); // Run the specified API in any plugins that have implemented it
+const apis = __webpack_require__(/*! ./api-ssr-docs */ "./.cache/api-ssr-docs.js");
 
-
+// Run the specified API in any plugins that have implemented it
 module.exports = (api, args, defaultReturn, argTransform) => {
   if (!apis[api]) {
     console.log(`This API doesn't exist`, api);
-  } // Run each plugin in series.
+  }
+
+  // Run each plugin in series.
   // eslint-disable-next-line no-undef
-
-
   let results = plugins.map(plugin => {
     if (!plugin.plugin[api]) {
       return undefined;
     }
-
     const result = plugin.plugin[api](args, plugin.options);
-
     if (result && argTransform) {
       args = argTransform({
         args,
         result
       });
     }
-
     return result;
-  }); // Filter out undefined results.
+  });
 
+  // Filter out undefined results.
   results = results.filter(result => typeof result !== `undefined`);
-
   if (results.length > 0) {
     return results;
   } else {
@@ -235,6 +233,7 @@ module.exports = (api, args, defaultReturn, argTransform) => {
  * }
  */
 exports.replaceRenderer = true;
+
 /**
  * Called after every page Gatsby server renders while building HTML so you can
  * set head and body components to be rendered in your `html.js`.
@@ -297,8 +296,8 @@ exports.replaceRenderer = true;
  *   setBodyAttributes(BodyAttributes)
  * }
  */
-
 exports.onRenderBody = true;
+
 /**
  * Called after every page Gatsby server renders while building HTML so you can
  * replace head components to be rendered in your `html.js`. This is useful if
@@ -336,8 +335,8 @@ exports.onRenderBody = true;
  *   replaceHeadComponents(headComponents)
  * }
  */
-
 exports.onPreRenderHTML = true;
+
 /**
  * Allow a plugin to wrap the page element.
  *
@@ -363,8 +362,8 @@ exports.onPreRenderHTML = true;
  *   return <Layout {...props}>{element}</Layout>
  * }
  */
-
 exports.wrapPageElement = true;
+
 /**
  * Allow a plugin to wrap the root element.
  *
@@ -394,7 +393,6 @@ exports.wrapPageElement = true;
  *   )
  * }
  */
-
 exports.wrapRootElement = true;
 
 /***/ }),
@@ -463,19 +461,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import testRequireError from "./test-require-error"
+
+// import testRequireError from "./test-require-error"
 // For some extremely mysterious reason, webpack adds the above module *after*
 // this module so that when this code runs, testRequireError is undefined.
 // So in the meantime, we'll just inline it.
-
 const testRequireError = (moduleName, err) => {
   const regex = new RegExp(`Error: Cannot find module\\s.${moduleName}`);
   const firstLine = err.toString().split(`\n`)[0];
   return regex.test(firstLine);
 };
-
 let Html;
-
 try {
   Html = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../src/html'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 } catch (err) {
@@ -486,7 +482,6 @@ try {
     process.exit();
   }
 }
-
 Html = Html && Html.__esModule ? Html.default : Html;
 /* harmony default export */ __webpack_exports__["default"] = ((pagePath, callback) => {
   let headComponents = [/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("meta", {
@@ -500,49 +495,36 @@ Html = Html && Html.__esModule ? Html.default : Html;
   let postBodyComponents = [];
   let bodyProps = {};
   let htmlStr;
-
   const setHeadComponents = components => {
     headComponents = headComponents.concat(components);
   };
-
   const setHtmlAttributes = attributes => {
     htmlAttributes = lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()(htmlAttributes, attributes);
   };
-
   const setBodyAttributes = attributes => {
     bodyAttributes = lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()(bodyAttributes, attributes);
   };
-
   const setPreBodyComponents = components => {
     preBodyComponents = preBodyComponents.concat(components);
   };
-
   const setPostBodyComponents = components => {
     postBodyComponents = postBodyComponents.concat(components);
   };
-
   const setBodyProps = props => {
     bodyProps = lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, bodyProps, props);
   };
-
   const getHeadComponents = () => headComponents;
-
   const replaceHeadComponents = components => {
     headComponents = components;
   };
-
   const getPreBodyComponents = () => preBodyComponents;
-
   const replacePreBodyComponents = components => {
     preBodyComponents = components;
   };
-
   const getPostBodyComponents = () => postBodyComponents;
-
   const replacePostBodyComponents = components => {
     postBodyComponents = components;
   };
-
   _api_runner_ssr__WEBPACK_IMPORTED_MODULE_3___default()(`onRenderBody`, {
     setHeadComponents,
     setHtmlAttributes,
@@ -561,7 +543,8 @@ Html = Html && Html.__esModule ? Html.default : Html;
     replacePostBodyComponents,
     pathname: pagePath
   });
-  const htmlElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Html, { ...bodyProps,
+  const htmlElement = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Html, {
+    ...bodyProps,
     body: ``,
     headComponents: headComponents.concat([/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("script", {
       key: `io`,
@@ -598,7 +581,6 @@ function _interopRequireDefault(obj) {
     "default": obj
   };
 }
-
 module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
@@ -1038,15 +1020,12 @@ var isArray = Array.isArray || function (xs) {
 
 
 var _react = __webpack_require__(/*! react */ "react");
-
 var _react2 = _interopRequireDefault(_react);
-
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {
     default: obj
   };
 }
-
 var format = function format(string) {
   return string.split(' ').map(function (s) {
     return s.replace(/^\w/, function (s) {
@@ -1054,11 +1033,9 @@ var format = function format(string) {
     });
   }).join(' ');
 };
-
 var getFonts = function getFonts(options) {
   return options.fonts.map(format).join('|').replace(/ /g, '+');
 };
-
 exports.onRenderBody = function (_ref, options) {
   var setHeadComponents = _ref.setHeadComponents;
   var link = 'https://fonts.googleapis.com/css?family=' + getFonts(options);
@@ -1082,52 +1059,46 @@ exports.onRenderBody = function (_ref, options) {
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
-
 var _minimatch = __webpack_require__(/*! minimatch */ "./node_modules/minimatch/minimatch.js");
-
 exports.onRenderBody = function (_ref, pluginOptions) {
   var setHeadComponents = _ref.setHeadComponents,
-      setPostBodyComponents = _ref.setPostBodyComponents;
-  if (true) return null; // Lighthouse recommends pre-connecting to google tag manager
+    setPostBodyComponents = _ref.setPostBodyComponents;
+  if (true) return null;
+  var gtagConfig = pluginOptions.gtagConfig || {};
+  var pluginConfig = pluginOptions.pluginConfig || {};
+  var origin = pluginConfig.origin || "https://www.googletagmanager.com"; // Lighthouse recommends pre-connecting to google tag manager
 
   setHeadComponents([/*#__PURE__*/_react.default.createElement("link", {
     rel: "preconnect",
     key: "preconnect-google-gtag",
-    href: "https://www.googletagmanager.com"
+    href: origin
   }), /*#__PURE__*/_react.default.createElement("link", {
     rel: "dns-prefetch",
     key: "dns-prefetch-google-gtag",
-    href: "https://www.googletagmanager.com"
-  })]);
-  var gtagConfig = pluginOptions.gtagConfig || {};
-  var pluginConfig = pluginOptions.pluginConfig || {}; // Prevent duplicate or excluded pageview events being emitted on initial load of page by the `config` command
+    href: origin
+  })]); // Prevent duplicate or excluded pageview events being emitted on initial load of page by the `config` command
   // https://developers.google.com/analytics/devguides/collection/gtagjs/#disable_pageview_tracking
 
   gtagConfig.send_page_view = false;
   var firstTrackingId = pluginOptions.trackingIds && pluginOptions.trackingIds.length ? pluginOptions.trackingIds[0] : "";
   var excludeGtagPaths = [];
-
   if (typeof pluginConfig.exclude !== "undefined") {
     pluginConfig.exclude.map(function (exclude) {
       var mm = new _minimatch.Minimatch(exclude);
       excludeGtagPaths.push(mm.makeRe());
     });
   }
-
   var setComponents = pluginConfig.head ? setHeadComponents : setPostBodyComponents;
-
   var renderHtml = function renderHtml() {
     return "\n      " + (excludeGtagPaths.length ? "window.excludeGtagPaths=[" + excludeGtagPaths.join(",") + "];" : "") + "\n      " + (typeof gtagConfig.anonymize_ip !== "undefined" && gtagConfig.anonymize_ip === true ? "function gaOptout(){document.cookie=disableStr+'=true; expires=Thu, 31 Dec 2099 23:59:59 UTC;path=/',window[disableStr]=!0}var gaProperty='" + firstTrackingId + "',disableStr='ga-disable-'+gaProperty;document.cookie.indexOf(disableStr+'=true')>-1&&(window[disableStr]=!0);" : "") + "\n      if(" + (pluginConfig.respectDNT ? "!(navigator.doNotTrack == \"1\" || window.doNotTrack == \"1\")" : "true") + ") {\n        window.dataLayer = window.dataLayer || [];\n        function gtag(){window.dataLayer && window.dataLayer.push(arguments);}\n        gtag('js', new Date());\n\n        " + pluginOptions.trackingIds.map(function (trackingId) {
       return "gtag('config', '" + trackingId + "', " + JSON.stringify(gtagConfig) + ");";
     }).join("") + "\n      }\n      ";
   };
-
   return setComponents([/*#__PURE__*/_react.default.createElement("script", {
     key: "gatsby-plugin-google-gtag",
     async: true,
-    src: "https://www.googletagmanager.com/gtag/js?id=" + firstTrackingId
+    src: origin + "/gtag/js?id=" + firstTrackingId
   }), /*#__PURE__*/_react.default.createElement("script", {
     key: "gatsby-plugin-google-gtag-config",
     dangerouslySetInnerHTML: {
@@ -1150,28 +1121,21 @@ exports.onRenderBody = function (_ref, pluginOptions) {
 
 exports.__esModule = true;
 exports.onRenderBody = void 0;
-
 var _reactHelmet = __webpack_require__(/*! react-helmet */ "react-helmet");
-
 var onRenderBody = function onRenderBody(_ref) {
   var setHeadComponents = _ref.setHeadComponents,
-      setHtmlAttributes = _ref.setHtmlAttributes,
-      setBodyAttributes = _ref.setBodyAttributes;
-
+    setHtmlAttributes = _ref.setHtmlAttributes,
+    setBodyAttributes = _ref.setBodyAttributes;
   var helmet = _reactHelmet.Helmet.renderStatic(); // These action functions were added partway through the Gatsby 1.x cycle.
-
 
   if (setHtmlAttributes) {
     setHtmlAttributes(helmet.htmlAttributes.toComponent());
   }
-
   if (setBodyAttributes) {
     setBodyAttributes(helmet.bodyAttributes.toComponent());
   }
-
   setHeadComponents([helmet.title.toComponent(), helmet.link.toComponent(), helmet.meta.toComponent(), helmet.noscript.toComponent(), helmet.script.toComponent(), helmet.style.toComponent(), helmet.base.toComponent()]);
 };
-
 exports.onRenderBody = onRenderBody;
 
 /***/ }),
@@ -1187,28 +1151,23 @@ exports.onRenderBody = onRenderBody;
 
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "react"));
-
 var _styledComponents = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.esm.js");
-
 var sheetByPathname = new Map(); // eslint-disable-next-line react/prop-types,react/display-name
 
 exports.wrapRootElement = function (_ref) {
   var element = _ref.element,
-      pathname = _ref.pathname;
+    pathname = _ref.pathname;
   var sheet = new _styledComponents.ServerStyleSheet();
   sheetByPathname.set(pathname, sheet);
   return /*#__PURE__*/_react.default.createElement(_styledComponents.StyleSheetManager, {
     sheet: sheet.instance
   }, element);
 };
-
 exports.onRenderBody = function (_ref2) {
   var setHeadComponents = _ref2.setHeadComponents,
-      pathname = _ref2.pathname;
+    pathname = _ref2.pathname;
   var sheet = sheetByPathname.get(pathname);
-
   if (sheet) {
     setHeadComponents([sheet.getStyleElement()]);
     sheetByPathname.delete(pathname);
@@ -1804,10 +1763,10 @@ function concatArrays(originVal, newVal) {
 module.exports = minimatch
 minimatch.Minimatch = Minimatch
 
-var path = { sep: '/' }
-try {
-  path = __webpack_require__(/*! path */ "path")
-} catch (er) {}
+var path = (function () { try { return __webpack_require__(/*! path */ "path") } catch (e) {}}()) || {
+  sep: '/'
+}
+minimatch.sep = path.sep
 
 var GLOBSTAR = minimatch.GLOBSTAR = Minimatch.GLOBSTAR = {}
 var expand = __webpack_require__(/*! brace-expansion */ "./node_modules/brace-expansion/index.js")
@@ -1859,43 +1818,64 @@ function filter (pattern, options) {
 }
 
 function ext (a, b) {
-  a = a || {}
   b = b || {}
   var t = {}
-  Object.keys(b).forEach(function (k) {
-    t[k] = b[k]
-  })
   Object.keys(a).forEach(function (k) {
     t[k] = a[k]
+  })
+  Object.keys(b).forEach(function (k) {
+    t[k] = b[k]
   })
   return t
 }
 
 minimatch.defaults = function (def) {
-  if (!def || !Object.keys(def).length) return minimatch
+  if (!def || typeof def !== 'object' || !Object.keys(def).length) {
+    return minimatch
+  }
 
   var orig = minimatch
 
   var m = function minimatch (p, pattern, options) {
-    return orig.minimatch(p, pattern, ext(def, options))
+    return orig(p, pattern, ext(def, options))
   }
 
   m.Minimatch = function Minimatch (pattern, options) {
     return new orig.Minimatch(pattern, ext(def, options))
+  }
+  m.Minimatch.defaults = function defaults (options) {
+    return orig.defaults(ext(def, options)).Minimatch
+  }
+
+  m.filter = function filter (pattern, options) {
+    return orig.filter(pattern, ext(def, options))
+  }
+
+  m.defaults = function defaults (options) {
+    return orig.defaults(ext(def, options))
+  }
+
+  m.makeRe = function makeRe (pattern, options) {
+    return orig.makeRe(pattern, ext(def, options))
+  }
+
+  m.braceExpand = function braceExpand (pattern, options) {
+    return orig.braceExpand(pattern, ext(def, options))
+  }
+
+  m.match = function (list, pattern, options) {
+    return orig.match(list, pattern, ext(def, options))
   }
 
   return m
 }
 
 Minimatch.defaults = function (def) {
-  if (!def || !Object.keys(def).length) return Minimatch
   return minimatch.defaults(def).Minimatch
 }
 
 function minimatch (p, pattern, options) {
-  if (typeof pattern !== 'string') {
-    throw new TypeError('glob pattern string required')
-  }
+  assertValidPattern(pattern)
 
   if (!options) options = {}
 
@@ -1903,9 +1883,6 @@ function minimatch (p, pattern, options) {
   if (!options.nocomment && pattern.charAt(0) === '#') {
     return false
   }
-
-  // "" only matches ""
-  if (pattern.trim() === '') return p === ''
 
   return new Minimatch(pattern, options).match(p)
 }
@@ -1915,15 +1892,14 @@ function Minimatch (pattern, options) {
     return new Minimatch(pattern, options)
   }
 
-  if (typeof pattern !== 'string') {
-    throw new TypeError('glob pattern string required')
-  }
+  assertValidPattern(pattern)
 
   if (!options) options = {}
+
   pattern = pattern.trim()
 
   // windows support: need to use /, not \
-  if (path.sep !== '/') {
+  if (!options.allowWindowsEscape && path.sep !== '/') {
     pattern = pattern.split(path.sep).join('/')
   }
 
@@ -1934,6 +1910,7 @@ function Minimatch (pattern, options) {
   this.negate = false
   this.comment = false
   this.empty = false
+  this.partial = !!options.partial
 
   // make the set of regexps etc.
   this.make()
@@ -1943,9 +1920,6 @@ Minimatch.prototype.debug = function () {}
 
 Minimatch.prototype.make = make
 function make () {
-  // don't do it more than once.
-  if (this._made) return
-
   var pattern = this.pattern
   var options = this.options
 
@@ -1965,7 +1939,7 @@ function make () {
   // step 2: expand braces
   var set = this.globSet = this.braceExpand()
 
-  if (options.debug) this.debug = console.error
+  if (options.debug) this.debug = function debug() { console.error.apply(console, arguments) }
 
   this.debug(this.pattern, set)
 
@@ -2045,17 +2019,27 @@ function braceExpand (pattern, options) {
   pattern = typeof pattern === 'undefined'
     ? this.pattern : pattern
 
-  if (typeof pattern === 'undefined') {
-    throw new TypeError('undefined pattern')
-  }
+  assertValidPattern(pattern)
 
-  if (options.nobrace ||
-    !pattern.match(/\{.*\}/)) {
+  // Thanks to Yeting Li <https://github.com/yetingli> for
+  // improving this regexp to avoid a ReDOS vulnerability.
+  if (options.nobrace || !/\{(?:(?!\{).)*\}/.test(pattern)) {
     // shortcut. no need to expand.
     return [pattern]
   }
 
   return expand(pattern)
+}
+
+var MAX_PATTERN_LENGTH = 1024 * 64
+var assertValidPattern = function (pattern) {
+  if (typeof pattern !== 'string') {
+    throw new TypeError('invalid pattern')
+  }
+
+  if (pattern.length > MAX_PATTERN_LENGTH) {
+    throw new TypeError('pattern is too long')
+  }
 }
 
 // parse a component of the expanded set.
@@ -2072,14 +2056,17 @@ function braceExpand (pattern, options) {
 Minimatch.prototype.parse = parse
 var SUBPARSE = {}
 function parse (pattern, isSub) {
-  if (pattern.length > 1024 * 64) {
-    throw new TypeError('pattern is too long')
-  }
+  assertValidPattern(pattern)
 
   var options = this.options
 
   // shortcuts
-  if (!options.noglobstar && pattern === '**') return GLOBSTAR
+  if (pattern === '**') {
+    if (!options.noglobstar)
+      return GLOBSTAR
+    else
+      pattern = '*'
+  }
   if (pattern === '') return ''
 
   var re = ''
@@ -2135,10 +2122,12 @@ function parse (pattern, isSub) {
     }
 
     switch (c) {
-      case '/':
+      /* istanbul ignore next */
+      case '/': {
         // completely not allowed, even escaped.
         // Should already be path-split by now.
         return false
+      }
 
       case '\\':
         clearStateChar()
@@ -2257,25 +2246,23 @@ function parse (pattern, isSub) {
 
         // handle the case where we left a class open.
         // "[z-a]" is valid, equivalent to "\[z-a\]"
-        if (inClass) {
-          // split where the last [ was, make sure we don't have
-          // an invalid re. if so, re-walk the contents of the
-          // would-be class to re-translate any characters that
-          // were passed through as-is
-          // TODO: It would probably be faster to determine this
-          // without a try/catch and a new RegExp, but it's tricky
-          // to do safely.  For now, this is safe and works.
-          var cs = pattern.substring(classStart + 1, i)
-          try {
-            RegExp('[' + cs + ']')
-          } catch (er) {
-            // not a valid class!
-            var sp = this.parse(cs, SUBPARSE)
-            re = re.substr(0, reClassStart) + '\\[' + sp[0] + '\\]'
-            hasMagic = hasMagic || sp[1]
-            inClass = false
-            continue
-          }
+        // split where the last [ was, make sure we don't have
+        // an invalid re. if so, re-walk the contents of the
+        // would-be class to re-translate any characters that
+        // were passed through as-is
+        // TODO: It would probably be faster to determine this
+        // without a try/catch and a new RegExp, but it's tricky
+        // to do safely.  For now, this is safe and works.
+        var cs = pattern.substring(classStart + 1, i)
+        try {
+          RegExp('[' + cs + ']')
+        } catch (er) {
+          // not a valid class!
+          var sp = this.parse(cs, SUBPARSE)
+          re = re.substr(0, reClassStart) + '\\[' + sp[0] + '\\]'
+          hasMagic = hasMagic || sp[1]
+          inClass = false
+          continue
         }
 
         // finish up the class.
@@ -2359,9 +2346,7 @@ function parse (pattern, isSub) {
   // something that could conceivably capture a dot
   var addPatternStart = false
   switch (re.charAt(0)) {
-    case '.':
-    case '[':
-    case '(': addPatternStart = true
+    case '[': case '.': case '(': addPatternStart = true
   }
 
   // Hack to work around lack of negative lookbehind in JS
@@ -2423,7 +2408,7 @@ function parse (pattern, isSub) {
   var flags = options.nocase ? 'i' : ''
   try {
     var regExp = new RegExp('^' + re + '$', flags)
-  } catch (er) {
+  } catch (er) /* istanbul ignore next - should be impossible */ {
     // If it was an invalid regular expression, then it can't match
     // anything.  This trick looks for a character after the end of
     // the string, which is of course impossible, except in multi-line
@@ -2481,7 +2466,7 @@ function makeRe () {
 
   try {
     this.regexp = new RegExp(re, flags)
-  } catch (ex) {
+  } catch (ex) /* istanbul ignore next - should be impossible */ {
     this.regexp = false
   }
   return this.regexp
@@ -2499,8 +2484,8 @@ minimatch.match = function (list, pattern, options) {
   return list
 }
 
-Minimatch.prototype.match = match
-function match (f, partial) {
+Minimatch.prototype.match = function match (f, partial) {
+  if (typeof partial === 'undefined') partial = this.partial
   this.debug('match', f, this.pattern)
   // short-circuit in the case of busted things.
   // comments, etc.
@@ -2582,6 +2567,7 @@ Minimatch.prototype.matchOne = function (file, pattern, partial) {
 
     // should be impossible.
     // some invalid regexp stuff in the set.
+    /* istanbul ignore if */
     if (p === false) return false
 
     if (p === GLOBSTAR) {
@@ -2655,6 +2641,7 @@ Minimatch.prototype.matchOne = function (file, pattern, partial) {
       // no match was found.
       // However, in partial mode, we can't say this is necessarily over.
       // If there's more *pattern* left, then
+      /* istanbul ignore if */
       if (partial) {
         // ran out of file
         this.debug('\n>>> no match, partial?', file, fr, pattern, pr)
@@ -2668,11 +2655,7 @@ Minimatch.prototype.matchOne = function (file, pattern, partial) {
     // patterns with magic have been turned into regexps.
     var hit
     if (typeof p === 'string') {
-      if (options.nocase) {
-        hit = f.toLowerCase() === p.toLowerCase()
-      } else {
-        hit = f === p
-      }
+      hit = f === p
       this.debug('string match', p, f, hit)
     } else {
       hit = f.match(p)
@@ -2703,16 +2686,16 @@ Minimatch.prototype.matchOne = function (file, pattern, partial) {
     // this is ok if we're doing the match as part of
     // a glob fs traversal.
     return partial
-  } else if (pi === pl) {
+  } else /* istanbul ignore else */ if (pi === pl) {
     // ran out of pattern, still have file left.
     // this is only acceptable if we're on the very last
     // empty segment of a file with a trailing slash.
     // a/* should match a/b/
-    var emptyFileEnd = (fi === fl - 1) && (file[fi] === '')
-    return emptyFileEnd
+    return (fi === fl - 1) && (file[fi] === '')
   }
 
   // should be unreachable.
+  /* istanbul ignore next */
   throw new Error('wtf?')
 }
 
@@ -3345,7 +3328,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
         if (checkerResult == null) {
           return null;
         }
-        if (checkerResult.data.hasOwnProperty('expectedType')) {
+        if (checkerResult.data && has(checkerResult.data, 'expectedType')) {
           expectedTypes.push(checkerResult.data.expectedType);
         }
       }
