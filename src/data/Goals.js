@@ -1,23 +1,51 @@
 export default [
   {
     id: 1,
-    name: "YEAR - 2022",
+    name: "YEAR - 2024",
     todo: [
       {
-        desc: "Learn ASL",
+        desc: "Learn 3 Piano pieces",
         fin: false,
       },
+      {
+        desc: "Learn Conversational Hungarian",
+        fin: false,
+      },
+      {
+        desc: "Apply for Canadian PR",
+        fin: false,
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: "YEAR - 2023",
+    todo: [
       {
         desc: "Learn Spanish",
-        fin: false,
+        fin: true,
       },
       {
-        desc: "CPR certification",
-        fin: false,
+        desc: "Explore Europe",
+        fin: true,
       },
       {
         desc: "Canadian immigration",
-        fin: false,
+        fin: true,
+      },
+      {
+        desc: "Learn Basic Hungarian",
+        fin: true,
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: "YEAR - 2022",
+    todo: [
+      {
+        desc: "Learn Spanish",
+        fin: true,
       },
       {
         desc: "GMAT preparation ",
@@ -26,7 +54,7 @@ export default [
     ],
   },
   {
-    id: 1,
+    id: 4,
     name: "YEAR - 2021",
     todo: [
       {
@@ -40,7 +68,7 @@ export default [
     ],
   },
   {
-    id: 2,
+    id: 5,
     name: "YEAR - 2020",
     todo: [
       {
@@ -66,7 +94,7 @@ export default [
     ],
   },
   {
-    id: 3,
+    id: 6,
     name: "YEAR - 2019",
     todo: [
       {
@@ -85,7 +113,7 @@ export default [
     ],
   },
   {
-    id: 4,
+    id: 7,
     name: "YEAR - 2018",
     todo: [
       {
@@ -124,7 +152,7 @@ export default [
     ],
   },
   {
-    id: 5,
+    id: 8,
     name: "LIFE GOALS",
     todo: [
       {
@@ -247,7 +275,7 @@ export default [
     ],
   },
   {
-    id: 6,
+    id: 9,
     name: "PROFESSIONAL GOALS",
     todo: [
       {
@@ -294,7 +322,7 @@ export default [
     ],
   },
   {
-    id: 7,
+    id: 10,
     name: "EVENTS",
     todo: [
       {
