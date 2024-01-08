@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{BdEa:function(e,t,a){e.exports=a.p+"static/bhimesh-eac909409cc99e0390ebde7693eb1f8f.svg"},w2l6:function(e,t,a){"use strict";a.r(t);var n=a("q1tI"),s=a.n(n),c=a("BdEa"),i=a.n(c);t.default=()=>s.a.createElement("div",null,s.a.createElement("img",{src:i.a,alt:"bhimesh"}),s.a.createElement("p",null,"You just hit a route that doesn't exist... the sadness."))}}]);
+//# sourceMappingURL=component---src-pages-404-js-26d03289981428c58aa4.js.map
