@@ -22,9 +22,11 @@ const IndexPage = () => {
         <UserDescription>
           <div>
             <p>
-              Hello there, thank you for checking out my website. I am a
-              Full-Stack Engineer with specialization in Computer Vision and
-              Graphic utilizing ML.
+              Full-Stack Engineer specializing in Computer Vision and Graphic
+              design with expertise in Machine Learning. Elevate your team's
+              capabilities with my proven track record in creating innovative
+              solutions. Let's discuss how I can contribute to your company's
+              success.
             </p>
             <DownloadButton
               href="https://pdfhost.io/v/WSqSdrSWI_Microsoft_Word_Resumedoc.pdf"
