@@ -27,9 +27,6 @@ const goals = <FontAwesomeIcon className="fa-icon fa-fw " icon={faBullseye} />;
 const contact = (
   <FontAwesomeIcon className="fa-icon fa-fw " icon={faAddressBook} />
 );
-const videos = (
-  <FontAwesomeIcon className="fa-icon fa-fw" icon={faLaptopCode} />
-);
 export default [
   {
     icon: home,
@@ -70,10 +67,5 @@ export default [
     icon: contact,
     label: "Contact",
     path: "/contact/",
-  },
-  {
-    icon: videos,
-    label: "Videos",
-    path: "/videos/",
   },
 ];
