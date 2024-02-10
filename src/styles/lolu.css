@@ -1,0 +1,43 @@
+.wrapper {
+  height: 100vh !important;
+  padding-top: 15% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    45deg,
+    rgb(89, 0, 16),
+    rgb(120, 16, 120)
+  ) !important;
+  flex-direction: column;
+  position: relative !important;
+}
+
+.jigsaw-puzzle {
+  width: 30vw;
+  /* height: 60%; */
+  border: 1px solid #e55376;
+  box-shadow: 0 0 10px 5px #e55376;
+}
+
+.fa-heart {
+  color: rgb(60, 0, 60);
+  font-size: 25px;
+  position: absolute;
+  animation: heartMove linear 1;
+  top: -10vh;
+  z-index: 0;
+}
+
+.fa-solid {
+  z-index: 0;
+}
+
+@keyframes heartMove {
+  0% {
+    transform: translateY(-10vh);
+  }
+  100% {
+    transform: translateY(110vh);
+  }
+}
