@@ -1,30 +1,30 @@
-import Link from 'gatsby-link'
-import React from 'react'
-import styled from 'styled-components'
+import { Link } from "gatsby-link";
+import React from "react";
+import styled from "styled-components";
 
 const LinkNav = styled(Link)`
-  color: #E2F2F7;
+  color: #e2f2f7;
   margin-right: 35px;
   transition: color 0.2s ease-out;
   text-decoration: none;
-  :hover{
+  :hover {
     color: #7fa1e8;
     transition: color 0.2s;
   }
-  &.active{
+  &.active {
     color: #7fa1e8;
   }
   @media (max-width: 700px) {
     margin-right: 14px;
-    :last-of-type{
+    :last-of-type {
       display: flex;
     }
   }
-`
+`;
 const NavLink = ({ info }) => (
-    <LinkNav to={info.path} exact={"true"} activeClassName="active">
-        {info.icon} <span className="nav-label">{info.label}</span>
-    </LinkNav>
+  <LinkNav to={info.path} exact={"true"} activeClassName="active">
+    {info.icon} <span className="nav-label">{info.label}</span>
+  </LinkNav>
 );
 
 export default NavLink;
