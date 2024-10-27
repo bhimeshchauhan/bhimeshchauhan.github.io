@@ -4,16 +4,16 @@ export default [
     name: "YEAR - 2024",
     todo: [
       {
-        desc: "Learn 3 Piano pieces",
+        desc: "Learn 3 Piano pieces (status 2 of 3)",
         fin: false,
       },
       {
         desc: "Learn Conversational Hungarian",
-        fin: false,
+        fin: true,
       },
       {
         desc: "Apply for Canadian PR",
-        fin: false,
+        fin: true,
       },
     ],
   },
