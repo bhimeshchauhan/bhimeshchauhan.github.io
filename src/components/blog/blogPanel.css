@@ -58,6 +58,7 @@ a {
   border-radius: 15px;
   margin-right: 25px;
   transition: 1s;
+  max-width: 159px;
 }
 
 .best-post-content{
