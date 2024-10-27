@@ -85,5 +85,224 @@ export default [
                 ['normal', "evaluates to."]
             ]]
         ]
+    },
+    {
+        id: 2,
+        author: "Bhimesh Chauhan",
+        panelImage: "YKW0JjP7rlU",
+        title: "Implementing Retrieval-Augmented Generation (RAG) with LLMs",
+        tagLine: "In this post, we’ll explore how RAG enhances Large Language Models (LLMs) by integrating real-time data retrieval, using simple examples to illustrate the process.",
+        dated: "22th July, 2024 - Toronto, CA",
+        description: [
+            ['img', "https://cdn-images-1.medium.com/v2/resize:fit:4000/format:webp/1*nsCTjifxfS_fTm9_lx_AuA.png"],
+            ['h3', "What is Retrieval-Augmented Generation (RAG)?"],
+            ['p', [
+                ['em', "RAG combines the power of LLMs with external knowledge retrieval."],
+            ]],
+            ['p', [
+                ['normal', "Instead of relying entirely on pre-trained knowledge, RAG retrieves relevant information from a connected source (like a database or API) and augments the response of the LLM in real-time."],
+            ]],
+            ['pre', [
+                ['normal', 'async function getAnswer(query) {'],
+                ['br', 'br'],
+                ['normal', '  const documents = await retrieveRelevantDocs(query);'],
+                ['br', 'br'],
+                ['normal', '  const prompt = buildPrompt(query, documents);'],
+                ['br', 'br'],
+                ['normal', '  return await llm.generate(prompt);'],
+                ['br', 'br'],
+                ['normal', '}'],
+                ['br', 'br'],
+                ['br', 'br'],
+                ['normal', 'getAnswer("What are the symptoms of diabetes?");'],
+                ['br', 'br'],
+                ['strong', '// Returns accurate and current medical information']
+            ]],
+            ['p', [
+                ['strong', "This method helps overcome some limitations of LLMs."],
+                ['normal', " LLMs may not have up-to-date information, but with RAG, the model retrieves data on-the-fly from external sources to enhance the response."]
+            ]],
+            ['blockquote', "Let’s dive deeper into why RAG is useful and how it complements LLMs."],
+            ['p', [
+                ['normal', "Think of RAG as a way to keep the LLM's answers accurate and relevant even after the model has been deployed."]
+            ]],
+            ['p', [
+                ['normal', "Example 1: A legal advice chatbot retrieves the latest regulations to provide accurate responses."],
+            ]],
+            ['p', [
+                ['normal', "Example 2: A medical assistant fetches recent journal publications when asked about new treatments."],
+            ]],
+            ['p', [
+                ['normal', "These examples show how RAG ensures that AI applications stay relevant in dynamic fields."],
+            ]],
+            ['hr', "hr"],
+            ['h3', "How Does RAG Work?"],
+            ['p', [
+                ['normal', "RAG involves three main components:"]
+            ]],
+            ['h4', "1. Query and Document Retrieval"],
+            ['p', [
+                ['normal', "When a user makes a request, the query is sent to a document store or external API to retrieve relevant data. Think of it as searching through a library to find the best books for your topic."]
+            ]],
+            ['h4', "2. Augmenting the Prompt"],
+            ['p', [
+                ['normal', "The retrieved documents are embedded into the LLM prompt, enhancing its response with external knowledge. This step ensures the response is not just based on the model's pre-trained data."],
+                ['code', "const prompt = buildPrompt(userQuery, retrievedDocs);"],
+            ]],
+            ['h4', "3. Generating the Response"],
+            ['p', [
+                ['normal', "Finally, the LLM generates a response based on the augmented prompt, producing accurate and contextual answers."],
+                ['code', "return llm.generate(prompt);"],
+            ]],
+            ['p', [
+                ['normal', "RAG ensures that the model provides fact-based answers, even when it didn’t originally know the information."]
+            ]],
+            ['blockquote', "The retrieval step ensures that the AI isn't guessing or 'hallucinating' answers."],
+            ['p', [
+                ['normal', "Example: Instead of relying on old data, a travel assistant fetches live flight statuses to assist users."]
+            ]],
+            ['p', [
+                ['normal', "This prevents outdated information from slipping through."]
+            ]],
+            ['hr', "hr"],
+            ['h3', "Applications of RAG with LLMs"],
+            ['p', [
+                ['normal', "Here are some common use cases where RAG with LLMs shines:"]
+            ]],
+            ['h4', "Customer Support Bots"],
+            ['p', [
+                ['normal', "Bots can fetch relevant knowledge base articles to solve user queries faster and more accurately."]
+            ]],
+            ['h4', "Medical Assistants"],
+            ['p', [
+                ['normal', "LLMs with RAG integration pull the latest medical research to provide informed recommendations during consultations."]
+            ]],
+            ['h4', "Legal Research"],
+            ['p', [
+                ['normal', "A legal AI assistant retrieves recent case law or statutes to answer complex legal questions accurately."]
+            ]],
+            ['hr', "hr"],
+            ['h3', "Benefits of RAG"],
+            ['p', [
+                ['strong', "1. Real-time Relevance:"],
+                ['normal', " Ensures that responses are always up-to-date with the latest information."]
+            ]],
+            ['p', [
+                ['strong', "2. Reduced Hallucination:"],
+                ['normal', " By grounding responses in real data, it minimizes the chances of incorrect or fabricated answers."]
+            ]],
+            ['p', [
+                ['strong', "3. Enhanced Utility:"],
+                ['normal', " Makes LLMs suitable for use in dynamic environments like healthcare, finance, and law."]
+            ]],
+            ['p', [
+                ['normal', "With RAG, applications powered by LLMs are more powerful, accurate, and trustworthy."]
+            ]]
+        ]
+    },
+    {
+        id: 3,
+        author: "Bhimesh Chauhan",
+        panelImage: "XttrC5E0HDM",
+        title: "Fine-Tuning LLMs for Domain-Specific Applications",
+        tagLine: "In this blog, I’ll walk you through the basics of fine-tuning LLMs and explain the steps required to make them more effective for specific tasks.",
+        dated: "14th September, 2024 - Toronto, CA",
+        description: [
+            ['img', "https://cdn-images-1.medium.com/max/2000/1*2mzg61san4ffmVmN_0fP_Q.png"],
+            ['h3', "What is Fine-Tuning?"],
+            ['p', [
+                ['em', "Fine-tuning involves adjusting the parameters of a pre-trained language model on new, specialized data."],
+            ]],
+            ['p', [
+                ['normal', "Pre-trained models like GPT or BERT are trained on large datasets containing general information, but they may not perform well on niche topics like medical diagnoses or legal cases. Fine-tuning helps tailor these models to excel in specific domains."],
+            ]],
+            ['pre', [
+                ['normal', 'const fineTuneModel = async (dataset) => {'],
+                ['br', 'br'],
+                ['normal', '  const model = await loadPretrainedModel("gpt-3.5-turbo");'],
+                ['br', 'br'],
+                ['normal', '  model.train(dataset, { epochs: 5 });'],
+                ['br', 'br'],
+                ['normal', '  return model;'],
+                ['br', 'br'],
+                ['normal', '};'],
+                ['br', 'br'],
+                ['normal', 'const medicalModel = fineTuneModel(medicalData);'],
+                ['br', 'br'],
+                ['strong', '// Model fine-tuned on medical notes'],
+            ]],
+            ['p', [
+                ['strong', "Fine-tuning helps overcome generalization issues."],
+                ['normal', " When LLMs are fine-tuned, they become more focused and relevant for specific queries, improving their performance on tasks related to the target domain."]
+            ]],
+            ['blockquote', "Let’s dive deeper into why fine-tuning matters for real-world use cases."],
+            ['p', [
+                ['normal', "Think of fine-tuning as adjusting a generic recipe to suit your specific taste. You retain the original recipe's structure but make changes to align with your personal preferences."]
+            ]],
+            ['p', [
+                ['normal', "Example 1: A financial assistant chatbot fine-tuned on recent market trends can provide better advice compared to a general-purpose model."],
+            ]],
+            ['p', [
+                ['normal', "Example 2: A customer support bot tailored to your business responds accurately to common issues and inquiries, reducing response time and improving customer satisfaction."],
+            ]],
+            ['hr', "hr"],
+            ['h3', "How to Fine-Tune an LLM?"],
+            ['p', [
+                ['normal', "Fine-tuning can be broken down into a few key steps:"]
+            ]],
+            ['h4', "1. Data Preparation"],
+            ['p', [
+                ['normal', "Collect and clean your dataset. Ensure the text is properly formatted and labeled if necessary. For example, if you're fine-tuning on medical notes, each record should contain consistent terminology and structure."]
+            ]],
+            ['h4', "2. Model Loading"],
+            ['p', [
+                ['normal', "Start by loading a pre-trained model, like GPT or BERT, from a model hub or library."],
+                ['code', "const model = await loadPretrainedModel('bert-base');"]
+            ]],
+            ['h4', "3. Training the Model"],
+            ['p', [
+                ['normal', "Feed your specialized data into the model using your preferred framework (e.g., PyTorch, TensorFlow). Make sure to adjust hyperparameters, like the learning rate, to avoid overfitting."],
+                ['code', "model.train(data, { batchSize: 16, epochs: 3 });"]
+            ]],
+            ['h4', "4. Evaluating and Fine-Tuning"],
+            ['p', [
+                ['normal', "Evaluate the fine-tuned model's performance using metrics like accuracy or F1-score. Continue adjusting the parameters as needed."]
+            ]],
+            ['blockquote', "Remember: A good fine-tuning process requires careful evaluation to ensure the model generalizes well to unseen data."],
+            ['hr', "hr"],
+            ['h3', "Applications of Fine-Tuning"],
+            ['p', [
+                ['normal', "Fine-tuning LLMs opens up a world of possibilities:"]
+            ]],
+            ['h4', "Healthcare"],
+            ['p', [
+                ['normal', "A fine-tuned LLM can assist doctors by summarizing patient records and providing recommendations based on the latest research."]
+            ]],
+            ['h4', "Finance"],
+            ['p', [
+                ['normal', "In the finance industry, LLMs fine-tuned on stock data can generate accurate reports and forecasts."]
+            ]],
+            ['h4', "Legal Advice"],
+            ['p', [
+                ['normal', "LLMs trained on legal documents can assist in drafting contracts and answering legal questions with precise language."]
+            ]],
+            ['hr', "hr"],
+            ['h3', "Key Benefits of Fine-Tuning"],
+            ['p', [
+                ['strong', "1. Increased Accuracy:"],
+                ['normal', " Models become more reliable for specific tasks and queries."]
+            ]],
+            ['p', [
+                ['strong', "2. Faster Response:"],
+                ['normal', " Tailored models provide answers more efficiently, improving user satisfaction."]
+            ]],
+            ['p', [
+                ['strong', "3. Reduced Hallucination:"],
+                ['normal', " By focusing on relevant data, fine-tuned models are less likely to produce misleading information."]
+            ]],
+            ['p', [
+                ['normal', "Fine-tuning is essential for LLMs to reach their full potential in real-world applications."]
+            ]]
+        ]
     }
 ];
