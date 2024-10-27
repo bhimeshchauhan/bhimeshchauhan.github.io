@@ -44,7 +44,7 @@ const Experience = () => (
 										<img
 											src={item.logo}
 											alt="company"
-											width="175px"
+											width="155px"
 										/>
 									</LogoLink>
 								</StepperHead>
