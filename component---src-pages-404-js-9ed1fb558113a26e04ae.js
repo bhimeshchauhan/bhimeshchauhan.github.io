@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkpersonal_website_reach=self.webpackChunkpersonal_website_reach||[]).push([[708],{7532:function(e,t,s){s.r(t),s.d(t,{default:function(){return r}});var a=s(1504),n=s.p+"static/bhimesh-1709667e305d6117e780fda49a309052.svg";var r=()=>a.createElement("div",null,a.createElement("img",{src:n,alt:"bhimesh"}),a.createElement("p",null,"You just hit a route that doesn't exist... the sadness."))}}]);
-//# sourceMappingURL=component---src-pages-404-js-9ed1fb558113a26e04ae.js.map
