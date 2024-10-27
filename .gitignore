@@ -1,2 +1,4 @@
 ./my-website/node_modules
 node_modules/
+.cache/
+.DS_Store
