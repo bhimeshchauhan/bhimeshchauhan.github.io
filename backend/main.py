@@ -14,6 +14,11 @@ faiss_index = faiss.read_index("resume_index.faiss")
 resume_chunks = np.load("resume_chunks.npy", allow_pickle=True)
 generator = pipeline("text-generation", model="EleutherAI/gpt-neo-1.3B")  # Change model if needed
 
+# Add a simple route for the root URL
+@app.get("/")
+async def read_root():
+    return {"message": "Welcome to Bhimesh's FastAPI service!"}
+
 @app.post("/query")
 async def get_response(request: Request):
     data = await request.json()
