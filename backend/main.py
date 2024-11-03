@@ -21,7 +21,16 @@ print("Loading models and data...")
 model = SentenceTransformer('all-MiniLM-L6-v2')
 faiss_index = faiss.read_index("resume_index.faiss")
 resume_chunks = np.load("resume_chunks.npy", allow_pickle=True)
-generator = pipeline("text-generation", model="EleutherAI/gpt-neo-1.3B")  # Change model if needed
+generator = pipeline("text-generation", model="EleutherAI/gpt-neo-1.3B")
+
+# Predefined casual responses
+casual_responses = {
+    "hi": "Hello! How can I assist you today?",
+    "hello": "Hi there! What would you like to talk about?",
+    "how are you": "I'm just a program, but I'm here to help you with anything you need!",
+    "goodbye": "Goodbye! Feel free to come back if you have more questions.",
+    "bye": "Take care! I'm here whenever you need assistance."
+}
 
 # Add a simple route for the root URL
 @app.get("/")
@@ -31,34 +40,32 @@ async def read_root():
 @app.post("/query")
 async def get_response(request: Request):
     data = await request.json()
-    question = data.get("question")
-    
+    question = data.get("question").strip().lower()
+
+    # Check for casual responses
+    if question in casual_responses:
+        return {"response": casual_responses[question]}
+
     # Encode the query and retrieve relevant context
     query_embedding = model.encode([question])
     distances, indices = faiss_index.search(query_embedding, k=3)
     context = " ".join([resume_chunks[i] for i in indices[0]])
 
-    # Check if relevant context was found
+    # Check if context relevance is above a threshold
+    relevance_threshold = 0.7  # Adjust this threshold as needed
+    if max(distances[0]) < relevance_threshold:
+        return {"response": "I'm sorry, I couldn't find relevant information related to your question in my knowledge base."}
+
+    # Use a dynamic template based on the question type
     if context:
-        # Use a dynamic template based on the question type
-        if "AI" in question or "machine learning" in question.lower():
-            personalized_response = (f"Bhimesh's notable AI projects include: {context}. "
-                                     "These projects highlight his ability to develop and integrate AI solutions "
-                                     "with significant impact.")
-        elif "project" in question.lower() or "work" in question.lower():
-            personalized_response = (f"Bhimesh has worked on several impactful projects, such as: {context}. "
-                                     "These experiences demonstrate his expertise and contribution.")
-        elif "experience" in question.lower():
-            personalized_response = (f"Bhimesh's professional experience includes: {context}. "
-                                     "These roles and responsibilities showcase his comprehensive skill set.")
-        else:
-            personalized_response = f"Here is what Bhimesh has accomplished: {context}."
+        personalized_response = f"Here is what Bhimesh has accomplished: {context}."
     else:
         personalized_response = "I'm sorry, I couldn't find relevant information about Bhimesh's work at the moment."
 
     return {"response": personalized_response}
 
 if __name__ == "__main__":
+    import os
     import uvicorn
     port = int(os.environ.get("PORT", 8000))
     print(f"Starting server on port {port}")
