@@ -21,7 +21,7 @@ print("Loading models and data...")
 model = SentenceTransformer('all-MiniLM-L6-v2')
 faiss_index = faiss.read_index("resume_index.faiss")
 resume_chunks = np.load("resume_chunks.npy", allow_pickle=True)
-generator = pipeline("text-generation", model="EleutherAI/gpt-neo-1.3B")
+generator = pipeline("text-generation", model="gpt2")
 
 # Predefined casual responses
 casual_responses = {
