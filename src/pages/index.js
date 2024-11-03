@@ -11,6 +11,7 @@ import {
 } from "../styles/bhimeshStyle.js";
 import "../styles/bhimeshStyle.css";
 import Layout from "../components/layout";
+import ChatComponent from "../components/chat";
 
 const IndexPage = () => {
   return (
@@ -44,6 +45,7 @@ const IndexPage = () => {
           ))}
         </UserTopic>
       </UserWrapper>
+      <ChatComponent />
     </Layout>
   );
 };
