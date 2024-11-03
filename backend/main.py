@@ -3,9 +3,18 @@ from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
 from transformers import pipeline
+from fastapi.middleware.cors import CORSMiddleware
 
 # Initialize the FastAPI app
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:8000/", "https://bhimeshchauhan.github.io/"],
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 
 # Load models and data
 print("Loading models and data...")
