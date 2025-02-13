@@ -4,8 +4,30 @@ export default [
     name: "YEAR - 2024",
     todo: [
       {
-        desc: "Learn 3 Piano pieces (status 2 of 3)",
+        desc: "Learn scales and chord progression with sight reading",
         fin: false,
+      },
+      {
+        desc: "Learn Hungarian grmmar",
+        fin: false,
+      },
+      {
+        desc: "Plan and travel Canada",
+        fin: false,
+      },
+      {
+        desc: "Learn detail sketching and postures",
+        fin: false,
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: "YEAR - 2024",
+    todo: [
+      {
+        desc: "Learn 1 Piano piece",
+        fin: true,
       },
       {
         desc: "Learn Conversational Hungarian",
@@ -18,7 +40,7 @@ export default [
     ],
   },
   {
-    id: 2,
+    id: 3,
     name: "YEAR - 2023",
     todo: [
       {
@@ -40,7 +62,7 @@ export default [
     ],
   },
   {
-    id: 3,
+    id: 4,
     name: "YEAR - 2022",
     todo: [
       {
@@ -54,7 +76,7 @@ export default [
     ],
   },
   {
-    id: 4,
+    id: 5,
     name: "YEAR - 2021",
     todo: [
       {
@@ -68,7 +90,7 @@ export default [
     ],
   },
   {
-    id: 5,
+    id: 6,
     name: "YEAR - 2020",
     todo: [
       {
@@ -94,7 +116,7 @@ export default [
     ],
   },
   {
-    id: 6,
+    id: 7,
     name: "YEAR - 2019",
     todo: [
       {
@@ -113,7 +135,7 @@ export default [
     ],
   },
   {
-    id: 7,
+    id: 8,
     name: "YEAR - 2018",
     todo: [
       {
@@ -152,7 +174,7 @@ export default [
     ],
   },
   {
-    id: 8,
+    id: 9,
     name: "LIFE GOALS",
     todo: [
       {
@@ -201,7 +223,7 @@ export default [
         fin: false,
       },
       {
-        desc: "Become fit and get abs.",
+        desc: "Become fit",
         fin: false,
       },
       {
@@ -254,7 +276,7 @@ export default [
       },
       {
         desc: "Attend a fancy exhibition/auction.",
-        fin: false,
+        fin: true,
       },
       {
         desc: "Invest in an auction.",
@@ -265,8 +287,8 @@ export default [
         fin: false,
       },
       {
-        desc: "See Northern Lights (on Earth and from Space).",
-        fin: false,
+        desc: "See Northern Lights.",
+        fin: true,
       },
       {
         desc: "Visit holocaust memorials.",
@@ -275,7 +297,7 @@ export default [
     ],
   },
   {
-    id: 9,
+    id: 10,
     name: "PROFESSIONAL GOALS",
     todo: [
       {
@@ -322,12 +344,16 @@ export default [
     ],
   },
   {
-    id: 10,
+    id: 11,
     name: "EVENTS",
     todo: [
       {
         desc: "TomorrowLand",
-        fin: false,
+        fin: true,
+      },
+      {
+        desc: "Oktoberfest",
+        fin: true,
       },
       {
         desc: "Coachella",
