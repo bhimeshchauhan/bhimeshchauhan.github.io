@@ -1,7 +1,7 @@
 export default [
   {
     id: 1,
-    name: "YEAR - 2024",
+    name: "YEAR - 2025",
     todo: [
       {
         desc: "Learn scales and chord progression with sight reading",
