@@ -10,10 +10,13 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.19",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
     "ajv": "^6.12.6",
     "ajv-keywords": "^3.5.2",
     "babel-plugin-styled-components": "^1.10.7",
     "cross-env": "^7.0.3",
+    "framer-motion": "^11.18.2",
     "gatsby": "^5.13.3",
     "gatsby-image": "^2.2.41",
     "gatsby-plugin-google-fonts": "0.0.4",
@@ -39,6 +42,7 @@
     "rxjs": "^6.1.0",
     "rxjs-compat": "6.0.0-beta.1",
     "styled-components": "^6.1.8",
+    "three": "^0.161.0",
     "unsplash-js": "^7.0.19"
   },
   "keywords": [

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import 'react-chat-widget/lib/styles.css';
+import '../../styles/chatStyles.css';
 
 // Lazy-load the Widget to prevent SSR issues
 const ChatWidget = React.lazy(() => import('react-chat-widget').then((module) => ({ default: module.Widget })));
 const addResponseMessage = React.lazy(() => import('react-chat-widget').then((module) => ({ default: module.addResponseMessage })));
 const dropMessages = React.lazy(() => import('react-chat-widget').then((module) => ({ default: module.dropMessages })));
 
-import 'react-chat-widget/lib/styles.css';
-import '../../styles/chatStyles.css';
 
 const ChatComponent = () => {
   const [isBrowser, setIsBrowser] = useState(false);
