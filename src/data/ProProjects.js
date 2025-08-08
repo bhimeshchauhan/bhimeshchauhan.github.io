@@ -1,4 +1,6 @@
 import website from "../assets/images/projects/website.svg";
+import Scrubs from "../assets/images/projects/scrubs.jpeg";
+import rag from "../assets/images/projects/rag.webp";
 import pitchly from '../assets/images/pitchly.gif';
 import pitchlyForm from '../assets/images/pitchly-form.png';
 import nebullam1 from '../assets/images/nebullam-1.png';
@@ -9,81 +11,100 @@ import nebullam5 from '../assets/images/nebullam-5.png';
 import sudoku from '../assets/images/sudoku.gif';
 
 export default [
-	{
-		id: 1,
-		title: "Connect Four - AI Game",
-		icon: website,
-		description: "There are 4,531,985,219,092 possible connect-4 boards and you can win in 1,905,333,170,621 ways. That is a probability of 0.42"+
-		"\n There are two modes - MINIMAX and NAIVE AI, Feel free to play both and see which you beat.",
-		githubPath: "https://github.com/bhimeshchauhan/connect_four",
-		media: [],
-		demoPath: "https://codesandbox.io/s/connect-four-game-fq1oz?file=/src/App.js",
-        iframe: '<iframe '+
-            'src="https://codesandbox.io/embed/connect-four-game-fq1oz?fontsize=14&hidenavigation=1&theme=dark&view=preview" '+
-            'style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;" '+
-            'title="Connect-Four-Game" '+
-            'allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking" '+
-            'sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts allow-autoplay"> '+
-            '</iframe>',
-		year: "2019-2020",
-		techUsed: "React JS, Redux, NodeJS, MinMax Algorithm, Decision tree, Github"
-	},
-	{
-		id: 1,
-		title: "Sudoku AR + Deep Learning",
-		icon: website,
-		description: "A project I worke don to create OpenCV application to read Sudoku from camera and solve it.",
-		githubPath: "/#",
-		media: [sudoku],
-//		demoPath: "/#",
-		year: "2019-2020",
-		techUsed: "Python, Keras, Scikit-Learn, TensorFlow, OpenCV, backtracking"
-	},
-	{
-		id: 2,
-		title: "Procedural Terrain Generation",
-		icon: website,
-		description: "Procedurally generated wave-esque terrain.",
-		githubPath: "/#",
-		media: [],
-//		demoPath: "/#",
-        iframe: '<iframe width="100%" height="300" src="//jsfiddle.net/bchauhan/vxoa2jzu/5/embedded/result/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>',
-		year: "2020",
-		techUsed: "Three.js and WebGL"
-	},
-	{
-		id: 3,
-		title: "SpaceFlight - Unity Game",
-		icon: website,
-		description: "Space Flight game built in Unity. Controls : W - Forward; A - left turn; D - right turn; Q - Roll left; E - Roll right; X - pitch up; Z pitch down",
-		githubPath: "https://github.com/bhimeshchauhan/SpaceExpo",
-		media: [],
-		demoPath: "https://simmer.io/@bchauhan/spaceshooter",
-        iframe: '<iframe src="https://i.simmer.io/@bchauhan/spaceshooter" style="width:960px;height:600px"></iframe>',
-		year: "2020",
-		techUsed: "Unity, WebGL, OpenGL, C#, Blender"
-	},
-	{
-		id: 4,
-		title: "Remote Monitoring - Aeroponics System",
-		icon: website,
-		description: "Monitoring the remote arduino systems.",
-		media: [nebullam1, nebullam2, nebullam3, nebullam4, nebullam5],
-//		githubPath: "/#",
-		demoPath: "https://apkpure.com/nebullam/com.nebullam.nebullam",
-		year: "2016-2017",
-		techUsed: "Python, WAMP, Django, Android SDK, D3.js, TensorFlow, ArgoUML, "
-	},
-	{
-		id: 5,
-		title: "Forms App",
-		icon: website,
-//		githubPath: "https://pitchly.com/",
-		description: "A customizable form application.",
-		media: [pitchly, pitchlyForm],
-		demoPath: "https://pitchly.com/",
-		year: "2018-2019",
-		techUsed: "MeteorJS, RESTful, NodeJS, MongoDB, AWS, GraphQL, Apollo, Nginx."
-	}
-
+  {
+    id: 1,
+    title: "Remote Monitoring – Aeroponics System",
+    icon: website,
+    description:
+      "Android IoT app to monitor/control high-pressure aeroponics. Telemetry + commands over MQTT/HTTP; backend dashboards, sensor charts, and ML-based growth recommendations.",
+    media: [nebullam1, nebullam2, nebullam3, nebullam4, nebullam5],
+    demoPath: "https://apkpure.com/nebullam/com.nebullam.nebullam",
+    year: "2016–2017",
+    techUsed: "Android (Java/Kotlin), MQTT, Django/Flask, TensorFlow, D3.js, WAMP, Nginx, Docker, Postgres"
+  },
+  {
+    id: 2,
+    title: "Forms App (Pitchly)",
+    icon: website,
+    description:
+      "Schema-driven form builder used by financial/legal teams; GraphQL/REST data flows, role-based permissions, and autosave. Optimized queries and CDN caching for global users.",
+    media: [pitchly, pitchlyForm],
+    demoPath: "https://pitchly.com/",
+    year: "2018–2019",
+    techUsed: "MeteorJS, GraphQL, Apollo, Node.js, MongoDB, AWS (EC2/S3/CloudFront), REST, Nginx"
+  },
+  {
+    id: 3,
+    title: "Connect Four – AI Game",
+    icon: website,
+    description:
+      "AI Connect-4 with two modes: MINIMAX (alpha–beta pruning) and a naïve baseline. Search space ~4.53T boards; demonstrates heuristic evaluation, pruning effectiveness, and game-tree search.",
+    githubPath: "https://github.com/bhimeshchauhan/connect_four",
+    demoPath: "https://codesandbox.io/s/connect-four-game-fq1oz?file=/src/App.js",
+    year: "2019",
+    techUsed: "React, Redux, Node.js, Minimax, Alpha–Beta Pruning, Heuristics, GitHub Actions"
+  },
+  {
+    id: 4,
+    title: "Sudoku AR + Deep Learning",
+    icon: website,
+    description:
+      "End-to-end Sudoku solver: detects grid from camera frames, OCRs digits, and solves via backtracking. Built dataset + augmentation; model selection with Keras/TensorFlow.",
+    media: [sudoku],
+    year: "2020",
+    techUsed: "Python, OpenCV, TensorFlow/Keras, Scikit-learn, Image Morphology, Backtracking, NumPy"
+  },
+  {
+    id: 5,
+    title: "Procedural Terrain Generation",
+    icon: website,
+    description:
+      "WebGL-based procedural terrain using Gaussian noise + mesh generation; interactive camera + shading pipeline; focused on geometry + GPU rendering fundamentals.",
+    iframe:
+      '<iframe width="100%" height="300" src="//jsfiddle.net/bchauhan/vxoa2jzu/5/embedded/result/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>',
+    year: "2020",
+    techUsed: "Three.js, WebGL, GLSL, Procedural Noise, Frustum Culling"
+  },
+  {
+    id: 6,
+    title: "SpaceFlight – Unity Game",
+    icon: website,
+    description:
+      "Arcade-style space flight with 6DOF controls and collision physics. Gameplay loop, input mapping, scene management, and asset pipeline via Blender.",
+    githubPath: "https://github.com/bhimeshchauhan/SpaceExpo",
+    demoPath: "https://simmer.io/@bchauhan/spaceshooter",
+    year: "2021",
+    techUsed: "Unity, C#, WebGL, OpenGL, Physics, Blender"
+  },
+  {
+    id: 7,
+    title: "Persona Detection for Language Learning",
+    icon: website,
+    description:
+      "Graph-based learner persona detection to personalize lesson paths. Neo4j + KNN; Flask inference API; optimized Cypher queries for latency and scale.",
+    year: "2022",
+    techUsed: "Neo4j, Cypher, Python/Flask, KNN, Pandas, Docker, GCP/AWS"
+  },
+  {
+    id: 8,
+    title: "Medical LLM for Clinical Documentation (Scrubs Co-Pilot)",
+    icon: Scrubs,
+    description:
+      "Specialized medical LLM for ambient listening, transcription, and structured chart generation. HIPAA-conscious RAG architecture; integrates with EHR systems and voice-based intake.",
+    demoPath: "https://bhimeshchauhan.github.io",
+    year: "2023–2024",
+    techUsed: "OpenAI GPT-4, Whisper, Supabase, pgvector, React, Node.js, Twilio Voice, ElevenLabs, Docker, AWS"
+  },
+  {
+    id: 9,
+    title: "Bhimesh’s RAG Resume Assistant",
+    icon: rag,
+    description:
+      "Production RAG chatbot powering this portfolio. Embeds resume, goals, and site data into pgvector; retrieves top-k and prompts an LLM for grounded answers. CORS-safe, cost-aware, with Cohere embeddings and OpenRouter models.",
+    githubPath: "https://github.com/bhimeshchauhan/bhimeshchauhan.github.io",
+    demoPath: "https://bhimeshchauhan.github.io",
+    year: "2025",
+    techUsed:
+      "Supabase Edge Functions, pgvector, Cohere embed-english-v3.0, OpenRouter (Mistral 7B), Node/TypeScript (Deno), React, DOMPurify, GitHub Pages, CI/CD"
+  }
 ];

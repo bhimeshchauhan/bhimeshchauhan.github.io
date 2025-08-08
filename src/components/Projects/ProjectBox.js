@@ -127,7 +127,7 @@ const ProjectBox = ({ info }) => (
             info.iframe ?
             <div dangerouslySetInnerHTML={{__html:info.iframe}} /> :
             <div className='projectItem'>
-                {info.media.map((item) =>
+                {info.media?.map((item) =>
                     <img src={item} alt='project icon'></img>
                 )}
             </div>

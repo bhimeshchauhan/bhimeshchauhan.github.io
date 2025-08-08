@@ -15,6 +15,9 @@ import {
 	StepperDesc
 } from "../styles/workStyle.js";
 import Layout from "../components/layout";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeSanitize from "rehype-sanitize";
 
 const Experience = () => (
 	<Layout>
@@ -48,11 +51,11 @@ const Experience = () => (
 										/>
 									</LogoLink>
 								</StepperHead>
-								<StepperDesc
-									dangerouslySetInnerHTML={{
-										__html: item.description
-									}}
-								/>
+								<StepperDesc>
+									<ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSanitize]}>
+										{(item.description || "").replace(/<br\s*\/?>/gi, "\n\n")}
+									</ReactMarkdown>
+								</StepperDesc>
 							</Stepper>
 						</div>
 					))}
