@@ -12,37 +12,46 @@ import sudoku from '../assets/images/sudoku.gif';
 
 export default [
   {
-    id: 1,
-    title: "Remote Monitoring – Aeroponics System",
-    icon: website,
+    id: 9,
+    title: "Bhimesh’s RAG Resume Assistant",
+    icon: rag,
     description:
-      "Android IoT app to monitor/control high-pressure aeroponics. Telemetry + commands over MQTT/HTTP; backend dashboards, sensor charts, and ML-based growth recommendations.",
-    media: [nebullam1, nebullam2, nebullam3, nebullam4, nebullam5],
-    demoPath: "https://apkpure.com/nebullam/com.nebullam.nebullam",
-    year: "2016–2017",
-    techUsed: "Android (Java/Kotlin), MQTT, Django/Flask, TensorFlow, D3.js, WAMP, Nginx, Docker, Postgres"
+      "Production RAG chatbot powering this portfolio. Embeds resume, goals, and site data into pgvector; retrieves top-k and prompts an LLM for grounded answers. CORS-safe, cost-aware, with Cohere embeddings and OpenRouter models.",
+    githubPath: "https://github.com/bhimeshchauhan/bhimeshchauhan.github.io",
+    demoPath: "https://bhimeshchauhan.github.io",
+    year: "2025",
+    techUsed:
+      "Supabase Edge Functions, pgvector, Cohere embed-english-v3.0, OpenRouter (Mistral 7B), Node/TypeScript (Deno), React, DOMPurify, GitHub Pages, CI/CD"
   },
   {
-    id: 2,
-    title: "Forms App (Pitchly)",
-    icon: website,
+    id: 8,
+    title: "Medical LLM for Clinical Documentation (Scrubs Co-Pilot)",
+    icon: Scrubs,
     description:
-      "Schema-driven form builder used by financial/legal teams; GraphQL/REST data flows, role-based permissions, and autosave. Optimized queries and CDN caching for global users.",
-    media: [pitchly, pitchlyForm],
-    demoPath: "https://pitchly.com/",
-    year: "2018–2019",
-    techUsed: "MeteorJS, GraphQL, Apollo, Node.js, MongoDB, AWS (EC2/S3/CloudFront), REST, Nginx"
+      "Specialized medical LLM for ambient listening, transcription, and structured chart generation. HIPAA-conscious RAG architecture; integrates with EHR systems and voice-based intake.",
+    demoPath: "https://bhimeshchauhan.github.io",
+    year: "2023–2024",
+    techUsed: "OpenAI GPT-4, Whisper, Supabase, pgvector, React, Node.js, Twilio Voice, ElevenLabs, Docker, AWS"
   },
   {
-    id: 3,
-    title: "Connect Four – AI Game",
+    id: 7,
+    title: "Persona Detection for Language Learning",
     icon: website,
     description:
-      "AI Connect-4 with two modes: MINIMAX (alpha–beta pruning) and a naïve baseline. Search space ~4.53T boards; demonstrates heuristic evaluation, pruning effectiveness, and game-tree search.",
-    githubPath: "https://github.com/bhimeshchauhan/connect_four",
-    demoPath: "https://codesandbox.io/s/connect-four-game-fq1oz?file=/src/App.js",
-    year: "2019",
-    techUsed: "React, Redux, Node.js, Minimax, Alpha–Beta Pruning, Heuristics, GitHub Actions"
+      "Graph-based learner persona detection to personalize lesson paths. Neo4j + KNN; Flask inference API; optimized Cypher queries for latency and scale.",
+    year: "2022",
+    techUsed: "Neo4j, Cypher, Python/Flask, KNN, Pandas, Docker, GCP/AWS"
+  },
+  {
+    id: 6,
+    title: "SpaceFlight – Unity Game",
+    icon: website,
+    description:
+      "Arcade-style space flight with 6DOF controls and collision physics. Gameplay loop, input mapping, scene management, and asset pipeline via Blender.",
+    githubPath: "https://github.com/bhimeshchauhan/SpaceExpo",
+    demoPath: "https://simmer.io/@bchauhan/spaceshooter",
+    year: "2021",
+    techUsed: "Unity, C#, WebGL, OpenGL, Physics, Blender"
   },
   {
     id: 4,
@@ -66,45 +75,36 @@ export default [
     techUsed: "Three.js, WebGL, GLSL, Procedural Noise, Frustum Culling"
   },
   {
-    id: 6,
-    title: "SpaceFlight – Unity Game",
+    id: 3,
+    title: "Connect Four – AI Game",
     icon: website,
     description:
-      "Arcade-style space flight with 6DOF controls and collision physics. Gameplay loop, input mapping, scene management, and asset pipeline via Blender.",
-    githubPath: "https://github.com/bhimeshchauhan/SpaceExpo",
-    demoPath: "https://simmer.io/@bchauhan/spaceshooter",
-    year: "2021",
-    techUsed: "Unity, C#, WebGL, OpenGL, Physics, Blender"
+      "AI Connect-4 with two modes: MINIMAX (alpha–beta pruning) and a naïve baseline. Search space ~4.53T boards; demonstrates heuristic evaluation, pruning effectiveness, and game-tree search.",
+    githubPath: "https://github.com/bhimeshchauhan/connect_four",
+    demoPath: "https://codesandbox.io/s/connect-four-game-fq1oz?file=/src/App.js",
+    year: "2019",
+    techUsed: "React, Redux, Node.js, Minimax, Alpha–Beta Pruning, Heuristics, GitHub Actions"
   },
   {
-    id: 7,
-    title: "Persona Detection for Language Learning",
+    id: 2,
+    title: "Forms App (Pitchly)",
     icon: website,
     description:
-      "Graph-based learner persona detection to personalize lesson paths. Neo4j + KNN; Flask inference API; optimized Cypher queries for latency and scale.",
-    year: "2022",
-    techUsed: "Neo4j, Cypher, Python/Flask, KNN, Pandas, Docker, GCP/AWS"
+      "Schema-driven form builder used by financial/legal teams; GraphQL/REST data flows, role-based permissions, and autosave. Optimized queries and CDN caching for global users.",
+    media: [pitchly, pitchlyForm],
+    demoPath: "https://pitchly.com/",
+    year: "2018–2019",
+    techUsed: "MeteorJS, GraphQL, Apollo, Node.js, MongoDB, AWS (EC2/S3/CloudFront), REST, Nginx"
   },
   {
-    id: 8,
-    title: "Medical LLM for Clinical Documentation (Scrubs Co-Pilot)",
-    icon: Scrubs,
+    id: 1,
+    title: "Remote Monitoring – Aeroponics System",
+    icon: website,
     description:
-      "Specialized medical LLM for ambient listening, transcription, and structured chart generation. HIPAA-conscious RAG architecture; integrates with EHR systems and voice-based intake.",
-    demoPath: "https://bhimeshchauhan.github.io",
-    year: "2023–2024",
-    techUsed: "OpenAI GPT-4, Whisper, Supabase, pgvector, React, Node.js, Twilio Voice, ElevenLabs, Docker, AWS"
-  },
-  {
-    id: 9,
-    title: "Bhimesh’s RAG Resume Assistant",
-    icon: rag,
-    description:
-      "Production RAG chatbot powering this portfolio. Embeds resume, goals, and site data into pgvector; retrieves top-k and prompts an LLM for grounded answers. CORS-safe, cost-aware, with Cohere embeddings and OpenRouter models.",
-    githubPath: "https://github.com/bhimeshchauhan/bhimeshchauhan.github.io",
-    demoPath: "https://bhimeshchauhan.github.io",
-    year: "2025",
-    techUsed:
-      "Supabase Edge Functions, pgvector, Cohere embed-english-v3.0, OpenRouter (Mistral 7B), Node/TypeScript (Deno), React, DOMPurify, GitHub Pages, CI/CD"
+      "Android IoT app to monitor/control high-pressure aeroponics. Telemetry + commands over MQTT/HTTP; backend dashboards, sensor charts, and ML-based growth recommendations.",
+    media: [nebullam1, nebullam2, nebullam3, nebullam4, nebullam5],
+    demoPath: "https://apkpure.com/nebullam/com.nebullam.nebullam",
+    year: "2016–2017",
+    techUsed: "Android (Java/Kotlin), MQTT, Django/Flask, TensorFlow, D3.js, WAMP, Nginx, Docker, Postgres"
   }
 ];
