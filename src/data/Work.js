@@ -6,6 +6,7 @@ import solum from "../assets/images/experience/bhimesh/solum.png";
 import preply from "../assets/images/experience/bhimesh/preply.png";
 import micromart from "../assets/images/experience/bhimesh/micromart.png";
 import benchsci from "../assets/images/experience/bhimesh/benchsci.png";
+import scrubs from "../assets/images/experience/bhimesh/scrubs.png";
 
 export default [
   {
