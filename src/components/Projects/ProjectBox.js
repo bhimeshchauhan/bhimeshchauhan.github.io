@@ -107,7 +107,8 @@ const BoxDescription = styled.div`
     }
   }
   iframe {
-    min-height: 50em;
+    min-height: 20em;
+    max-height: 500px;
   }
 `
 const BoxStack = styled.div`
