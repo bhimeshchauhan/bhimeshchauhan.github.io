@@ -1,14 +1,9 @@
 import React from "react";
 import "../styles/stepper.css";
 import work from "../data/Work";
-import grad from "../data/Edu";
-import lang from "../data/Language";
-import hobby from "../data/Interests";
 import {
 	ExperienceWrapper,
 	WorkWrapper,
-	EdWrapper,
-	EdContent,
 	Stepper,
 	StepperHead,
 	LogoLink,
@@ -23,7 +18,8 @@ const Experience = () => (
 	<Layout>
 		<ExperienceWrapper>
 			<WorkWrapper>
-				<h1>Work Experience</h1>
+				<h1>Professional Experience</h1>
+				<h2>Core Engineering Competencies & AI Experience</h2>
 				<div className="experience-stepper">
 					{work.map(item => (
 						<div key={item.id} className="step">
@@ -46,7 +42,7 @@ const Experience = () => (
 									<LogoLink href={item.companyLink}>
 										<img
 											src={item.logo}
-											alt="company"
+											alt={`${item.name} logo where Bhimesh Chauhan led engineering initiatives`}
 											width="155px"
 										/>
 									</LogoLink>
@@ -61,38 +57,6 @@ const Experience = () => (
 					))}
 				</div>
 			</WorkWrapper>
-
-			<EdWrapper>
-				<h1>Education</h1>
-				<EdContent>
-					{grad.map(item => (
-						<div key={item.id}>
-						    <h4>{item.dated}</h4>
-							<p>
-								Graduated with a {item.degree}'s Degree majored
-								in <strong>{item.major}</strong> and minor in {item.minor} from <strong>{item.name}</strong>&nbsp;
-								with emphasis on {item.emphasis}.
-							</p>
-						</div>
-					))}
-				</EdContent>
-				<h1>Interests</h1>
-				<EdContent>
-					{hobby.map(item => (
-						<div key={item.id}>
-							<p>{item.name}</p>
-						</div>
-					))}
-				</EdContent>
-				<h1>Language</h1>
-				<EdContent>
-					{lang.map(item => (
-						<div key={item.id}>
-							<p>{item.name}</p>
-						</div>
-					))}
-				</EdContent>
-			</EdWrapper>
 		</ExperienceWrapper>
 	</Layout>
 );

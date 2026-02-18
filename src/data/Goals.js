@@ -1,23 +1,61 @@
 export default [
   {
+    id: 0,
+    name: "YEAR - 2026",
+    todo: [
+      {
+        desc: "Buy a car",
+        fin: false,
+      },
+      {
+        desc: "Do a cross-country trip",
+        fin: false,
+      },
+      {
+        desc: "Play a gig",
+        fin: false,
+      },
+      {
+        desc: "Reach and maintain 12-15% body fat",
+        fin: false,
+      },
+      {
+        desc: "Operate from strength, not from longing.",
+        fin: false,
+      },
+      {
+        desc: "Build one AI product end-to-end and ship it publicly",
+        fin: false,
+      },
+    ],
+  },
+  {
     id: 1,
     name: "YEAR - 2025",
     todo: [
       {
         desc: "Learn scales and chord progression with sight reading",
-        fin: false,
+        fin: true,
       },
       {
         desc: "Learn Hungarian grmmar",
-        fin: false,
+        fin: true,
       },
       {
         desc: "Plan and travel Canada",
-        fin: false,
+        fin: true,
       },
       {
         desc: "Learn detail sketching and postures",
-        fin: false,
+        fin: true,
+      },
+      {
+        desc: "Travel Peru",
+        fin: true,
+      },
+      {
+        desc: "Travel Mexico",
+        fin: true,
       },
     ],
   },

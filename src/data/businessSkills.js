@@ -13,7 +13,7 @@ export default [
   {
     id: 2,
     title: "Jira",
-    icon: "https://img.stackshare.io/service/154/Qifq4jpS_400x400.jpg",
+    icon: "https://cdn.worldvectorlogo.com/logos/jira-1.svg",
     experience: experience[2],
     experienceColor: experienceColor[2],
     url: "https://github.com/bhimeshchauhan",
