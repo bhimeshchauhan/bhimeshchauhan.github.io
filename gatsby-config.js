@@ -20,6 +20,16 @@ module.exports = {
     },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-styled-components",
+    "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/assets/images`,
+      },
+    },
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
@@ -28,9 +38,6 @@ module.exports = {
           `source sans pro\:300,400,600`, // you can also specify font weights and styles
         ],
       },
-    },
-    {
-      resolve: `gatsby-transformer-sharp`,
     },
   ],
 };
