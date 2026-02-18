@@ -17,8 +17,8 @@ export default [
     icon: website,
     description:
       "Interactive cellular automaton simulation with preset seed patterns (Glider, Pulsar, Gosper Glider Gun, etc.), adjustable grid size and speed, manual cell toggling, and step-through mode. Canvas-rendered with glow effects.",
-    iframe: '<iframe width="100%" height="600" src="/game-of-life" style="border:none;border-radius:4px" allowfullscreen></iframe>',
     githubPath: "https://github.com/bhimeshchauhan/bhimeshchauhan.github.io",
+    demoPath: "/game-of-life",
     year: "2025",
     techUsed: "React, Canvas API, Styled Components, Gatsby"
   },
