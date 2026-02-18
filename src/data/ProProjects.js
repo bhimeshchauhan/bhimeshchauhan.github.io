@@ -20,7 +20,7 @@ export default [
     iframe: '<iframe width="100%" height="480" src="/game-of-life-embed" style="border:none;border-radius:4px;background:#0d0f11" allowfullscreen></iframe>',
     githubPath: "https://github.com/bhimeshchauhan/bhimeshchauhan.github.io",
     demoPath: "/game-of-life",
-    year: "2025",
+    year: "2026",
     techUsed: "React, Canvas API, Styled Components, Gatsby"
   },
   {
