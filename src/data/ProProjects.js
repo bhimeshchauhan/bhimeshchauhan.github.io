@@ -12,6 +12,17 @@ import sudoku from '../assets/images/sudoku.gif';
 
 export default [
   {
+    id: 10,
+    title: "Conway's Game of Life",
+    icon: website,
+    description:
+      "Interactive cellular automaton simulation with preset seed patterns (Glider, Pulsar, Gosper Glider Gun, etc.), adjustable grid size and speed, manual cell toggling, and step-through mode. Canvas-rendered with glow effects.",
+    githubPath: "https://github.com/bhimeshchauhan/bhimeshchauhan.github.io",
+    demoPath: "/game-of-life",
+    year: "2025",
+    techUsed: "React, Canvas API, Styled Components, Gatsby"
+  },
+  {
     id: 9,
     title: "Bhimesh’s RAG Resume Assistant",
     icon: rag,
