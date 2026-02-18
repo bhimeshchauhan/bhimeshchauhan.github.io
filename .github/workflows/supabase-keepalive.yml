@@ -1,0 +1,57 @@
+name: Supabase Keep-Alive
+
+on:
+  schedule:
+    # Runs every 4 days at 06:00 UTC (Supabase free tier pauses after 7 days inactivity)
+    - cron: '0 6 */4 * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Ping Supabase Edge Function
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          response=$(curl -s -w "\n%{http_code}" \
+            -X POST "${SUPABASE_URL}/functions/v1/ask-ai" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}" \
+            -d '{"query": "ping"}' \
+            --max-time 30)
+
+          http_code=$(echo "$response" | tail -1)
+          body=$(echo "$response" | sed '$d')
+
+          echo "Status: $http_code"
+          echo "Response: $body"
+
+          if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 400 ]; then
+            echo "✅ Keep-alive ping successful"
+          else
+            echo "❌ Keep-alive ping failed with status $http_code"
+            exit 1
+          fi
+
+      - name: Ping Supabase REST API (database wake)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          # Also hit the PostgREST endpoint to ensure the database itself wakes up
+          http_code=$(curl -s -o /dev/null -w "%{http_code}" \
+            "${SUPABASE_URL}/rest/v1/" \
+            -H "apikey: ${SUPABASE_ANON_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_ANON_KEY}" \
+            --max-time 30)
+
+          echo "DB ping status: $http_code"
+
+          if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 400 ]; then
+            echo "✅ Database keep-alive successful"
+          else
+            echo "⚠️ Database ping returned $http_code (may be expected if no tables exposed)"
+          fi
