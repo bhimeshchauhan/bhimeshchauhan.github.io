@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 
-const CELL_SIZE = 14;
 const PRESETS = {
   empty: { name: "Empty Grid", cells: [] },
   glider: { name: "Glider", cells: [[1,0],[2,1],[0,2],[1,2],[2,2]] },
@@ -74,33 +73,36 @@ const nextGeneration = (grid, rows, cols) => {
 };
 
 const GlobalStyle = createGlobalStyle`
-  html, body { margin: 0; padding: 0; background: #0d0f11; overflow-x: hidden; }
+  html, body { margin: 0; padding: 0; background: #0d0f11; overflow: hidden; }
 `;
 
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 8px;
+  padding: 8px;
   color: #fff;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   background: #0d0f11;
+  height: 100vh;
+  box-sizing: border-box;
 `;
 
 const Controls = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
   justify-content: center;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+  flex-shrink: 0;
 `;
 
 const ControlGroup = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  label { font-size: 0.6rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; }
+  gap: 1px;
+  label { font-size: 0.55rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; }
 `;
 
 const Select = styled.select`
@@ -108,74 +110,105 @@ const Select = styled.select`
   color: #fff;
   border: 1px solid rgba(127,161,232,0.4);
   border-radius: 4px;
-  padding: 4px 8px;
-  font-size: 0.75rem;
+  padding: 3px 6px;
+  font-size: 0.7rem;
   cursor: pointer;
 `;
 
-const Slider = styled.input`accent-color: #7fa1e8; width: 70px;`;
+const Slider = styled.input`accent-color: #7fa1e8; width: 60px;`;
 
 const Btn = styled.button`
   background: ${p => p.$primary ? '#7fa1e8' : 'rgba(127,161,232,0.15)'};
   color: #fff;
   border: 1px solid rgba(127,161,232,0.4);
   border-radius: 4px;
-  padding: 4px 10px;
-  font-size: 0.75rem;
+  padding: 3px 10px;
+  font-size: 0.7rem;
   cursor: pointer;
   &:hover { background: ${p => p.$primary ? '#5b88d4' : 'rgba(127,161,232,0.3)'}; }
+`;
+
+const CanvasWrap = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 0;
 `;
 
 const Stats = styled.div`
   display: flex;
   gap: 14px;
-  margin-top: 6px;
-  font-size: 0.7rem;
+  padding: 4px 0;
+  font-size: 0.65rem;
   color: rgba(255,255,255,0.5);
+  flex-shrink: 0;
   span { color: #7fa1e8; font-weight: bold; }
 `;
 
 const GameOfLifeEmbed = () => {
-  const [gridSize, setGridSize] = useState(28);
+  const [gridSize, setGridSize] = useState(30);
   const [preset, setPreset] = useState("random");
   const [speed, setSpeed] = useState(150);
   const [running, setRunning] = useState(false);
   const [generation, setGeneration] = useState(0);
+  const [cellSize, setCellSize] = useState(14);
   const rows = gridSize, cols = gridSize;
 
   const [grid, setGrid] = useState(() => {
-    const g = createEmptyGrid(28, 28);
-    placePreset(g, "random", 28, 28);
+    const g = createEmptyGrid(30, 30);
+    placePreset(g, "random", 30, 30);
     return g;
   });
 
   const canvasRef = useRef(null);
+  const wrapRef = useRef(null);
   const speedRef = useRef(speed);
+  const drawingRef = useRef(false);
+  const drawModeRef = useRef(1); // 1 = paint on, 0 = erase
   speedRef.current = speed;
 
+  // Responsive: compute cell size to fit container
+  useEffect(() => {
+    const resize = () => {
+      const wrap = wrapRef.current;
+      if (!wrap) return;
+      const w = wrap.clientWidth - 8;
+      const h = wrap.clientHeight - 8;
+      const cs = Math.max(4, Math.min(Math.floor(w / cols), Math.floor(h / rows)));
+      setCellSize(cs);
+    };
+    resize();
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
+  }, [rows, cols]);
+
+  // Draw
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
-    const w = cols * CELL_SIZE, h = rows * CELL_SIZE;
+    const w = cols * cellSize, h = rows * cellSize;
     canvas.width = w; canvas.height = h;
     ctx.fillStyle = "#0d0f11";
     ctx.fillRect(0, 0, w, h);
     ctx.strokeStyle = "rgba(127,161,232,0.06)";
     ctx.lineWidth = 0.5;
-    for (let r = 0; r <= rows; r++) { ctx.beginPath(); ctx.moveTo(0, r*CELL_SIZE); ctx.lineTo(w, r*CELL_SIZE); ctx.stroke(); }
-    for (let c = 0; c <= cols; c++) { ctx.beginPath(); ctx.moveTo(c*CELL_SIZE, 0); ctx.lineTo(c*CELL_SIZE, h); ctx.stroke(); }
+    for (let r = 0; r <= rows; r++) { ctx.beginPath(); ctx.moveTo(0, r*cellSize); ctx.lineTo(w, r*cellSize); ctx.stroke(); }
+    for (let c = 0; c <= cols; c++) { ctx.beginPath(); ctx.moveTo(c*cellSize, 0); ctx.lineTo(c*cellSize, h); ctx.stroke(); }
+    ctx.shadowColor = "#7fa1e8";
     for (let r = 0; r < rows; r++)
       for (let c = 0; c < cols; c++)
         if (grid[r][c]) {
           ctx.fillStyle = "#7fa1e8";
-          ctx.shadowColor = "#7fa1e8";
           ctx.shadowBlur = 3;
-          ctx.fillRect(c*CELL_SIZE+1, r*CELL_SIZE+1, CELL_SIZE-2, CELL_SIZE-2);
-          ctx.shadowBlur = 0;
+          ctx.fillRect(c*cellSize+1, r*cellSize+1, cellSize-2, cellSize-2);
         }
-  }, [grid, rows, cols]);
+    ctx.shadowBlur = 0;
+  }, [grid, rows, cols, cellSize]);
 
+  // Simulation
   useEffect(() => {
     if (!running) return;
     const id = setInterval(() => {
@@ -185,15 +218,57 @@ const GameOfLifeEmbed = () => {
     return () => clearInterval(id);
   }, [running, speed, rows, cols]);
 
-  const handleCanvasClick = useCallback((e) => {
+  // Cell coordinate from mouse/touch event
+  const getCellFromEvent = useCallback((e) => {
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
     const sx = canvas.width / rect.width, sy = canvas.height / rect.height;
-    const c = Math.floor((e.clientX - rect.left) * sx / CELL_SIZE);
-    const r = Math.floor((e.clientY - rect.top) * sy / CELL_SIZE);
-    if (r >= 0 && r < rows && c >= 0 && c < cols)
-      setGrid(prev => { const copy = prev.map(row => new Uint8Array(row)); copy[r][c] = copy[r][c] ? 0 : 1; return copy; });
-  }, [rows, cols]);
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    const c = Math.floor((clientX - rect.left) * sx / cellSize);
+    const r = Math.floor((clientY - rect.top) * sy / cellSize);
+    if (r >= 0 && r < rows && c >= 0 && c < cols) return { r, c };
+    return null;
+  }, [rows, cols, cellSize]);
+
+  const toggleCell = useCallback((r, c, mode) => {
+    setGrid(prev => {
+      const copy = prev.map(row => new Uint8Array(row));
+      copy[r][c] = mode;
+      return copy;
+    });
+  }, []);
+
+  const handlePointerDown = useCallback((e) => {
+    e.preventDefault();
+    const cell = getCellFromEvent(e);
+    if (!cell) return;
+    drawingRef.current = true;
+    drawModeRef.current = grid[cell.r][cell.c] ? 0 : 1;
+    toggleCell(cell.r, cell.c, drawModeRef.current);
+  }, [getCellFromEvent, grid, toggleCell]);
+
+  const handlePointerMove = useCallback((e) => {
+    if (!drawingRef.current) return;
+    e.preventDefault();
+    const cell = getCellFromEvent(e);
+    if (!cell) return;
+    toggleCell(cell.r, cell.c, drawModeRef.current);
+  }, [getCellFromEvent, toggleCell]);
+
+  const handlePointerUp = useCallback(() => {
+    drawingRef.current = false;
+  }, []);
+
+  // Global pointer up
+  useEffect(() => {
+    window.addEventListener("mouseup", handlePointerUp);
+    window.addEventListener("touchend", handlePointerUp);
+    return () => {
+      window.removeEventListener("mouseup", handlePointerUp);
+      window.removeEventListener("touchend", handlePointerUp);
+    };
+  }, [handlePointerUp]);
 
   const handleReset = () => {
     setRunning(false); setGeneration(0);
@@ -231,7 +306,7 @@ const GameOfLifeEmbed = () => {
           </ControlGroup>
           <ControlGroup>
             <label>Grid {gridSize}×{gridSize}</label>
-            <Slider type="range" min="10" max="45" value={gridSize} onChange={e => handleGridSizeChange(Number(e.target.value))} />
+            <Slider type="range" min="10" max="50" value={gridSize} onChange={e => handleGridSizeChange(Number(e.target.value))} />
           </ControlGroup>
           <ControlGroup>
             <label>Speed {speed}ms</label>
@@ -241,7 +316,16 @@ const GameOfLifeEmbed = () => {
           <Btn onClick={handleReset}>↺</Btn>
           <Btn onClick={() => { setGrid(g => nextGeneration(g, rows, cols)); setGeneration(n => n+1); }}>→</Btn>
         </Controls>
-        <canvas ref={canvasRef} onClick={handleCanvasClick} style={{ cursor: "crosshair", display: "block", maxWidth: "100%", height: "auto", borderRadius: 4 }} />
+        <CanvasWrap ref={wrapRef}>
+          <canvas
+            ref={canvasRef}
+            onMouseDown={handlePointerDown}
+            onMouseMove={handlePointerMove}
+            onTouchStart={handlePointerDown}
+            onTouchMove={handlePointerMove}
+            style={{ cursor: "crosshair", display: "block", borderRadius: 4, touchAction: "none" }}
+          />
+        </CanvasWrap>
         <Stats>
           <div>Gen: <span>{generation}</span></div>
           <div>Live: <span>{liveCells}</span></div>
