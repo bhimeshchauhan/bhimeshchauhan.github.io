@@ -43,8 +43,6 @@ const IndexPage = () => {
             loading="eager"
             fetchPriority="high"
             decoding="async"
-            width="900"
-            height="900"
           />
         </UserDescription>
         <UserTopic>
