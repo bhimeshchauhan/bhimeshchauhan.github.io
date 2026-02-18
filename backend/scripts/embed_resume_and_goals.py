@@ -3,7 +3,7 @@ import json
 import uuid
 import re
 import fitz  # PyMuPDF
-import js2py
+import json as json_mod
 import cohere
 from pathlib import Path
 from supabase import create_client, Client
@@ -77,15 +77,20 @@ def process_goals(goals_js_path):
     with open(goals_js_path, 'r') as f:
         js_code = f.read()
 
-    # Remove `export default` and evaluate the JS array
+    # Remove `export default` and convert JS object syntax to JSON
     js_code_clean = re.sub(r'export\s+default\s+', '', js_code).strip()
     if js_code_clean.endswith(';'):
         js_code_clean = js_code_clean[:-1]
+    # Quote unquoted keys and convert JS booleans
+    js_code_clean = re.sub(r'(?<=[{,\n])\s*(\w+)\s*:', r' "\1":', js_code_clean)
+    js_code_clean = js_code_clean.replace(': true', ': true').replace(': false', ': false')
+    # Remove trailing commas before } or ]
+    js_code_clean = re.sub(r',\s*([}\]])', r'\1', js_code_clean)
 
     try:
-        goals = js2py.eval_js(js_code_clean)
+        goals = json_mod.loads(js_code_clean)
     except Exception as e:
-        print("❌ Failed to parse JS goals:", e)
+        print("❌ Failed to parse goals JSON:", e)
         return
 
     all_goal_chunks = []
