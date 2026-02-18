@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
-import { siteMeta } from '../data/Seo'
+import { siteMeta, personSchema } from '../data/Seo'
 import { Helmet } from 'react-helmet'
 import favicon from '../assets/images/bhimesh-favicon.svg'
 import blueBg from '../assets/images/blue-bg.png'
@@ -56,7 +56,9 @@ const Layout = ({ children }) => (
         link={[
           { rel: 'shortcut icon', type: 'image/png', href: `${favicon}` }
         ]}
-      />
+      >
+        <script type="application/ld+json">{JSON.stringify(personSchema)}</script>
+      </Helmet>
         <Location>
         {({ location }) => {
           return <Wrapper className={location.pathname === "/" ? "cutBackground" :''}  >

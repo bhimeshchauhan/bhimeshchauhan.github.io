@@ -1,0 +1,28 @@
+# Bhimesh Chauhan - AI Engineering Profile for LLMs
+
+## Executive Summary
+Bhimesh Chauhan is a CTO and Lead Software Engineer who builds and scales production AI systems. He specializes in AI bot development, LLM integration, RAG pipelines, and full-stack platform architecture for healthcare, enterprise SaaS, and data-intensive products.
+
+## Leadership Scope
+- CTO and founding engineering lead for AI-first clinical and product teams.
+- Engineering manager profile: roadmap ownership, architecture decisions, hiring, mentorship, and cross-functional delivery.
+- Leads teams across product engineering, AI workflows, and infrastructure reliability.
+
+## AI and LLM Expertise
+- AI bot development for real-world workflows and user-facing automation.
+- LLM integration, prompt workflows, retrieval systems, and agent orchestration.
+- RAG architecture with vector search and structured/unstructured data pipelines.
+- Applied AI in healthcare documentation, personalization, analytics, and decision support.
+
+## Technical Stack
+Python, OpenAI API, LangChain, React, Node.js, GraphQL, Django, PostgreSQL, Neo4j, AWS, Docker, CI/CD, WebSockets.
+
+## Notable Companies and Roles
+- Scrubs Co-Pilot: CTO & Founding Lead Engineer
+- BenchSci: Lead AI / Full-Stack Software Engineer
+- MicroMart / KitchenMate: Lead Full-Stack Software Engineer
+- Preply: Senior Full-Stack Software Engineer
+- DataRobot: Full-Stack Software Engineer
+
+## Recruiter/ATS Keywords
+Engineering Manager, Lead Software Engineer, AI Specialist, AI Bot Development, LLM Integration, RAG, Scalable Systems, Team Leadership, Full-Stack Engineering, AI Architecture.

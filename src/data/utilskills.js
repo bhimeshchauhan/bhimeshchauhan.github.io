@@ -50,4 +50,12 @@ export default [
 		experienceColor: experienceColor[0],
 		url: "https://github.com/bhimeshchauhan",
 	},
+	{
+		id: 7,
+		title: "Markdown",
+		icon: "https://img.stackshare.io/service/1147/markdown.png",
+		experience: experience[2],
+		experienceColor: experienceColor[2],
+		url: "https://github.com/bhimeshchauhan",
+	},
 ]

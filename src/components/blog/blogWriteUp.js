@@ -4,7 +4,7 @@ import favicon from '../../assets/images/bhimesh-favicon.svg';
 
 const parseTemplate = (tag, html) => {
     if(tag === "img") {
-        return(<img class='uk-width-1-1' src={html} alt="blog"/>);
+        return(<img class='uk-width-1-1' src={html} alt="Blog article visual related to Bhimesh Chauhan's engineering and AI work"/>);
     } else if(tag === "h4") {
         return(<h4>{html}</h4>);
     } else if(tag === "h3") {
@@ -56,7 +56,7 @@ export const BlogWriteUp = (props) => {
             <article class="uk-article uk-section-small">
                 <header class="uk-container">
                     <div class="author">
-                        <img src={favicon} class="avatar" alt="Go to the profile of Brandon Morelli"/>
+                        <img src={favicon} class="avatar" alt="Bhimesh Chauhan profile avatar"/>
                         <div class="info uk-text-meta">
                             <div className="best-post-content-cat">{props.article.author}</div>
                             <p>{props.article.dated}</p>

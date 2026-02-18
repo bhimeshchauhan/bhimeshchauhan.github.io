@@ -98,31 +98,31 @@ const LoluPage = () => {
         mobileScrollSupport={true}
       >
         <div className="demoPage">
-          <img src={page0} alt="my baby lolu" />
+          <img src={page0} alt="Photo memory page from Bhimesh Chauhan's Lolu album" />
         </div>
         <div className="demoPage">
-          <img src={page1} alt="my baby lolu" />
+          <img src={page1} alt="Photo memory page from Bhimesh Chauhan's Lolu album" />
         </div>
         <div className="demoPage">
-          <img src={page2} alt="my baby lolu" />
+          <img src={page2} alt="Photo memory page from Bhimesh Chauhan's Lolu album" />
         </div>
         <div className="demoPage">
-          <img src={page3} alt="my baby lolu" />
+          <img src={page3} alt="Photo memory page from Bhimesh Chauhan's Lolu album" />
         </div>
         <div className="demoPage">
-          <img src={page4} alt="my baby lolu" />
+          <img src={page4} alt="Photo memory page from Bhimesh Chauhan's Lolu album" />
         </div>
         <div className="demoPage">
-          <img src={page5} alt="my baby lolu" />
+          <img src={page5} alt="Photo memory page from Bhimesh Chauhan's Lolu album" />
         </div>
         <div className="demoPage">
-          <img src={page6} alt="my baby lolu" />
+          <img src={page6} alt="Photo memory page from Bhimesh Chauhan's Lolu album" />
         </div>
         <div className="demoPage">
-          <img src={page7} alt="my baby lolu" />
+          <img src={page7} alt="Photo memory page from Bhimesh Chauhan's Lolu album" />
         </div>
         <div className="demoPage">
-          <img src={page8} alt="my baby lolu" />
+          <img src={page8} alt="Photo memory page from Bhimesh Chauhan's Lolu album" />
         </div>
       </HTMLFlipBook>
     </div>

@@ -120,7 +120,7 @@ const BoxStack = styled.div`
 const ProjectBox = ({ info }) => (
     <Box className="projectBox">
       <BoxIcon>
-        <img src={info.icon} alt="bhimesh project icon" />
+        <img src={info.icon} alt={`${info.title} project icon for work built by Bhimesh Chauhan`} />
         <h3>{info.title}</h3>
       </BoxIcon>
       <BoxDescription>
@@ -129,7 +129,7 @@ const ProjectBox = ({ info }) => (
             <div dangerouslySetInnerHTML={{__html:info.iframe}} /> :
             <div className='projectItem'>
                 {info.media?.map((item) =>
-                    <img src={item} alt='project icon'></img>
+                    <img src={item} alt={`Architectural diagram for AI bot system designed by Bhimesh Chauhan for ${info.title}`}></img>
                 )}
             </div>
         }

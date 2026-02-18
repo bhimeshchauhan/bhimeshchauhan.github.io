@@ -120,9 +120,9 @@ const BoxDescription = styled.div`
 `;
 
 const VideoBox = ({ info }) => (
-  <Box className="videoBox">
+    <Box className="videoBox">
     <BoxIcon>
-      <img src={info.icon} alt="bhimesh video icon" />
+      <img src={info.icon} alt={`${info.title} video icon for Bhimesh Chauhan's engineering work`} />
       <h3>{info.title}</h3>
     </BoxIcon>
     <BoxDescription>
@@ -131,7 +131,7 @@ const VideoBox = ({ info }) => (
       ) : (
         <div className="videoItem">
           {info.media.map((item) => (
-            <img src={item} alt="project icon"></img>
+            <img src={item} alt={`Architectural diagram for AI bot system designed by Bhimesh Chauhan for ${info.title}`}></img>
           ))}
         </div>
       )}

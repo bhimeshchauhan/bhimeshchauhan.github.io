@@ -30,14 +30,22 @@ const IndexPage = () => {
               success.
             </p>
             <DownloadButton
-              href="https://pdfhost.io/v/WSqSdrSWI_Microsoft_Word_Resumedoc.pdf"
+              href="/resume.pdf"
               download
               title="Resume"
             >
               Download Resume
             </DownloadButton>
           </div>
-          <img src={BhimeshIcon} alt="bhimesh self" />
+          <img
+            src={BhimeshIcon}
+            alt="Bhimesh Chauhan profile hero animation"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            width="900"
+            height="900"
+          />
         </UserDescription>
         <UserTopic>
           {about.map((item) => (
