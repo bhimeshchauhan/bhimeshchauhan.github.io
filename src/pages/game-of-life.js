@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
-import styled, { createGlobalStyle } from "styled-components";
-import { Helmet } from "react-helmet";
+import styled from "styled-components";
+import Layout from "../components/layout";
 
 const CELL_SIZE = 14;
 const PRESETS = {
@@ -20,19 +20,16 @@ const PRESETS = {
   },
   pulsar: {
     name: "Pulsar",
-    cells: (() => {
-      const offsets = [
-        [2,0],[3,0],[4,0],[8,0],[9,0],[10,0],
-        [0,2],[5,2],[7,2],[12,2],[0,3],[5,3],[7,3],[12,3],
-        [0,4],[5,4],[7,4],[12,4],
-        [2,5],[3,5],[4,5],[8,5],[9,5],[10,5],
-        [2,7],[3,7],[4,7],[8,7],[9,7],[10,7],
-        [0,8],[5,8],[7,8],[12,8],[0,9],[5,9],[7,9],[12,9],
-        [0,10],[5,10],[7,10],[12,10],
-        [2,12],[3,12],[4,12],[8,12],[9,12],[10,12],
-      ];
-      return offsets;
-    })(),
+    cells: [
+      [2,0],[3,0],[4,0],[8,0],[9,0],[10,0],
+      [0,2],[5,2],[7,2],[12,2],[0,3],[5,3],[7,3],[12,3],
+      [0,4],[5,4],[7,4],[12,4],
+      [2,5],[3,5],[4,5],[8,5],[9,5],[10,5],
+      [2,7],[3,7],[4,7],[8,7],[9,7],[10,7],
+      [0,8],[5,8],[7,8],[12,8],[0,9],[5,9],[7,9],[12,9],
+      [0,10],[5,10],[7,10],[12,10],
+      [2,12],[3,12],[4,12],[8,12],[9,12],[10,12],
+    ],
   },
   gliderGun: {
     name: "Gosper Glider Gun",
@@ -59,8 +56,7 @@ const placePreset = (grid, preset, rows, cols) => {
     return;
   }
   const cells = PRESETS[preset]?.cells || [];
-  if (typeof cells === "string") return;
-  if (!cells.length) return;
+  if (typeof cells === "string" || !cells.length) return;
   const maxR = Math.max(...cells.map(c => c[1]));
   const maxC = Math.max(...cells.map(c => c[0]));
   const offsetR = Math.floor(rows / 2) - Math.floor((maxR + 1) / 2);
@@ -89,69 +85,95 @@ const nextGeneration = (grid, rows, cols) => {
   return next;
 };
 
-const GlobalStyle = createGlobalStyle`
-  html, body { margin: 0; padding: 0; background: #0d0f11; overflow-x: hidden; }
-`;
-
-const Wrap = styled.div`
+const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 12px 8px;
+  padding: 2% 0;
   color: #fff;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: #0d0f11;
-  min-height: 100vh;
+  min-height: 60vh;
+`;
+
+const Title = styled.h1`
+  color: #fff;
+  margin-bottom: 0.3em;
+  font-size: 2rem;
+  text-align: center;
+`;
+
+const Subtitle = styled.p`
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 1.5em;
+  text-align: center;
+  max-width: 600px;
+  line-height: 1.5;
 `;
 
 const Controls = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 1.2em;
 `;
 
 const ControlGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2px;
-  label { font-size: 0.65rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; }
+  label {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
 `;
 
 const Select = styled.select`
   background: #17191b;
   color: #fff;
-  border: 1px solid rgba(127,161,232,0.4);
-  border-radius: 4px;
-  padding: 5px 8px;
-  font-size: 0.8rem;
+  border: 1px solid rgba(127, 161, 232, 0.4);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
   cursor: pointer;
+  &:hover { border-color: #7fa1e8; }
 `;
 
 const Slider = styled.input`
   accent-color: #7fa1e8;
-  width: 80px;
+  width: 90px;
 `;
 
 const Btn = styled.button`
   background: ${p => p.$primary ? '#7fa1e8' : 'rgba(127,161,232,0.15)'};
   color: #fff;
-  border: 1px solid rgba(127,161,232,0.4);
-  border-radius: 4px;
-  padding: 5px 12px;
-  font-size: 0.8rem;
+  border: 1px solid rgba(127, 161, 232, 0.4);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.2s;
   &:hover { background: ${p => p.$primary ? '#5b88d4' : 'rgba(127,161,232,0.3)'}; }
 `;
 
+const CanvasWrapper = styled.div`
+  border-radius: 8px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
+    0 3px 1px -2px rgba(0,0,0,0.12),
+    0 1px 5px 0 rgba(0,0,0,0.2);
+  overflow: hidden;
+  background: #0d0f11;
+  cursor: crosshair;
+  max-width: 90vw;
+`;
+
 const Stats = styled.div`
   display: flex;
-  gap: 16px;
-  margin-top: 8px;
-  font-size: 0.75rem;
+  gap: 20px;
+  margin-top: 1em;
+  font-size: 0.8rem;
   color: rgba(255,255,255,0.5);
   span { color: #7fa1e8; font-weight: bold; }
 `;
@@ -241,10 +263,14 @@ const GameOfLife = () => {
   const liveCells = grid.reduce((s, row) => s + row.reduce((a, c) => a + c, 0), 0);
 
   return (
-    <>
-      <Helmet><title>Game of Life</title></Helmet>
-      <GlobalStyle />
-      <Wrap>
+    <Layout>
+      <PageWrapper>
+        <Title>Conway's Game of Life</Title>
+        <Subtitle>
+          Select a seed pattern, adjust speed and grid size, then press Play.
+          Click cells to toggle them manually.
+        </Subtitle>
+
         <Controls>
           <ControlGroup>
             <label>Pattern</label>
@@ -264,18 +290,22 @@ const GameOfLife = () => {
           <Btn onClick={handleReset}>↺ Reset</Btn>
           <Btn onClick={() => { setGrid(g => nextGeneration(g, rows, cols)); setGeneration(n => n+1); }}>Step →</Btn>
         </Controls>
-        <canvas
-          ref={canvasRef}
-          onClick={handleCanvasClick}
-          style={{ cursor: "crosshair", display: "block", maxWidth: "100%", height: "auto", borderRadius: 4 }}
-        />
+
+        <CanvasWrapper>
+          <canvas
+            ref={canvasRef}
+            onClick={handleCanvasClick}
+            style={{ display: "block", maxWidth: "100%", height: "auto" }}
+          />
+        </CanvasWrapper>
+
         <Stats>
-          <div>Gen: <span>{generation}</span></div>
-          <div>Live: <span>{liveCells}</span></div>
+          <div>Generation: <span>{generation}</span></div>
+          <div>Live Cells: <span>{liveCells}</span></div>
           <div>Grid: <span>{rows}×{cols}</span></div>
         </Stats>
-      </Wrap>
-    </>
+      </PageWrapper>
+    </Layout>
   );
 };
 
