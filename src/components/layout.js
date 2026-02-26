@@ -51,6 +51,7 @@ const Layout = ({ children }) => (
           const canonicalUrl = `${SITE_URL}${location.pathname}`;
           return <>
             <Helmet
+              htmlAttributes={{ lang: 'en' }}
               title={data.site.siteMetadata.title}
               meta={[
                 { name: 'description', content: siteMeta.description },
