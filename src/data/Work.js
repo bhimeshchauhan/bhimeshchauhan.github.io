@@ -17,6 +17,7 @@ export default [
     logo: benchsci,
     companyLink: "https://www.benchsci.com/",
     description:
+      'Designed and owned AI data infrastructure for a biomedical research platform that helps scientists discover and evaluate preclinical evidence faster.<br/><br/>' +
       '● Led AI-driven biomedical data pipelines processing 100K+ unstructured research artifacts into structured, model-ready datasets.<br/>' +
       '● Designed and integrated a Retrieval-Augmented Generation (RAG) pipeline enabling LLM-powered literature synthesis for scientific discovery.<br/>' +
       '● Reduced manual data curation effort by ~60% by standardizing AI-assisted extraction and validation workflows.<br/>' +
@@ -32,6 +33,7 @@ export default [
     logo: scrubs,
     companyLink: "https://scrubscopilot.com/",
     description:
+      'Co-founded and led all engineering for an ambient clinical AI platform that listens to doctor-patient conversations and generates structured medical notes in real time.<br/><br/>' +
       '● Founded and led the technical vision for an ambient clinical AI platform designed to passively capture and structure doctor–patient conversations.<br/>' +
       '● Architected LLM + RAG pipelines for real-time transcription and medical note generation, reducing clinician documentation time by ~80%.<br/>' +
       '● Designed low-latency AI systems spanning fine-tuning, vector search, and inference optimized for clinical workflows.<br/>' +
@@ -48,6 +50,7 @@ export default [
     logo: micromart,
     companyLink: "https://www.kitchenmate.com/",
     description:
+      'Led engineering for a distributed IoT platform powering hundreds of smart food kiosks — real-time device management, payments, and ML-driven inventory optimization.<br/><br/>' +
       '● Led development of a distributed IoT + cloud platform managing hundreds of real-time smart kiosk devices across multiple locations.<br/>' +
       '● Built real-time operations dashboards using React, Node.js, and WebSockets, improving operational visibility and response times by ~30%.<br/>' +
       '● Implemented Modbus RS485 integrations in Python and Node.js to interface directly with embedded hardware over TCP and serial protocols.<br/>' +
@@ -63,6 +66,7 @@ export default [
     logo: preply,
     companyLink: "https://www.preply.com/",
     description:
+      'Owned personalization and analytics for a global language-learning marketplace serving 80K+ active learners, driving conversion through NLP-powered tutor matching and experimentation.<br/><br/>' +
       '● Led analytics and personalization features used by 80K+ active learners across the platform.<br/>' +
       '● Initiated and drove development of a persona-based learning framework to model learner intent, goals, and behavior patterns.<br/>' +
       '● Designed NLP-driven personalization logic improving tutor matching, lesson relevance, and learner engagement.<br/>' +
@@ -78,6 +82,7 @@ export default [
     logo: dr,
     companyLink: "https://www.datarobot.com/",
     description:
+      'Built enterprise integrations that connected DataRobot\'s AutoML platform to the tools customers already used — Excel, Tableau, Snowflake — driving a 70% increase in adoption.<br/><br/>' +
       '● Integrated enterprise AutoML platforms with Excel, Tableau, and Snowflake, increasing customer adoption by ~70%.<br/>' +
       '● Built secure, scalable React frontends interfacing with MSSQL, Amazon Redshift, and Snowflake via REST APIs.<br/>' +
       '● Implemented CI/CD pipelines and automated testing to support ML-backed production releases.<br/>' +
