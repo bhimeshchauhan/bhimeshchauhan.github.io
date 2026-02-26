@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react";import { Helmet } from 'react-helmet';
+
 import "../styles/stepper.css";
 import work from "../data/Work";
 import {
@@ -16,6 +17,7 @@ import rehypeSanitize from "rehype-sanitize";
 
 const Experience = () => (
 	<Layout>
+      <Helmet title="Experience | Bhimesh Chauhan" />
 		<ExperienceWrapper>
 			<WorkWrapper>
 				<h1>Professional Experience</h1>

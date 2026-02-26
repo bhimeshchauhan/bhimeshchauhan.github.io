@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react";import { Helmet } from 'react-helmet';
+
 import BhimeshIcon from "../assets/images/coding.gif";
 import AboutBox from "../components/About/AboutBox";
 import about from "../data/About";
@@ -16,6 +17,7 @@ import ChatComponent from "../components/chat";
 const IndexPage = () => {
   return (
     <Layout>
+      <Helmet title="Bhimesh Chauhan | Engineering Leader & AI Specialist" />
       <UserWrapper>
         <UserTitle>
           Bhimesh <span>Chauhan</span>

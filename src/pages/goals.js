@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet';
 import "../styles/stepper.css";
 import goal from "../data/Goals";
 import {
@@ -11,6 +12,7 @@ import Layout from "../components/layout";
 
 const BlogLayout = () => (
 	<Layout>
+      <Helmet title="Goals | Bhimesh Chauhan" />
 		<ExperienceWrapper>
 			<WorkWrapper>
 				<h1>Goals</h1>

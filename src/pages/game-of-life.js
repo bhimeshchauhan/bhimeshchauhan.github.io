@@ -1,4 +1,5 @@
-import React, { useState, useCallback, useRef, useEffect } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";import { Helmet } from 'react-helmet';
+
 import styled from "styled-components";
 import Layout from "../components/layout";
 import { PRESETS, createEmptyGrid, placePreset, nextGeneration, countLiveCells, gridsEqual } from "../utils/gameOfLife";
@@ -202,6 +203,7 @@ const GameOfLife = () => {
 
   return (
     <Layout>
+      <Helmet title="Conway's Game of Life | Bhimesh Chauhan" />
       <PageWrapper>
         <Title>Conway's Game of Life</Title>
         <Subtitle>
