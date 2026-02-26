@@ -61,7 +61,10 @@ const Layout = ({ children }) => (
                 // Open Graph
                 { property: 'og:title', content: siteMeta.title },
                 { property: 'og:description', content: siteMeta.description },
-                { property: 'og:image', content: `${SITE_URL}/static/coding-f03226cb34aa24c0946c13b14a648a54.gif` },
+                { property: 'og:image', content: `${SITE_URL}/og-image.png` },
+                { property: 'og:image:width', content: '1200' },
+                { property: 'og:image:height', content: '630' },
+                { property: 'og:image:type', content: 'image/png' },
                 { property: 'og:url', content: canonicalUrl },
                 { property: 'og:type', content: 'website' },
                 { property: 'og:locale', content: 'en_US' },
@@ -69,7 +72,7 @@ const Layout = ({ children }) => (
                 { name: 'twitter:card', content: 'summary_large_image' },
                 { name: 'twitter:title', content: siteMeta.title },
                 { name: 'twitter:description', content: siteMeta.description },
-                { name: 'twitter:image', content: `${SITE_URL}/static/coding-f03226cb34aa24c0946c13b14a648a54.gif` },
+                { name: 'twitter:image', content: `${SITE_URL}/og-image.png` },
               ]}
               link={[
                 { rel: 'shortcut icon', type: 'image/png', href: `${favicon}` },
