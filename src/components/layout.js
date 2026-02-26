@@ -52,9 +52,23 @@ const Layout = ({ children }) => (
           { name: 'keywords', content: siteMeta.keywords.join(", ") },
           { name: 'author', content: siteMeta.author },
           { name: 'copyright', content: siteMeta.copyright },
+          // Open Graph
+          { property: 'og:title', content: siteMeta.title },
+          { property: 'og:description', content: siteMeta.description },
+          { property: 'og:image', content: 'https://bhimeshchauhan.github.io/static/coding-f03226cb34aa24c0946c13b14a648a54.gif' },
+          { property: 'og:url', content: 'https://bhimeshchauhan.github.io/' },
+          { property: 'og:type', content: 'website' },
+          { property: 'og:locale', content: 'en_US' },
+          // Twitter Card
+          { name: 'twitter:card', content: 'summary_large_image' },
+          { name: 'twitter:title', content: siteMeta.title },
+          { name: 'twitter:description', content: siteMeta.description },
+          { name: 'twitter:image', content: 'https://bhimeshchauhan.github.io/static/coding-f03226cb34aa24c0946c13b14a648a54.gif' },
         ]}
         link={[
-          { rel: 'shortcut icon', type: 'image/png', href: `${favicon}` }
+          { rel: 'shortcut icon', type: 'image/png', href: `${favicon}` },
+          { rel: 'canonical', href: 'https://bhimeshchauhan.github.io/' },
+          { rel: 'alternate', hreflang: 'en', href: 'https://bhimeshchauhan.github.io/' },
         ]}
       >
         <script type="application/ld+json">{JSON.stringify(personSchema)}</script>
