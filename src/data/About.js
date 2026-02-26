@@ -2,19 +2,19 @@ export default [
     {
         id: 1,
         title: "Experience",
-        description: "In my 4 years as a professional Full-stack developer, I have had the opportunity to work with some great companies.",
+        description: "10+ years building software across startups and scale-ups, with recent focus on AI systems, engineering leadership, and taking products from zero to production.",
         path: "/experience"
     },
     {
         id: 2,
         title: "Projects",
-        description: "I like to constantly learn and grow with different projects. Here’s a comprehensive list of projects I’ve worked on. ",
+        description: "From clinical AI platforms to IoT systems and real-time data pipelines — a selection of products I've architected and shipped.",
         path: "/projects"
     },
     {
         id: 3,
         title: "Recommendation",
-        description: "I am also very humbled by the words of some great professionals about my work. Here are my favorites.",
+        description: "What colleagues, managers, and collaborators have said about working with me.",
         path: "/recommendation"
     }
 ];

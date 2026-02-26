@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpersonal_website_reach=self.webpackChunkpersonal_website_reach||[]).push([[125],{8493:function(e,t,a){a.r(t),a.d(t,{default:function(){return r}});var s=a(6540),n=a.p+"static/bhimesh-1709667e305d6117e780fda49a309052.svg";var r=()=>s.createElement("div",null,s.createElement("img",{src:n,alt:"Illustration of Bhimesh Chauhan for the 404 page"}),s.createElement("p",null,"You just hit a route that doesn't exist... the sadness."))}}]);
+//# sourceMappingURL=component---src-pages-404-js-bd5a6d0ed20441dfd518.js.map
