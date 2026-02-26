@@ -23,11 +23,12 @@ const IndexPage = () => {
         <UserDescription>
           <div>
             <p>
-              Full-Stack Engineer specializing in Computer Vision and Graphic
-              design with expertise in Machine Learning. Elevate your team's
-              capabilities with my proven track record in creating innovative
-              solutions. Let's discuss how I can contribute to your company's
-              success.
+              Engineering leader who builds and scales AI-powered products — from
+              clinical documentation platforms to enterprise ML systems. I combine
+              deep technical execution with the ability to hire, mentor, and ship
+              across full-stack, ML, and infrastructure. Currently open to Lead,
+              Staff, and Engineering Manager roles where I can own technical
+              direction and grow high-performing teams.
             </p>
             <DownloadButton
               href="/resume.pdf"

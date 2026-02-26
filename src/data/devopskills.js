@@ -1,4 +1,4 @@
-const experience = ["Begineer", "Intermediary", "Expert"]
+const experience = ["Beginner", "Intermediate", "Expert"]
 const experienceColor = ["#1F8D00", "#FFE000", "#FF7200"]
 
 export default [
