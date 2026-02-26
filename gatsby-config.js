@@ -41,8 +41,24 @@ module.exports = {
       options: {
         fonts: [
           `Signika`,
-          `source sans pro\:300,400,600`, // you can also specify font weights and styles
+          `source sans pro\:300,400,600`,
+          `Montserrat`,
+          `Inter\:700`,
+          `Maven+Pro`,
         ],
+        display: 'swap',
+      },
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Bhimesh Chauhan — Engineering Leader & AI Specialist`,
+        short_name: `Bhimesh`,
+        start_url: `/`,
+        background_color: `#1d1e20`,
+        theme_color: `#7fa1e8`,
+        display: `standalone`,
+        icon: `src/assets/images/bhimesh-favicon.svg`,
       },
     },
   ],
