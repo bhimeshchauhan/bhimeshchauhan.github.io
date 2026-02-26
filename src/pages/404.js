@@ -1,11 +1,12 @@
-import React from 'react'
-import RashSelfIcon from '../assets/images/bhimesh.svg'
+import React, { useEffect } from 'react'
+import { navigate } from 'gatsby'
 
-const NotFoundPage = () => (
-  <div>
-    <img src={RashSelfIcon} alt="Illustration of Bhimesh Chauhan for the 404 page" />
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </div>
-)
+const NotFoundPage = () => {
+  useEffect(() => {
+    navigate('/', { replace: true })
+  }, [])
+
+  return null
+}
 
 export default NotFoundPage
