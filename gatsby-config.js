@@ -1,9 +1,15 @@
 module.exports = {
   siteMetadata: {
     title: "Bhimesh Chauhan",
-    siteUrl: "http://bhimeshchauhan.github.io",
+    siteUrl: "https://bhimeshchauhan.github.io",
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/`,
+      },
+    },
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {

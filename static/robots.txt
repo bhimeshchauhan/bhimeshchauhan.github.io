@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: Google-Extended
 Allow: /
+
+Sitemap: https://bhimeshchauhan.github.io/sitemap-index.xml
