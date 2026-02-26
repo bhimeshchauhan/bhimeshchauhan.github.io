@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react";import { Helmet } from 'react-helmet';
+
 import { Link } from "gatsby";
 import Layout from "../components/layout";
 import styled from "styled-components";
@@ -52,6 +53,7 @@ const NavLink = styled(Link)`
 
 const NotFoundPage = () => (
   <Layout>
+      <Helmet title="Page Not Found | Bhimesh Chauhan" />
     <Container>
       <ErrorCode>404</ErrorCode>
       <Message>This page doesn't exist — but these do:</Message>

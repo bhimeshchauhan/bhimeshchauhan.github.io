@@ -1,4 +1,5 @@
-import React from "react";
+import React from "react";import { Helmet } from 'react-helmet';
+
 import "../styles/tabs.css";
 import videos from "../data/VideoLinks";
 import VideoBox from "../components/Videos/VideoBox";
@@ -7,6 +8,7 @@ import Layout from "../components/layout";
 
 const Videos = () => (
   <Layout>
+      <Helmet title="Videos | Bhimesh Chauhan" />
     <ProjectsWrapper>
       <ProjectsSection>
         {videos.map((item) => (

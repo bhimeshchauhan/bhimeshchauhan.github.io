@@ -1,4 +1,5 @@
-import React, {useEffect} from "react";
+import React, {useEffect} from "react";import { Helmet } from 'react-helmet';
+
 import Layout from "../components/layout";
 import '../styles/skillStyle.css';
 import skill from '../data/skills';
@@ -19,6 +20,7 @@ const Skills = () => {
 
     return(
         <Layout className="my-stacks">
+      <Helmet title="Skills | Bhimesh Chauhan" />
             <ExperienceWrapper>
                 <WorkWrapper>
                     <h1>Skills</h1>

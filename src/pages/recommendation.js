@@ -1,10 +1,12 @@
 import React from 'react'
+import { Helmet } from 'react-helmet';
 import rec from '../data/Recommendation'
 import { RecWrapper, RecBox, RecDes } from '../styles/recStyle.js'
 import Layout from '../components/layout'
 
 const Recommendation = () => (
   <Layout>
+      <Helmet title="Recommendations | Bhimesh Chauhan" />
   <RecWrapper>
     <h1>Recommendation</h1>
     {

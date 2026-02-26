@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet';
 import SocialContact from '../components/Contact/SocialContact'
 import contact from '../data/Contact'
 import social from '../data/Social'
@@ -25,6 +26,7 @@ const StyledTextArea = () => {
 
 const Contact = () => (
   <Layout>
+      <Helmet title="Contact | Bhimesh Chauhan" />
     <ContactWrapper>
       <ContactContainer>
           <ContactHeader>
