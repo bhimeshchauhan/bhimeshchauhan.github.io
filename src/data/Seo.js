@@ -4,7 +4,7 @@ export const aboutWebsite = {
     "@context": "http://schema.org",
     "@type": "WebSite",
     "url": "http://bhimeshchauhan.com",
-    "name": "Bhimesh Chauhan | Full-Stack Engineer, DataRobot",
+    "name": "Bhimesh Chauhan | CTO, Engineering Manager, Lead Software Engineer",
     "author": {
         "@type": "Person",
         "name": "Bhimesh Chauhan"
