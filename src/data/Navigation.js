@@ -9,6 +9,7 @@ import {
   faAddressBook,
   faBusinessTime,
   faLaptopCode,
+  faCamera,
 } from "@fortawesome/free-solid-svg-icons";
 
 const home = <FontAwesomeIcon className="fa-icon fa-fw" icon={faHome} />;
@@ -26,6 +27,9 @@ const blog = <FontAwesomeIcon className="fa-icon fa-fw " icon={faBlog} />;
 const goals = <FontAwesomeIcon className="fa-icon fa-fw " icon={faBullseye} />;
 const contact = (
   <FontAwesomeIcon className="fa-icon fa-fw " icon={faAddressBook} />
+);
+const photobooth = (
+  <FontAwesomeIcon className="fa-icon fa-fw" icon={faCamera} />
 );
 export default [
   {
@@ -67,5 +71,10 @@ export default [
     icon: contact,
     label: "Contact",
     path: "/contact/",
+  },
+  {
+    icon: photobooth,
+    label: "Photo Booth",
+    path: "/photobooth/",
   },
 ];

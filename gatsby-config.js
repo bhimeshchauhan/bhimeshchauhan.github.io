@@ -1,3 +1,16 @@
+require("dotenv").config();
+
+if (!process.env.GATSBY_SUPABASE_URL && process.env.SUPABASE_URL) {
+  process.env.GATSBY_SUPABASE_URL = process.env.SUPABASE_URL;
+}
+if (!process.env.GATSBY_SUPABASE_ANON_KEY && process.env.SUPABASE_ANON_KEY) {
+  process.env.GATSBY_SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
+}
+// backward compat: old .env used SUPABASE_SERVICE_ROLE_KEY for the anon key
+if (!process.env.GATSBY_SUPABASE_ANON_KEY && process.env.SUPABASE_SERVICE_ROLE_KEY) {
+  process.env.GATSBY_SUPABASE_ANON_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+}
+
 module.exports = {
   siteMetadata: {
     title: "Bhimesh Chauhan",
