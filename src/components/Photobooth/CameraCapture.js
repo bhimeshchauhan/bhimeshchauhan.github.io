@@ -59,7 +59,6 @@ const ShutterBtn = styled.button`
   background: rgba(255,255,255,0.15);
   cursor: pointer;
   transition: background 0.15s;
-
   &:active { animation: ${pulse} 0.2s ease; }
   &:hover:not(:disabled) { background: rgba(255,255,255,0.3); }
   &:disabled { opacity: 0.4; cursor: default; }
@@ -72,7 +71,6 @@ const Strip = styled.div`
   width: 100%;
   max-width: 480px;
   padding-bottom: 4px;
-
   &::-webkit-scrollbar { height: 4px; }
   &::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
 `;
@@ -110,6 +108,30 @@ const NameInput = styled.input`
   &:focus { border-color: rgba(255,255,255,0.5); }
 `;
 
+const MessageInput = styled.textarea`
+  width: 100%;
+  max-width: 480px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 0.95rem;
+  padding: 12px 16px;
+  outline: none;
+  resize: none;
+  rows: 3;
+  box-sizing: border-box;
+  font-family: inherit;
+  &::placeholder { color: rgba(255,255,255,0.3); }
+  &:focus { border-color: rgba(255,215,0,0.4); }
+`;
+
+const BtnRow = styled.div`
+  display: flex;
+  gap: 12px;
+  align-items: center;
+`;
+
 const PrimaryBtn = styled.button`
   background: #7fa1e8;
   color: #fff;
@@ -120,6 +142,26 @@ const PrimaryBtn = styled.button`
   font-weight: 600;
   cursor: pointer;
   &:hover { opacity: 0.88; }
+  &:disabled { opacity: 0.4; cursor: default; }
+`;
+
+const GhostBtn = styled.button`
+  background: transparent;
+  color: rgba(255,255,255,0.55);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  &:hover { color: rgba(255,255,255,0.9); border-color: rgba(255,255,255,0.4); }
+  &:disabled { opacity: 0.4; cursor: default; }
+`;
+
+const Divider = styled.div`
+  width: 100%;
+  max-width: 480px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin: 4px 0;
 `;
 
 const ErrorMsg = styled.p`
@@ -128,29 +170,34 @@ const ErrorMsg = styled.p`
   text-align: center;
 `;
 
+const SentMsg = styled.p`
+  color: #86efac;
+  font-size: 0.88rem;
+  text-align: center;
+  margin: 0;
+`;
+
 const GUEST_NAME_KEY = "photobooth.guestName";
 
 const CameraCapture = ({ eventId, displayToken }) => {
-  const [phase, setPhase] = useState("name"); // 'name' | 'camera' | 'ended'
+  const [phase, setPhase] = useState("name");
   const [guestName, setGuestName] = useState("");
   const [nameInput, setNameInput] = useState("");
+  const [message, setMessage] = useState("");
   const [flash, setFlash] = useState(false);
   const [thumbnails, setThumbnails] = useState([]);
   const [cameraError, setCameraError] = useState(null);
+  const [msgSent, setMsgSent] = useState(false);
   const videoRef = useRef(null);
   const streamRef = useRef(null);
 
   const { uploadPhoto, uploading, error: uploadError } = useGuestUpload({ displayToken, guestName });
-  const { broadcastPhoto } = useEventChannel({ eventId, enabled: phase === "camera" });
+  const { broadcastPhoto, broadcastMessage } = useEventChannel({ eventId, enabled: phase === "camera" });
 
-  // Restore saved name
   useEffect(() => {
     if (typeof window === "undefined") return;
     const saved = localStorage.getItem(GUEST_NAME_KEY);
-    if (saved) {
-      setGuestName(saved);
-      setPhase("camera");
-    }
+    if (saved) { setGuestName(saved); setPhase("camera"); }
   }, []);
 
   const startCamera = useCallback(async () => {
@@ -168,28 +215,22 @@ const CameraCapture = ({ eventId, displayToken }) => {
 
   useEffect(() => {
     if (phase === "camera") startCamera();
-    return () => {
-      streamRef.current?.getTracks().forEach((t) => t.stop());
-    };
+    return () => { streamRef.current?.getTracks().forEach((t) => t.stop()); };
   }, [phase, startCamera]);
 
   const confirmName = () => {
     const name = nameInput.trim();
     setGuestName(name);
-    if (typeof window !== "undefined") {
-      localStorage.setItem(GUEST_NAME_KEY, name);
-    }
+    if (typeof window !== "undefined") localStorage.setItem(GUEST_NAME_KEY, name);
     setPhase("camera");
   };
 
   const capture = useCallback(async () => {
     if (!videoRef.current || uploading) return;
-
     setFlash(true);
     setTimeout(() => setFlash(false), 150);
 
-    const video = videoRef.current;
-    const bitmap = await createImageBitmap(video);
+    const bitmap = await createImageBitmap(videoRef.current);
     const result = await uploadPhoto(bitmap);
 
     if (result) {
@@ -198,12 +239,13 @@ const CameraCapture = ({ eventId, displayToken }) => {
         photoId: result.photoId,
         publicUrl: result.publicUrl,
         guestName: result.guestName,
+        message: message.trim() || null,
         createdAt: new Date().toISOString(),
       });
+      setMessage("");
     }
-  }, [uploading, uploadPhoto, broadcastPhoto]);
+  }, [uploading, uploadPhoto, broadcastPhoto, message]);
 
-  // Fallback file input handler
   const handleFile = useCallback(async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -215,10 +257,26 @@ const CameraCapture = ({ eventId, displayToken }) => {
         photoId: result.photoId,
         publicUrl: result.publicUrl,
         guestName: result.guestName,
+        message: message.trim() || null,
         createdAt: new Date().toISOString(),
       });
+      setMessage("");
     }
-  }, [uploadPhoto, broadcastPhoto]);
+  }, [uploadPhoto, broadcastPhoto, message]);
+
+  const sendMessageOnly = useCallback(async () => {
+    const text = message.trim();
+    if (!text) return;
+    await broadcastMessage({
+      messageId: crypto.randomUUID(),
+      guestName: guestName || "A guest",
+      message: text,
+      createdAt: new Date().toISOString(),
+    });
+    setMessage("");
+    setMsgSent(true);
+    setTimeout(() => setMsgSent(false), 3000);
+  }, [message, guestName, broadcastMessage]);
 
   if (phase === "ended") {
     return (
@@ -235,7 +293,7 @@ const CameraCapture = ({ eventId, displayToken }) => {
         <Title>Photo Booth</Title>
         <NamePrompt>
           <p style={{ color: "rgba(255,255,255,0.7)", margin: 0 }}>
-            Add your name so people know who took the photo (optional).
+            Add your name so it shows up on the display (optional).
           </p>
           <NameInput
             placeholder="Your name (optional)"
@@ -254,9 +312,7 @@ const CameraCapture = ({ eventId, displayToken }) => {
 
   return (
     <Wrapper>
-      <Title>
-        {guestName ? `Hey ${guestName}!` : "Photo Booth"}
-      </Title>
+      <Title>{guestName ? `Hey ${guestName}!` : "Photo Booth"}</Title>
 
       <VideoBox>
         {cameraError ? (
@@ -265,13 +321,7 @@ const CameraCapture = ({ eventId, displayToken }) => {
             <br /><br />
             <label style={{ cursor: "pointer", color: "#7fa1e8", textDecoration: "underline" }}>
               Pick a photo
-              <input
-                type="file"
-                accept="image/*"
-                capture="environment"
-                style={{ display: "none" }}
-                onChange={handleFile}
-              />
+              <input type="file" accept="image/*" capture="environment" style={{ display: "none" }} onChange={handleFile} />
             </label>
           </div>
         ) : (
@@ -290,11 +340,26 @@ const CameraCapture = ({ eventId, displayToken }) => {
 
       {thumbnails.length > 0 && (
         <Strip>
-          {thumbnails.map((url, i) => (
-            <Thumb key={i} src={url} alt="" />
-          ))}
+          {thumbnails.map((url, i) => <Thumb key={i} src={url} alt="" />)}
         </Strip>
       )}
+
+      <Divider />
+
+      <MessageInput
+        placeholder="Leave a message for Elvie… (optional)"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        rows={3}
+      />
+
+      <BtnRow>
+        <GhostBtn onClick={sendMessageOnly} disabled={!message.trim()}>
+          Send message only
+        </GhostBtn>
+      </BtnRow>
+
+      {msgSent && <SentMsg>Message sent to the display!</SentMsg>}
     </Wrapper>
   );
 };

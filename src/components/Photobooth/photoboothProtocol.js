@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 
-export const PHOTO_EVENT = "photo:new";
+export const PHOTO_EVENT    = "photo:new";
+export const MESSAGE_EVENT = "message:new";
 
 export const createChannelName = (eventId) => `event:${eventId}`;
 

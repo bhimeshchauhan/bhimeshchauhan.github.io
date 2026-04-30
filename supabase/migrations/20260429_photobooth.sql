@@ -6,7 +6,7 @@ create table if not exists public.events (
   id              uuid primary key default gen_random_uuid(),
   owner_id        uuid references auth.users(id) on delete cascade not null,
   title           text not null default 'Live event',
-  display_token   text not null unique default encode(gen_random_bytes(16), 'hex'),
+  display_token   text not null unique default replace(gen_random_uuid()::text || gen_random_uuid()::text, '-', ''),
   drive_folder_id text,
   active          boolean not null default true,
   created_at      timestamptz not null default now(),

@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
 import { getPublicUrl, getSupabaseClient } from "./photoboothProtocol";
 import { useEventChannel } from "./useEventChannel";
 
 const Fonts = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 `;
 
 // ── Animations ───────────────────────────────────────────────────────────────
@@ -15,10 +15,10 @@ const scrollUp = keyframes`
 `;
 
 const newGlow = keyframes`
-  0%   { box-shadow: 0 4px 8px rgba(0,0,0,0.4), 0 0  0px  0px rgba(212,168,67,0);   }
-  20%  { box-shadow: 0 4px 8px rgba(0,0,0,0.4), 0 0 40px 12px rgba(212,168,67,0.9); }
-  60%  { box-shadow: 0 4px 8px rgba(0,0,0,0.4), 0 0 24px  6px rgba(212,168,67,0.5); }
-  100% { box-shadow: 0 4px 8px rgba(0,0,0,0.35),0 12px 32px rgba(0,0,0,0.45);       }
+  0%   { box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 0  0px  0px rgba(255,215,0,0);    }
+  20%  { box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 0 44px 16px rgba(255,200,0,0.9);  }
+  60%  { box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 0 28px  8px rgba(255,165,0,0.5);  }
+  100% { box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 20px 60px rgba(255,165,0,0.05);   }
 `;
 
 const dropIn = keyframes`
@@ -27,16 +27,16 @@ const dropIn = keyframes`
   100% { opacity: 1; transform: translateY(0)     scale(1)    rotate(var(--rot)); }
 `;
 
-// ── Deterministic rotation (-5° to +5°) ─────────────────────────────────────
+// ── Deterministic rotation (-4° to +4°) ─────────────────────────────────────
 
 const getRotation = (id = "") => {
   const sum = id.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
-  return ((sum % 11) - 5);
+  return ((sum % 9) - 4);
 };
 
-// ── Column scroll speeds (seconds) — slight variation = parallax feel ────────
+// ── Column scroll speeds (seconds) ───────────────────────────────────────────
 
-const COL_SPEEDS = [46, 60];
+const COL_SPEEDS = [34, 50, 28];
 
 // ── Mock photos ──────────────────────────────────────────────────────────────
 
@@ -57,44 +57,57 @@ const MOCK_PHOTOS = [
 
 // ── Styled components ────────────────────────────────────────────────────────
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
-  padding: 0 60px 40px;
-  height: calc(100vh - 72px);
-  overflow: hidden;
+/*
+ * Card width auto-derived from viewport height so exactly 2 rows fill the space:
+ *   available_h = 100vh - 64px header - 60px padding - 28px gap = 100vh - 152px
+ *   card_h      = available_h / 2
+ *   card_w      = card_h * (3/4) = available_h * 3/8 = (100vh - 152px) * 0.375
+ */
+const CARD_W = "calc((100vh - 152px) * 0.375)";
 
-  @media (max-width: 600px) { gap: 16px; padding: 0 20px 20px; }
+const WallWrapper = styled.div`
+  position: relative;
+  height: calc(100vh - 64px);
+  overflow: hidden;
 `;
 
-const Column = styled.div`
-  overflow: hidden;
-  position: relative;
+/* absolute gradient overlays — more reliable than mask-image cross-browser */
+const EdgeFade = styled.div`
+  position: absolute;
+  left: 0; right: 0;
+  height: 36px;
+  z-index: 3;
+  pointer-events: none;
+  ${({ $pos, $bg }) =>
+    $pos === "top"
+      ? `top: 0; background: linear-gradient(to bottom, ${$bg} 0%, transparent 100%);`
+      : `bottom: 0; background: linear-gradient(to top, ${$bg} 0%, transparent 100%);`}
+`;
 
-  /* Fade edges so photos melt into the background */
-  &::before, &::after {
-    content: '';
-    position: absolute;
-    left: 0; right: 0;
-    height: 80px;
-    z-index: 2;
-    pointer-events: none;
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, ${CARD_W});
+  justify-content: center;
+  gap: 28px;
+  padding: 30px 40px;
+
+  @media (max-width: 860px) {
+    grid-template-columns: repeat(2, ${CARD_W});
+    gap: 20px;
+    padding: 20px;
   }
-  &::before {
-    top: 0;
-    background: linear-gradient(to bottom, #050508 0%, transparent 100%);
-  }
-  &::after {
-    bottom: 0;
-    background: linear-gradient(to top, #050508 0%, transparent 100%);
-  }
+`;
+
+/* overflow: visible so rotated card corners aren't chopped */
+const Column = styled.div`
+  overflow: visible;
+  position: relative;
 `;
 
 const Track = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 28px;
   animation: ${scrollUp} ${({ $dur }) => $dur}s linear infinite;
 
   &:hover { animation-play-state: paused; }
@@ -102,65 +115,68 @@ const Track = styled.div`
 
 const Card = styled.div`
   --rot: ${({ $rot }) => $rot}deg;
-  background: #fafbff;
-  padding: 10px 10px 44px;
-  border-radius: 2px;
+  width: ${CARD_W};
+  aspect-ratio: 3/4;
+  border-radius: 14px;
+  overflow: hidden;
   transform: rotate(var(--rot));
+  flex-shrink: 0;
+  position: relative;
   box-shadow:
-    0 4px 8px rgba(0,0,0,0.35),
-    0 12px 32px rgba(0,0,0,0.45);
-  transition: transform 0.25s ease;
+    0 6px 20px rgba(0,0,0,0.65),
+    0 0 0 1px rgba(255,255,255,0.04),
+    0 20px 60px rgba(255,180,0,0.07);
   animation: ${({ $isNew }) => $isNew ? newGlow : "none"} 3s ease-out forwards;
 
-  /* Drop in only for brand new photos (first render) */
   &[data-dropin="true"] {
-    animation: ${dropIn} 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-               ${newGlow} 3s ease-out 0.3s forwards;
+    animation:
+      ${dropIn} 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+      ${newGlow} 3s ease-out 0.3s forwards;
   }
 `;
 
 const PhotoImg = styled.img`
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  filter: contrast(1.02) saturate(0.9);
+  filter: contrast(1.03) saturate(1.05);
 `;
 
-const NameArea = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2px;
-  gap: 1px;
+const Caption = styled.div`
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+  padding: 40px 12px 10px;
 `;
 
 const GuestName = styled.span`
-  font-family: 'Dancing Script', cursive;
-  font-size: 1rem;
-  color: #2a2a2a;
-  text-align: center;
+  display: block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: #fff;
   line-height: 1.2;
 `;
 
 const TimeStamp = styled.span`
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: 0.6rem;
-  color: #bbb;
-  text-align: center;
+  display: block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.58rem;
+  color: rgba(255,255,255,0.38);
+  margin-top: 3px;
 `;
 
 const Empty = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 50vh;
-  gap: 12px;
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  color: rgba(255,255,255,0.3);
-  font-size: 1.1rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: rgba(255,220,150,0.2);
+  font-size: 0.95rem;
+  font-weight: 300;
 `;
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
@@ -172,7 +188,6 @@ function relativeTime(iso) {
   return `${Math.floor(diff / 3600)}h ago`;
 }
 
-// Distribute photos across N columns (round-robin by index)
 function toColumns(photos, n) {
   const cols = Array.from({ length: n }, () => []);
   photos.forEach((p, i) => cols[i % n].push(p));
@@ -181,11 +196,11 @@ function toColumns(photos, n) {
 
 // ── Component ────────────────────────────────────────────────────────────────
 
-const LiveWall = ({ eventId, displayToken, useMock = false }) => {
+const LiveWall = ({ eventId, displayToken, useMock = false, bgColor = "#060414" }) => {
   const [photos, setPhotos] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [newIds, setNewIds] = useState(new Set());
-  const colCount = 2;
+  const colCount = 3;
 
   const markNew = (id) => {
     setNewIds((prev) => new Set([...prev, id]));
@@ -224,45 +239,50 @@ const LiveWall = ({ eventId, displayToken, useMock = false }) => {
     },
   });
 
-  if (!loaded) return <Empty>✦ Getting ready…</Empty>;
-  if (photos.length === 0) return <Empty>✦ Photos will appear here as guests take them.</Empty>;
+  if (!loaded) return <Empty>Getting ready…</Empty>;
+  if (photos.length === 0) return <Empty>Photos will appear here as guests take them.</Empty>;
 
   const columns = toColumns(photos, colCount);
 
   return (
     <>
       <Fonts />
-      <Grid>
-        {columns.map((colPhotos, ci) => {
-          if (colPhotos.length === 0) return null;
-          // Duplicate for seamless scroll loop
-          const looped = [...colPhotos, ...colPhotos];
-          return (
-            <Column key={ci}>
-              <Track $dur={COL_SPEEDS[ci]}>
-                {looped.map((photo, idx) => (
-                  <Card
-                    key={`${photo.id}-${idx}`}
-                    $rot={getRotation(photo.id)}
-                    $isNew={newIds.has(photo.id) && idx < colPhotos.length}
-                    data-dropin={newIds.has(photo.id) && idx === 0 ? "true" : undefined}
-                  >
-                    <PhotoImg
-                      src={photo.publicUrl}
-                      alt={photo.guestName ?? "photo"}
-                      loading="lazy"
-                    />
-                    <NameArea>
-                      {photo.guestName && <GuestName>{photo.guestName}</GuestName>}
-                      {photo.createdAt && <TimeStamp>{relativeTime(photo.createdAt)}</TimeStamp>}
-                    </NameArea>
-                  </Card>
-                ))}
-              </Track>
-            </Column>
-          );
-        })}
-      </Grid>
+      <WallWrapper>
+        <EdgeFade $pos="top"    $bg={bgColor} />
+        <EdgeFade $pos="bottom" $bg={bgColor} />
+        <Grid>
+          {columns.map((colPhotos, ci) => {
+            if (colPhotos.length === 0) return null;
+            const looped = [...colPhotos, ...colPhotos];
+            return (
+              <Column key={ci}>
+                <Track $dur={COL_SPEEDS[ci]}>
+                  {looped.map((photo, idx) => (
+                    <Card
+                      key={`${photo.id}-${idx}`}
+                      $rot={getRotation(photo.id)}
+                      $isNew={newIds.has(photo.id) && idx < colPhotos.length}
+                      data-dropin={newIds.has(photo.id) && idx === 0 ? "true" : undefined}
+                    >
+                      <PhotoImg
+                        src={photo.publicUrl}
+                        alt={photo.guestName ?? "photo"}
+                        loading="lazy"
+                      />
+                      {(photo.guestName || photo.createdAt) && (
+                        <Caption>
+                          {photo.guestName && <GuestName>{photo.guestName}</GuestName>}
+                          {photo.createdAt && <TimeStamp>{relativeTime(photo.createdAt)}</TimeStamp>}
+                        </Caption>
+                      )}
+                    </Card>
+                  ))}
+                </Track>
+              </Column>
+            );
+          })}
+        </Grid>
+      </WallWrapper>
     </>
   );
 };
