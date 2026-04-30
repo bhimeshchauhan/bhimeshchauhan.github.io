@@ -224,7 +224,20 @@
         display: flex; align-items: center; justify-content: center;
       }
       .card { box-shadow: none; }
-      .qr-frame { box-shadow: none; border: 1px solid rgba(155,120,40,0.3); }
+      .qr-frame { box-shadow: none; border: 1px solid #9b7828; }
+
+      /* Boost contrast for print — rgba washes out on paper */
+      .eyebrow      { color: #7a5e18; }
+      .subtitle     { color: #8a6820; }
+      .rule         { background: #9b7828; }
+      .rule::after  { color: #9b7828; }
+      .cta          { color: #1c1508; }
+      .step-text    { color: #2a1f08; }
+      .step-num     { color: #6b4f12; border-color: #9b7828; background: #f5edd8; }
+      .tagline      { color: #9b7828; }
+      .scan-label   { color: #7a5e18; }
+      .scan-sub     { color: #3a2a0a; }
+      .left         { border-right-color: #c8aa50; }
     }
   </style>
 </head>
