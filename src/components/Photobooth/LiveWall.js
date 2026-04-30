@@ -36,7 +36,7 @@ const getRotation = (id = "") => {
 
 // ── Column scroll speeds (seconds) — slight variation = parallax feel ────────
 
-const COL_SPEEDS = [42, 56, 38, 50];
+const COL_SPEEDS = [44, 58, 38];
 
 // ── Mock photos ──────────────────────────────────────────────────────────────
 
@@ -59,14 +59,13 @@ const MOCK_PHOTOS = [
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  padding: 0 24px 24px;
-  height: calc(100vh - 200px);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  padding: 0 40px 40px;
+  height: calc(100vh - 210px);
   overflow: hidden;
 
-  @media (max-width: 1100px) { grid-template-columns: repeat(3, 1fr); }
-  @media (max-width: 720px)  { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 720px) { grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 0 16px 16px; }
 `;
 
 const Column = styled.div`
@@ -186,7 +185,7 @@ const LiveWall = ({ eventId, displayToken, useMock = false }) => {
   const [photos, setPhotos] = useState([]);
   const [loaded, setLoaded] = useState(false);
   const [newIds, setNewIds] = useState(new Set());
-  const colCount = 4;
+  const colCount = 3;
 
   const markNew = (id) => {
     setNewIds((prev) => new Set([...prev, id]));
