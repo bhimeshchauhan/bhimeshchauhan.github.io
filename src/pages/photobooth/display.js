@@ -227,7 +227,7 @@ const DisplayPage = () => {
   return (
     <>
       <Fonts />
-      <Helmet title="Happy 70th, LB! 🎂" />
+      <Helmet title="Happy 70th, Elvie! 🎂" />
       <Page>
         {mounted && (
           <ParticleLayer>
@@ -248,7 +248,7 @@ const DisplayPage = () => {
             <>
               <Header>
                 <Crown>👑</Crown>
-                <BirthdayTitle>Happy 70th Birthday, LB!</BirthdayTitle>
+                <BirthdayTitle>Happy 70th Birthday, Elvie!</BirthdayTitle>
                 <Subtitle>Capturing every beautiful moment, live</Subtitle>
                 <Divider />
                 <BadgeRow>
