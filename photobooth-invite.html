@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Booth — Sweet Seventy, Elvie!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @page { size: letter portrait; margin: 0; }
+
+    body {
+      background: #e8e0d0;
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      padding: 32px 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* ── Print button (hidden when printing) ── */
+    .print-btn {
+      position: fixed; top: 20px; right: 20px; z-index: 100;
+      background: #B8922A; color: #fff; border: none;
+      border-radius: 8px; padding: 10px 24px;
+      font-family: inherit; font-size: 0.85rem; font-weight: 600;
+      cursor: pointer; letter-spacing: 0.04em;
+      box-shadow: 0 4px 20px rgba(184,146,42,0.4);
+    }
+    .print-btn:hover { background: #9e7c22; }
+
+    /* ── Sheet ── */
+    .sheet {
+      width: 8.5in; min-height: 11in;
+      background: #FAF8F2;
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 0.7in 0.85in 0.65in;
+      gap: 0;
+    }
+
+    /* Outer gold border */
+    .sheet::before {
+      content: '';
+      position: absolute; inset: 0.3in;
+      border: 1px solid rgba(160,125,45,0.3);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* Subtle radial background warmth */
+    .bg-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 0%,   rgba(200,165,60,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(200,165,60,0.05) 0%, transparent 70%);
+    }
+
+    /* Corner ornaments */
+    .corner {
+      position: absolute;
+      width: 36px; height: 36px;
+      pointer-events: none;
+    }
+    .corner svg { width: 100%; height: 100%; }
+    .corner.tl { top: 0.3in;  left: 0.3in; }
+    .corner.tr { top: 0.3in;  right: 0.3in; transform: scaleX(-1); }
+    .corner.bl { bottom: 0.3in; left: 0.3in; transform: scaleY(-1); }
+    .corner.br { bottom: 0.3in; right: 0.3in; transform: scale(-1); }
+
+    /* ── Content ── */
+    .content {
+      position: relative; z-index: 1;
+      width: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 0;
+    }
+
+    .eyebrow {
+      font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.32em; text-transform: uppercase;
+      color: rgba(155,120,40,0.65);
+      margin-bottom: 18px;
+    }
+
+    .title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 4rem;
+      color: #1c1508;
+      text-align: center;
+      line-height: 1.05;
+      margin-bottom: 10px;
+    }
+    .title strong {
+      font-style: normal;
+      font-weight: 700;
+      display: block;
+      font-size: 3.4rem;
+    }
+
+    .subtitle {
+      font-family: 'Caveat', cursive;
+      font-size: 1.55rem;
+      font-weight: 600;
+      color: rgba(155,120,40,0.85);
+      text-align: center;
+      margin-bottom: 28px;
+      letter-spacing: 0.01em;
+    }
+
+    /* Gold divider */
+    .divider {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 28px;
+    }
+    .divider-line {
+      width: 72px; height: 1px;
+      background: linear-gradient(to right, transparent, rgba(155,120,40,0.45));
+    }
+    .divider-line.right {
+      background: linear-gradient(to left, transparent, rgba(155,120,40,0.45));
+    }
+    .divider-gem {
+      font-size: 0.7rem;
+      color: rgba(155,120,40,0.65);
+      letter-spacing: 0.1em;
+    }
+
+    /* CTA block */
+    .cta-block { text-align: center; margin-bottom: 22px; }
+    .cta-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #1c1508;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .cta-sub {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: rgba(50,38,12,0.5);
+      letter-spacing: 0.02em;
+    }
+
+    /* QR frame */
+    .qr-frame {
+      background: #fff;
+      padding: 18px;
+      border-radius: 6px;
+      box-shadow:
+        0 0 0 1px rgba(155,120,40,0.22),
+        0 8px 40px rgba(0,0,0,0.1),
+        0 2px 8px rgba(0,0,0,0.06);
+      margin-bottom: 22px;
+      position: relative;
+    }
+
+    /* Gold corner ticks on QR frame */
+    .qr-frame::before, .qr-frame::after {
+      content: '';
+      position: absolute;
+      width: 18px; height: 18px;
+      border-color: rgba(155,120,40,0.55);
+      border-style: solid;
+    }
+    .qr-frame::before { top: -1px;  left: -1px;  border-width: 2px 0 0 2px; border-radius: 2px 0 0 0; }
+    .qr-frame::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; border-radius: 0 0 2px 0; }
+
+    #qrcode canvas, #qrcode img {
+      display: block;
+    }
+
+    .qr-placeholder {
+      width: 240px; height: 240px;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px;
+      color: rgba(155,120,40,0.5);
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-align: center;
+      padding: 20px;
+      background: #f8f5ef;
+      border: 1.5px dashed rgba(155,120,40,0.3);
+      border-radius: 4px;
+    }
+    .qr-placeholder .warn-icon { font-size: 1.8rem; }
+    .qr-placeholder code {
+      font-size: 0.68rem;
+      background: rgba(155,120,40,0.1);
+      padding: 3px 7px; border-radius: 3px;
+      color: rgba(120,88,20,0.9);
+      word-break: break-all;
+    }
+
+    /* Steps */
+    .steps {
+      display: flex; gap: 22px;
+      margin-bottom: 26px;
+      width: 100%;
+      justify-content: center;
+    }
+    .step {
+      flex: 1; max-width: 130px;
+      text-align: center;
+    }
+    .step-bubble {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(155,120,40,0.4);
+      background: rgba(155,120,40,0.07);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 9px;
+      font-size: 0.8rem; font-weight: 700;
+      color: rgba(130,98,25,0.9);
+    }
+    .step-icon { font-size: 1rem; }
+    .step-label {
+      font-size: 0.73rem; font-weight: 600;
+      color: #2a1f08;
+      margin-bottom: 3px; line-height: 1.2;
+    }
+    .step-desc {
+      font-size: 0.65rem; font-weight: 400;
+      color: rgba(40,28,8,0.5);
+      line-height: 1.4;
+    }
+
+    /* Divider 2 */
+    .divider2 {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(155,120,40,0.2) 30%, rgba(155,120,40,0.2) 70%, transparent);
+      margin-bottom: 20px;
+    }
+
+    /* Footer tagline */
+    .footer-tagline {
+      font-family: 'Caveat', cursive;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: rgba(155,120,40,0.55);
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .footer-url {
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(155,120,40,0.3);
+      text-align: center;
+    }
+
+    /* ── Print styles ── */
+    @media print {
+      body { background: none; padding: 0; display: block; }
+      .print-btn { display: none; }
+      .sheet {
+        width: 8.5in; min-height: 11in;
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()">🖨 Print this page</button>
+
+  <div class="sheet">
+    <div class="bg-glow"></div>
+
+    <!-- Corner ornaments -->
+    <div class="corner tl">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 18 L2 4 Q2 2 4 2 L18 2" stroke="rgba(155,120,40,0.45)" stroke-width="1.2" fill="none"/>
+        <circle cx="2" cy="2" r="1.8" fill="rgba(155,120,40,0.35)"/>
+      </svg>
+    </div>
+    <div class="corner tr">
+      <svg viewBox="0 0 36 36" fill="none">
+        <path d="M2 18 L2 4 Q2 2 4 2 L18 2" stroke="rgba(155,120,40,0.45)" stroke-width="1.2" fill="none"/>
+        <circle cx="2" cy="2" r="1.8" fill="rgba(155,120,40,0.35)"/>
+      </svg>
+    </div>
+    <div class="corner bl">
+      <svg viewBox="0 0 36 36" fill="none">
+        <path d="M2 18 L2 4 Q2 2 4 2 L18 2" stroke="rgba(155,120,40,0.45)" stroke-width="1.2" fill="none"/>
+        <circle cx="2" cy="2" r="1.8" fill="rgba(155,120,40,0.35)"/>
+      </svg>
+    </div>
+    <div class="corner br">
+      <svg viewBox="0 0 36 36" fill="none">
+        <path d="M2 18 L2 4 Q2 2 4 2 L18 2" stroke="rgba(155,120,40,0.45)" stroke-width="1.2" fill="none"/>
+        <circle cx="2" cy="2" r="1.8" fill="rgba(155,120,40,0.35)"/>
+      </svg>
+    </div>
+
+    <div class="content">
+
+      <p class="eyebrow">✦ &nbsp; Live Photo Booth &nbsp; ✦</p>
+
+      <h1 class="title">
+        Sweet Seventy,
+        <strong>Elvie!</strong>
+      </h1>
+      <p class="subtitle">Be part of the memory wall</p>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-gem">✦ ✦ ✦</span>
+        <div class="divider-line right"></div>
+      </div>
+
+      <div class="cta-block">
+        <p class="cta-headline">Scan & add your photo<br>to the live display</p>
+        <p class="cta-sub">Every shot appears instantly on the big screen for everyone to enjoy</p>
+      </div>
+
+      <div class="qr-frame">
+        <div id="qrcode"></div>
+      </div>
+
+      <div class="divider2"></div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-bubble"><span class="step-icon">📷</span></div>
+          <div class="step-label">Scan the code</div>
+          <div class="step-desc">Opens the photo booth on your phone</div>
+        </div>
+        <div class="step">
+          <div class="step-bubble"><span class="step-icon">✍️</span></div>
+          <div class="step-label">Add your name</div>
+          <div class="step-desc">So it shows up on the display</div>
+        </div>
+        <div class="step">
+          <div class="step-bubble"><span class="step-icon">🤳</span></div>
+          <div class="step-label">Tap the shutter</div>
+          <div class="step-desc">Photo uploads in seconds</div>
+        </div>
+        <div class="step">
+          <div class="step-bubble"><span class="step-icon">🖼️</span></div>
+          <div class="step-label">Watch the screen</div>
+          <div class="step-desc">See your photo appear live!</div>
+        </div>
+      </div>
+
+      <div class="divider2"></div>
+
+      <p class="footer-tagline">Every moment, captured live ✦</p>
+      <p class="footer-url">bhimeshchauhan.github.io / photobooth</p>
+
+    </div>
+  </div>
+
+  <script>
+    const params  = new URLSearchParams(window.location.search);
+    const eid     = params.get('eid');
+    const qrDiv   = document.getElementById('qrcode');
+
+    if (eid) {
+      const url = 'https://bhimeshchauhan.github.io/photobooth/capture/?eid=' + encodeURIComponent(eid);
+      new QRCode(qrDiv, {
+        text: url,
+        width: 240,
+        height: 240,
+        colorDark:  '#1c1508',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H,
+      });
+    } else {
+      qrDiv.innerHTML = '<div class="qr-placeholder">'
+        + '<div class="warn-icon">⚠️</div>'
+        + '<div>Add your event ID to the URL to generate the QR code:</div>'
+        + '<code>photobooth-invite.html?eid=YOUR_EVENT_ID</code>'
+        + '</div>';
+    }
+  </script>
+</body>
+</html>
