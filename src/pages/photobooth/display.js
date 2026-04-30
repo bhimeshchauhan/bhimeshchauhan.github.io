@@ -5,58 +5,79 @@ import { getSupabaseClient } from "../../components/Photobooth/photoboothProtoco
 import LiveWall from "../../components/Photobooth/LiveWall";
 
 const Fonts = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
 `;
 
-// ── Background animations ───────────────────────────────────────────────────
+// ── Animations ───────────────────────────────────────────────────────────────
+
+const sparkle = keyframes`
+  0%,100% { opacity: 0;   transform: scale(0.5) rotate(0deg);   }
+  50%      { opacity: 1;   transform: scale(1.2) rotate(180deg); }
+`;
 
 const floatUp = keyframes`
-  0%   { transform: translateY(0)   rotate(0deg)   scale(1);   opacity: 0.7; }
-  50%  { transform: translateY(-45vh) rotate(180deg) scale(1.1); opacity: 0.5; }
-  100% { transform: translateY(-95vh) rotate(360deg) scale(0.8); opacity: 0; }
-`;
-
-const twinkle = keyframes`
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50%       { opacity: 1;   transform: scale(1.4); }
+  0%   { transform: translateY(0)    rotate(0deg);   opacity: 0.8; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0;   }
 `;
 
 const shimmer = keyframes`
-  0%   { background-position: -200% center; }
-  100% { background-position:  200% center; }
+  0%   { background-position: -300% center; }
+  100% { background-position:  300% center; }
 `;
 
-// ── Confetti particles (deterministic positions to avoid SSR mismatch) ───────
+const spin = keyframes`
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+`;
+
+const pulse = keyframes`
+  0%,100% { opacity: 0.6; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.05); }
+`;
+
+// ── Disco confetti — silver/white/light-blue palette ─────────────────────────
+
 const PARTICLES = [
-  { left: "5%",  size: 6,  delay: 0,   dur: 18, color: "#d4a843" },
-  { left: "12%", size: 4,  delay: 2,   dur: 22, color: "#c8a96e" },
-  { left: "20%", size: 8,  delay: 5,   dur: 16, color: "#f5d483" },
-  { left: "28%", size: 5,  delay: 1,   dur: 20, color: "#e8c97a" },
-  { left: "35%", size: 7,  delay: 8,   dur: 24, color: "#d4a843" },
-  { left: "42%", size: 3,  delay: 3,   dur: 17, color: "#fff0a0" },
-  { left: "50%", size: 6,  delay: 11,  dur: 19, color: "#c8a96e" },
-  { left: "58%", size: 4,  delay: 6,   dur: 21, color: "#f5d483" },
-  { left: "65%", size: 8,  delay: 0,   dur: 23, color: "#d4a843" },
-  { left: "72%", size: 5,  delay: 9,   dur: 18, color: "#fff0a0" },
-  { left: "80%", size: 7,  delay: 4,   dur: 20, color: "#e8c97a" },
-  { left: "88%", size: 3,  delay: 13,  dur: 25, color: "#c8a96e" },
-  { left: "93%", size: 6,  delay: 7,   dur: 17, color: "#f5d483" },
-  { left: "97%", size: 4,  delay: 2,   dur: 22, color: "#d4a843" },
-  { left: "8%",  size: 5,  delay: 15,  dur: 19, color: "#fff0a0" },
-  { left: "45%", size: 7,  delay: 10,  dur: 21, color: "#e8c97a" },
-  { left: "75%", size: 4,  delay: 14,  dur: 16, color: "#c8a96e" },
-  { left: "55%", size: 6,  delay: 12,  dur: 24, color: "#d4a843" },
+  { left: "4%",  size: 5,  delay: 0,  dur: 14, color: "#e8e8e8" },
+  { left: "10%", size: 3,  delay: 3,  dur: 18, color: "#c0c0c0" },
+  { left: "18%", size: 6,  delay: 7,  dur: 12, color: "#ffffff" },
+  { left: "25%", size: 4,  delay: 1,  dur: 16, color: "#b0d4f8" },
+  { left: "33%", size: 7,  delay: 5,  dur: 20, color: "#e8e8e8" },
+  { left: "40%", size: 3,  delay: 11, dur: 15, color: "#d0d0d0" },
+  { left: "48%", size: 5,  delay: 2,  dur: 17, color: "#ffffff" },
+  { left: "55%", size: 4,  delay: 8,  dur: 13, color: "#c0c0c0" },
+  { left: "62%", size: 6,  delay: 0,  dur: 19, color: "#b0d4f8" },
+  { left: "70%", size: 3,  delay: 6,  dur: 16, color: "#e8e8e8" },
+  { left: "77%", size: 5,  delay: 13, dur: 14, color: "#ffffff" },
+  { left: "84%", size: 7,  delay: 4,  dur: 21, color: "#c0c0c0" },
+  { left: "91%", size: 4,  delay: 9,  dur: 15, color: "#d0d0d0" },
+  { left: "96%", size: 3,  delay: 14, dur: 18, color: "#b0d4f8" },
+  { left: "7%",  size: 6,  delay: 10, dur: 16, color: "#ffffff" },
+  { left: "52%", size: 4,  delay: 12, dur: 20, color: "#e8e8e8" },
+  { left: "80%", size: 5,  delay: 2,  dur: 13, color: "#c0c0c0" },
+  { left: "30%", size: 3,  delay: 15, dur: 17, color: "#b0d4f8" },
 ];
 
-// ── Styled components ────────────────────────────────────────────────────────
+const SPARKLES = [
+  { top: "6%",  left: "2%",  dur: 2.1, delay: 0 },
+  { top: "12%", left: "94%", dur: 2.7, delay: 0.8 },
+  { top: "4%",  left: "48%", dur: 1.9, delay: 1.5 },
+  { top: "20%", left: "8%",  dur: 3.0, delay: 0.3 },
+  { top: "16%", left: "78%", dur: 2.4, delay: 1.1 },
+  { top: "8%",  left: "62%", dur: 2.2, delay: 0.6 },
+  { top: "25%", left: "90%", dur: 2.8, delay: 1.8 },
+  { top: "3%",  left: "25%", dur: 1.8, delay: 0.4 },
+];
+
+// ── Styled components ─────────────────────────────────────────────────────────
 
 const Page = styled.div`
   min-height: 100vh;
   background:
-    radial-gradient(ellipse at 30% 20%, rgba(80, 30, 120, 0.35) 0%, transparent 60%),
-    radial-gradient(ellipse at 75% 80%, rgba(120, 60, 20, 0.3) 0%, transparent 55%),
-    radial-gradient(ellipse at 60% 40%, rgba(180, 130, 20, 0.08) 0%, transparent 50%),
-    linear-gradient(160deg, #0f0820 0%, #1a0f2e 35%, #0d1520 65%, #150d1a 100%);
+    radial-gradient(ellipse at 50% 0%,   rgba(180,180,200,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 60%,  rgba(100,120,160,0.10) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%,  rgba(120,100,160,0.08) 0%, transparent 50%),
+    linear-gradient(180deg, #050508 0%, #0a0a10 40%, #080810 100%);
   position: relative;
   overflow-x: hidden;
 `;
@@ -71,35 +92,28 @@ const ParticleLayer = styled.div`
 
 const Particle = styled.span`
   position: absolute;
-  bottom: -20px;
+  bottom: -10px;
   left: ${({ $left }) => $left};
   width: ${({ $size }) => $size}px;
   height: ${({ $size }) => $size}px;
-  border-radius: 50%;
+  border-radius: 2px;
   background: ${({ $color }) => $color};
   animation: ${floatUp} ${({ $dur }) => $dur}s linear infinite;
   animation-delay: -${({ $delay }) => $delay}s;
-  box-shadow: 0 0 ${({ $size }) => $size * 2}px ${({ $color }) => $color};
+  box-shadow: 0 0 6px ${({ $color }) => $color};
+  opacity: 0.85;
 `;
 
-const Star = styled.span`
+const Sparkle = styled.span`
   position: absolute;
-  font-size: ${({ $size }) => $size}px;
-  animation: ${twinkle} ${({ $dur }) => $dur}s ease-in-out infinite;
-  animation-delay: -${({ $delay }) => $delay}s;
   top: ${({ $top }) => $top};
   left: ${({ $left }) => $left};
+  font-size: 18px;
+  color: #fff;
+  text-shadow: 0 0 8px #fff, 0 0 16px rgba(180,200,255,0.8);
+  animation: ${sparkle} ${({ $dur }) => $dur}s ease-in-out infinite;
+  animation-delay: -${({ $delay }) => $delay}s;
 `;
-
-const STARS = [
-  { top: "8%",  left: "3%",  size: 14, dur: 2.5, delay: 0 },
-  { top: "15%", left: "92%", size: 10, dur: 3.2, delay: 1 },
-  { top: "25%", left: "7%",  size: 8,  dur: 2.8, delay: 0.5 },
-  { top: "5%",  left: "50%", size: 12, dur: 3.5, delay: 1.5 },
-  { top: "18%", left: "75%", size: 10, dur: 2.2, delay: 0.8 },
-  { top: "30%", left: "88%", size: 8,  dur: 3.0, delay: 2 },
-  { top: "10%", left: "35%", size: 6,  dur: 2.6, delay: 0.3 },
-];
 
 const Content = styled.div`
   position: relative;
@@ -108,74 +122,86 @@ const Content = styled.div`
 
 const Header = styled.header`
   text-align: center;
-  padding: 48px 24px 32px;
+  padding: 36px 24px 24px;
 `;
 
-const Crown = styled.div`
-  font-size: 2.8rem;
-  margin-bottom: 8px;
-  filter: drop-shadow(0 0 12px rgba(212, 168, 67, 0.7));
+const DiscoBall = styled.div`
+  font-size: 3.5rem;
+  margin-bottom: 4px;
+  display: inline-block;
+  filter: drop-shadow(0 0 20px rgba(200,220,255,0.8))
+          drop-shadow(0 0 40px rgba(150,180,255,0.4));
+  animation: ${pulse} 2s ease-in-out infinite;
 `;
 
-const BirthdayTitle = styled.h1`
+const MainTitle = styled.h1`
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 5vw, 4rem);
   font-weight: 700;
-  margin: 0 0 8px;
-  background: linear-gradient(135deg, #f5d483 0%, #d4a843 40%, #ffe0a0 70%, #c8913a 100%);
-  background-size: 200% auto;
+  font-size: clamp(1.8rem, 4.5vw, 3.8rem);
+  margin: 0 0 4px;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #d0d0d0 20%,
+    #ffffff 40%,
+    #a8c4e0 55%,
+    #ffffff 70%,
+    #c8c8c8 85%,
+    #ffffff 100%
+  );
+  background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: ${shimmer} 4s linear infinite;
-  text-shadow: none;
-  line-height: 1.15;
+  animation: ${shimmer} 3s linear infinite;
+  line-height: 1.1;
 `;
 
-const Subtitle = styled.p`
+const TagLine = styled.p`
   font-family: 'Dancing Script', cursive;
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  color: rgba(245, 212, 131, 0.7);
-  margin: 0 0 20px;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  color: rgba(200, 215, 240, 0.65);
+  margin: 0 0 16px;
+  letter-spacing: 0.02em;
+`;
+
+const Divider = styled.div`
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,210,240,0.35), transparent);
+  margin: 0 auto 14px;
 `;
 
 const BadgeRow = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
 `;
 
 const LiveBadge = styled.span`
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(239, 68, 68, 0.15);
-  border: 1px solid rgba(239, 68, 68, 0.5);
-  color: #fca5a5;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 5px 14px;
-  border-radius: 100px;
+  gap: 7px;
+  background: rgba(200,220,255,0.07);
+  border: 1px solid rgba(200,220,255,0.25);
+  color: rgba(200,220,255,0.85);
   font-family: 'Playfair Display', serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 100px;
 `;
 
 const LiveDot = styled.span`
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #ef4444;
-  animation: ${twinkle} 1s ease-in-out infinite;
+  background: #a0c4ff;
+  box-shadow: 0 0 6px #a0c4ff;
+  animation: ${sparkle} 1s ease-in-out infinite;
   display: inline-block;
-`;
-
-const Divider = styled.div`
-  width: 160px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212,168,67,0.4), transparent);
-  margin: 0 auto 8px;
 `;
 
 const Center = styled.div`
@@ -185,30 +211,25 @@ const Center = styled.div`
   min-height: 80vh;
   font-family: 'Playfair Display', serif;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(200,210,240,0.3);
   font-size: 1.1rem;
 `;
 
-// ── Component ────────────────────────────────────────────────────────────────
+// ── Component ─────────────────────────────────────────────────────────────────
 
 const DisplayPage = () => {
-  const [token, setToken] = useState(null);
-  const [event, setEvent] = useState(null);
+  const [token, setToken]       = useState(null);
+  const [event, setEvent]       = useState(null);
   const [pageState, setPageState] = useState("loading");
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted]   = useState(false);
 
   useEffect(() => {
     setMounted(true);
-
     if (typeof window === "undefined") return;
     const params = new URLSearchParams(window.location.search);
     const eid = params.get("eid");
 
-    // No token → show mock preview for design purposes
-    if (!eid) {
-      setPageState("mock");
-      return;
-    }
+    if (!eid) { setPageState("mock"); return; }
     setToken(eid);
 
     const client = getSupabaseClient();
@@ -221,35 +242,35 @@ const DisplayPage = () => {
     });
   }, []);
 
-  const isMock = pageState === "mock";
+  const isMock  = pageState === "mock";
   const isReady = pageState === "ready" || isMock;
 
   return (
     <>
       <Fonts />
-      <Helmet title="Happy 70th, Elvie! 🎂" />
+      <Helmet title="Sweet Seventy, Elvie! 🪩" />
       <Page>
         {mounted && (
           <ParticleLayer>
             {PARTICLES.map((p, i) => (
               <Particle key={i} $left={p.left} $size={p.size} $delay={p.delay} $dur={p.dur} $color={p.color} />
             ))}
-            {STARS.map((s, i) => (
-              <Star key={i} $top={s.top} $left={s.left} $size={s.size} $dur={s.dur} $delay={s.delay}>✦</Star>
+            {SPARKLES.map((s, i) => (
+              <Sparkle key={i} $top={s.top} $left={s.left} $dur={s.dur} $delay={s.delay}>✦</Sparkle>
             ))}
           </ParticleLayer>
         )}
 
         <Content>
           {pageState === "loading" && <Center>Loading…</Center>}
-          {pageState === "error" && <Center>Event not found.</Center>}
+          {pageState === "error"   && <Center>Event not found.</Center>}
 
           {isReady && (
             <>
               <Header>
-                <Crown>👑</Crown>
-                <BirthdayTitle>Happy 70th Birthday, Elvie!</BirthdayTitle>
-                <Subtitle>Capturing every beautiful moment, live</Subtitle>
+                <DiscoBall>🪩</DiscoBall>
+                <MainTitle>Sweet Seventy, Elvie!</MainTitle>
+                <TagLine>Every moment, captured live ✦</TagLine>
                 <Divider />
                 <BadgeRow>
                   {(isMock || event?.active) && (
@@ -258,11 +279,7 @@ const DisplayPage = () => {
                 </BadgeRow>
               </Header>
 
-              <LiveWall
-                eventId={event?.id}
-                displayToken={token}
-                useMock={isMock}
-              />
+              <LiveWall eventId={event?.id} displayToken={token} useMock={isMock} />
             </>
           )}
         </Content>
