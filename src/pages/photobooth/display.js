@@ -121,24 +121,26 @@ const Content = styled.div`
 `;
 
 const Header = styled.header`
-  text-align: center;
-  padding: 36px 24px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 14px 32px;
 `;
 
 const DiscoBall = styled.div`
-  font-size: 3.5rem;
-  margin-bottom: 4px;
+  font-size: 1.6rem;
   display: inline-block;
-  filter: drop-shadow(0 0 20px rgba(200,220,255,0.8))
-          drop-shadow(0 0 40px rgba(150,180,255,0.4));
+  filter: drop-shadow(0 0 10px rgba(200,220,255,0.8));
   animation: ${pulse} 2s ease-in-out infinite;
+  flex-shrink: 0;
 `;
 
 const MainTitle = styled.h1`
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  font-size: clamp(1.8rem, 4.5vw, 3.8rem);
-  margin: 0 0 4px;
+  font-size: clamp(1.2rem, 2.4vw, 2rem);
+  margin: 0;
   background: linear-gradient(
     135deg,
     #ffffff 0%,
@@ -154,28 +156,24 @@ const MainTitle = styled.h1`
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: ${shimmer} 3s linear infinite;
-  line-height: 1.1;
+  line-height: 1.2;
+  white-space: nowrap;
 `;
 
 const TagLine = styled.p`
   font-family: 'Dancing Script', cursive;
-  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
-  color: rgba(200, 215, 240, 0.65);
-  margin: 0 0 16px;
-  letter-spacing: 0.02em;
+  font-size: clamp(0.85rem, 1.4vw, 1.1rem);
+  color: rgba(200, 215, 240, 0.5);
+  margin: 0;
+  white-space: nowrap;
 `;
 
-const Divider = styled.div`
-  width: 200px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(200,210,240,0.35), transparent);
-  margin: 0 auto 14px;
-`;
+const Divider = styled.div`display: none;`;
 
 const BadgeRow = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-shrink: 0;
 `;
 
 const LiveBadge = styled.span`
@@ -271,12 +269,9 @@ const DisplayPage = () => {
                 <DiscoBall>🪩</DiscoBall>
                 <MainTitle>Sweet Seventy, Elvie!</MainTitle>
                 <TagLine>Every moment, captured live ✦</TagLine>
-                <Divider />
-                <BadgeRow>
-                  {(isMock || event?.active) && (
-                    <LiveBadge><LiveDot />Live</LiveBadge>
-                  )}
-                </BadgeRow>
+                {(isMock || event?.active) && (
+                  <BadgeRow><LiveBadge><LiveDot />Live</LiveBadge></BadgeRow>
+                )}
               </Header>
 
               <LiveWall eventId={event?.id} displayToken={token} useMock={isMock} />
