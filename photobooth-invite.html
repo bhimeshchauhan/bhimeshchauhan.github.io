@@ -10,7 +10,8 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    @page { size: 6in 4in landscape; margin: 0; }
+    /* 6×4in at 96dpi = 576×384px */
+    @page { size: 576px 384px; margin: 0; }
 
     body {
       background: #d8d0c0;
@@ -30,16 +31,15 @@
     }
     .print-btn:hover { background: #9e7c22; }
 
-    /* ── Card ── */
+    /* ── Card: 576×384px = 6×4in ── */
     .card {
-      width: 6in; height: 4in;
+      width: 576px; height: 384px;
       background: #FAF8F2;
       display: flex;
       position: relative;
       overflow: hidden;
     }
 
-    /* Decorative warm-gold radial background */
     .card::before {
       content: '';
       position: absolute; inset: 0; pointer-events: none;
@@ -54,13 +54,13 @@
       flex: 1;
       display: flex; flex-direction: column;
       justify-content: center;
-      padding: 0.38in 0.3in 0.38in 0.42in;
+      padding: 37px 29px 37px 40px;
       position: relative; z-index: 1;
       border-right: 1px solid rgba(155,120,40,0.15);
     }
 
     .eyebrow {
-      font-size: 0.5rem; font-weight: 700;
+      font-size: 7px; font-weight: 700;
       letter-spacing: 0.28em; text-transform: uppercase;
       color: rgba(155,120,40,0.6);
       margin-bottom: 10px;
@@ -69,7 +69,7 @@
     .title {
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-size: 2.15rem;
+      font-size: 34px;
       color: #1c1508;
       line-height: 1.05;
       margin-bottom: 3px;
@@ -78,7 +78,7 @@
       font-family: 'Playfair Display', serif;
       font-style: normal;
       font-weight: 700;
-      font-size: 1.9rem;
+      font-size: 30px;
       color: #1c1508;
       line-height: 1;
       display: block;
@@ -86,7 +86,7 @@
 
     .subtitle {
       font-family: 'Caveat', cursive;
-      font-size: 1.05rem;
+      font-size: 17px;
       font-weight: 600;
       color: rgba(155,120,40,0.82);
       margin-bottom: 16px;
@@ -106,7 +106,7 @@
     }
 
     .cta {
-      font-size: 0.78rem; font-weight: 600;
+      font-size: 12px; font-weight: 600;
       color: #2a1f08;
       line-height: 1.35;
       margin-bottom: 14px;
@@ -123,34 +123,34 @@
       background: rgba(155,120,40,0.1);
       border: 1px solid rgba(155,120,40,0.35);
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.52rem; font-weight: 700;
+      font-size: 8px; font-weight: 700;
       color: rgba(130,98,25,0.9);
       margin-top: 1px;
     }
     .step-text {
-      font-size: 0.62rem; color: rgba(40,28,8,0.65); line-height: 1.4;
+      font-size: 10px; color: rgba(40,28,8,0.65); line-height: 1.4;
     }
     .step-text strong { font-weight: 600; color: rgba(30,20,5,0.85); }
 
     .tagline {
-      position: absolute; bottom: 0.28in; left: 0.42in;
+      position: absolute; bottom: 27px; left: 40px;
       font-family: 'Caveat', cursive;
-      font-size: 0.72rem; font-weight: 600;
+      font-size: 11px; font-weight: 600;
       color: rgba(155,120,40,0.38);
     }
 
     /* ── Right panel ── */
     .right {
-      width: 2.3in;
+      width: 221px;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      padding: 0.32in 0.32in;
+      padding: 31px;
       position: relative; z-index: 1;
       gap: 10px;
     }
 
     .scan-label {
-      font-size: 0.62rem; font-weight: 700;
+      font-size: 10px; font-weight: 700;
       letter-spacing: 0.14em; text-transform: uppercase;
       color: rgba(155,120,40,0.65);
       text-align: center;
@@ -165,9 +165,7 @@
         0 6px 28px rgba(0,0,0,0.1);
       position: relative;
     }
-    /* Gold corner ticks */
-    .qr-frame::before, .qr-frame::after,
-    .qr-frame .tick-bl, .qr-frame .tick-tr {
+    .qr-frame::before, .qr-frame::after {
       content: '';
       position: absolute;
       width: 12px; height: 12px;
@@ -180,33 +178,38 @@
     #qrcode canvas, #qrcode img { display: block; }
 
     .qr-placeholder {
-      width: 170px; height: 170px;
+      width: 150px; height: 150px;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 8px;
-      color: rgba(155,120,40,0.5); font-size: 0.62rem;
+      color: rgba(155,120,40,0.5); font-size: 10px;
       text-align: center; padding: 12px;
       background: #f8f5ef;
       border: 1.5px dashed rgba(155,120,40,0.3); border-radius: 3px;
     }
     .qr-placeholder code {
-      font-size: 0.55rem;
+      font-size: 9px;
       background: rgba(155,120,40,0.1);
       padding: 2px 5px; border-radius: 3px;
       color: rgba(120,88,20,0.9); word-break: break-all;
     }
 
     .scan-sub {
-      font-size: 0.58rem; color: rgba(40,28,8,0.42);
+      font-size: 9px; color: rgba(40,28,8,0.42);
       text-align: center; line-height: 1.4;
     }
 
     @media print {
-      body { background: none; padding: 0; display: block; }
+      html, body {
+        width: 576px; height: 384px;
+        margin: 0; padding: 0;
+        background: none;
+        display: block;
+        overflow: hidden;
+      }
       .print-btn { display: none; }
       .card {
-        width: 6in; height: 4in;
+        width: 576px; height: 384px;
         box-shadow: none;
-        page-break-inside: avoid;
       }
     }
   </style>
@@ -272,8 +275,8 @@
       const url = 'https://bhimeshchauhan.github.io/photobooth/capture/?eid=' + encodeURIComponent(eid);
       new QRCode(qrDiv, {
         text: url,
-        width:  170,
-        height: 170,
+        width:  150,
+        height: 150,
         colorDark:  '#1c1508',
         colorLight: '#ffffff',
         correctLevel: QRCode.CorrectLevel.H,
