@@ -10,14 +10,14 @@
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    @page { size: letter landscape; margin: 0; }
+    /* Letter portrait — two 4×6 cards stack perfectly (6×8 in an 8.5×11 sheet) */
+    @page { size: letter portrait; margin: 0; }
 
     body {
       background: #d8d0c0;
       min-height: 100vh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 20px;
-      padding: 32px;
+      gap: 20px; padding: 32px;
       font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
@@ -32,40 +32,49 @@
 
     .hint {
       font-size: 0.75rem; color: rgba(0,0,0,0.4);
-      text-align: center; max-width: 480px; line-height: 1.5;
+      text-align: center; max-width: 520px; line-height: 1.5;
     }
 
-    /* ── Print sheet: full letter landscape ── */
+    /* ── Print sheet: letter portrait 8.5×11in ── */
     .sheet {
-      width: 11in; height: 8.5in;
+      width: 8.5in; height: 11in;
       background: #fff;
-      display: flex; align-items: center; justify-content: center;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0;
       position: relative;
       box-shadow: 0 8px 40px rgba(0,0,0,0.15);
     }
 
-    /* Cut guide — dashed border around the 6×4 card area */
-    .cut-guide {
-      position: relative;
-      padding: 0;
+    /* Cut line between the two cards */
+    .cut-divider {
+      width: 6in;
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 0;
     }
-    .cut-guide::before {
+    .cut-divider::before, .cut-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      border-top: 1.5px dashed rgba(0,0,0,0.22);
+    }
+    .cut-divider span {
+      font-size: 8px; color: rgba(0,0,0,0.3);
+      letter-spacing: 0.12em; white-space: nowrap;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Outer cut guide around both cards together */
+    .cards-wrap {
+      position: relative;
+    }
+    .cards-wrap::before {
       content: '';
       position: absolute;
-      inset: -12px;
-      border: 1.5px dashed rgba(0,0,0,0.25);
+      inset: -10px;
+      border: 1.5px dashed rgba(0,0,0,0.22);
       border-radius: 2px;
       pointer-events: none;
-    }
-    /* Scissor icon hint */
-    .cut-guide::after {
-      content: '✂ cut here';
-      position: absolute;
-      top: -22px; left: 0;
-      font-size: 8px;
-      color: rgba(0,0,0,0.28);
-      letter-spacing: 0.1em;
-      font-family: 'Plus Jakarta Sans', sans-serif;
     }
 
     /* ── Card: 576×384px = 6×4in ── */
@@ -99,40 +108,28 @@
     .eyebrow {
       font-size: 7px; font-weight: 700;
       letter-spacing: 0.28em; text-transform: uppercase;
-      color: rgba(155,120,40,0.6);
-      margin-bottom: 10px;
+      color: rgba(155,120,40,0.6); margin-bottom: 10px;
     }
 
     .title {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 34px;
-      color: #1c1508;
-      line-height: 1.05;
-      margin-bottom: 3px;
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 34px; color: #1c1508; line-height: 1.05; margin-bottom: 3px;
     }
     .title-bold {
-      font-family: 'Playfair Display', serif;
-      font-style: normal;
-      font-weight: 700;
-      font-size: 30px;
-      color: #1c1508;
-      line-height: 1;
-      display: block;
+      font-family: 'Playfair Display', serif; font-style: normal; font-weight: 700;
+      font-size: 30px; color: #1c1508; line-height: 1; display: block;
     }
 
     .subtitle {
       font-family: 'Caveat', cursive;
       font-size: 17px; font-weight: 600;
-      color: rgba(155,120,40,0.82);
-      margin-bottom: 16px;
+      color: rgba(155,120,40,0.82); margin-bottom: 16px;
     }
 
     .rule {
       width: 40px; height: 1px;
       background: rgba(155,120,40,0.35);
-      margin-bottom: 14px;
-      position: relative;
+      margin-bottom: 14px; position: relative;
     }
     .rule::after {
       content: '✦';
@@ -141,29 +138,22 @@
       font-size: 7px; color: rgba(155,120,40,0.45);
     }
 
-    .cta {
-      font-size: 12px; font-weight: 600;
-      color: #2a1f08; line-height: 1.35;
-      margin-bottom: 14px;
-    }
+    .cta { font-size: 12px; font-weight: 600; color: #2a1f08; line-height: 1.35; margin-bottom: 14px; }
 
     .steps { display: flex; flex-direction: column; gap: 6px; }
-    .step { display: flex; align-items: flex-start; gap: 8px; }
+    .step  { display: flex; align-items: flex-start; gap: 8px; }
     .step-num {
       width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0;
-      background: rgba(155,120,40,0.1);
-      border: 1px solid rgba(155,120,40,0.35);
+      background: rgba(155,120,40,0.1); border: 1px solid rgba(155,120,40,0.35);
       display: flex; align-items: center; justify-content: center;
-      font-size: 8px; font-weight: 700; color: rgba(130,98,25,0.9);
-      margin-top: 1px;
+      font-size: 8px; font-weight: 700; color: rgba(130,98,25,0.9); margin-top: 1px;
     }
     .step-text { font-size: 10px; color: rgba(40,28,8,0.65); line-height: 1.4; }
     .step-text strong { font-weight: 600; color: rgba(30,20,5,0.85); }
 
     .tagline {
       position: absolute; bottom: 27px; left: 40px;
-      font-family: 'Caveat', cursive;
-      font-size: 11px; font-weight: 600;
+      font-family: 'Caveat', cursive; font-size: 11px; font-weight: 600;
       color: rgba(155,120,40,0.38);
     }
 
@@ -172,9 +162,7 @@
       width: 221px;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      padding: 31px;
-      position: relative; z-index: 1;
-      gap: 10px;
+      padding: 31px; position: relative; z-index: 1; gap: 10px;
     }
 
     .scan-label {
@@ -189,14 +177,11 @@
       position: relative;
     }
     .qr-frame::before, .qr-frame::after {
-      content: '';
-      position: absolute; width: 12px; height: 12px;
+      content: ''; position: absolute; width: 12px; height: 12px;
       border-color: rgba(155,120,40,0.6); border-style: solid;
     }
     .qr-frame::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
     .qr-frame::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
-
-    #qrcode canvas, #qrcode img { display: block; }
 
     .qr-placeholder {
       width: 150px; height: 150px;
@@ -218,15 +203,10 @@
     @media print {
       body { background: none; padding: 0; margin: 0; display: block; }
       .print-btn, .hint { display: none; }
-      .sheet {
-        width: 11in; height: 8.5in;
-        box-shadow: none;
-        display: flex; align-items: center; justify-content: center;
-      }
+      .sheet { width: 8.5in; height: 11in; box-shadow: none; display: flex; flex-direction: column; align-items: center; justify-content: center; }
       .card { box-shadow: none; }
       .qr-frame { box-shadow: none; border: 1px solid #9b7828; }
 
-      /* Boost contrast for print — rgba washes out on paper */
       .eyebrow      { color: #7a5e18; }
       .subtitle     { color: #8a6820; }
       .rule         { background: #9b7828; }
@@ -243,72 +223,80 @@
 </head>
 <body>
 
-  <button class="print-btn" onclick="window.print()">🖨 Print (Letter Landscape)</button>
-  <p class="hint">Print on letter paper → cut along the dashed line → exact 4×6 card</p>
+  <button class="print-btn" onclick="window.print()">🖨 Print (2 cards on letter)</button>
+  <p class="hint">Prints 2 cards on one letter sheet · cut along the dashed lines · each card is exactly 4×6"</p>
 
   <div class="sheet">
-    <div class="cut-guide">
-      <div class="card" id="invite-card">
+    <div class="cards-wrap">
+
+      <!-- Card 1 -->
+      <div class="card">
         <div class="left">
           <p class="eyebrow">✦ Live Photo Booth ✦</p>
-          <h1 class="title">
-            Sweet Seventy,<br>
-            <span class="title-bold">Elvie!</span>
-          </h1>
+          <h1 class="title">Sweet Seventy,<br><span class="title-bold">Elvie!</span></h1>
           <p class="subtitle">Be part of the memory wall</p>
           <div class="rule"></div>
           <p class="cta">Scan the QR code, snap a photo,<br>and watch it appear on the big screen!</p>
           <div class="steps">
-            <div class="step">
-              <div class="step-num">1</div>
-              <div class="step-text"><strong>Scan</strong> the QR code with your phone camera</div>
-            </div>
-            <div class="step">
-              <div class="step-num">2</div>
-              <div class="step-text"><strong>Enter your name</strong> so it shows up on the display</div>
-            </div>
-            <div class="step">
-              <div class="step-num">3</div>
-              <div class="step-text"><strong>Tap the shutter</strong> — your photo uploads instantly</div>
-            </div>
-            <div class="step">
-              <div class="step-num">4</div>
-              <div class="step-text"><strong>Watch the screen</strong> and see your photos up there! 🎉</div>
-            </div>
+            <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Scan</strong> the QR code with your phone camera</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Enter your name</strong> so it shows up on the display</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Tap the shutter</strong> — your photo uploads instantly</div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Watch the screen</strong> and see your photos up there! 🎉</div></div>
           </div>
           <p class="tagline">Every moment, captured live ✦</p>
         </div>
         <div class="right">
           <p class="scan-label">📷 Scan to join</p>
-          <div class="qr-frame">
-            <div id="qrcode"></div>
-          </div>
+          <div class="qr-frame"><div id="qrcode1"></div></div>
           <p class="scan-sub">Opens instantly in<br>your phone's browser</p>
         </div>
       </div>
+
+      <!-- Cut divider -->
+      <div class="cut-divider"><span>✂ &nbsp; cut here &nbsp; ✂</span></div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <div class="left">
+          <p class="eyebrow">✦ Live Photo Booth ✦</p>
+          <h1 class="title">Sweet Seventy,<br><span class="title-bold">Elvie!</span></h1>
+          <p class="subtitle">Be part of the memory wall</p>
+          <div class="rule"></div>
+          <p class="cta">Scan the QR code, snap a photo,<br>and watch it appear on the big screen!</p>
+          <div class="steps">
+            <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Scan</strong> the QR code with your phone camera</div></div>
+            <div class="step"><div class="step-num">2</div><div class="step-text"><strong>Enter your name</strong> so it shows up on the display</div></div>
+            <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Tap the shutter</strong> — your photo uploads instantly</div></div>
+            <div class="step"><div class="step-num">4</div><div class="step-text"><strong>Watch the screen</strong> and see your photos up there! 🎉</div></div>
+          </div>
+          <p class="tagline">Every moment, captured live ✦</p>
+        </div>
+        <div class="right">
+          <p class="scan-label">📷 Scan to join</p>
+          <div class="qr-frame"><div id="qrcode2"></div></div>
+          <p class="scan-sub">Opens instantly in<br>your phone's browser</p>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const eid    = params.get('eid');
-    const qrDiv  = document.getElementById('qrcode');
 
-    if (eid) {
-      const url = 'https://bhimeshchauhan.github.io/photobooth/capture/?eid=' + encodeURIComponent(eid);
-      new QRCode(qrDiv, {
-        text: url,
-        width:  150,
-        height: 150,
-        colorDark:  '#1c1508',
-        colorLight: '#ffffff',
-        correctLevel: QRCode.CorrectLevel.H,
-      });
-    } else {
-      qrDiv.innerHTML = '<div class="qr-placeholder">'
-        + '<div>⚠️ Add <code>?eid=…</code> to the URL</div>'
-        + '</div>';
+    function makeQR(divId) {
+      const el = document.getElementById(divId);
+      if (eid) {
+        const url = 'https://bhimeshchauhan.github.io/photobooth/capture/?eid=' + encodeURIComponent(eid);
+        new QRCode(el, { text: url, width: 150, height: 150, colorDark: '#1c1508', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H });
+      } else {
+        el.innerHTML = '<div class="qr-placeholder"><div>⚠️ Add <code>?eid=…</code> to the URL</div></div>';
+      }
     }
+
+    makeQR('qrcode1');
+    makeQR('qrcode2');
   </script>
 </body>
 </html>
