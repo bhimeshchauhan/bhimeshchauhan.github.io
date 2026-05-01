@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wine Label — Sweet Seventy, Elvie!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    @page { size: letter portrait; margin: 0; }
+
+    body {
+      background: #ccc6ba;
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 20px; padding: 32px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .print-btn {
+      background: #8a2b2b; color: #fff; border: none;
+      border-radius: 7px; padding: 10px 24px;
+      font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600;
+      cursor: pointer; letter-spacing: 0.06em;
+      box-shadow: 0 4px 18px rgba(138,43,43,0.35);
+    }
+    .print-btn:hover { background: #6e2020; }
+
+    .hint {
+      font-size: 0.75rem; color: rgba(0,0,0,0.4);
+      text-align: center; max-width: 480px; line-height: 1.5;
+      font-family: sans-serif;
+    }
+
+    /* ── Sheet: letter portrait ── */
+    .sheet {
+      width: 8.5in; height: 11in;
+      background: #fff;
+      display: grid;
+      grid-template-columns: 288px 288px;
+      grid-template-rows: 384px 384px;
+      gap: 0;
+      align-content: center;
+      justify-content: center;
+      column-gap: 32px;
+      row-gap: 32px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+    }
+
+    /* ── Label: 3×4in = 288×384px ── */
+    .label {
+      width: 288px; height: 384px;
+      background: #FAF6ED;
+      position: relative;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: space-between;
+      padding: 20px 18px 16px;
+    }
+
+    /* Parchment texture gradient */
+    .label::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 120% 60% at 50% 0%, rgba(200,165,60,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 50% at 50% 100%, rgba(160,100,30,0.1) 0%, transparent 55%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* Ornamental border */
+    .border-outer {
+      position: absolute;
+      inset: 8px;
+      border: 1.5px solid #9b7828;
+      pointer-events: none; z-index: 1;
+    }
+    .border-inner {
+      position: absolute;
+      inset: 12px;
+      border: 0.5px solid rgba(155,120,40,0.45);
+      pointer-events: none; z-index: 1;
+    }
+
+    /* Corner ornaments */
+    .corners {
+      position: absolute; inset: 8px;
+      pointer-events: none; z-index: 2;
+    }
+    .corners::before, .corners::after,
+    .corners .c3, .corners .c4 {
+      content: '❧';
+      position: absolute;
+      font-size: 10px; color: #9b7828;
+      line-height: 1;
+    }
+    .corners::before { top: -6px; left: -5px; transform: rotate(0deg); }
+    .corners::after  { top: -6px; right: -5px; transform: rotate(90deg); }
+    .corners .c3     { bottom: -6px; left: -5px; transform: rotate(270deg); }
+    .corners .c4     { bottom: -6px; right: -5px; transform: rotate(180deg); }
+
+    /* All content above borders */
+    .label > * { position: relative; z-index: 3; }
+
+    /* ── Top section ── */
+    .label-top {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      width: 100%;
+    }
+
+    .winery {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 7.5px; font-weight: 600; letter-spacing: 0.32em;
+      text-transform: uppercase; color: #8a6818;
+      text-align: center;
+    }
+
+    .top-rule {
+      width: 100%; display: flex; align-items: center; gap: 6px;
+    }
+    .top-rule::before, .top-rule::after {
+      content: ''; flex: 1; height: 0.5px; background: #b09030;
+    }
+    .top-rule span { font-size: 8px; color: #9b7828; }
+
+    .varietal {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 9px; font-weight: 300; font-style: italic;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: #6b4f12;
+    }
+
+    /* ── Centre hero ── */
+    .label-center {
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      flex: 1; justify-content: center;
+    }
+
+    .name-script {
+      font-family: 'Playfair Display', serif;
+      font-style: italic; font-size: 58px; font-weight: 400;
+      color: #1c1508; line-height: 0.9;
+      letter-spacing: -0.01em;
+    }
+
+    .milestone {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: #9b7828;
+      margin-top: 4px;
+    }
+
+    .center-rule {
+      width: 60px; height: 1px; background: #b09030;
+      margin: 6px 0;
+      position: relative;
+    }
+    .center-rule::before, .center-rule::after {
+      content: ''; position: absolute; top: -2px;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: #9b7828;
+    }
+    .center-rule::before { left: -6px; }
+    .center-rule::after  { right: -6px; }
+
+    .tagline {
+      font-family: 'Caveat', cursive;
+      font-size: 13px; font-weight: 600;
+      color: #7a5e18; text-align: center; line-height: 1.3;
+    }
+
+    /* ── Bottom section ── */
+    .label-bottom {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      width: 100%;
+    }
+
+    .bottom-rule {
+      width: 100%; display: flex; align-items: center; gap: 6px;
+    }
+    .bottom-rule::before, .bottom-rule::after {
+      content: ''; flex: 1; height: 0.5px; background: #b09030;
+    }
+    .bottom-rule span { font-size: 8px; color: #9b7828; }
+
+    .est {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 8px; font-weight: 400; letter-spacing: 0.24em;
+      text-transform: uppercase; color: #8a6818;
+      text-align: center;
+    }
+
+    .vol {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 7px; color: #9a8050; letter-spacing: 0.1em;
+    }
+
+    /* ── Print ── */
+    @media print {
+      body { background: none; padding: 0; margin: 0; display: block; }
+      .print-btn, .hint { display: none; }
+      .sheet {
+        width: 8.5in; height: 11in;
+        box-shadow: none;
+        display: grid;
+        grid-template-columns: 288px 288px;
+        grid-template-rows: 384px 384px;
+        align-content: center; justify-content: center;
+        column-gap: 32px; row-gap: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()">🍷 Print Labels (4 per sheet)</button>
+  <p class="hint">Print on letter · cut out each label · 3×4" · fits 188ml bottle</p>
+
+  <div class="sheet">
+
+    <!-- Label template (repeated 4×) -->
+    <div class="label">
+      <div class="border-outer"></div>
+      <div class="border-inner"></div>
+      <div class="corners"><span class="c3"></span><span class="c4"></span></div>
+
+      <div class="label-top">
+        <p class="winery">✦ &nbsp; Sweet Seventy Estate &nbsp; ✦</p>
+        <div class="top-rule"><span>❦</span></div>
+        <p class="varietal">A Celebration Rosé</p>
+      </div>
+
+      <div class="label-center">
+        <div class="name-script">Elvie</div>
+        <div class="milestone">Seventy Years</div>
+        <div class="center-rule"></div>
+        <p class="tagline">Poured with love<br>for every precious moment</p>
+      </div>
+
+      <div class="label-bottom">
+        <div class="bottom-rule"><span>❦</span></div>
+        <p class="est">Est. 1956 &nbsp;·&nbsp; Vintage 2026</p>
+        <p class="vol">188 ml &nbsp;·&nbsp; Contains Sulphites</p>
+      </div>
+    </div>
+
+    <div class="label">
+      <div class="border-outer"></div>
+      <div class="border-inner"></div>
+      <div class="corners"><span class="c3"></span><span class="c4"></span></div>
+      <div class="label-top">
+        <p class="winery">✦ &nbsp; Sweet Seventy Estate &nbsp; ✦</p>
+        <div class="top-rule"><span>❦</span></div>
+        <p class="varietal">A Celebration Rosé</p>
+      </div>
+      <div class="label-center">
+        <div class="name-script">Elvie</div>
+        <div class="milestone">Seventy Years</div>
+        <div class="center-rule"></div>
+        <p class="tagline">Poured with love<br>for every precious moment</p>
+      </div>
+      <div class="label-bottom">
+        <div class="bottom-rule"><span>❦</span></div>
+        <p class="est">Est. 1956 &nbsp;·&nbsp; Vintage 2026</p>
+        <p class="vol">188 ml &nbsp;·&nbsp; Contains Sulphites</p>
+      </div>
+    </div>
+
+    <div class="label">
+      <div class="border-outer"></div>
+      <div class="border-inner"></div>
+      <div class="corners"><span class="c3"></span><span class="c4"></span></div>
+      <div class="label-top">
+        <p class="winery">✦ &nbsp; Sweet Seventy Estate &nbsp; ✦</p>
+        <div class="top-rule"><span>❦</span></div>
+        <p class="varietal">A Celebration Rosé</p>
+      </div>
+      <div class="label-center">
+        <div class="name-script">Elvie</div>
+        <div class="milestone">Seventy Years</div>
+        <div class="center-rule"></div>
+        <p class="tagline">Poured with love<br>for every precious moment</p>
+      </div>
+      <div class="label-bottom">
+        <div class="bottom-rule"><span>❦</span></div>
+        <p class="est">Est. 1956 &nbsp;·&nbsp; Vintage 2026</p>
+        <p class="vol">188 ml &nbsp;·&nbsp; Contains Sulphites</p>
+      </div>
+    </div>
+
+    <div class="label">
+      <div class="border-outer"></div>
+      <div class="border-inner"></div>
+      <div class="corners"><span class="c3"></span><span class="c4"></span></div>
+      <div class="label-top">
+        <p class="winery">✦ &nbsp; Sweet Seventy Estate &nbsp; ✦</p>
+        <div class="top-rule"><span>❦</span></div>
+        <p class="varietal">A Celebration Rosé</p>
+      </div>
+      <div class="label-center">
+        <div class="name-script">Elvie</div>
+        <div class="milestone">Seventy Years</div>
+        <div class="center-rule"></div>
+        <p class="tagline">Poured with love<br>for every precious moment</p>
+      </div>
+      <div class="label-bottom">
+        <div class="bottom-rule"><span>❦</span></div>
+        <p class="est">Est. 1956 &nbsp;·&nbsp; Vintage 2026</p>
+        <p class="vol">188 ml &nbsp;·&nbsp; Contains Sulphites</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
