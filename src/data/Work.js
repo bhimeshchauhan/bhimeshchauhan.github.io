@@ -15,12 +15,12 @@ export default [
     dated: "Jan 2026 – Present",
     logo: rareDays,
     description:
-      'Lead the production delivery of AI systems, combining core-platform engineering with release quality and technical leadership.<br/><br/>' +
-      '● Built the core system and improved retrieval quality for production AI capabilities.<br/>' +
-      '● Introduced backend infrastructure and shipped production role-aware access controls.<br/>' +
+      'Architected and built a multi-tenant SaaS platform with a production RAG chatbot, owning the system from retrieval architecture through backend delivery and reliable releases.<br/><br/>' +
+      '● Built the RAG pipeline and chatbot experience, improving retrieval quality for customer-facing AI capabilities.<br/>' +
+      '● Designed the multi-tenant SaaS architecture, including backend infrastructure and role-aware access controls.<br/>' +
       '● Delivered 10+ CI improvements that strengthened release quality and platform reliability.<br/>' +
       '● Mentored a junior engineer and created reusable AI capabilities for other Rare Days projects.<br/>' +
-      '**Key Skills:** Production AI systems, retrieval quality, backend infrastructure, CI, reliable releases, technical leadership.'
+      '**Key Skills:** RAG architecture, LLM chatbots, multi-tenant SaaS, backend infrastructure, access control, CI/CD, technical leadership.'
   },
   {
     id: 1,
