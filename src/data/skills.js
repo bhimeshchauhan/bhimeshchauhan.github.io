@@ -1,62 +1,81 @@
 export default [
   {
-    title: "AI Platforms and RAG Systems",
-    summary: "I build production AI products that are useful inside real workflows, not isolated model demos.",
+    title: "AI and RAG Systems",
+    summary: "Production AI applications, retrieval, and workflow automation.",
     skills: [
-      "RAG architecture and retrieval quality",
-      "LLM application and chatbot development",
-      "Multi-tenant SaaS architecture",
-      "Vector search and pgvector",
-      "OpenAI API and Whisper workflows",
-      "AI data pipelines and evaluation"
+      { title: "OpenAI API", level: "Production", icon: "https://cdn.simpleicons.org/openai/FFFFFF", detail: "LLM application and chatbot delivery" },
+      { title: "Retrieval-Augmented Generation", level: "Production", icon: "https://cdn.simpleicons.org/openai/FFFFFF", detail: "Grounded retrieval workflows for customer-facing AI" },
+      { title: "pgvector", level: "Production", icon: "https://cdn.simpleicons.org/postgresql/FFFFFF", detail: "Vector search for production RAG applications" },
+      { title: "Whisper", level: "Production", icon: "https://cdn.simpleicons.org/openai/FFFFFF", detail: "Ambient transcription and clinical note workflows" },
+      { title: "LangChain", level: "Strong", icon: "https://cdn.simpleicons.org/langchain/FFFFFF", detail: "LLM orchestration and retrieval application patterns" },
+      { title: "AI Data Pipelines", level: "Production", icon: "https://cdn.simpleicons.org/apacheairflow/FFFFFF", detail: "Structured extraction, validation, and model-ready data" }
     ]
   },
   {
-    title: "Backend, Data, and Distributed Systems",
-    summary: "End-to-end platform design across APIs, data models, real-time systems, and reliable integrations.",
+    title: "Application Engineering",
+    summary: "End-to-end web products, SaaS workflows, and practical user experiences.",
     skills: [
-      "TypeScript, JavaScript, Node.js, and Python",
-      "REST and GraphQL API design",
-      "PostgreSQL, Neo4j (Cypher), SQL, and MongoDB",
-      "WebSockets and real-time operational systems",
-      "Multi-tenant access control and secure workflows",
-      "IoT, MQTT, Modbus, and embedded integrations"
+      { title: "TypeScript", level: "Production", icon: "https://cdn.simpleicons.org/typescript/FFFFFF", detail: "Type-safe web and backend application delivery" },
+      { title: "JavaScript", level: "Production", icon: "https://cdn.simpleicons.org/javascript/FFFFFF", detail: "Full-stack product and workflow development" },
+      { title: "Python", level: "Production", icon: "https://cdn.simpleicons.org/python/FFFFFF", detail: "AI, data, API, and device-integration services" },
+      { title: "React", level: "Production", icon: "https://cdn.simpleicons.org/react/FFFFFF", detail: "Customer-facing operational and SaaS interfaces" },
+      { title: "Node.js", level: "Production", icon: "https://cdn.simpleicons.org/nodedotjs/FFFFFF", detail: "APIs, real-time systems, and backend services" },
+      { title: "Django", level: "Strong", icon: "https://cdn.simpleicons.org/django/FFFFFF", detail: "Python web applications and platform services" },
+      { title: "Flask", level: "Strong", icon: "https://cdn.simpleicons.org/flask/FFFFFF", detail: "Lightweight inference and integration APIs" },
+      { title: "Meteor", level: "Strong", icon: "https://cdn.simpleicons.org/meteor/FFFFFF", detail: "GraphQL-powered SaaS application development" }
     ]
   },
   {
-    title: "Full-Stack Product Engineering",
-    summary: "Hands-on ownership from the customer experience to backend delivery, with a bias for usable and measurable products.",
+    title: "Data and APIs",
+    summary: "Data models, query systems, and dependable application interfaces.",
     skills: [
-      "React, React Native, and modern web applications",
-      "Django, Flask, Express, and Meteor",
-      "Product analytics, experimentation, and conversion work",
-      "Healthcare, scientific, payments, and consumer SaaS workflows",
-      "Android application development",
-      "Customer discovery and workflow validation"
+      { title: "PostgreSQL", level: "Production", icon: "https://cdn.simpleicons.org/postgresql/FFFFFF", detail: "Relational data models and performance-focused queries" },
+      { title: "Neo4j", level: "Production", icon: "https://cdn.simpleicons.org/neo4j/FFFFFF", detail: "Graph data and Cypher query paths for research workflows" },
+      { title: "GraphQL", level: "Production", icon: "https://cdn.simpleicons.org/graphql/FFFFFF", detail: "Schema-driven APIs for complex client workflows" },
+      { title: "REST APIs", level: "Production", icon: "https://cdn.simpleicons.org/openapiinitiative/FFFFFF", detail: "Secure, high-throughput service interfaces" },
+      { title: "MongoDB", level: "Strong", icon: "https://cdn.simpleicons.org/mongodb/FFFFFF", detail: "Document data for SaaS application workflows" },
+      { title: "Redis", level: "Strong", icon: "https://cdn.simpleicons.org/redis/FFFFFF", detail: "Low-latency application data and caching" },
+      { title: "RabbitMQ", level: "Working knowledge", icon: "https://cdn.simpleicons.org/rabbitmq/FFFFFF", detail: "Message-driven integration patterns" },
+      { title: "WebSockets", level: "Production", icon: "https://cdn.simpleicons.org/socketdotio/FFFFFF", detail: "Real-time operational visibility and device workflows" }
     ]
   },
   {
-    title: "Cloud, Reliability, and Delivery",
-    summary: "Production engineering practices that make releases dependable and systems easier to operate.",
+    title: "Cloud Reliability and Delivery",
+    summary: "Cloud operations, release quality, testing, and observable production systems.",
     skills: [
-      "AWS: Lambda, EC2, S3, and cloud delivery",
-      "Docker, Nginx, and deployment automation",
-      "CI/CD with GitHub Actions, Jenkins, CircleCI, and GitLab",
-      "Testing with Jest, Cypress, Chai, TDD, and integration tests",
-      "Observability with Mezmo, Kibana, and operational dashboards",
-      "Release quality, performance tuning, and incident prevention"
+      { title: "AWS", level: "Production", icon: "https://cdn.simpleicons.org/amazonwebservices/FFFFFF", detail: "Cloud delivery across compute, storage, and services" },
+      { title: "Docker", level: "Production", icon: "https://cdn.simpleicons.org/docker/FFFFFF", detail: "Consistent local, CI, and production environments" },
+      { title: "GitHub Actions", level: "Strong", icon: "https://cdn.simpleicons.org/githubactions/FFFFFF", detail: "Automated build, test, and release workflows" },
+      { title: "Jenkins", level: "Strong", icon: "https://cdn.simpleicons.org/jenkins/FFFFFF", detail: "Custom CI/CD tooling for ML-backed releases" },
+      { title: "CircleCI", level: "Strong", icon: "https://cdn.simpleicons.org/circleci/FFFFFF", detail: "Continuous integration and release automation" },
+      { title: "Cypress", level: "Strong", icon: "https://cdn.simpleicons.org/cypress/FFFFFF", detail: "End-to-end quality checks for web applications" },
+      { title: "Kibana", level: "Strong", icon: "https://cdn.simpleicons.org/elastic/FFFFFF", detail: "Operational dashboards and release diagnostics" },
+      { title: "Nginx", level: "Strong", icon: "https://cdn.simpleicons.org/nginx/FFFFFF", detail: "Web delivery and reverse-proxy configuration" }
     ]
   },
   {
-    title: "Technical Leadership",
-    summary: "I translate ambiguous business problems into pragmatic architecture, execution plans, and stronger engineering teams.",
+    title: "IoT Mobile and Integrations",
+    summary: "Connected devices, mobile control surfaces, and operational integrations.",
     skills: [
-      "System architecture and technical strategy",
-      "Product roadmaps and execution planning",
-      "Cross-functional leadership with product, design, science, and operations",
-      "Engineering mentorship and reusable platform capabilities",
-      "Security-conscious design for healthcare and financial workflows",
-      "Stakeholder communication and technical decision-making"
+      { title: "MQTT", level: "Production", icon: "https://cdn.simpleicons.org/mqtt/FFFFFF", detail: "Device telemetry and remote-control messaging" },
+      { title: "Modbus", level: "Production", icon: "https://cdn.simpleicons.org/modbus/FFFFFF", detail: "RS485, TCP, and serial embedded-device integrations" },
+      { title: "Android", level: "Production", icon: "https://cdn.simpleicons.org/android/FFFFFF", detail: "Native monitoring and remote-control applications" },
+      { title: "TensorFlow", level: "Strong", icon: "https://cdn.simpleicons.org/tensorflow/FFFFFF", detail: "Neural-network models for automation workflows" },
+      { title: "PyTorch", level: "Working knowledge", icon: "https://cdn.simpleicons.org/pytorch/FFFFFF", detail: "Model experimentation for prediction systems" },
+      { title: "Payments", level: "Production", icon: "https://cdn.simpleicons.org/stripe/FFFFFF", detail: "Production payment and certification workflows" },
+      { title: "Embedded Integrations", level: "Production", icon: "https://cdn.simpleicons.org/raspberrypi/FFFFFF", detail: "Cloud-to-device services for distributed kiosks" }
+    ]
+  },
+  {
+    title: "Product and Engineering Leadership",
+    summary: "Architecture, execution, and cross-functional leadership for complex products.",
+    skills: [
+      { title: "Technical Strategy", level: "Production", icon: "https://cdn.simpleicons.org/mermaid/FFFFFF", detail: "Pragmatic architecture for product and platform decisions" },
+      { title: "Product Roadmaps", level: "Production", icon: "https://cdn.simpleicons.org/linear/FFFFFF", detail: "MVP-to-production planning and technical execution" },
+      { title: "Cross-Functional Leadership", level: "Production", icon: "https://cdn.simpleicons.org/figma/FFFFFF", detail: "Alignment across product, design, science, and operations" },
+      { title: "Engineering Mentorship", level: "Production", icon: "https://cdn.simpleicons.org/github/FFFFFF", detail: "Growing engineers and reusable platform capabilities" },
+      { title: "Security-Conscious Design", level: "Strong", icon: "https://cdn.simpleicons.org/owasp/FFFFFF", detail: "Access control and healthcare or financial workflow safeguards" },
+      { title: "Customer Discovery", level: "Strong", icon: "https://cdn.simpleicons.org/googleanalytics/FFFFFF", detail: "Workflow validation, experiments, and outcome-focused iteration" }
     ]
   }
 ];
