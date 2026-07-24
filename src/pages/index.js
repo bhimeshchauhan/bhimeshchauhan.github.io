@@ -23,12 +23,11 @@ const IndexPage = () => {
         <UserDescription>
           <div>
             <p>
-              Engineering leader who builds and scales AI-powered products — from
-              clinical documentation platforms to enterprise ML systems. I combine
-              deep technical execution with the ability to hire, mentor, and ship
-              across full-stack, ML, and infrastructure. Currently open to Lead,
-              Staff, and Engineering Manager roles where I can own technical
-              direction and grow high-performing teams.
+              Lead software engineer and founder building production AI platforms
+              end to end: from ambient clinical documentation to research
+              intelligence, payments, IoT, and SaaS. I pair RAG and LLM systems
+              with distributed full-stack architecture, reliable operations, and
+              hands-on technical leadership.
             </p>
             <DownloadButton
               href="/resume.pdf"

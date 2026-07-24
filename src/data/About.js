@@ -2,13 +2,13 @@ export default [
     {
         id: 1,
         title: "Experience",
-        description: "10+ years building software across startups and scale-ups, with recent focus on AI systems, engineering leadership, and taking products from zero to production.",
+        description: "10+ years building production software across startups and scale-ups, with recent focus on AI platforms, distributed systems, and technical leadership.",
         path: "/experience"
     },
     {
         id: 2,
         title: "Projects",
-        description: "From clinical AI platforms to IoT systems and real-time data pipelines — a selection of products I've architected and shipped.",
+        description: "From clinical AI and RAG systems to payments, IoT, and real-time data platforms: a selection of products I’ve architected and shipped.",
         path: "/projects"
     },
     {
