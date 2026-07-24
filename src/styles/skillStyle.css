@@ -139,10 +139,15 @@
 .skillClusterIcon {
     filter: brightness(0) invert(1);
     height: 1.18rem;
+    left: 50%;
+    margin: 0;
     max-height: 58%;
     max-width: 1.18rem;
     object-fit: contain;
-    position: relative;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
     transition: filter 180ms ease;
     width: 1.18rem;
 }
