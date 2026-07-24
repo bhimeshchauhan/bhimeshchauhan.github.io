@@ -79,6 +79,7 @@
 
 .skillIcon {
     display: block;
+    filter: brightness(0) invert(1);
     height: auto;
     margin: auto;
     max-height: 100%;
@@ -92,7 +93,7 @@
 }
 
 .skillCard:hover .skillIcon {
-    filter: drop-shadow(0 0 0.45rem rgba(255, 207, 74, 0.35));
+    filter: brightness(0) invert(1) drop-shadow(0 0 0.45rem rgba(255, 207, 74, 0.35));
     transform: scale(1.08) rotate(-2deg);
 }
 
