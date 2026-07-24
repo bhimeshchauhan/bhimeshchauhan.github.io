@@ -5,28 +5,40 @@ export default [
         panelImage: "sJ6az6-T1u8",
         title: "Boxing and the Practice of Staying Present",
         tagLine: "A few notes from learning how quickly attention can leave the room.",
-        dated: "28th June, 2026 - Toronto, ON",
+        dated: "28th June, 2026 - Vancouver, BC",
         description: [
             ['img', "https://images.unsplash.com/flagged/photo-1574005280900-3ff489fa1f70?auto=format&fit=crop&w=1600&q=80"],
             ['h3', "The first few minutes"],
             ['p', [
-                ['normal', "I notice how much of my mind arrives somewhere else. I can be standing still and already thinking about the next thing I need to do."],
+                ['normal', "I notice how much of my mind arrives somewhere else before the work has even begun. I can be standing still and already arranging the rest of the day, replaying a conversation, or deciding what I should have said. Boxing makes that habit unusually visible because the next instruction comes before I have finished following the last one. In those first few minutes, presence is not a mood I summon so much as a series of small returns."],
             ]],
-            ['h3', "A simple instruction"],
+            ['h3', "A stance to come back to"],
             ['p', [
-                ['normal', "When the focus is on breathing, stance, and one movement at a time, there is less room for rehearsing the rest of the day."],
+                ['normal', "The basic instructions are almost reassuringly plain: notice the feet, soften the knees, keep the hands where they need to be, breathe. None of this asks me to become dramatic or fearless. It asks me to feel the weight of my body and the distance in front of me with a little more accuracy. I find that the ordinary details are enough to interrupt a mind that is trying to turn every moment into a larger story."],
             ]],
-            ['h3', "What I cannot fake"],
+            ['h3', "What tension reveals"],
             ['p', [
-                ['normal', "Tension shows up quickly. A clenched jaw or raised shoulder tells the truth before I have had time to explain it away."],
+                ['normal', "Tension shows up quickly, and it is difficult to negotiate with once I notice it. A clenched jaw, raised shoulders, or a breath held too high in the chest says more than the explanations I might give myself afterward. I have been thinking about how often I mistake bracing for readiness. In practice, being rigid does not make me more available to what is happening, it only makes each correction feel larger than it is."],
             ]],
-            ['h3', "The quiet between rounds"],
+            ['h3', "One thing at a time"],
             ['p', [
-                ['normal', "I have come to like the small pause to reset. It feels ordinary, but it asks for more honesty than I expect."],
+                ['normal', "There is relief in having only one thing to pay attention to for a moment. If I am working on a particular movement, I do not need to solve the whole session or predict whether I will get it right later. I only need to notice what my body is doing now and make the next attempt a little cleaner. That narrowness feels less like limitation than permission to stop carrying so many unfinished thoughts at once."],
+            ]],
+            ['h3', "The pause between rounds"],
+            ['p', [
+                ['normal', "I have come to like the small pause between rounds because it does not ask for a grand interpretation. It is a chance to drink water, let the breathing settle, and notice whether I am carrying frustration from the previous few minutes. Sometimes I am surprised by how quickly a small mistake becomes a private argument in my head. The pause gives me a place to leave that argument behind before it decides the next round for me."],
+            ]],
+            ['h3', "Being corrected without drama"],
+            ['p', [
+                ['normal', "Corrections can be simple and specific, which is part of what I appreciate about them. A hand is too low, a foot has drifted, a movement is rushed, and then there is another chance to try. I am used to treating correction as evidence that I have missed something essential about myself. Here it often feels more practical than that, like being reminded to look where I am going."],
             ]],
             ['h3', "Leaving with less noise"],
             ['p', [
-                ['normal', "I do not leave with a big lesson. I leave a little more aware of where my attention went, and how gently I can bring it back."],
+                ['normal', "I do not leave with a big lesson, a new identity, or a clean answer about discipline. I leave a little more aware of where my attention went and how gently I can bring it back. The room does not erase the rest of my life, but it gives me a short stretch in which the rest can wait. That seems modest, and lately I find modest things easier to trust."],
+            ]],
+            ['h3', "When presence slips"],
+            ['p', [
+                ['normal', "Of course, I do not stay present the whole time, and it would be strange to expect that I could. A thought can pull me away in the middle of something simple, and I can realize a few seconds later that I have been moving without really noticing what I am doing, as though my body had continued while the rest of me stepped into another room. I used to treat that lapse as a failure, as though attention should be held perfectly once it has been found, but that expectation only gives the wandering more power. Now I am more interested in the return itself, in the small choice to notice that I have left and not make a drama out of it. There is something humane in discovering that the mind wandered and choosing, without much ceremony, to come back to the feet, the breath, the distance, and the next instruction."],
             ]],
         ]
     },
@@ -36,28 +48,40 @@ export default [
         panelImage: "9h_bJdGqzCk",
         title: "Horse Riding, Balance, and Trust",
         tagLine: "Learning that balance is more listening than control.",
-        dated: "21st February, 2026 - Toronto, ON",
+        dated: "21st February, 2026 - Tokyo, Japan",
         description: [
             ['img', "https://images.unsplash.com/photo-1594768816441-1dd241ffaa67?auto=format&fit=crop&w=1600&q=80"],
             ['h3', "A different kind of balance"],
             ['p', [
-                ['normal', "I used to think balance meant holding myself perfectly still. It has felt more like making small adjustments before they become obvious."],
+                ['normal', "I used to think balance meant holding myself perfectly still, as if steadiness were a pose I could achieve and keep. Riding has made it feel more like a conversation made of very small adjustments. The body is never really frozen, and trying to make it so usually creates a new kind of stiffness. What I notice instead is the quieter work of responding before an imbalance has become a problem."],
             ]],
-            ['h3', "Paying attention to another body"],
+            ['h3', "Listening through the body"],
             ['p', [
-                ['normal', "There is a useful humility in noticing that my mood and movements are not private. They become part of what is being communicated."],
+                ['normal', "There is a useful humility in paying attention to another body that is larger, alert, and not interested in my private explanations. My mood and movements are not contained inside me once I am riding. A hurried cue, a tense leg, or a distracted posture becomes part of what is being communicated. I find that awareness clarifying because it makes attention less abstract and more considerate."],
             ]],
             ['h3', "The temptation to overcorrect"],
             ['p', [
-                ['normal', "When I feel uncertain, my instinct is to do too much. The better response is often smaller, slower, and easier to feel."],
+                ['normal', "When I feel uncertain, my instinct is to do too much and do it quickly. I want to correct every wobble at once, which can turn a small moment of uncertainty into a louder one. The better response is often smaller, slower, and easier to feel. It takes more patience than I expect to wait long enough to learn whether a small adjustment was already enough."],
             ]],
             ['h3', "Trust without certainty"],
             ['p', [
-                ['normal', "Trust has not meant assuming everything will go smoothly. It has meant showing up carefully enough to respond when it does not."],
+                ['normal', "Trust has not meant assuming everything will go smoothly, or pretending that uncertainty is not there. It has meant showing up carefully enough to respond when something changes. There is a difference between being careless and being willing to stay responsive. I have been thinking about trust as that willingness to keep noticing rather than a promise that nothing uncomfortable will happen."],
+            ]],
+            ['h3', "The feeling of rhythm"],
+            ['p', [
+                ['normal', "Some moments have a rhythm that I can only recognize after I stop trying to force them. The movement asks for timing, not just effort, and it is easy to mistake more effort for better timing. When the rhythm feels clearer, I become less preoccupied with whether I look composed. I am simply trying to stay available to what is happening underneath me and around me."],
+            ]],
+            ['h3', "Room for a beginner's mind"],
+            ['p', [
+                ['normal', "I do not find the experience neat or instantly intuitive, which may be part of its value. There are many things to remember, and sometimes remembering them all makes me forget the simplest one. I am learning to let not knowing be present without turning it into embarrassment. A beginner's mind is not always charming from the inside, but it can make observation more honest."],
             ]],
             ['h3', "What stays with me"],
             ['p', [
-                ['normal', "I keep thinking about how balance depends on attention. It is not a fixed position so much as a conversation that keeps changing."],
+                ['normal', "I keep thinking about how balance depends on attention. It is not a fixed position so much as a conversation that keeps changing, with both sides bringing something to it. The best moments do not feel like control in the usual sense. They feel more like cooperation, which is quieter and more demanding than I first assumed."],
+            ]],
+            ['h3', "Care as a form of attention"],
+            ['p', [
+                ['normal', "What stays with me most is the sense that care is visible before it is explained, often in choices so small that they would be easy to overlook from the ground or dismiss as ordinary. It appears in how closely I pay attention, how willingly I slow down, and whether I keep treating the other body as a partner with its own signals rather than a piece of equipment for my own learning, especially when I feel preoccupied. That is not a sentimental thought for me, because the relationship is practical before it becomes poetic, and it asks for consistency rather than a good intention held at a distance or a feeling I can claim once. It is a practical one because impatience has a texture and so does respect, and both seem to travel through posture, pace, and the pressure of a cue, even when I believe I am hiding them. Riding makes those textures easier to feel, and I find that useful even when I am still learning what to do with them and even when I cannot name the whole lesson cleanly under the pressure of a real moment without turning it into a rule."],
             ]],
         ]
     },
@@ -67,28 +91,40 @@ export default [
         panelImage: "Tq4YjCa2BSc",
         title: "Learning to Think With My Hands Through Sculpting",
         tagLine: "Notes on making room for material, friction, and surprise.",
-        dated: "9th October, 2025 - Toronto, ON",
+        dated: "9th October, 2025 - Mumbai, India",
         description: [
             ['img', "https://images.unsplash.com/photo-1422246358533-95dcd3d48961?auto=format&fit=crop&w=1600&q=80"],
             ['h3', "Before there is a plan"],
             ['p', [
-                ['normal', "I am used to beginning with words. Working with material asks me to begin by looking, touching, and waiting a little longer."],
+                ['normal', "I am used to beginning with words, outlines, and a sense that I should know what I mean before I start. Working with material asks me to begin by looking, touching, and waiting a little longer. The first information is often not an idea but a weight, a texture, or the way a surface catches the light. I find that shift both disorienting and relieving because it makes room for thought that has not yet found a sentence."],
             ]],
             ['h3', "The resistance matters"],
             ['p', [
-                ['normal', "A surface that will not do exactly what I expect can be frustrating. It can also point toward a shape I would not have imagined on a screen."],
+                ['normal', "A surface that will not do exactly what I expect can be frustrating at first. It can also point toward a shape I would not have imagined if I were only looking at a screen or a sketch. The material has its own limits, and those limits are not merely obstacles to get around. Sometimes they are the only reason I pause long enough to see a different possibility."],
             ]],
             ['h3', "Small decisions"],
             ['p', [
-                ['normal', "The work seems to move through tiny choices: add, remove, turn, leave it alone. Each one is modest, but together they change the whole thing."],
+                ['normal', "The work seems to move through tiny choices: add, remove, turn, smooth, roughen, or leave it alone. Each one feels modest in isolation, but together they change the whole thing. I have been struck by how quickly a small mark can alter the balance of a form. It makes me less interested in dramatic gestures and more attentive to the consequence of the next small decision."],
             ]],
             ['h3', "Letting it be awkward"],
             ['p', [
-                ['normal', "I am learning not to rush past the clumsy stage. Sometimes the awkward part is simply evidence that my hands are still finding their way."],
+                ['normal', "I am learning not to rush past the clumsy stage. Sometimes the awkward part is simply evidence that my hands are still finding their way, not proof that the work has failed. It is tempting to smooth over uncertainty because a clean surface can look like progress. But I find that an early awkwardness sometimes contains more life than the version I would make by trying to tidy everything too soon."],
+            ]],
+            ['h3', "Looking from different sides"],
+            ['p', [
+                ['normal', "A form changes when I walk around it, and that fact feels almost embarrassingly obvious until I experience it. What looks complete from one angle can become thin, heavy, or unresolved from another. I do not mean this as a lesson about everything else in life. I only notice that changing my position is sometimes more useful than staring harder at the same problem."],
+            ]],
+            ['h3', "The value of stopping"],
+            ['p', [
+                ['normal', "There are moments when the most useful action is to stop touching the work. That can feel passive, especially when I want an answer from the material right away. A pause lets the last change become visible instead of being buried under the next one. It also gives me a chance to ask whether I am responding to what is there or only to the discomfort of waiting."],
             ]],
             ['h3', "A slower kind of thought"],
             ['p', [
-                ['normal', "Sculpting gives me a way to think that is less tidy than a sentence. I find that reassuring, especially when I do not yet know what I mean."],
+                ['normal', "Sculpting gives me a way to think that is less tidy than a sentence and less eager to arrive at a conclusion. I do not need to name every decision for it to matter. The hands can hold a question for a while, revise it, and make it visible without fully resolving it. I find that reassuring, especially when I do not yet know what I mean."],
+            ]],
+            ['h3', "What remains unfinished"],
+            ['p', [
+                ['normal', "I am drawn to the point when a piece seems finished enough to stand on its own but still carries evidence of its making, including the small uncertainties and revisions that brought it there. A perfectly resolved surface can be beautiful, yet I also like seeing the record of a hand changing its mind, pressing too hard, taking something away, or deciding that a previous mark should remain. The unfinished quality is not always a mistake or a lack of care, and I do not think it needs to be defended as a virtue every time it appears. Sometimes it is simply the part that keeps the work open to another look, because it has not closed every door behind the viewer. I have been thinking about how much I value that openness when I let myself stop asking for a final answer too quickly or treating uncertainty as a problem that must immediately be hidden from view, smoothed away, or explained before it has taught me anything."],
             ]],
         ]
     },
@@ -98,28 +134,40 @@ export default [
         panelImage: "_4qHg0z1bfE",
         title: "Klimt and the Courage to Make Work That Is Too Much",
         tagLine: "What I notice when decoration refuses to apologize.",
-        dated: "17th June, 2025 - Toronto, ON",
+        dated: "17th June, 2025 - Mexico City, Mexico",
         description: [
             ['img', "https://images.unsplash.com/photo-1775343970376-3bb5fd1171b6?auto=format&fit=crop&w=1600&q=80"],
             ['h3', "Looking for the edges"],
             ['p', [
-                ['normal', "When I look at Klimt, I keep noticing how much is allowed to happen at once. Pattern, gold, faces, and flatness all seem to make room for one another."],
+                ['normal', "When I look at Klimt, I keep noticing how much is allowed to happen at once. Pattern, gold, faces, ornament, and flatness all seem to make room for one another without agreeing to become simple. My eye keeps moving because there is no single, tidy place to settle. I have been thinking about that abundance not as decoration piled on top of an image, but as part of the image's way of asking to be looked at."],
             ]],
             ['h3', "My instinct to edit"],
             ['p', [
-                ['normal', "I often trust restraint because it feels safe. These paintings make me wonder when restraint is clarity and when it is just hesitation."],
+                ['normal', "I often trust restraint because it feels safe, legible, and easy to defend. These paintings make me wonder when restraint is clarity and when it is simply hesitation wearing a cleaner outfit. There are times when taking something away reveals what matters. There are also times when removing the strange, dense, or excessive part only makes the work less willing to tell the truth about its own appetite."],
             ]],
             ['h3', "Decoration as attention"],
             ['p', [
-                ['normal', "The detail does not feel like an afterthought to me. It feels like a record of someone staying with a surface long enough to keep seeing more in it."],
+                ['normal', "The detail does not feel like an afterthought to me. It feels like a record of someone staying with a surface long enough to keep seeing more in it, even after a quicker version might have seemed finished. I find myself looking at repeating shapes and wondering how repetition changes when it is made with real attention. It can become less like filler and more like a rhythm that keeps the eye awake."],
             ]],
-            ['h3', "Not needing to resolve it"],
+            ['h3', "Pleasure and discomfort"],
             ['p', [
-                ['normal', "Some parts draw me in while others make me pull back. I like that I do not have to choose a single clean response."],
+                ['normal', "Some parts draw me in while others make me pull back, and I like that I do not have to choose a single clean response. Beauty can be immediate, but it can also feel withholding or a little too close. The ornate surface does not erase the faces at its center, and the faces do not make the surface behave. That unresolved relationship is part of why I keep returning to the work in my mind."],
+            ]],
+            ['h3', "A different kind of flatness"],
+            ['p', [
+                ['normal', "I am interested in the way flatness can still feel layered. A patterned field may seem to press forward while a face appears quiet inside it, and the space becomes less like a window than a surface with its own gravity. I do not have the vocabulary of an art historian for all of this. I only know that the arrangement slows my looking down because it refuses to give depth in the usual, comfortable way."],
+            ]],
+            ['h3', "Attention takes time"],
+            ['p', [
+                ['normal', "The more I look, the less useful a quick verdict becomes. I might first call something beautiful, busy, excessive, or strange, but none of those words has much patience in it. Attention changes what I can see because it makes room for a second and third impression. I have been trying to value that longer looking without pretending it always leads to certainty."],
             ]],
             ['h3', "Permission to notice excess"],
             ['p', [
-                ['normal', "I leave with a renewed respect for work that risks being too ornate, too intimate, or too strange. It can hold more feeling than I first give it credit for."],
+                ['normal', "I leave with a renewed respect for work that risks being too ornate, too intimate, or too strange. Excess can be empty, of course, but it can also carry feeling that restraint would flatten. What I take from Klimt is not permission to add more to everything. It is a reminder to ask whether my urge to simplify comes from discernment or from fear of being seen wanting too much."],
+            ]],
+            ['h3', "Looking again"],
+            ['p', [
+                ['normal', "Looking again is different from merely looking longer, because it asks me to give up the small confidence of a first impression. The first glance can be dazzled by the gold or caught by the most obvious figure, while the next glance begins to notice how many decisions are quietly holding the composition together and how those decisions move the eye away from the obvious center. I do not need to solve those decisions to feel their effect, or to turn them into an argument about what the painting finally means. It is enough to recognize that my first response was partial and that the painting has not run out of things to say after I have used up my quickest description of it. That possibility makes the experience feel generous without making it easy, which is one of the forms of generosity I value most in art."],
             ]],
         ]
     },
@@ -129,28 +177,40 @@ export default [
         panelImage: "PDX_a_82obo",
         title: "What Music Has Taught Me About Attention",
         tagLine: "A few small observations about listening all the way through.",
-        dated: "13th February, 2025 - Toronto, ON",
+        dated: "13th February, 2025 - Peru",
         description: [
             ['img', "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1600&q=80"],
             ['h3', "The urge to skip ahead"],
             ['p', [
-                ['normal', "I catch myself wanting the familiar part of a song before it arrives. Listening has made that impatience easier to spot."],
+                ['normal', "I catch myself wanting the familiar part of a song before it arrives. Sometimes I want the chorus, sometimes the line I already know, and sometimes I only want the feeling I associate with it. Listening has made that impatience easier to spot. The beginning of a song can seem like an obstacle when I have already decided which moment is supposed to matter."],
             ]],
             ['h3', "Hearing the room around it"],
             ['p', [
-                ['normal', "A track can change when I notice the space around a voice or the small sound at the end of a phrase. There is often more happening than I first hear."],
+                ['normal', "A track can change when I notice the space around a voice, the small sound at the end of a phrase, or an instrument that has been there quietly all along. There is often more happening than I first hear because I tend to follow the loudest or most familiar thing. I find that a second listen is not simply repetition. It is a chance to let a different detail become the center for a while."],
             ]],
             ['h3', "Repetition is not empty"],
             ['p', [
-                ['normal', "The same song can meet me differently on different days. The song stays put, but my attention brings a different weather to it."],
+                ['normal', "The same song can meet me differently on different days. The song stays put, but my attention brings a different weather to it, and that changes what seems important. A melody I once passed over can suddenly feel like the whole reason to return. I have been thinking about how repetition can reveal change, even when the object of attention has not changed at all."],
             ]],
             ['h3', "Letting a pause remain a pause"],
             ['p', [
-                ['normal', "I like the moments where nothing rushes in to fill the space. They make the next sound feel less automatic."],
+                ['normal', "I like the moments where nothing rushes in to fill the space. A pause, a breath, or a held note can make the next sound feel less automatic, as if it has been given room to arrive. I notice how quickly I want that space to be filled when I am distracted. When I let it remain a pause, the silence starts to feel like part of the music rather than an absence inside it."],
+            ]],
+            ['h3', "Mood is part of the room"],
+            ['p', [
+                ['normal', "I do not arrive at music as a blank listener. A tired day, a restless morning, or a quiet evening changes what I hear and what I need from it. That does not make the listening less real. It makes it more honest to admit that the room inside me is part of the experience too."],
+            ]],
+            ['h3', "Listening without collecting"],
+            ['p', [
+                ['normal', "There is an impulse to turn every song into something I should rank, recommend, understand, or attach to a larger story. I am trying to leave a little space between hearing something and making use of it. Some music can simply accompany a walk, a meal, or a moment of looking out a window. I find that this kind of listening has its own value precisely because it does not need to prove anything."],
             ]],
             ['h3', "Listening as a small practice"],
             ['p', [
-                ['normal', "I do not always listen carefully, and that is fine. But when I do, it reminds me that attention can be quiet, ordinary, and enough for a few minutes."],
+                ['normal', "I do not always listen carefully, and that is fine. But when I do, it reminds me that attention can be quiet, ordinary, and enough for a few minutes. I am not trying to become a better listener in any heroic sense. I only want to notice when I have rushed past something that was already asking to be heard."],
+            ]],
+            ['h3', "The end of a song"],
+            ['p', [
+                ['normal', "I am often surprised by how quickly I move on when a song ends, as though its final seconds were only a signal to begin choosing the next thing from an endless shelf. Another track begins, a notification appears, or I reach for something else before the last sound has fully disappeared and before I have noticed what the ending changed in the room around me. Sometimes I try to wait for a few seconds instead, not as a rule but as a way of letting the song finish on its own terms and allowing my response to arrive after it. The silence afterward is not profound, but it lets the song keep its shape for a moment before it becomes part of a stream of other things competing for my attention, each asking to be chosen quickly. I find that small delay helps me hear the ending as an ending, rather than as the brief gap before I ask for more, and it makes the next sound feel slightly less inevitable and more like a new arrival with its own small demands."],
             ]],
         ]
     },
