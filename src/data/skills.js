@@ -5,10 +5,10 @@ export default [
     skills: [
       { title: "OpenAI API", level: "Production", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg", detail: "LLM application and chatbot delivery" },
       { title: "Retrieval-Augmented Generation", level: "Production", icon: "https://www.pinecone.io/images/Pinecone-Logo-Black.png", detail: "Grounded retrieval workflows for customer-facing AI" },
-      { title: "pgvector", level: "Production", icon: "https://cdn.simpleicons.org/postgresql/FFFFFF", detail: "Vector search for production RAG applications" },
+      { title: "pgvector", level: "Production", icon: "https://cdn.simpleicons.org/postgresql/FFFFFF", icons: ["https://cdn.simpleicons.org/postgresql/FFFFFF", "https://cdn.simpleicons.org/supabase/FFFFFF"], detail: "Vector search for production RAG applications" },
       { title: "Whisper", level: "Production", icon: "https://cdn.prod.website-files.com/682f84b3838c89f8ff7667db/683215c6f233131a07d8bafc_navbar_logo.svg", detail: "Ambient transcription and clinical note workflows" },
       { title: "LangChain", level: "Strong", icon: "https://cdn.simpleicons.org/langchain/FFFFFF", detail: "LLM orchestration and retrieval application patterns" },
-      { title: "AI Data Pipelines", level: "Production", icon: "https://cdn.simpleicons.org/postgresql/FFFFFF", detail: "Structured extraction, validation, and model-ready data" }
+      { title: "AI Data Pipelines", level: "Production", icon: "https://cdn.simpleicons.org/postgresql/FFFFFF", icons: ["https://cdn.simpleicons.org/postgresql/FFFFFF", "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg", "https://cdn.simpleicons.org/neo4j/FFFFFF"], detail: "Structured extraction, validation, and model-ready data" }
     ]
   },
   {
