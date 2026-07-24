@@ -55,13 +55,15 @@
     flex-direction: column;
     font-family: Montserrat, sans-serif;
     overflow: hidden;
-    transition: border-color 160ms ease, transform 160ms ease, background 160ms ease;
+    transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    will-change: transform;
 }
 
 .skillCard:hover {
     background: rgba(255, 255, 255, 0.09);
     border-color: rgba(255, 207, 74, 0.75);
-    transform: translateY(-3px);
+    box-shadow: 0 0.9rem 2rem rgba(0, 0, 0, 0.3), 0 0 1.35rem rgba(255, 207, 74, 0.1);
+    transform: translateY(-5px);
 }
 
 .skillIconFrame {
@@ -70,17 +72,28 @@
     display: flex;
     height: 5.25rem;
     justify-content: center;
+    overflow: hidden;
     padding: 1rem;
     position: relative;
 }
 
 .skillIcon {
-    height: 100%;
+    display: block;
+    height: auto;
+    margin: auto;
+    max-height: 100%;
     max-width: 100%;
     object-fit: contain;
     position: relative;
-    width: 100%;
+    transform-origin: center;
+    transition: filter 180ms ease, transform 180ms ease;
+    width: auto;
     z-index: 1;
+}
+
+.skillCard:hover .skillIcon {
+    filter: drop-shadow(0 0 0.45rem rgba(255, 207, 74, 0.35));
+    transform: scale(1.08) rotate(-2deg);
 }
 
 .skillIconFrame[data-fallback]::after {
@@ -98,7 +111,15 @@
     position: absolute;
     text-transform: uppercase;
     top: 0;
+    transform-origin: center;
+    transition: color 180ms ease, text-shadow 180ms ease, transform 180ms ease;
     width: 100%;
+}
+
+.skillCard:hover .skillIconFrame[data-fallback]::after {
+    color: #ffe08a;
+    text-shadow: 0 0 0.7rem rgba(255, 207, 74, 0.45);
+    transform: scale(1.08) rotate(-2deg);
 }
 
 .skillCardBody {
@@ -147,6 +168,20 @@
     background: rgba(183, 151, 255, 0.14);
     border-color: rgba(183, 151, 255, 0.36);
     color: #cbb6ff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skillCard,
+    .skillIcon,
+    .skillIconFrame[data-fallback]::after {
+        transition: none;
+    }
+
+    .skillCard:hover,
+    .skillCard:hover .skillIcon,
+    .skillCard:hover .skillIconFrame[data-fallback]::after {
+        transform: none;
+    }
 }
 
 @media screen and (max-width: 650px) {
