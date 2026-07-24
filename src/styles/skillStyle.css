@@ -1,110 +1,83 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Inter:700&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Maven+Pro&display=swap");
 
-.techPanel {
+.skillsIntro {
+    max-width: 50rem;
+    margin: -1.25rem 0 3rem;
+    color: #d4d4d4;
+    font-family: Montserrat, sans-serif;
+    font-size: 1.08rem;
+    line-height: 1.7;
+}
+
+.skillsGroups {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-    grid-gap: 1em;
+    gap: 1.5rem;
+}
+
+.skillGroup {
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.75rem;
 }
 
 .sectionHeader {
-    margin: 2% 1%;
-    width: 100%;
+    margin: 0 0 1.1rem;
 }
 
-.techItemPanel {
-    min-width: 10rem;
+.sectionHeader h2 {
+    color: #fff;
+    font-family: Gilroy-Bold, Montserrat, sans-serif;
+    font-size: 1.35rem;
+    margin: 0 0 0.55rem;
 }
 
-.techItemImage {
-    height: 10rem;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    border-radius: 15px;
-    transition: 1s;
-}
-
-.techItemWrapper {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    padding-top: 0.65rem;
-    padding-bottom: 0.65rem;
-    max-width: 23.1rem;
-    float: left;
-    transition: 1s;
-    cursor: pointer;
-}
-
-.techItemWrapper:hover .techItemImage {
-    border-radius: 15px 15px 0 0;
-    pointer: cursor;
-}
-
-.techName {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-left: 12px;
-    padding-right: 12px;
-}
-
-.techTag {
-    padding: 2px 15px;
-    font-size: 14px;
-    line-height: 1.5;
-    background: #53f567;
-    width: fit-content;
-    border-radius: 9999px;
-    text-align: center;
-    font-family: Gilroy-Medium;
-    color: #FFF;
-    margin-bottom: 7px;
-}
-
-.techSubTitle {
-    color: #FFF;
-    font-size: 1.5rem;
-    font-weight: 700;
+.sectionHeader p {
+    color: #c9c9c9;
+    font-family: Montserrat, sans-serif;
+    line-height: 1.55;
     margin: 0;
-    font-family: Gilroy-Bold;
-    line-height: 1;
-    margin-bottom: 7px;
 }
 
-.techDescription {
-    color: #FFF;
+.skillList {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem 1rem;
+    list-style: none;
     margin: 0;
-    line-height: 1.5;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 1.125rem;
-    margin-bottom: 7px;
+    padding: 0;
 }
 
-@media screen and (max-width: 500px) {
-    .techItemWrapper {
-        width: 100%;
-        max-width: 100%;
+.skillList li {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    color: #f2f2f2;
+    display: flex;
+    font-family: Montserrat, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    min-height: 3.25rem;
+    padding: 0.7rem 0.85rem;
+}
+
+.skillList li::before {
+    color: #ffcf4a;
+    content: "•";
+    font-size: 1.25rem;
+    margin-right: 0.55rem;
+}
+
+@media screen and (max-width: 650px) {
+    .skillsIntro {
+        margin-bottom: 2rem;
     }
-}
 
-@media (min-width: 768px) and (max-width: 1024px) {
-    .techItemWrapper {
-        width: 50%;
-        max-width: 50%;
+    .skillGroup {
+        padding: 1.25rem;
     }
-}
 
-.techItem {
-    overflow: hidden;
-    border-radius: 15px;
-}
-
-.techItem:hover {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    background-color: #000;
-    pointer: cursor;
+    .skillList {
+        grid-template-columns: 1fr;
+    }
 }
