@@ -8,6 +8,7 @@ import {
   faBullseye,
   faAddressBook,
   faBusinessTime,
+  faFileAlt,
   faLaptopCode,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -17,6 +18,9 @@ const business = (
 );
 const projects = (
   <FontAwesomeIcon className="fa-icon fa-fw" icon={faLaptopCode} />
+);
+const caseStudies = (
+  <FontAwesomeIcon className="fa-icon fa-fw" icon={faFileAlt} />
 );
 const skills = <FontAwesomeIcon className="fa-icon fa-fw " icon={faTools} />;
 const recommendation = (
@@ -37,6 +41,11 @@ export default [
     icon: business,
     label: "Experience",
     path: "/experience/",
+  },
+  {
+    icon: caseStudies,
+    label: "Case Studies",
+    path: "/case-studies/",
   },
   {
     icon: projects,

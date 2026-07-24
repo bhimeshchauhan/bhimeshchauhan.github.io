@@ -1,7 +1,12 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const path = require("path");
+const caseStudies = require("./src/data/caseStudies");
 
- // You can delete this file if you're not using it
+exports.createPages = ({ actions }) => {
+  caseStudies.forEach(({ slug }) => {
+    actions.createPage({
+      path: `/case-studies/${slug}/`,
+      component: path.resolve("./src/templates/case-study.js"),
+      context: { slug }
+    });
+  });
+};

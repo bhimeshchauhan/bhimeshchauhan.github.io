@@ -1,12 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
-import { siteMeta, personSchema } from '../data/Seo'
-import { Helmet } from 'react-helmet'
-import favicon from '../assets/images/bhimesh-favicon.svg'
 import blueBg from '../assets/images/blue-bg.png'
 import { Location } from '@reach/router'
+import Seo from './Seo'
 
 // import Header from '../components/Header/Header'
 // import Footer from '../components/Footer/Footer'
@@ -32,49 +29,26 @@ const Wrapper = styled.div`
   }
 `;
 
-const Layout = ({ children }) => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-          }
-        }
-      }
-    `}
-    render={data => (
-      <>
-      <Helmet
-        title={data.site.siteMetadata.title}
-        meta={[
-          { name: 'description', content: siteMeta.description },
-          { name: 'keywords', content: siteMeta.keywords.join(", ") },
-          { name: 'author', content: siteMeta.author },
-          { name: 'copyright', content: siteMeta.copyright },
-        ]}
-        link={[
-          { rel: 'shortcut icon', type: 'image/png', href: `${favicon}` }
-        ]}
-      >
-        <script type="application/ld+json">{JSON.stringify(personSchema)}</script>
-      </Helmet>
-        <Location>
+const Layout = ({ children, seo = {} }) => (
+  <>
+    <Location>
         {({ location }) => {
-          return <Wrapper className={location.pathname === "/" ? "cutBackground" :''}  >
-          <Header />
-            {children}
-          <Footer footerClass={location.pathname === "/" ? 'footerInitial' :'footerAbsolute'} />
-        </Wrapper>
+          return <>
+            <Seo {...seo} pathname={seo.pathname || location.pathname} />
+            <Wrapper className={location.pathname === "/" ? "cutBackground" :''}>
+              <Header />
+              {children}
+              <Footer footerClass={location.pathname === "/" ? 'footerInitial' :'footerAbsolute'} />
+            </Wrapper>
+          </>
         }}
-        </Location>
-      </>
-    )}
-  />
+    </Location>
+  </>
 )
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  seo: PropTypes.object,
 }
 
 export default Layout
