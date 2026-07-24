@@ -20,11 +20,31 @@ const Skills = () => (
                 <h2>{group.title}</h2>
                 <p>{group.summary}</p>
               </div>
-              <ul className="skillList">
+              <div className="skillGrid">
                 {group.skills.map((item) => (
-                  <li key={item}>{item}</li>
+                  <article className="skillCard" key={item.title}>
+                    <div className="skillIconFrame">
+                      <img
+                        src={item.icon}
+                        alt=""
+                        className="skillIcon"
+                        loading="lazy"
+                        onError={(event) => {
+                          event.currentTarget.style.display = "none";
+                          event.currentTarget.parentElement.dataset.fallback = item.title.slice(0, 2);
+                        }}
+                      />
+                    </div>
+                    <div className="skillCardBody">
+                      <span className={`skillLevel skillLevel--${item.level.toLowerCase().replaceAll(" ", "-")}`}>
+                        {item.level}
+                      </span>
+                      <h3>{item.title}</h3>
+                      <p>{item.detail}</p>
+                    </div>
+                  </article>
                 ))}
-              </ul>
+              </div>
             </section>
           ))}
         </div>
