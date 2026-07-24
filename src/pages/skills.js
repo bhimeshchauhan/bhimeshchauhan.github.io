@@ -28,7 +28,6 @@ const Skills = () => (
               <div className="skillGrid">
                 {group.skills.map((item) => {
                   const isIconCluster = Array.isArray(item.icons) && item.icons.length > 0;
-                  const clusterCenter = isIconCluster ? (item.icons.length - 1) / 2 : 0;
 
                   return (
                     <article className="skillCard" key={item.title}>
@@ -36,22 +35,30 @@ const Skills = () => (
                         {isIconCluster ? (
                           <div className="skillIconCluster">
                             {item.icons.map((icon, index) => {
-                              const fanIndex = index - clusterCenter;
+                              const bubbleOffset = [-0.28, 0.22, -0.1][index % 3];
 
                               return (
-                                <img
-                                  src={icon}
-                                  alt=""
-                                  className="skillClusterIcon"
-                                  loading="lazy"
+                                <span
+                                  className="skillBubble"
+                                  role="img"
+                                  aria-label={`${item.title} technology icon ${index + 1} of ${item.icons.length}`}
+                                  tabIndex="0"
                                   key={icon}
                                   style={{
-                                    "--icon-offset": `${fanIndex * 0.85}rem`,
-                                    "--icon-rotation": `${fanIndex * 8}deg`,
-                                    zIndex: index + 1,
+                                    "--bubble-delay": `${index * -0.8}s`,
+                                    "--bubble-offset": `${bubbleOffset}rem`,
                                   }}
-                                  onError={(event) => showIconFallback(event, item.title)}
-                                />
+                                >
+                                  <span className="skillBubbleSurface">
+                                    <img
+                                      src={icon}
+                                      alt=""
+                                      className="skillClusterIcon"
+                                      loading="lazy"
+                                      onError={(event) => showIconFallback(event, item.title)}
+                                    />
+                                  </span>
+                                </span>
                               );
                             })}
                           </div>
