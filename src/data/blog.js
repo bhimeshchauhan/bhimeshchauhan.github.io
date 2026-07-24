@@ -1,5 +1,160 @@
 export default [
     {
+        id: 8,
+        author: "Bhimesh Chauhan",
+        panelImage: "sJ6az6-T1u8",
+        title: "Boxing and the Practice of Staying Present",
+        tagLine: "A few notes from learning how quickly attention can leave the room.",
+        dated: "28th June, 2026 - Toronto, ON",
+        description: [
+            ['img', "https://images.unsplash.com/flagged/photo-1574005280900-3ff489fa1f70?auto=format&fit=crop&w=1600&q=80"],
+            ['h3', "The first few minutes"],
+            ['p', [
+                ['normal', "I notice how much of my mind arrives somewhere else. I can be standing still and already thinking about the next thing I need to do."],
+            ]],
+            ['h3', "A simple instruction"],
+            ['p', [
+                ['normal', "When the focus is on breathing, stance, and one movement at a time, there is less room for rehearsing the rest of the day."],
+            ]],
+            ['h3', "What I cannot fake"],
+            ['p', [
+                ['normal', "Tension shows up quickly. A clenched jaw or raised shoulder tells the truth before I have had time to explain it away."],
+            ]],
+            ['h3', "The quiet between rounds"],
+            ['p', [
+                ['normal', "I have come to like the small pause to reset. It feels ordinary, but it asks for more honesty than I expect."],
+            ]],
+            ['h3', "Leaving with less noise"],
+            ['p', [
+                ['normal', "I do not leave with a big lesson. I leave a little more aware of where my attention went, and how gently I can bring it back."],
+            ]],
+        ]
+    },
+    {
+        id: 7,
+        author: "Bhimesh Chauhan",
+        panelImage: "9h_bJdGqzCk",
+        title: "Horse Riding, Balance, and Trust",
+        tagLine: "Learning that balance is more listening than control.",
+        dated: "21st February, 2026 - Toronto, ON",
+        description: [
+            ['img', "https://images.unsplash.com/photo-1594768816441-1dd241ffaa67?auto=format&fit=crop&w=1600&q=80"],
+            ['h3', "A different kind of balance"],
+            ['p', [
+                ['normal', "I used to think balance meant holding myself perfectly still. It has felt more like making small adjustments before they become obvious."],
+            ]],
+            ['h3', "Paying attention to another body"],
+            ['p', [
+                ['normal', "There is a useful humility in noticing that my mood and movements are not private. They become part of what is being communicated."],
+            ]],
+            ['h3', "The temptation to overcorrect"],
+            ['p', [
+                ['normal', "When I feel uncertain, my instinct is to do too much. The better response is often smaller, slower, and easier to feel."],
+            ]],
+            ['h3', "Trust without certainty"],
+            ['p', [
+                ['normal', "Trust has not meant assuming everything will go smoothly. It has meant showing up carefully enough to respond when it does not."],
+            ]],
+            ['h3', "What stays with me"],
+            ['p', [
+                ['normal', "I keep thinking about how balance depends on attention. It is not a fixed position so much as a conversation that keeps changing."],
+            ]],
+        ]
+    },
+    {
+        id: 6,
+        author: "Bhimesh Chauhan",
+        panelImage: "Tq4YjCa2BSc",
+        title: "Learning to Think With My Hands Through Sculpting",
+        tagLine: "Notes on making room for material, friction, and surprise.",
+        dated: "9th October, 2025 - Toronto, ON",
+        description: [
+            ['img', "https://images.unsplash.com/photo-1422246358533-95dcd3d48961?auto=format&fit=crop&w=1600&q=80"],
+            ['h3', "Before there is a plan"],
+            ['p', [
+                ['normal', "I am used to beginning with words. Working with material asks me to begin by looking, touching, and waiting a little longer."],
+            ]],
+            ['h3', "The resistance matters"],
+            ['p', [
+                ['normal', "A surface that will not do exactly what I expect can be frustrating. It can also point toward a shape I would not have imagined on a screen."],
+            ]],
+            ['h3', "Small decisions"],
+            ['p', [
+                ['normal', "The work seems to move through tiny choices: add, remove, turn, leave it alone. Each one is modest, but together they change the whole thing."],
+            ]],
+            ['h3', "Letting it be awkward"],
+            ['p', [
+                ['normal', "I am learning not to rush past the clumsy stage. Sometimes the awkward part is simply evidence that my hands are still finding their way."],
+            ]],
+            ['h3', "A slower kind of thought"],
+            ['p', [
+                ['normal', "Sculpting gives me a way to think that is less tidy than a sentence. I find that reassuring, especially when I do not yet know what I mean."],
+            ]],
+        ]
+    },
+    {
+        id: 5,
+        author: "Bhimesh Chauhan",
+        panelImage: "_4qHg0z1bfE",
+        title: "Klimt and the Courage to Make Work That Is Too Much",
+        tagLine: "What I notice when decoration refuses to apologize.",
+        dated: "17th June, 2025 - Toronto, ON",
+        description: [
+            ['img', "https://images.unsplash.com/photo-1775343970376-3bb5fd1171b6?auto=format&fit=crop&w=1600&q=80"],
+            ['h3', "Looking for the edges"],
+            ['p', [
+                ['normal', "When I look at Klimt, I keep noticing how much is allowed to happen at once. Pattern, gold, faces, and flatness all seem to make room for one another."],
+            ]],
+            ['h3', "My instinct to edit"],
+            ['p', [
+                ['normal', "I often trust restraint because it feels safe. These paintings make me wonder when restraint is clarity and when it is just hesitation."],
+            ]],
+            ['h3', "Decoration as attention"],
+            ['p', [
+                ['normal', "The detail does not feel like an afterthought to me. It feels like a record of someone staying with a surface long enough to keep seeing more in it."],
+            ]],
+            ['h3', "Not needing to resolve it"],
+            ['p', [
+                ['normal', "Some parts draw me in while others make me pull back. I like that I do not have to choose a single clean response."],
+            ]],
+            ['h3', "Permission to notice excess"],
+            ['p', [
+                ['normal', "I leave with a renewed respect for work that risks being too ornate, too intimate, or too strange. It can hold more feeling than I first give it credit for."],
+            ]],
+        ]
+    },
+    {
+        id: 4,
+        author: "Bhimesh Chauhan",
+        panelImage: "PDX_a_82obo",
+        title: "What Music Has Taught Me About Attention",
+        tagLine: "A few small observations about listening all the way through.",
+        dated: "13th February, 2025 - Toronto, ON",
+        description: [
+            ['img', "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1600&q=80"],
+            ['h3', "The urge to skip ahead"],
+            ['p', [
+                ['normal', "I catch myself wanting the familiar part of a song before it arrives. Listening has made that impatience easier to spot."],
+            ]],
+            ['h3', "Hearing the room around it"],
+            ['p', [
+                ['normal', "A track can change when I notice the space around a voice or the small sound at the end of a phrase. There is often more happening than I first hear."],
+            ]],
+            ['h3', "Repetition is not empty"],
+            ['p', [
+                ['normal', "The same song can meet me differently on different days. The song stays put, but my attention brings a different weather to it."],
+            ]],
+            ['h3', "Letting a pause remain a pause"],
+            ['p', [
+                ['normal', "I like the moments where nothing rushes in to fill the space. They make the next sound feel less automatic."],
+            ]],
+            ['h3', "Listening as a small practice"],
+            ['p', [
+                ['normal', "I do not always listen carefully, and that is fine. But when I do, it reminds me that attention can be quiet, ordinary, and enough for a few minutes."],
+            ]],
+        ]
+    },
+    {
         id: 1,
         author: "Bhimesh Chauhan",
         panelImage: "da0acHr41p8",
