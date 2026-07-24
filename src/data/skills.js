@@ -58,7 +58,7 @@ export default [
     summary: "Connected devices, mobile control surfaces, and operational integrations.",
     skills: [
       { title: "MQTT", level: "Production", icon: "https://cdn.simpleicons.org/mqtt/FFFFFF", detail: "Device telemetry and remote-control messaging" },
-      { title: "Modbus", level: "Production", icon: "https://cdn.simpleicons.org/modbus/FFFFFF", detail: "RS485, TCP, and serial embedded-device integrations" },
+      { title: "Modbus", level: "Production", icon: "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/cplusplus.svg", detail: "RS485, TCP, and serial embedded-device integrations" },
       { title: "Android", level: "Production", icon: "https://cdn.simpleicons.org/android/FFFFFF", detail: "Native monitoring and remote-control applications" },
       { title: "TensorFlow", level: "Strong", icon: "https://cdn.simpleicons.org/tensorflow/FFFFFF", detail: "Neural-network models for automation workflows" },
       { title: "PyTorch", level: "Working knowledge", icon: "https://cdn.simpleicons.org/pytorch/FFFFFF", detail: "Model experimentation for prediction systems" },
