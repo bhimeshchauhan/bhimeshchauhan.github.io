@@ -92,9 +92,36 @@
     z-index: 1;
 }
 
+.skillIconCluster {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+}
+
+.skillClusterIcon {
+    filter: brightness(0) invert(1);
+    height: 2.05rem;
+    max-height: 78%;
+    max-width: 2.05rem;
+    object-fit: contain;
+    position: absolute;
+    transform: translateX(var(--icon-offset)) rotate(var(--icon-rotation));
+    transform-origin: center;
+    transition: filter 180ms ease, transform 180ms ease;
+    width: 2.05rem;
+}
+
 .skillCard:hover .skillIcon {
     filter: brightness(0) invert(1) drop-shadow(0 0 0.45rem rgba(255, 207, 74, 0.35));
     transform: scale(1.08) rotate(-2deg);
+}
+
+.skillCard:hover .skillClusterIcon {
+    filter: brightness(0) invert(1) drop-shadow(0 0 0.45rem rgba(255, 207, 74, 0.35));
+    transform: translateX(calc(var(--icon-offset) * 1.65)) rotate(calc(var(--icon-rotation) * 1.25)) scale(1.12);
 }
 
 .skillIconFrame[data-fallback]::after {
@@ -174,12 +201,14 @@
 @media (prefers-reduced-motion: reduce) {
     .skillCard,
     .skillIcon,
+    .skillClusterIcon,
     .skillIconFrame[data-fallback]::after {
         transition: none;
     }
 
     .skillCard:hover,
     .skillCard:hover .skillIcon,
+    .skillCard:hover .skillClusterIcon,
     .skillCard:hover .skillIconFrame[data-fallback]::after {
         transform: none;
     }

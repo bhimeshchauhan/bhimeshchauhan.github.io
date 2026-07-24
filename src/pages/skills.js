@@ -4,6 +4,11 @@ import "../styles/skillStyle.css";
 import skillGroups from "../data/skills";
 import { ExperienceWrapper, WorkWrapper } from "../styles/workStyle.js";
 
+const showIconFallback = (event, title) => {
+  event.currentTarget.style.display = "none";
+  event.currentTarget.closest(".skillIconFrame").dataset.fallback = title.slice(0, 2);
+};
+
 const Skills = () => (
   <Layout className="my-stacks">
     <ExperienceWrapper>
@@ -21,29 +26,55 @@ const Skills = () => (
                 <p>{group.summary}</p>
               </div>
               <div className="skillGrid">
-                {group.skills.map((item) => (
-                  <article className="skillCard" key={item.title}>
-                    <div className="skillIconFrame">
-                      <img
-                        src={item.icon}
-                        alt=""
-                        className="skillIcon"
-                        loading="lazy"
-                        onError={(event) => {
-                          event.currentTarget.style.display = "none";
-                          event.currentTarget.parentElement.dataset.fallback = item.title.slice(0, 2);
-                        }}
-                      />
-                    </div>
-                    <div className="skillCardBody">
-                      <span className={`skillLevel skillLevel--${item.level.toLowerCase().replaceAll(" ", "-")}`}>
-                        {item.level}
-                      </span>
-                      <h3>{item.title}</h3>
-                      <p>{item.detail}</p>
-                    </div>
-                  </article>
-                ))}
+                {group.skills.map((item) => {
+                  const isIconCluster = Array.isArray(item.icons) && item.icons.length > 0;
+                  const clusterCenter = isIconCluster ? (item.icons.length - 1) / 2 : 0;
+
+                  return (
+                    <article className="skillCard" key={item.title}>
+                      <div className={`skillIconFrame${isIconCluster ? " skillIconFrame--cluster" : ""}`}>
+                        {isIconCluster ? (
+                          <div className="skillIconCluster">
+                            {item.icons.map((icon, index) => {
+                              const fanIndex = index - clusterCenter;
+
+                              return (
+                                <img
+                                  src={icon}
+                                  alt=""
+                                  className="skillClusterIcon"
+                                  loading="lazy"
+                                  key={icon}
+                                  style={{
+                                    "--icon-offset": `${fanIndex * 0.85}rem`,
+                                    "--icon-rotation": `${fanIndex * 8}deg`,
+                                    zIndex: index + 1,
+                                  }}
+                                  onError={(event) => showIconFallback(event, item.title)}
+                                />
+                              );
+                            })}
+                          </div>
+                        ) : (
+                          <img
+                            src={item.icon}
+                            alt=""
+                            className="skillIcon"
+                            loading="lazy"
+                            onError={(event) => showIconFallback(event, item.title)}
+                          />
+                        )}
+                      </div>
+                      <div className="skillCardBody">
+                        <span className={`skillLevel skillLevel--${item.level.toLowerCase().replaceAll(" ", "-")}`}>
+                          {item.level}
+                        </span>
+                        <h3>{item.title}</h3>
+                        <p>{item.detail}</p>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
             </section>
           ))}
