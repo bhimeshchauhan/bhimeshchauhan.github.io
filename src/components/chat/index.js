@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import 'react-chat-widget/lib/styles.css';
 import '../../styles/chatStyles.css';
 import DOMPurify from 'dompurify';
+import { useAssistantOnline } from '../../utils/assistant';
 
 // Lazy-load the Widget to prevent SSR issues
 const ChatWidget = React.lazy(() => import('react-chat-widget').then((module) => ({ default: module.Widget })));
 
 const ChatComponent = () => {
   const [isBrowser, setIsBrowser] = useState(false);
+  const online = useAssistantOnline();
 
   useEffect(() => {
     setIsBrowser(true); // Ensure this runs only in the browser
@@ -34,6 +36,22 @@ const ChatComponent = () => {
       return () => clearTimeout(timer);
     }
   }, [isBrowser]);
+
+  // Questions from the hero "Ask my portfolio" box.
+  useEffect(() => {
+    if (!isBrowser || !online) return undefined;
+    const onAsk = async (e) => {
+      const q = String(e.detail || '').trim();
+      if (!q) return;
+      const { toggleWidget, addUserMessage, isWidgetOpened } = await import('react-chat-widget');
+      if (!isWidgetOpened()) toggleWidget();
+      addUserMessage(q);
+      handleNewUserMessage(q);
+    };
+    window.addEventListener('ask-assistant', onAsk);
+    return () => window.removeEventListener('ask-assistant', onAsk);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isBrowser, online]);
 
   // Sanitize input to prevent XSS attacks
   const sanitizeInput = (input) => {
@@ -122,8 +140,8 @@ const ChatComponent = () => {
     }
   };
 
-  if (!isBrowser) {
-    // Prevent rendering during SSR
+  if (!isBrowser || !online) {
+    // Prevent rendering during SSR, and hide the widget while the assistant is offline
     return null;
   }
 

@@ -111,7 +111,7 @@ export default [
     description:
       "WebGL-based procedural terrain using Gaussian noise + mesh generation; interactive camera + shading pipeline; focused on geometry + GPU rendering fundamentals.",
     iframe:
-      '<iframe width="100%" height="300" src="//jsfiddle.net/bchauhan/vxoa2jzu/5/embedded/result/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>',
+      '<iframe title="Procedural terrain demo" width="100%" height="420" src="/terrain-embed" style="border:none;border-radius:4px;background:#0d0f11" loading="lazy"></iframe>',
     year: "2020",
     techUsed: "Three.js, WebGL, GLSL, Procedural Noise, Frustum Culling"
   },

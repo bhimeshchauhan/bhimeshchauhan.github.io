@@ -303,16 +303,31 @@ export const FlowDiagram = styled.ol`
   padding: 0 !important;
 
   li {
-    background: rgba(117, 162, 237, 0.17);
-    border: 1px solid rgba(166, 204, 255, 0.35);
+    flex: 1 1 140px;
+    margin: 0 !important;
+    position: relative;
+  }
+  li button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 12px;
     color: #ffffff;
-    flex: 1 1 140px;
+    cursor: pointer;
+    font: inherit;
     font-weight: 600;
-    margin: 0 !important;
+    height: 100%;
     padding: 0.8rem 1rem;
-    position: relative;
     text-align: center;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    width: 100%;
+  }
+  li button:hover,
+  li button.on {
+    background: rgba(255, 180, 84, 0.16);
+    border-color: var(--accent);
+  }
+  li button.on {
+    transform: translateY(-2px);
   }
 
   li:not(:last-child)::after {
@@ -334,5 +349,64 @@ export const FlowDiagram = styled.ol`
       bottom: -1.45rem;
       transform: translateX(50%);
     }
+  }
+`;
+
+export const SourceNote = styled.p`
+  color: var(--muted) !important;
+  font-size: 0.85rem;
+  margin: 1rem 0 0 !important;
+`;
+
+export const PhoneRow = styled.div`
+  align-items: flex-start;
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1.15fr repeat(3, 1fr);
+  margin-top: 1.5rem;
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr 1fr;
+    .main {
+      grid-column: 1 / -1;
+      max-width: 260px;
+      margin: 0 auto;
+    }
+  }
+  figure {
+    margin: 0;
+  }
+  figcaption {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 0.6rem;
+    text-align: center;
+  }
+`;
+
+export const PhoneFrame = styled.div`
+  background: #05060a;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  padding: 6px;
+  video,
+  img {
+    border-radius: 22px;
+    display: block;
+    height: auto;
+    width: 100%;
+  }
+`;
+
+export const FlowDetail = styled.p`
+  animation: flowIn 0.35s ease both;
+  border-left: 3px solid var(--accent);
+  color: #edf4ff !important;
+  margin: 0 0 1.5rem !important;
+  padding: 0.25rem 0 0.25rem 1rem;
+  @keyframes flowIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: none; }
   }
 `;

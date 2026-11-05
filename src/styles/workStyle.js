@@ -14,10 +14,15 @@ export const WorkWrapper = styled.div`
   margin-right: 8%;
   width: 100%;
   h1{
-    font-weight: 300;
-    padding-bottom: 35px;
-    margin-bottom: 35px;
-    border-bottom: solid 1px #ffffff;
+    color: var(--ink);
+    font-family: "Space Grotesk", "Signika", sans-serif;
+    font-size: clamp(2.2rem, 5.5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 0;
   }
   @media (max-width: 700px) {
     margin-right: 0;
@@ -26,10 +31,15 @@ export const WorkWrapper = styled.div`
 export const EdWrapper = styled.div`
   flex:1;
   h1{
-    font-weight: 300;
-    padding-bottom: 35px;
-    margin-bottom: 35px;
-    border-bottom: solid 1px #ffffff;
+    color: var(--ink);
+    font-family: "Space Grotesk", "Signika", sans-serif;
+    font-size: clamp(2.2rem, 5.5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 0;
   }
   @media (max-width: 700px) {
     margin: 40px 0;

@@ -1,40 +1,32 @@
 import styled from 'styled-components'
-import blob from '../assets/images/blob.svg'
 
 export const ContactWrapper = styled.div`
-  margin: 10% auto;
+  margin: 2rem auto;
+  max-width: 760px;
   position: relative;
   width: 100%;
-  height: 30em;
-  background-image: url(${blob});
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 10px;
-  border: 2px solid rgba(255,255,255,.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background: var(--card);
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
   @media (max-width: 700px) {
-    margin: 15% auto;
+    margin: 1rem auto;
   }
 `;
 
 export const ContactContainer = styled.div`
   background: transparent;
-  backdrop-filter: blur(8px);
   width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 10px;
-  padding: 2.5%;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
 `;
 
 export const ContactHeader = styled.h1`
-  text-align: CENTER;
-  color: #eeeeee;
-  margin-bottom: 5%;
-  font-weight: 300;
+  color: var(--ink);
+  font-family: "Space Grotesk", "Signika", sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  margin: 0 0 0.5rem;
 `
 export const ContactDetails = styled.div`
   display: flex;
@@ -69,8 +61,12 @@ export const FormContainer = styled.div`
 
 export const InputBox = styled.div`
   position: relative;
-  margin: 30px 0;
-  border-bottom: 1px solid #fff;
+  margin: 2rem 0;
+  border-bottom: 1px solid var(--line);
+  transition: border-color 0.25s ease;
+  &:focus-within {
+    border-color: var(--accent);
+  }
 `;
 
 export const Icon = styled.span`
@@ -129,10 +125,14 @@ export const Label = styled.label`
 export const FormButton = styled.button`
   width:100%;
   height:40px;
-  background-color: #7fa1e8;
+  background-color: var(--accent);
   border:none;
   border-radius:40px;
   cursor:pointer;
-  margin-top: 3em;
-  color: #fff;
+  font-weight: 700;
+  margin-top: 2rem;
+  height: 52px;
+  color: #0b0d12;
+  transition: filter 0.2s ease, transform 0.2s ease;
+  &:hover { filter: brightness(1.08); transform: translateY(-2px); }
 `

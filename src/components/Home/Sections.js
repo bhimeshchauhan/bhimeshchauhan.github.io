@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import caseStudies from "../../data/caseStudies";
 import skillGroups from "../../data/skills";
+import recommendations from "../../data/Recommendation";
 import { CountUp, Magnetic, Reveal } from "../motion/primitives";
 import { Button } from "./Hero";
 
@@ -216,6 +217,24 @@ const Card = styled(Link)`
     margin: 0;
     padding: 0.3rem 0.65rem;
   }
+  &.has-thumb { padding-right: 9.5rem; }
+  @media (max-width: 560px) {
+    &.has-thumb { padding-right: 1.75rem; }
+    .thumb { display: none; }
+  }
+  .thumb {
+    border: 4px solid #05060a;
+    border-radius: 18px;
+    bottom: -28px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+    height: auto;
+    position: absolute;
+    right: 1.5rem;
+    transform: rotate(5deg);
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    width: 112px;
+  }
+  &:hover .thumb { transform: rotate(2deg) translateY(-8px); }
   .arrow {
     font-size: 1.6rem;
     position: absolute;
@@ -238,9 +257,10 @@ export const Work = () => (
     <Grid>
       {caseStudies.map((s, i) => (
         <Reveal key={s.slug} delay={(i % 2) * 0.1}>
-          <Card to={`/case-studies/${s.slug}/`} onMouseMove={track} style={{ height: "100%" }}>
+          <Card to={`/case-studies/${s.slug}/`} onMouseMove={track} style={{ height: "100%" }} className={s.demo ? "has-thumb" : undefined}>
             <span className="num">0{i + 1}</span>
             <span className="arrow" aria-hidden="true">↗</span>
+            {s.demo && <img className="thumb" src={s.demo.poster} alt="" loading="lazy" width="384" height="784" />}
             <h3>{s.title}</h3>
             <p className="result">{s.keyResult}</p>
             <p className="sum">{s.summary}</p>
@@ -621,3 +641,50 @@ export const About = () => (
     </Reveal>
   </AboutGrid>
 );
+
+/* ---------- Social proof (verbatim excerpts from Recommendation.js) ---------- */
+const QuoteWrap = styled.section`
+  margin-top: 7rem;
+  blockquote {
+    border-left: 3px solid var(--accent);
+    margin: 0;
+    padding: 0.5rem 0 0.5rem 1.5rem;
+  }
+  blockquote p {
+    color: var(--ink);
+    font-family: ${display};
+    font-size: clamp(1.4rem, 3.2vw, 2.3rem);
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    margin: 0 0 0.9rem;
+    max-width: 52rem;
+  }
+  figcaption {
+    color: var(--muted);
+  }
+  figcaption a {
+    color: var(--accent);
+    margin-left: 0.6rem;
+    text-decoration: none;
+  }
+`;
+const EXCERPT = "His critical thinking and developer skill set helped us to further improve efficiencies throughout Nebullam as a whole.";
+export const Quote = () => {
+  const r = recommendations[0];
+  if (!r || !r.description.includes(EXCERPT)) return null;
+  return (
+    <QuoteWrap>
+      <Reveal>
+        <figure style={{ margin: 0 }}>
+          <blockquote>
+            <p>“{EXCERPT}”</p>
+          </blockquote>
+          <figcaption>
+            {r.name}, {r.designation}
+            <Link to="/recommendation/">Read the full recommendation →</Link>
+          </figcaption>
+        </figure>
+      </Reveal>
+    </QuoteWrap>
+  );
+};

@@ -219,6 +219,13 @@ const extras = {
     role: "Founder and senior founding lead engineer",
     status: "Built from zero to a production MVP with clinicians",
     flow: ["Ambient audio", "Transcription (Whisper)", "RAG retrieval + LLM", "Structured note", "Clinician review"],
+    flowDetail: [
+      "Ambient audio from the clinical conversation enters a transcription workflow designed around clinical conversations.",
+      "Speech is transcribed in real time so the conversation becomes text the rest of the system can reason over.",
+      "LLM and retrieval steps pull relevant context and transform it into structured documentation, not a generic transcript.",
+      "The output is a structured medical note that follows the shape clinicians already document in.",
+      "Clinicians review and correct the note. Their feedback guided output quality and workflow decisions."
+    ],
     keyResult: "~80% less clinician documentation time",
     results: [
       { value: "~80%", label: "less clinician documentation time" },
@@ -229,16 +236,33 @@ const extras = {
   wrangle: {
     order: 1,
     role: "Lead engineer, mobile and platform",
-    status: "Product in development",
+    status: "In active development, 890 commits since February 2026",
     flow: ["Expo / React Native app", "NestJS + Fastify API", "Supabase Postgres + private storage", "Background image processing"],
-    keyResult: "Mobile and backend platform for ranked travel micro-guides",
-    results: []
+    flowDetail: [
+      "Expo and React Native provide the mobile workflow for capture, curation and guide discovery.",
+      "A NestJS service on Fastify handles product workflows through typed TypeScript contracts shared with the app.",
+      "Supabase and Postgres hold authentication, relational product data and private media, with access controls.",
+      "Longer-running image work runs in the background so it never blocks the interactive flow."
+    ],
+    keyResult: "1,000+ tests, 46 migrations, 3 automated deploy pipelines",
+    results: [
+      { value: "1,000+", label: "automated test cases across 149 test files" },
+      { value: "46", label: "database migrations managed in source control" },
+      { value: "3", label: "automated deploy pipelines: API, mobile OTA, database" }
+    ],
+    resultsSource: "Counted from the repository, November 2026."
   },
   "pdf-to-audiobook": {
     order: 2,
     role: "Designer and engineer",
     status: "Personal project",
     flow: ["Document ingestion", "NLP analysis", "Narration plan", "Voice rendering"],
+    flowDetail: [
+      "A document ingestion step extracts text and keeps useful structural context.",
+      "Syntactic parsing, discourse-aware segmentation and NER/coreference resolution identify passages and characters.",
+      "Dialogue attribution and a narration plan map context to voice, tone and pacing.",
+      "Voice rendering produces the audiobook-style output, with resumable batch processing for long books."
+    ],
     keyResult: "End-to-end NLP and TTS pipeline with resumable batch processing",
     results: [
       { value: "NER + coref", label: "keeps characters consistent across a book" },
@@ -251,6 +275,13 @@ const extras = {
     role: "Sole engineer",
     status: "Live on this site",
     flow: ["Portfolio content", "pgvector retrieval", "Edge function", "LLM answer", "React chat UI"],
+    flowDetail: [
+      "Portfolio content is prepared for retrieval and stored as searchable vector context.",
+      "A visitor's question is embedded and matched to the most relevant context before any generation happens.",
+      "A server-side Supabase edge function builds the grounded request, keeping retrieval and model work out of the browser.",
+      "The language model answers from the retrieved context, so the portfolio stays the source of truth.",
+      "The React chat interface sanitizes the response before it reaches the page."
+    ],
     keyResult: "Retrieval-grounded assistant running on this site",
     results: []
   }

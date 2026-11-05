@@ -3,10 +3,14 @@ import styled from 'styled-components'
 export const BlogWrapper = styled.div`
   padding: 5%;
   >h1{
-    color: #fff;
-    padding-bottom: 30px;
-    border-bottom: 1px solid #fff;
-    font-weight: 300;
+    color: var(--ink);
+    font-family: "Space Grotesk", "Signika", sans-serif;
+    font-size: clamp(2.2rem, 5.5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    padding-bottom: 1.5rem;
+    border-bottom: 0;
   }
   @media (max-width: 700px) {
     padding: 10% 0 20%;

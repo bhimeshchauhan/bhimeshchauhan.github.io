@@ -9,6 +9,7 @@ import {
   useTransform
 } from "framer-motion";
 import { Magnetic } from "../motion/primitives";
+import Ask from "./Ask";
 
 const ROLES = [
   "Lead AI platform engineer",
@@ -364,6 +365,7 @@ const Hero = () => {
             <Button href="mailto:bhimeshchauhan@gmail.com">Email me</Button>
           </Magnetic>
         </Actions>
+        <Ask />
       </motion.div>
       <Visual>
         <motion.img

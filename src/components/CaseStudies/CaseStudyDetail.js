@@ -9,8 +9,12 @@ import {
   DetailShell,
   DetailSummary,
   Eyebrow,
+  FlowDetail,
   FlowDiagram,
   MetaStrip,
+  PhoneFrame,
+  PhoneRow,
+  SourceNote,
   StatGrid,
   TagList
 } from "../../styles/caseStudiesStyle";
@@ -22,6 +26,31 @@ const List = ({ items }) => (
     ))}
   </ul>
 );
+
+const Flow = ({ study }) => {
+  const [active, setActive] = React.useState(0);
+  const detail = study.flowDetail && study.flowDetail[active];
+  return (
+    <>
+      <FlowDiagram aria-label={`${study.title} architecture flow`}>
+        {study.flow.map((step, i) => (
+          <li key={step}>
+            <button
+              type="button"
+              className={i === active ? "on" : ""}
+              aria-pressed={i === active}
+              onClick={() => setActive(i)}
+              onMouseEnter={() => setActive(i)}
+            >
+              {step}
+            </button>
+          </li>
+        ))}
+      </FlowDiagram>
+      {detail && <FlowDetail aria-live="polite" key={active}>{detail}</FlowDetail>}
+    </>
+  );
+};
 
 const CaseStudyDetail = ({ study }) => (
   <DetailShell>
@@ -53,7 +82,28 @@ const CaseStudyDetail = ({ study }) => (
           ))}
         </StatGrid>
       )}
+      {study.resultsSource && <SourceNote>{study.resultsSource}</SourceNote>}
     </DetailSection>
+
+    {study.demo && (
+      <DetailSection>
+        <h2>Product in action</h2>
+        <p>{study.demo.caption}</p>
+        <PhoneRow>
+          <PhoneFrame className="main">
+            <video src={study.demo.video} poster={study.demo.poster} autoPlay loop muted playsInline preload="metadata" aria-label={`${study.title} app demo recording`} />
+          </PhoneFrame>
+          {study.demo.stills.map((s) => (
+            <figure key={s.src}>
+              <PhoneFrame>
+                <img src={s.src} alt={s.caption} loading="lazy" width="384" height="784" />
+              </PhoneFrame>
+              <figcaption>{s.caption}</figcaption>
+            </figure>
+          ))}
+        </PhoneRow>
+      </DetailSection>
+    )}
 
     <DetailSection>
       <h2>What I built</h2>
@@ -64,13 +114,7 @@ const CaseStudyDetail = ({ study }) => (
 
     <DetailSection>
       <h2>System at a glance</h2>
-      {study.flow && (
-        <FlowDiagram aria-label={`${study.title} architecture flow`}>
-          {study.flow.map((step) => (
-            <li key={step}>{step}</li>
-          ))}
-        </FlowDiagram>
-      )}
+      {study.flow && <Flow study={study} />}
       <ArchitectureList>
         {study.architecture.map((item) => (
           <li key={item}>{item}</li>
