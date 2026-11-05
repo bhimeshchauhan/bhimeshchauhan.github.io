@@ -1,0 +1,231 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Bhimesh Chauhan",
+    "label": "Lead AI Platform Engineer",
+    "image": "https://bhimeshchauhan.github.io/me.jpg",
+    "email": "bhimeshchauhan@gmail.com",
+    "url": "https://bhimeshchauhan.github.io/",
+    "summary": "Lead AI platform engineer (10+ years of production software) operating at staff scope, with experience embedded with customer teams. Builds and runs production RAG and LLM systems end to end, from retrieval architecture to launch-day reliability, and leads teams of 4-5 engineers and designers. Roles of interest: forward deployed engineer, staff / principal AI platform engineer, lead / founding engineer.",
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "bhimeshchauhan",
+        "url": "https://www.linkedin.com/in/bhimeshchauhan"
+      },
+      {
+        "network": "GitHub",
+        "username": "bhimeshchauhan",
+        "url": "https://github.com/bhimeshchauhan"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Rare Days",
+      "position": "Lead Software Engineer",
+      "startDate": "2026-01",
+      "summary": "Architected and built a multi-tenant SaaS platform with a production RAG chatbot, owning the system from retrieval architecture through backend delivery and reliable releases.",
+      "highlights": [
+        "Led Ask Kindred from SDK integration through production, serving approximately 200 daily active users across three customer companies with grounded retrieval, citations, conversation history and feedback.",
+        "Led engineering for the Jefferson Fisher launch platform: about $700K USD in total sales in under 48 hours.",
+        "Designed the multi-tenant SaaS architecture, including backend infrastructure and role-aware access controls.",
+        "Delivered 10+ CI improvements that strengthened release quality and platform reliability.",
+        "Mentored a junior engineer and created reusable AI capabilities for other Rare Days projects."
+      ]
+    },
+    {
+      "name": "Scrubs Co-Pilot",
+      "position": "Founder and CTO",
+      "url": "https://scrubscopilot.com/",
+      "startDate": "2025-08",
+      "endDate": "2025-12",
+      "summary": "Founded and led all engineering for an ambient clinical AI platform that structures doctor-patient conversations into medical documentation.",
+      "highlights": [
+        "Architected LLM and RAG workflows for real-time transcription and structured note generation, reducing clinician documentation time by about 80%.",
+        "Set the technical roadmap from MVP through production, balancing clinical workflow quality, security and reliability.",
+        "Worked with clinicians to validate outputs and guide the evolution of the AI system.",
+        "Led a team of 4-5 engineers and designers."
+      ]
+    },
+    {
+      "name": "BenchSci",
+      "position": "Lead AI and Full-Stack Engineer",
+      "url": "https://www.benchsci.com/",
+      "startDate": "2025-04",
+      "endDate": "2025-08",
+      "summary": "Led AI data-platform engineering for biomedical research workflows.",
+      "highlights": [
+        "Built AI-driven pipelines processing 100K+ research artifacts into structured datasets.",
+        "Reduced manual data curation by about 60% by standardizing AI-assisted extraction and validation.",
+        "Designed RAG workflows for literature synthesis and discovery; developed Neo4j and PostgreSQL query paths.",
+        "Established data reliability, lineage and auditability practices across engineering, science and ML teams."
+      ]
+    },
+    {
+      "name": "MicroMart",
+      "position": "Senior Full-Stack Software Engineer",
+      "url": "https://www.kitchenmate.com/",
+      "startDate": "2023-06",
+      "endDate": "2025-04",
+      "summary": "Built and operated distributed software for smart food kiosks.",
+      "highlights": [
+        "Improved customer engagement by 20% and satisfaction by 15%, and reduced downtime by 30%.",
+        "Implemented Modbus RS485 integrations in Python and Node.js connecting cloud services to embedded hardware.",
+        "Improved database query performance by about 25% and reduced bug reports by about 40%.",
+        "Delivered production payment workflows and supported payment-certification work."
+      ]
+    },
+    {
+      "name": "Preply",
+      "position": "Senior Full-Stack Software Engineer",
+      "url": "https://www.preply.com/",
+      "startDate": "2020-10",
+      "endDate": "2023-06",
+      "summary": "Built personalization and analytics capabilities for a global language-learning marketplace serving 80K+ learners.",
+      "highlights": [
+        "Led a cross-functional team delivering student progress-tracking and feedback for 80K learners.",
+        "Built NLP-driven personalization that increased engagement by 20% and satisfaction by 15%.",
+        "Ran tests and product analysis across markets contributing to a sustained 5% increase in conversion."
+      ]
+    },
+    {
+      "name": "DataRobot",
+      "position": "Full-Stack Software Engineer",
+      "url": "https://www.datarobot.com/",
+      "startDate": "2019-07",
+      "endDate": "2020-05",
+      "summary": "Built enterprise integrations connecting AutoML workflows to customer data and analytics tools.",
+      "highlights": [
+        "Integrated DataRobot with Excel, Snowflake, Tableau and Alteryx, increasing partner visibility by 70%.",
+        "Built custom Jenkins and Kibana CI/CD tooling for repeatable ML-backed releases."
+      ]
+    },
+    {
+      "name": "Pitchly",
+      "position": "Full-Stack Software Developer",
+      "url": "https://www.pitchly.com/",
+      "startDate": "2018-07",
+      "endDate": "2019-07",
+      "summary": "Built SaaS applications for financial and legal teams.",
+      "highlights": [
+        "Built Node.js REST APIs for high-throughput client workflows adhering to OWASP and HIPAA requirements.",
+        "Developed two GraphQL-powered MeteorJS applications."
+      ]
+    },
+    {
+      "name": "Nebullam",
+      "position": "Android Software Developer and Data Scientist",
+      "url": "https://www.nebullam.com/",
+      "startDate": "2017-05",
+      "endDate": "2019-08",
+      "summary": "Built software for connected aeroponics systems.",
+      "highlights": [
+        "Built an Android application to monitor and control aeroponics firmware through MQTT.",
+        "Developed PyTorch and TensorFlow models for resource prediction, increasing crop yield by 20%."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Iowa State University",
+      "area": "Electrical Engineering",
+      "studyType": "Bachelor",
+      "startDate": "2014",
+      "endDate": "2018"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Jefferson Fisher launch platform",
+      "description": "Checkout, entitlements and course delivery for a client launch: about $700K USD in total sales in under 48 hours.",
+      "url": "https://bhimeshchauhan.github.io/case-studies/jefferson-fisher/"
+    },
+    {
+      "name": "Ask Kindred",
+      "description": "Production RAG assistant serving about 200 daily active users across three customer companies.",
+      "url": "https://bhimeshchauhan.github.io/case-studies/ask-kindred/"
+    },
+    {
+      "name": "Scrubs Co-Pilot",
+      "description": "Ambient clinical AI platform; about 80% less clinician documentation time.",
+      "url": "https://bhimeshchauhan.github.io/case-studies/scrubs-copilot/"
+    },
+    {
+      "name": "Wrangle",
+      "description": "Mobile and platform engineering: 1,000+ automated tests, 46 migrations, 3 automated deploy pipelines.",
+      "url": "https://bhimeshchauhan.github.io/case-studies/wrangle/"
+    },
+    {
+      "name": "RAG Portfolio Assistant",
+      "description": "Grounded assistant live on this site.",
+      "url": "https://bhimeshchauhan.github.io/case-studies/rag-portfolio-assistant/"
+    },
+    {
+      "name": "PDF-to-Audiobook",
+      "description": "NLP and TTS pipeline with NER, coreference and speaker attribution.",
+      "url": "https://bhimeshchauhan.github.io/case-studies/pdf-to-audiobook/"
+    }
+  ],
+  "skills": [
+    {
+      "name": "AI and RAG systems",
+      "keywords": [
+        "Retrieval-Augmented Generation",
+        "OpenAI API",
+        "pgvector",
+        "Whisper",
+        "AI data pipelines",
+        "LangChain"
+      ]
+    },
+    {
+      "name": "Application engineering",
+      "keywords": [
+        "TypeScript",
+        "JavaScript",
+        "Python",
+        "React",
+        "Next.js",
+        "Node.js",
+        "NestJS",
+        "Django",
+        "Flask"
+      ]
+    },
+    {
+      "name": "Data and APIs",
+      "keywords": [
+        "PostgreSQL",
+        "Neo4j",
+        "GraphQL",
+        "REST APIs",
+        "WebSockets",
+        "Redis",
+        "MongoDB"
+      ]
+    },
+    {
+      "name": "Platform and delivery",
+      "keywords": [
+        "AWS",
+        "Docker",
+        "CI/CD",
+        "Sentry",
+        "Supabase",
+        "Stripe"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English"
+    },
+    {
+      "language": "Hindi"
+    },
+    {
+      "language": "Bengali"
+    }
+  ]
+}
