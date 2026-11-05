@@ -1,6 +1,13 @@
-import website from "../assets/images/projects/website.svg";
+import persona from "../assets/images/projects/persona.svg";
+import aeroponics from "../assets/images/projects/aeroponics.svg";
+import sudokuIcon from "../assets/images/projects/sudoku.svg";
+import lifeIcon from "../assets/images/projects/life.svg";
+import spaceIcon from "../assets/images/projects/spaceflight.svg";
+import terrainIcon from "../assets/images/projects/terrain.svg";
+import connect4Icon from "../assets/images/projects/connect4.svg";
+import pitchlyIcon from "../assets/images/projects/pitchly-icon.svg";
 import Scrubs from "../assets/images/projects/scrubs.jpeg";
-import rag from "../assets/images/projects/rag.webp";
+import rag from "../assets/images/projects/rag-icon.svg";
 import pitchly from '../assets/images/pitchly.webp';
 import pitchlyForm from '../assets/images/pitchly-form.png';
 import nebullam1 from '../assets/images/nebullam-1.png';
@@ -36,7 +43,7 @@ export default [
   {
     id: 7,
     title: "Persona Detection for Language Learning",
-    icon: website,
+    icon: persona,
     description:
       "Graph-based learner persona detection to personalize lesson paths. Neo4j + KNN; Flask inference API; optimized Cypher queries for latency and scale.",
     year: "2022",
@@ -45,7 +52,7 @@ export default [
   {
     id: 2,
     title: "Forms App (Pitchly)",
-    icon: website,
+    icon: pitchlyIcon,
     description:
       "Schema-driven form builder used by financial and legal teams, with GraphQL and REST data flows, role-based permissions, and autosave. Optimized queries and CDN caching for global users.",
     media: [pitchly, pitchlyForm],
@@ -56,7 +63,7 @@ export default [
   {
     id: 1,
     title: "Remote Monitoring – Aeroponics System",
-    icon: website,
+    icon: aeroponics,
     description:
       "Android IoT app to monitor and control high-pressure aeroponics. Telemetry and commands run over MQTT/HTTP, supported by backend dashboards, sensor charts, and ML-based growth recommendations.",
     media: [nebullam1, nebullam2, nebullam3, nebullam4, nebullam5],
@@ -67,7 +74,7 @@ export default [
   {
     id: 4,
     title: "Sudoku AR + Deep Learning",
-    icon: website,
+    icon: sudokuIcon,
     description:
       "End-to-end Sudoku solver: detects a grid from camera frames, recognizes digits, and solves the puzzle via backtracking. Built a dataset and augmentation pipeline, with model selection in Keras/TensorFlow.",
     media: [sudoku],
@@ -77,7 +84,7 @@ export default [
   {
     id: 10,
     title: "Conway's Game of Life",
-    icon: website,
+    icon: lifeIcon,
     description:
       "Interactive cellular automaton simulation with preset seed patterns, adjustable grid size and speed, manual cell toggling, and step-through mode. Canvas-rendered with glow effects.",
     iframe: '<iframe width="100%" height="480" src="/game-of-life-embed" style="border:none;border-radius:4px;background:#0d0f11" allowfullscreen></iframe>',
@@ -89,7 +96,7 @@ export default [
   {
     id: 6,
     title: "SpaceFlight – Unity Game",
-    icon: website,
+    icon: spaceIcon,
     description:
       "Arcade-style space flight with 6DOF controls and collision physics. Gameplay loop, input mapping, scene management, and asset pipeline via Blender.",
     githubPath: "https://github.com/bhimeshchauhan/SpaceExpo",
@@ -100,7 +107,7 @@ export default [
   {
     id: 5,
     title: "Procedural Terrain Generation",
-    icon: website,
+    icon: terrainIcon,
     description:
       "WebGL-based procedural terrain using Gaussian noise + mesh generation; interactive camera + shading pipeline; focused on geometry + GPU rendering fundamentals.",
     iframe:
@@ -111,7 +118,7 @@ export default [
   {
     id: 3,
     title: "Connect Four – AI Game",
-    icon: website,
+    icon: connect4Icon,
     description:
       "AI Connect-4 with two modes: MINIMAX (alpha–beta pruning) and a naïve baseline. Search space ~4.53T boards; demonstrates heuristic evaluation, pruning effectiveness, and game-tree search.",
     githubPath: "https://github.com/bhimeshchauhan/connect_four",

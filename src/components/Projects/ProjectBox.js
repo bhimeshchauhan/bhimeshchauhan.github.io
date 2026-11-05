@@ -120,7 +120,7 @@ const BoxStack = styled.div`
 const ProjectBox = ({ info }) => (
     <Box className="projectBox">
       <BoxIcon>
-        <img src={info.icon} alt={`${info.title} project icon`} loading="lazy" decoding="async" />
+        <img src={info.icon} alt={`${info.title} project icon`} loading="lazy" decoding="async" style={{ borderRadius: 20 }} />
         <h3>{info.title}</h3>
       </BoxIcon>
       <BoxDescription>
