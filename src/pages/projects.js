@@ -4,9 +4,10 @@ import proProjects from "../data/ProProjects";
 import ProjectBox from "../components/Projects/ProjectBox";
 import { ProjectsWrapper, ProjectsSection, ProjectsIntro } from "../styles/projectsStyle.js";
 import Layout from "../components/layout";
+import { projectsSchema } from "../utils/schema";
 
 const Projects = () => (
-  <Layout seo={{ title: "Projects", description: "Products Bhimesh Chauhan has architected and shipped: clinical AI, RAG systems, payments, IoT, and real-time data platforms." }}>
+  <Layout seo={{ title: "Projects", description: "Products Bhimesh Chauhan has architected and shipped: clinical AI, RAG systems, payments, IoT, and real-time data platforms.", structuredData: projectsSchema(proProjects) }}>
     <ProjectsWrapper>
       <ProjectsIntro>
         <h1>Projects</h1>

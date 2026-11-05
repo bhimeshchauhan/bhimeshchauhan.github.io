@@ -10,7 +10,7 @@ const Footer = ({ footerClass }) => (
 			<a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
 		</p>
 		<p>
-			<a href="/skills/">Skills</a> | <a href="/recommendation/">Recommendations</a> | <a href="/goals/">Goals</a>
+			<a href="/skills/">Skills</a> | <a href="/recommendation/">Recommendations</a> | <a href="/goals/">Goals</a> | <a href="/hire/">Hire</a>
 		</p>
 		<p>&#9400; {new Date().getFullYear()} Bhimesh Chauhan</p>
 	</footer>

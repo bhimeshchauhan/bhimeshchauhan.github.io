@@ -349,8 +349,11 @@ const QuoteWrap = styled.section`
     color: var(--muted);
   }
   figcaption a {
+    align-items: center;
     color: var(--accent);
+    display: inline-flex;
     margin-left: 0.6rem;
+    min-height: 44px;
     text-decoration: none;
   }
 `;

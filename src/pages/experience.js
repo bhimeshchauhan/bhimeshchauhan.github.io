@@ -10,12 +10,13 @@ import {
 	StepperDesc
 } from "../styles/workStyle.js";
 import Layout from "../components/layout";
+import { experienceSchema } from "../utils/schema";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeSanitize from "rehype-sanitize";
 
 const Experience = () => (
-	<Layout seo={{ title: "Experience", description: "10+ years of production software: AI platforms, distributed systems, payments, IoT, and technical leadership across startups and scale-ups." }}>
+	<Layout seo={{ title: "Experience", description: "10+ years of production software: AI platforms, distributed systems, payments, IoT, and technical leadership across startups and scale-ups.", structuredData: experienceSchema(work) }}>
 		<ExperienceWrapper>
 			<WorkWrapper>
 				<h1>Professional Experience</h1>
