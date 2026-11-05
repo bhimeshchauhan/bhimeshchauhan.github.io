@@ -201,7 +201,7 @@ const GameOfLife = () => {
   const liveCells = countLiveCells(grid);
 
   return (
-    <Layout>
+    <Layout seo={{ title: "Game of Life", description: "Conway's Game of Life demo.", noindex: true }}>
       <PageWrapper>
         <Title>Conway's Game of Life</Title>
         <Subtitle>

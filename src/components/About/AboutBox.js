@@ -4,10 +4,9 @@ import styled from "styled-components";
 
 const Box = styled.div`
   min-height: 287px;
-  border-radius: 8px;
-  background-color: #17191b;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(95, 113, 177, 0.33), rgba(21, 33, 92, 0.58));
+  border: 1px solid rgba(214, 231, 255, 0.24);
   padding: 3% 2%;
   margin-right: 3%;
   margin-bottom: 3%;
@@ -15,11 +14,10 @@ const Box = styled.div`
   max-width: 340px;
   display: flex;
   flex-direction: column;
-  transition: box-shadow 0.5s ease-out;
+  transition: border-color 0.3s ease-out;
   :hover {
-    box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14),
-      0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.5s;
+    border-color: rgba(163, 201, 255, 0.65);
+    transition: border-color 0.3s;
   }
   :last-of-type {
     margin-right: 0;
@@ -28,11 +26,13 @@ const Box = styled.div`
     color: #e2f2f7;
   }
   h3 {
-    color: #7fa1e8;
+    color: #ffffff;
+    font-weight: 600;
   }
   a {
     margin-top: auto;
-    color: #7fa1e8;
+    color: #ffffff;
+    font-weight: 600;
     text-decoration: none;
   }
   @media (max-width: 1170px) {

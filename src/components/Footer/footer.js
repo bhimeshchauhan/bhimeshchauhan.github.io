@@ -2,21 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Footer = ({ footerClass }) => (
-	<div className={`defaultFooter ${footerClass}`}>
+	<footer className={`defaultFooter ${footerClass}`}>
 		<p>
-			This site is hosted on{" "}
-			<a
-				href="/#"
-				target="_blank"
-			>
-				Github
-			</a>{" "}
-			| &#9400; {new Date().getFullYear()} | Designed with &#10084; by {" "}
-			<a href="/#" target="_blank">
-				Bhimesh
-			</a>
+			<a href="mailto:bhimeshchauhan@gmail.com">Email</a> |{" "}
+			<a href="https://www.linkedin.com/in/bhimeshchauhan" target="_blank" rel="noopener noreferrer">LinkedIn</a> |{" "}
+			<a href="https://github.com/bhimeshchauhan" target="_blank" rel="noopener noreferrer">GitHub</a> |{" "}
+			<a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
 		</p>
-	</div>
+		<p>
+			<a href="/skills/">Skills</a> | <a href="/recommendation/">Recommendations</a> | <a href="/goals/">Goals</a>
+		</p>
+		<p>&#9400; {new Date().getFullYear()} Bhimesh Chauhan</p>
+	</footer>
 );
 Footer.propTypes = {
 	footerClass: PropTypes.string

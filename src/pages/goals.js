@@ -10,7 +10,7 @@ import {
 import Layout from "../components/layout";
 
 const BlogLayout = () => (
-	<Layout>
+	<Layout seo={{ title: "Goals", description: "Personal and professional goals.", noindex: true }}>
 		<ExperienceWrapper>
 			<WorkWrapper>
 				<h1>Goals</h1>

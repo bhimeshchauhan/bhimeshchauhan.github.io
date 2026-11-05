@@ -4,7 +4,7 @@ import favicon from '../../assets/images/bhimesh-favicon.svg';
 
 const parseTemplate = (tag, html) => {
     if(tag === "img") {
-        return(<img class='uk-width-1-1' src={html} alt="Blog article visual related to Bhimesh Chauhan's engineering and AI work"/>);
+        return(<img className='uk-width-1-1' src={html} alt="Blog article visual related to Bhimesh Chauhan's engineering and AI work"/>);
     } else if(tag === "h4") {
         return(<h4>{html}</h4>);
     } else if(tag === "h3") {
@@ -52,12 +52,12 @@ const parseTemplate = (tag, html) => {
 
 export const BlogWriteUp = (props) => {
     return (
-        <div class="blogWriteUp">
-            <article class="uk-article uk-section-small">
-                <header class="uk-container">
-                    <div class="author">
-                        <img src={favicon} class="avatar" alt="Bhimesh Chauhan profile avatar"/>
-                        <div class="info uk-text-meta">
+        <div className="blogWriteUp">
+            <article className="uk-article uk-section-small">
+                <header className="uk-container">
+                    <div className="author">
+                        <img src={favicon} className="avatar" alt="Bhimesh Chauhan profile avatar"/>
+                        <div className="info uk-text-meta">
                             <div className="best-post-content-cat">{props.article.author}</div>
                             <p>{props.article.dated}</p>
                         </div>
@@ -68,11 +68,11 @@ export const BlogWriteUp = (props) => {
                 {
                     props.article.description.map(item => (
                         item[0] === "img"?
-                            <section class="hero uk-section-small">
+                            <section className="hero uk-section-small">
                                 {parseTemplate(item[0], item[1])}
                             </section> :
-                            <section class="content uk-section-small">
-                                <div class="uk-container">
+                            <section className="content uk-section-small">
+                                <div className="uk-container">
                                     {typeof parseTemplate(item[0], item[1]) === "string" ?
                                     <div dangerouslySetInnerHTML={{ __html: parseTemplate(item[0], item[1])}}></div> :
                                     parseTemplate(item[0], item[1])}

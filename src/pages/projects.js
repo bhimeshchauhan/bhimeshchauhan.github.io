@@ -6,7 +6,7 @@ import { ProjectsWrapper, ProjectsSection } from "../styles/projectsStyle.js";
 import Layout from "../components/layout";
 
 const Projects = () => (
-  <Layout>
+  <Layout seo={{ title: "Projects", description: "Products Bhimesh Chauhan has architected and shipped: clinical AI, RAG systems, payments, IoT, and real-time data platforms." }}>
     <ProjectsWrapper>
       <ProjectsSection>
         {proProjects.map((item) => (

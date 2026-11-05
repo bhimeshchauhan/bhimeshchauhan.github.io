@@ -212,4 +212,46 @@ const caseStudies = [
   }
 ];
 
-module.exports = caseStudies;
+// Facts below come from the resume. Where no metric exists, results is empty on purpose.
+const extras = {
+  "scrubs-copilot": {
+    order: 0,
+    role: "Founder and senior founding lead engineer",
+    status: "Built from zero to a production MVP with clinicians",
+    keyResult: "~80% less clinician documentation time",
+    results: [
+      { value: "~80%", label: "less clinician documentation time" },
+      { value: "0 → MVP", label: "built end to end, validated with clinicians" },
+      { value: "RAG + LLM", label: "real-time transcription into structured notes" }
+    ]
+  },
+  wrangle: {
+    order: 1,
+    role: "Lead engineer, mobile and platform",
+    status: "Product in development",
+    keyResult: "Mobile and backend platform for ranked travel micro-guides",
+    results: []
+  },
+  "pdf-to-audiobook": {
+    order: 2,
+    role: "Designer and engineer",
+    status: "Personal project",
+    keyResult: "End-to-end NLP and TTS pipeline with resumable batch processing",
+    results: [
+      { value: "NER + coref", label: "keeps characters consistent across a book" },
+      { value: "Dialogue", label: "speaker attribution before voice rendering" },
+      { value: "Resumable", label: "batch pipeline for long-form books" }
+    ]
+  },
+  "rag-portfolio-assistant": {
+    order: 3,
+    role: "Sole engineer",
+    status: "Live on this site",
+    keyResult: "Retrieval-grounded assistant running on this site",
+    results: []
+  }
+};
+
+module.exports = caseStudies
+  .map((study) => ({ ...study, ...extras[study.slug] }))
+  .sort((a, b) => a.order - b.order);

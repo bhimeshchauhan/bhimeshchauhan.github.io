@@ -14,6 +14,9 @@ const LinkNav = styled(Link)`
   &.active {
     color: #7fa1e8;
   }
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   @media (max-width: 700px) {
     margin-right: 14px;
     :last-of-type {
@@ -22,7 +25,7 @@ const LinkNav = styled(Link)`
   }
 `;
 const NavLink = ({ info }) => (
-  <LinkNav to={info.path} exact={"true"} activeClassName="active">
+  <LinkNav to={info.path} aria-label={info.label} title={info.label} activeClassName="active" partiallyActive={info.path !== "/"}>
     {info.icon} <span className="nav-label">{info.label}</span>
   </LinkNav>
 );

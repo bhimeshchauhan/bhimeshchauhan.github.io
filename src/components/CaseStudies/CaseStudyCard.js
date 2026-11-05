@@ -4,6 +4,7 @@ import {
   CaseStudyCardShell,
   CaseStudyLink,
   Eyebrow,
+  KeyResult,
   TagList
 } from "../../styles/caseStudiesStyle";
 
@@ -11,6 +12,7 @@ const CaseStudyCard = ({ study }) => (
   <CaseStudyCardShell>
     <Eyebrow>{study.label}</Eyebrow>
     <h2>{study.title}</h2>
+    {study.keyResult && <KeyResult>{study.keyResult}</KeyResult>}
     <p>{study.summary}</p>
     <TagList aria-label={`${study.title} technologies`}>
       {study.technologies.slice(0, 4).map((technology) => (

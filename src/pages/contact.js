@@ -24,7 +24,7 @@ const StyledTextArea = () => {
 }
 
 const Contact = () => (
-  <Layout>
+  <Layout seo={{ title: "Contact", description: "Get in touch with Bhimesh Chauhan about lead or staff AI platform engineering roles and collaborations." }}>
     <ContactWrapper>
       <ContactContainer>
           <ContactHeader>

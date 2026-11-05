@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import styled, { createGlobalStyle } from "styled-components";
 import { PRESETS, createEmptyGrid, placePreset, nextGeneration, countLiveCells, gridsEqual } from "../utils/gameOfLife";
@@ -253,6 +254,7 @@ const GameOfLifeEmbed = () => {
   return (
     <>
       <GlobalStyle />
+      <Helmet><meta name="robots" content="noindex, follow" /></Helmet>
       <Wrap>
         <Controls>
           <ControlGroup>

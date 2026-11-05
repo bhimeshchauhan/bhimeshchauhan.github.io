@@ -1,0 +1,30 @@
+name: Deploy
+
+# Manual on purpose: builds dev and publishes public/ to the master branch (GitHub Pages source).
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          GATSBY_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          GATSBY_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          npx gh-pages -d public -b master -u "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" -r "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"

@@ -628,9 +628,6 @@ div,p{
   padding: 5% 8%;
   position: relative;
 }
-div.cutBackground{
-  height: 113vh;
-}
 .defaultFooter{
   box-sizing: border-box;
   text-align: center;
@@ -641,38 +638,26 @@ div.cutBackground{
 .defaultFooter a {
   color: #7fa1e8;
   font-weight: bold;
-  text-decoration: none;
+  text-decoration: underline;
+  padding: 0.5rem 0.25rem;
 }
-.footerAbsolute{
-  margin: 8% auto 0;
-  text-align: CENTER;
-  bottom: 0;
-  margin: 0 -8% -5% -8%;
-  position: absolute;
-  width: 100%;
-  box-sizing: border-box;
+.footerAbsolute, div.footerInitial, footer.defaultFooter {
+  margin: 3rem -8% 0;
+  padding: 1rem 8% 0.5rem;
   background-color: #1D1E20;
 }
-div.footerInitial{
-  position: inherit;
-  color: #FFF;
+
+/* a11y */
+a:focus-visible, button:focus-visible { outline: 2px solid #9ed2ff; outline-offset: 3px; }
+.skip-link { position: absolute; left: -9999px; top: 0; background: #1D1E20; color: #fff; padding: 8px 12px; z-index: 100; }
+.skip-link:focus { left: 8px; top: 8px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
-@media only screen and (max-width: 480px) {
-  html {
-    font-size: 100%;
-  }
-  div.cutBackground{
-    height: auto;
-  }
-  div.defaultFooter{
-    padding: 5% 6% 0;
-    margin: 8% auto 0;
-    text-align: CENTER;
-    bottom: 0;
-    margin: 0 -8% -5% -8%;
-    position: absolute;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #eeeeee;
-  }
-}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+.proof-chips{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0 0 1.25rem;padding:0}
+.proof-chips li{margin:0;background:rgba(117,162,237,.17);border:1px solid rgba(166,204,255,.25);border-radius:999px;color:#e9f2ff;font-size:.9rem;padding:.4rem .75rem}
+.cta-row{display:flex;flex-wrap:wrap;gap:1rem}
+.cta-row a{width:auto;min-width:200px;height:56px;padding:0 1.5rem}
+@media (max-width:700px){.cta-row a{width:100%}}

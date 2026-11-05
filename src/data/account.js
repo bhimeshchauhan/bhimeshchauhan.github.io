@@ -1,8 +1,8 @@
-import shawn from '../assets/images/shawn.gif';
-import vaibhav from '../assets/images/vaibhav.gif';
-import arthi from '../assets/images/arthi.gif';
-import deeksha from '../assets/images/deeksha.gif';
-import bhimesh from '../assets/images/coding-all-night.gif';
+import shawn from '../assets/images/shawn.webp';
+import vaibhav from '../assets/images/vaibhav.webp';
+import arthi from '../assets/images/arthi.webp';
+import deeksha from '../assets/images/deeksha.webp';
+import bhimesh from '../assets/images/coding-all-night.webp';
 
 export default [
     {

@@ -17,7 +17,8 @@ const Seo = ({
   description = siteMeta.description,
   pathname = "/",
   type = "website",
-  structuredData
+  structuredData,
+  noindex = false
 }) => {
   const isHome = pathname === "/";
   const pageTitle = isHome ? siteMeta.title : `${title} | Bhimesh Chauhan`;
@@ -33,7 +34,7 @@ const Seo = ({
       title={pageTitle}
       meta={[
         { name: "description", content: description },
-        { name: "keywords", content: siteMeta.keywords.join(", ") },
+        ...(noindex ? [{ name: "robots", content: "noindex, follow" }] : []),
         { name: "author", content: siteMeta.author },
         { name: "copyright", content: siteMeta.copyright },
         { property: "og:title", content: pageTitle },
@@ -41,11 +42,13 @@ const Seo = ({
         { property: "og:type", content: type },
         { property: "og:url", content: canonicalUrl },
         { property: "og:image", content: imageUrl },
+        { property: "og:image:alt", content: "Bhimesh Chauhan, Lead AI Platform Engineer" },
         { property: "og:site_name", content: "Bhimesh Chauhan" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: pageTitle },
         { name: "twitter:description", content: description },
-        { name: "twitter:image", content: imageUrl }
+        { name: "twitter:image", content: imageUrl },
+        { name: "twitter:image:alt", content: "Bhimesh Chauhan, Lead AI Platform Engineer" }
       ]}
       link={[
         { rel: "canonical", href: canonicalUrl },

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import {navigate} from 'gatsby'
 import '../styles/account.css'
 import accountItem from '../data/account.js'
@@ -6,6 +7,7 @@ import accountItem from '../data/account.js'
 const NetflixPage = () => {
   return (
     <div className="wrapper">
+      <Helmet><meta name="robots" content="noindex, follow" /></Helmet>
     	<h1>Who are you?</h1>
     	<div className="profile-wrap">
       {accountItem.map(item => (

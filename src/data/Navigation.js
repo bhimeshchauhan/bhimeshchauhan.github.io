@@ -53,24 +53,9 @@ export default [
     path: "/projects/",
   },
   {
-    icon: skills,
-    label: "Skills",
-    path: "/skills/",
-  },
-  {
-    icon: recommendation,
-    label: "Recommendation",
-    path: "/recommendation/",
-  },
-  {
     icon: blog,
     label: "Blog",
     path: "/blog/",
-  },
-  {
-    icon: goals,
-    label: "Goals",
-    path: "/goals/",
   },
   {
     icon: contact,

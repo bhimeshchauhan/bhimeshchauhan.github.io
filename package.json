@@ -5,7 +5,10 @@
   "version": "0.1.0",
   "author": "Bhimesh Chauhan <bhimeshchauhan@gmail.com>",
   "dependencies": {
-    "@angular/cdk": "^18.0.0",
+    "@fontsource/inter": "^5.3.0",
+    "@fontsource/maven-pro": "^5.3.0",
+    "@fontsource/montserrat": "^5.3.0",
+    "@fontsource/signika": "^5.3.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.3",
@@ -19,11 +22,9 @@
     "dompurify": "^3.2.6",
     "framer-motion": "^11.18.2",
     "gatsby": "^5.13.0",
-    "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-google-gtag": "^5.13.1",
     "gatsby-plugin-image": "^3.13.1",
-    "gatsby-plugin-manifest": "^5.13.1",
-    "gatsby-plugin-offline": "^6.13.3",
+    "gatsby-plugin-manifest": "^5.16.0",
     "gatsby-plugin-react-helmet": "^6.13.1",
     "gatsby-plugin-sharp": "^5.13.1",
     "gatsby-plugin-styled-components": "^6.13.1",
@@ -34,21 +35,15 @@
     "qrcode.react": "^4.2.0",
     "react": "^18.2.0",
     "react-chat-widget": "^3.1.4",
-    "react-confetti-explosion": "^2.1.2",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
-    "react-jigsaw-puzzle": "^1.0.5",
     "react-markdown": "^10.1.0",
-    "react-pageflip": "^2.0.3",
-    "react-player": "^2.14.1",
     "react-tabs": "^6.0.2",
     "rehype-sanitize": "^6.0.0",
     "remark-gfm": "^4.0.1",
-    "rxjs": "^7.8.1",
     "styled-components": "^6.1.8",
     "three": "^0.161.0",
-    "typed.js": "^3.0.0",
-    "unsplash-js": "^7.0.19"
+    "typed.js": "^3.0.0"
   },
   "keywords": [
     "gatsby"
@@ -62,7 +57,7 @@
     "now-build": "npm run build",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
-    "deploy": "gatsby build && gh-pages -d public -b master && git clean -fd && git stash"
+    "deploy": "gatsby clean && gatsby build && gh-pages -d public -b master"
   },
   "devDependencies": {
     "prettier": "^1.19.1"

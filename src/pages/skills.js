@@ -10,7 +10,7 @@ const showIconFallback = (event, title) => {
 };
 
 const Skills = () => (
-  <Layout className="my-stacks">
+  <Layout seo={{ title: "Skills", description: "Languages, frameworks, cloud, data, and AI tooling Bhimesh Chauhan uses to build and operate production platforms." }}>
     <ExperienceWrapper>
       <WorkWrapper>
         <h1>Capabilities</h1>

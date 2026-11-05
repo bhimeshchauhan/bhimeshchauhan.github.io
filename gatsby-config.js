@@ -29,6 +29,7 @@ module.exports = {
           // Puts tracking script in the head instead of the body
           head: true,
         },
+        gtagConfig: { anonymize_ip: true },
       },
     },
     "gatsby-plugin-react-helmet",
@@ -44,13 +45,16 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-fonts`,
+      resolve: `gatsby-plugin-manifest`,
       options: {
-        fonts: [
-          `Signika`,
-          `source sans pro\:300,400,600`, // you can also specify font weights and styles
-        ],
-      },
+        name: "Bhimesh Chauhan",
+        short_name: "Bhimesh",
+        start_url: "/",
+        background_color: "#1D1E20",
+        theme_color: "#1D1E20",
+        display: "standalone",
+        icon: "src/assets/images/bhimesh-favicon.svg"
+      }
     },
   ],
 };

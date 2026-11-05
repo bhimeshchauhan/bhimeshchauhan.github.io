@@ -16,10 +16,11 @@
 }
 @media (max-width: 700px) {
     .nav {
-        margin-left: -35px;
+        flex-wrap: wrap;
     }
     .nav-list > a{
-        width: 8.5vw;
+        min-width: 44px;
+        justify-content: center;
     }
 }
 

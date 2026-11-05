@@ -9,7 +9,7 @@ const PhotoboothPage = () => {
   const { user, loading, signIn, signOut } = useOwnerSession();
 
   return (
-    <Layout>
+    <Layout seo={{ title: "Photobooth", description: "Photobooth.", noindex: true }}>
       <Helmet title="Photo Booth | Bhimesh Chauhan" />
       {!loading && !user ? (
         <AuthGate signIn={signIn} loading={loading} />

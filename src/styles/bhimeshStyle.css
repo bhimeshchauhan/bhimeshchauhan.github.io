@@ -9,7 +9,7 @@
     visibility: visible;
   }
   .nav-label {
-    visibility: hidden;
+    display: none;
   }
   .nav-list > a {
     min-width: 14%;

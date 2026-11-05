@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [dev]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          GATSBY_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          GATSBY_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+      - name: Smoke check build output
+        run: |
+          test -f public/index.html
+          test -f public/sitemap.xml
+          grep -q "Lead AI Platform Engineer" public/index.html
+          test -f public/case-studies/scrubs-copilot/index.html

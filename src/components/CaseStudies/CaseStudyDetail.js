@@ -9,6 +9,8 @@ import {
   DetailShell,
   DetailSummary,
   Eyebrow,
+  MetaStrip,
+  StatGrid,
   TagList
 } from "../../styles/caseStudiesStyle";
 
@@ -30,6 +32,27 @@ const CaseStudyDetail = ({ study }) => (
       <h1>{study.title}</h1>
       <DetailSummary>{study.summary}</DetailSummary>
     </header>
+
+    <MetaStrip aria-label="Case study facts">
+      <div><dt>Role</dt><dd>{study.role}</dd></div>
+      <div><dt>Status</dt><dd>{study.status}</dd></div>
+      <div><dt>Stack</dt><dd>{study.technologies.slice(0, 4).join(", ")}</dd></div>
+    </MetaStrip>
+
+    <DetailSection>
+      <h2>Outcome</h2>
+      <p>{study.outcome}</p>
+      {study.results.length > 0 && (
+        <StatGrid>
+          {study.results.map(({ value, label }) => (
+            <li key={value}>
+              <strong>{value}</strong>
+              <span>{label}</span>
+            </li>
+          ))}
+        </StatGrid>
+      )}
+    </DetailSection>
 
     <DetailSection>
       <h2>What I built</h2>
@@ -57,11 +80,6 @@ const CaseStudyDetail = ({ study }) => (
         <List items={study.reliability} />
       </DetailSection>
     </DetailColumns>
-
-    <DetailSection>
-      <h2>Outcome</h2>
-      <p>{study.outcome}</p>
-    </DetailSection>
 
     <DetailSection>
       <h2>Technology focus</h2>

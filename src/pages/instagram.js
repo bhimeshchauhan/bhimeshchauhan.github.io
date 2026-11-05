@@ -4,7 +4,7 @@ import InstagramGrid from "../components/InstagramGrid/InstagramGrid";
 
 const InstagramPage = () => {
   return (
-    <Layout>
+    <Layout seo={{ title: "Instagram", description: "Instagram grid.", noindex: true }}>
       <InstagramGrid />
     </Layout>
   );

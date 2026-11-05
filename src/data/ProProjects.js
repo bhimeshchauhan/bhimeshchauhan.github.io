@@ -1,14 +1,14 @@
 import website from "../assets/images/projects/website.svg";
 import Scrubs from "../assets/images/projects/scrubs.jpeg";
 import rag from "../assets/images/projects/rag.webp";
-import pitchly from '../assets/images/pitchly.gif';
+import pitchly from '../assets/images/pitchly.webp';
 import pitchlyForm from '../assets/images/pitchly-form.png';
 import nebullam1 from '../assets/images/nebullam-1.png';
 import nebullam2 from '../assets/images/nebullam-2.png';
 import nebullam3 from '../assets/images/nebullam-3.png';
 import nebullam4 from '../assets/images/nebullam-4.png';
 import nebullam5 from '../assets/images/nebullam-5.png';
-import sudoku from '../assets/images/sudoku.gif';
+import sudoku from '../assets/images/sudoku.webp';
 
 export default [
   {

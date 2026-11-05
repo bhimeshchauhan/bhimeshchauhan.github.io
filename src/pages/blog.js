@@ -6,9 +6,9 @@ import Layout from '../components/layout'
 import { BlogPanel } from '../components/blog/blogPanel'
 
 const BlogLayout = () => (
-  <Layout>
+  <Layout seo={{ title: "Blog", description: "Essays and reflections from Bhimesh Chauhan on engineering, AI systems, and building products." }}>
       <BlogWrapper>
-        <h1>Blog</h1>
+        <h1>Blog: notes on engineering, AI and building products</h1>
         <Blogs className="blog-container">
             <BlogPanel />
         </Blogs>

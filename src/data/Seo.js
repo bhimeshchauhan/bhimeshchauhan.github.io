@@ -4,7 +4,7 @@ export const aboutWebsite = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "url": "https://bhimeshchauhan.github.io/",
-    "name": "Bhimesh Chauhan | Lead/Staff AI Platform Engineer",
+    "name": "Bhimesh Chauhan | Lead AI Platform Engineer",
     "author": {
         "@type": "Person",
         "name": "Bhimesh Chauhan"
@@ -16,12 +16,12 @@ export const personSchema = {
     "@type": "Person",
     "name": "Bhimesh Chauhan",
     "url": "https://bhimeshchauhan.github.io/",
-    "jobTitle": [
-        "Lead Software Engineer",
-        "Staff AI Platform Engineer",
-        "Founder and CTO"
+    "jobTitle": "Lead AI Platform Engineer",
+    "sameAs": [
+        "https://www.linkedin.com/in/bhimeshchauhan",
+        "https://github.com/bhimeshchauhan"
     ],
-    "knowsAbout": [
+        "knowsAbout": [
         "AI Platforms",
         "Retrieval-Augmented Generation",
         "Large Language Models",
@@ -32,8 +32,8 @@ export const personSchema = {
         "Full-Stack Engineering",
         "Technical Leadership"
     ],
-    "worksFor": [
-        { "@type": "Organization", "name": "Rare Days" },
+    "worksFor": { "@type": "Organization", "name": "Rare Days" },
+    "alumniOf": [
         { "@type": "Organization", "name": "Scrubs Co-Pilot" },
         { "@type": "Organization", "name": "BenchSci Inc." },
         { "@type": "Organization", "name": "MicroMart" },
@@ -43,7 +43,7 @@ export const personSchema = {
     "description": "Lead software engineer and founder building production AI platforms with RAG, LLMs, distributed systems, healthcare AI, payments, IoT, and full-stack technical leadership."
 }
 export const siteMeta = {
-    title: 'Bhimesh Chauhan | Lead/Staff AI Platform Engineer',
+    title: 'Bhimesh Chauhan | Lead AI Platform Engineer',
     favicon: favicon,
     author: "Bhimesh Chauhan",
     description: "Lead software engineer and founder building production AI platforms with RAG, LLMs, distributed systems, healthcare AI, payments, IoT, and full-stack technical leadership.",

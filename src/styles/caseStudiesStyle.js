@@ -3,7 +3,7 @@ import styled from "styled-components";
 const panelBackground = "rgba(21, 33, 92, 0.58)";
 const panelBorder = "rgba(214, 231, 255, 0.24)";
 
-export const CaseStudiesWrapper = styled.main`
+export const CaseStudiesWrapper = styled.div`
   color: #f3f7ff;
   margin: 3.5rem auto 0;
   max-width: 1120px;
@@ -227,4 +227,68 @@ export const DetailColumns = styled.div`
 
 export const DetailFooter = styled.footer`
   margin: 2rem 0 1rem;
+`;
+
+export const KeyResult = styled.p`
+  color: #ffffff !important;
+  font-size: 1.05rem !important;
+  font-weight: 600;
+  margin: 0 0 0.8rem !important;
+`;
+
+export const MetaStrip = styled.dl`
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 1.5rem 0 0;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+
+  dt {
+    color: #85c7ff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  dd {
+    color: #edf4ff;
+    margin: 0.2rem 0 0;
+  }
+`;
+
+export const StatGrid = styled.ul`
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  margin: 1.5rem 0 0 !important;
+  padding: 0 !important;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+
+  li {
+    background: rgba(117, 162, 237, 0.14);
+    border: 1px solid rgba(166, 204, 255, 0.25);
+    border-radius: 14px;
+    margin: 0 !important;
+    padding: 1rem;
+  }
+
+  strong {
+    color: #ffffff;
+    display: block;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    line-height: 1.1;
+  }
+
+  span {
+    color: #d4dff5;
+    font-size: 0.95rem;
+  }
 `;

@@ -6,7 +6,7 @@ import { ProjectsWrapper, ProjectsSection } from "../styles/projectsStyle.js";
 import Layout from "../components/layout";
 
 const Videos = () => (
-  <Layout>
+  <Layout seo={{ title: "Videos", description: "Videos.", noindex: true }}>
     <ProjectsWrapper>
       <ProjectsSection>
         {videos.map((item) => (

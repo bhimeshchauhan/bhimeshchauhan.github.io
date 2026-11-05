@@ -13,7 +13,7 @@ const CaseStudyTemplate = ({ pageContext }) => {
   const pathname = `/case-studies/${study.slug}/`;
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "TechArticle",
     headline: study.title,
     description: study.seo.description,
     mainEntityOfPage: `https://bhimeshchauhan.github.io${pathname}`,
@@ -22,7 +22,15 @@ const CaseStudyTemplate = ({ pageContext }) => {
       name: "Bhimesh Chauhan",
       url: "https://bhimeshchauhan.github.io/"
     },
-    keywords: study.seo.keywords.join(", ")
+    keywords: study.seo.keywords.join(", "),
+    breadcrumb: {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://bhimeshchauhan.github.io/" },
+        { "@type": "ListItem", position: 2, name: "Case Studies", item: "https://bhimeshchauhan.github.io/case-studies/" },
+        { "@type": "ListItem", position: 3, name: study.title, item: `https://bhimeshchauhan.github.io${pathname}` }
+      ]
+    }
   };
 
   return (

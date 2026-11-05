@@ -15,7 +15,7 @@ import remarkGfm from "remark-gfm";
 import rehypeSanitize from "rehype-sanitize";
 
 const Experience = () => (
-	<Layout>
+	<Layout seo={{ title: "Experience", description: "10+ years of production software: AI platforms, distributed systems, payments, IoT, and technical leadership across startups and scale-ups." }}>
 		<ExperienceWrapper>
 			<WorkWrapper>
 				<h1>Professional Experience</h1>
