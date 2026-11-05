@@ -18,7 +18,8 @@ Bhimesh Chauhan is a Lead AI Platform Engineer and Founder who builds and scales
 Python, OpenAI API, LangChain, React, Node.js, GraphQL, Django, PostgreSQL, Neo4j, AWS, Docker, CI/CD, WebSockets.
 
 ## Notable Companies and Roles
-- Rare Days: Lead Software Engineer. Led Ask Kindred (production RAG assistant), approximately 200 daily active users across three customer companies
+- Rare Days: Lead Software Engineer. Led engineering for the Jefferson Fisher launch platform, about $700K USD in total sales in under 48 hours.
+- Rare Days (continued): Led Ask Kindred (production RAG assistant), approximately 200 daily active users across three customer companies
 - Scrubs Co-Pilot: CTO & Founding Lead Engineer
 - BenchSci: Lead AI / Full-Stack Software Engineer
 - MicroMart / KitchenMate: Senior Full-Stack Software Engineer. Customer engagement +20%, satisfaction +15%, downtime -30%
