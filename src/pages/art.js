@@ -24,8 +24,7 @@ const Art = () => {
     <Layout seo={{ title: "Art", description: "Illustration and design by Bhimesh Chauhan, plus commissions." }}>
       <Wrap>
         <h1>Art</h1>
-        <p className="lede">Drawings and design, straight from my Instagram. Click a piece to open it.</p>
-        <p className="hint">The ring pauses on hover. Click any card to flip it open.</p>
+        <p className="lede">Drawings and design, straight from my Instagram. Hover to pause, click a piece to open it.</p>
         <a className="cta" href="#commission" onClick={(e) => { e.preventDefault(); goCommission(null); }}>Request a commission</a>
         <Ring onCommission={goCommission} />
         <Commission reference={ref} />

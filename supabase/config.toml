@@ -1,0 +1,4 @@
+project_id = "bhimeshchauhan-github-io"
+
+[functions.instagram-feed]
+verify_jwt = false

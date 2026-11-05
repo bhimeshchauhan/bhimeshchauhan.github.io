@@ -6,3 +6,8 @@ backend/env/
 backend/__pycache__/
 .env
 public/
+
+# local function secrets (never commit)
+supabase/functions/.env.local
+supabase/.temp/
+.env.development
