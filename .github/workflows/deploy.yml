@@ -1,11 +1,19 @@
 name: Deploy
 
-# Manual on purpose: builds dev and publishes public/ to the master branch (GitHub Pages source).
+# Every push to dev builds the site and publishes public/ to the master branch,
+# which GitHub Pages serves (Settings > Pages > Deploy from branch: master).
+# Never targets `main` (that branch belongs to another project's deploys).
 on:
+  push:
+    branches: [dev]
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
 
 jobs:
   deploy:
@@ -24,7 +32,15 @@ jobs:
         env:
           GATSBY_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           GATSBY_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-      - run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          npx gh-pages -d public -b master -u "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" -r "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+      - name: Smoke check build output
+        run: |
+          test -f public/index.html
+          test -f public/sitemap.xml
+          grep -q "Lead AI Platform Engineer" public/index.html
+          test -f public/case-studies/scrubs-copilot/index.html
+      - name: Publish to master
+        run: |
+          npx gh-pages -d public -b master \
+            -m "Deploy ${GITHUB_SHA::7} from dev" \
+            -u "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" \
+            -r "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
