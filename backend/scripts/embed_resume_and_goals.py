@@ -44,11 +44,12 @@ def chunk_text(text, max_length=500):
     return chunks
 
 # === SUPABASE INSERTION ===
-def upload_chunks(chunks, source, tags=None):
-    print(f"🧹 Deleting existing chunks for source: {source}")
-    supabase.table("information_chunks").delete().eq("source", source).execute()
-
+def upload_chunks(chunks, source, tags=None, replace=True):
+    # Embed first so a failed embedding never leaves the source empty.
     embeddings = get_embeddings(chunks)
+    if replace:
+        print(f"🧹 Deleting existing chunks for source: {source}")
+        supabase.table("information_chunks").delete().eq("source", source).execute()
     print(f"📦 Uploading {len(chunks)} chunks for '{source}'...")
     for i, (chunk, embedding) in enumerate(zip(chunks, embeddings), 1):
         supabase.table("information_chunks").insert({
@@ -119,18 +120,18 @@ def process_site_data(folder_path="src/data"):
     print(f"🧹 Deleting existing chunks for source: site_data")
     supabase.table("information_chunks").delete().eq("source", "site_data").execute()
 
-    for js_file in data_dir.glob("*.js"):
+    for js_file in sorted(data_dir.glob("*.js")):
         with open(js_file, "r", encoding="utf-8") as f:
             raw = f.read()
             cleaned = strip_js_exports(raw)
             tag = js_file.stem
             chunks = chunk_text(cleaned)
-            upload_chunks(chunks, source="site_data", tags=[tag])
+            upload_chunks(chunks, source="site_data", tags=[tag], replace=False)
             print(f"✅ Uploaded {len(chunks)} chunks from {js_file.name}")
 
 # === MAIN ENTRY ===
 if __name__ == "__main__":
     root = Path(__file__).resolve().parents[2]
-    process_resume(root / "resume.pdf")
+    process_resume(root / "static" / "resume.pdf")
     process_goals(root / "src/data/Goals.js")
     process_site_data(root / "src/data")
