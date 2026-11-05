@@ -59,12 +59,16 @@ export const MarqueeBand = () => (
 const StatsGrid = styled.ul`
   display: grid;
   gap: 1px;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 2.5rem;
   list-style: none;
   margin: 4rem 0 0;
   padding: 0;
   @media (max-width: 800px) {
     grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
   }
   li {
     border-left: 1px solid var(--line);
@@ -86,10 +90,12 @@ const StatsGrid = styled.ul`
   }
 `;
 const STATS = [
-  { to: 10, suffix: "+", label: "years shipping production software" },
-  { to: 80, prefix: "~", suffix: "%", label: "less clinician documentation time" },
-  { to: 100, suffix: "K+", label: "biomedical artifacts structured" },
-  { to: 80, suffix: "K+", label: "learners served" }
+  { to: 80, prefix: "~", suffix: "%", label: "less clinician documentation time (Scrubs Co-Pilot)" },
+  { to: 200, prefix: "~", label: "daily active users on Ask Kindred (Rare Days)" },
+  { to: 100, suffix: "K+", label: "biomedical artifacts structured (BenchSci)" },
+  { to: 80, suffix: "K+", label: "active learners served (Preply)" },
+  { to: 30, prefix: "−", suffix: "%", label: "kiosk downtime (MicroMart)" },
+  { to: 10, suffix: "+", label: "years shipping production software" }
 ];
 export const Stats = () => (
   <StatsGrid aria-label="Highlights">

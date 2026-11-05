@@ -126,6 +126,8 @@ const ChatComponent = () => {
           ALLOW_DATA_ATTR: false
         });
         addResponseMessage(sanitizedResponse);
+      } else if (!response.ok) {
+        addResponseMessage('My assistant is having trouble right now. You can reach me directly at bhimeshchauhan@gmail.com.');
       } else {
         addResponseMessage('Sorry, I could not find an answer to your question.');
       }

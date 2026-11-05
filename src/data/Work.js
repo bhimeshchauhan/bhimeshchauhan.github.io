@@ -16,6 +16,7 @@ export default [
     logo: rareDays,
     description:
       'Architected and built a multi-tenant SaaS platform with a production RAG chatbot, owning the system from retrieval architecture through backend delivery and reliable releases.<br/><br/>' +
+      '● Led Ask Kindred from SDK integration through production, serving approximately 200 daily active users across three customer companies with grounded retrieval, citations, conversation history, and feedback.<br/>' +
       '● Built the RAG pipeline and chatbot experience, improving retrieval quality for customer-facing AI capabilities.<br/>' +
       '● Designed the multi-tenant SaaS architecture, including backend infrastructure and role-aware access controls.<br/>' +
       '● Delivered 10+ CI improvements that strengthened release quality and platform reliability.<br/>' +
@@ -63,6 +64,7 @@ export default [
     companyLink: "https://www.kitchenmate.com/",
     description:
       'Built and operated distributed software for smart food kiosks, spanning device management, payments, operations, and inventory workflows.<br/><br/>' +
+      '● Improved customer engagement by 20 percent and satisfaction by 15 percent, and reduced downtime by 30 percent, through real-time operations tooling and Modbus RS485 integrations.<br/>' +
       '● Built real-time operational interfaces with React, Node.js, and WebSockets for visibility into distributed kiosk activity.<br/>' +
       '● Implemented Modbus RS485 integrations in Python and Node.js to connect cloud services with embedded hardware over TCP and serial protocols.<br/>' +
       '● Improved database query performance by about 25%, reduced downtime by about 30%, and reduced bug reports by about 40%.<br/>' +

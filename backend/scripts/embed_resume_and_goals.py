@@ -24,9 +24,12 @@ co = cohere.Client(COHERE_API_KEY)
 def get_embeddings(texts):
     if not texts:
         return []
-    print("🧠 Embedding texts with Cohere...")
-    response = co.embed(texts=texts, model="embed-english-v3.0", input_type="search_document")
-    return response.embeddings
+    print(f"🧠 Embedding {len(texts)} texts with Cohere...")
+    out = []
+    for i in range(0, len(texts), 96):  # Cohere embed accepts at most 96 texts per call
+        response = co.embed(texts=texts[i:i + 96], model="embed-english-v3.0", input_type="search_document")
+        out.extend(response.embeddings)
+    return out
 
 # === TEXT CHUNKING ===
 def chunk_text(text, max_length=500):
