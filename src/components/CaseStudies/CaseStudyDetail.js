@@ -9,6 +9,7 @@ import {
   DetailShell,
   DetailSummary,
   Eyebrow,
+  FlowDiagram,
   MetaStrip,
   StatGrid,
   TagList
@@ -63,6 +64,13 @@ const CaseStudyDetail = ({ study }) => (
 
     <DetailSection>
       <h2>System at a glance</h2>
+      {study.flow && (
+        <FlowDiagram aria-label={`${study.title} architecture flow`}>
+          {study.flow.map((step) => (
+            <li key={step}>{step}</li>
+          ))}
+        </FlowDiagram>
+      )}
       <ArchitectureList>
         {study.architecture.map((item) => (
           <li key={item}>{item}</li>

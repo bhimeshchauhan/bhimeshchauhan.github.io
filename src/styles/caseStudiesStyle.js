@@ -292,3 +292,47 @@ export const StatGrid = styled.ul`
     font-size: 0.95rem;
   }
 `;
+
+export const FlowDiagram = styled.ol`
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0 0 1.5rem !important;
+  padding: 0 !important;
+
+  li {
+    background: rgba(117, 162, 237, 0.17);
+    border: 1px solid rgba(166, 204, 255, 0.35);
+    border-radius: 12px;
+    color: #ffffff;
+    flex: 1 1 140px;
+    font-weight: 600;
+    margin: 0 !important;
+    padding: 0.8rem 1rem;
+    position: relative;
+    text-align: center;
+  }
+
+  li:not(:last-child)::after {
+    color: #85c7ff;
+    content: "→";
+    position: absolute;
+    right: -1.3rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  @media (max-width: 700px) {
+    flex-direction: column;
+
+    li:not(:last-child)::after {
+      content: "↓";
+      right: 50%;
+      top: auto;
+      bottom: -1.45rem;
+      transform: translateX(50%);
+    }
+  }
+`;

@@ -218,6 +218,7 @@ const extras = {
     order: 0,
     role: "Founder and senior founding lead engineer",
     status: "Built from zero to a production MVP with clinicians",
+    flow: ["Ambient audio", "Transcription (Whisper)", "RAG retrieval + LLM", "Structured note", "Clinician review"],
     keyResult: "~80% less clinician documentation time",
     results: [
       { value: "~80%", label: "less clinician documentation time" },
@@ -229,6 +230,7 @@ const extras = {
     order: 1,
     role: "Lead engineer, mobile and platform",
     status: "Product in development",
+    flow: ["Expo / React Native app", "NestJS + Fastify API", "Supabase Postgres + private storage", "Background image processing"],
     keyResult: "Mobile and backend platform for ranked travel micro-guides",
     results: []
   },
@@ -236,6 +238,7 @@ const extras = {
     order: 2,
     role: "Designer and engineer",
     status: "Personal project",
+    flow: ["Document ingestion", "NLP analysis", "Narration plan", "Voice rendering"],
     keyResult: "End-to-end NLP and TTS pipeline with resumable batch processing",
     results: [
       { value: "NER + coref", label: "keeps characters consistent across a book" },
@@ -247,6 +250,7 @@ const extras = {
     order: 3,
     role: "Sole engineer",
     status: "Live on this site",
+    flow: ["Portfolio content", "pgvector retrieval", "Edge function", "LLM answer", "React chat UI"],
     keyResult: "Retrieval-grounded assistant running on this site",
     results: []
   }

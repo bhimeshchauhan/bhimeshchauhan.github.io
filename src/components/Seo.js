@@ -52,6 +52,7 @@ const Seo = ({
       ]}
       link={[
         { rel: "canonical", href: canonicalUrl },
+        { rel: "alternate", type: "application/rss+xml", title: "Bhimesh Chauhan: Blog", href: `${siteUrl}/feed.xml` },
         { rel: "shortcut icon", type: "image/svg+xml", href: favicon }
       ]}
     >

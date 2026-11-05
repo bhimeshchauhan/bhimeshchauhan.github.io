@@ -28,7 +28,7 @@ export const BlogPanel = () => {
             <div className="row">
                 {
                     blogs.map(item => (
-                        <article className="best-post">
+                        <article className="best-post" id={`post-${item.id}`} key={item.id}>
                             <div
                             className="best-post-image"
                             style={{
