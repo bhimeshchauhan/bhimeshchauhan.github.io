@@ -10,6 +10,7 @@ import {
   faBusinessTime,
   faFileAlt,
   faLaptopCode,
+  faPalette,
 } from "@fortawesome/free-solid-svg-icons";
 
 const home = <FontAwesomeIcon className="fa-icon fa-fw" icon={faHome} />;
@@ -27,6 +28,9 @@ const recommendation = (
   <FontAwesomeIcon className="fa-icon fa-fw " icon={faComments} />
 );
 const blog = <FontAwesomeIcon className="fa-icon fa-fw " icon={faBlog} />;
+const art = (
+  <FontAwesomeIcon className="fa-icon fa-fw " icon={faPalette} />
+);
 const goals = <FontAwesomeIcon className="fa-icon fa-fw " icon={faBullseye} />;
 const contact = (
   <FontAwesomeIcon className="fa-icon fa-fw " icon={faAddressBook} />
@@ -66,6 +70,11 @@ export default [
     icon: goals,
     label: "Goals",
     path: "/goals/",
+  },
+  {
+    icon: art,
+    label: "Art",
+    path: "/art/",
   },
   {
     icon: contact,
