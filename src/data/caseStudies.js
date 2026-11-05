@@ -250,7 +250,17 @@ const extras = {
       { value: "46", label: "database migrations managed in source control" },
       { value: "3", label: "automated deploy pipelines: API, mobile OTA, database" }
     ],
-    resultsSource: "Counted from the repository, November 2026."
+    resultsSource: "Counted from the repository, November 2026.",
+    demo: {
+      video: "/wrangle/demo.mp4",
+      poster: "/wrangle/review.jpg",
+      caption: "Recorded from the iOS app. Swipe through a trip's photos, pin each place on the map, then finish and preview the guide.",
+      stills: [
+        { src: "/wrangle/review.jpg", caption: "Review photos with a swipe" },
+        { src: "/wrangle/map.jpg", caption: "Pin the place on the map" },
+        { src: "/wrangle/finish.jpg", caption: "Finish and preview the guide" }
+      ]
+    }
   },
   "pdf-to-audiobook": {
     order: 2,
