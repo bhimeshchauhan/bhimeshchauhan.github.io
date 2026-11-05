@@ -51,16 +51,14 @@ const IndexPage = () => {
               </DownloadButton>
             </div>
           </div>
-          <video
-            src="/coding.mp4"
-            aria-hidden="true"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
+          <img
+            src="/coding.webp"
+            alt="Illustration of a developer working at a desk"
             width="480"
-            style={{ maxWidth: "50%", height: "auto", borderRadius: 16 }}
+            height="360"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
           />
         </UserDescription>
         <UserTopic>
