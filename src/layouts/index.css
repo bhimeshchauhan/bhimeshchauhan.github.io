@@ -642,8 +642,8 @@ div,p{
   padding: 0.5rem 0.25rem;
 }
 .footerAbsolute, div.footerInitial, footer.defaultFooter {
-  margin: 3rem -8% 0;
-  padding: 1rem 8% 0.5rem;
+  margin: 3rem -8vw 0;
+  padding: 1rem 8vw 0.5rem;
   background-color: #1D1E20;
 }
 
