@@ -40,7 +40,8 @@ jobs:
           test -f public/case-studies/scrubs-copilot/index.html
       - name: Publish to master
         run: |
-          npx gh-pages -d public -b master \
+          touch public/.nojekyll
+          npx gh-pages -d public -b master --dotfiles \
             -m "Deploy ${GITHUB_SHA::7} from dev" \
             -u "github-actions <github-actions@users.noreply.github.com>" \
             -r "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"

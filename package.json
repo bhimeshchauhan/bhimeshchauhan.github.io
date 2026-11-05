@@ -57,7 +57,7 @@
     "now-build": "npm run build",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
-    "deploy": "gatsby clean && gatsby build && gh-pages -d public -b master"
+    "deploy": "gatsby clean && gatsby build && touch public/.nojekyll && gh-pages -d public -b master --dotfiles"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
