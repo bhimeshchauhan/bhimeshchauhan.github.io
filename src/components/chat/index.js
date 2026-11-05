@@ -4,7 +4,29 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import DOMPurify from "dompurify";
 import { ASK_KEY, ASK_URL, useAssistantOnline } from "../../utils/assistant";
 import { CONNECT_INTENT, OWNER_EMAIL, whatsappLink } from "../../utils/connect";
+import { Link } from "gatsby";
 import ConnectCard from "./ConnectCard";
+
+// Deep links shown under an answer. Most specific first; matched against question + answer.
+const LINKS = [
+  [/scrubs|clinical|ambient|documentation time/i, "Scrubs Co-Pilot case study", "/case-studies/scrubs-copilot/"],
+  [/jefferson|700|launch|checkout|sales|revenue/i, "Jefferson Fisher case study", "/case-studies/jefferson-fisher/"],
+  [/kindred|rare ?days|rag |chatbot|retrieval/i, "Ask Kindred case study", "/case-studies/ask-kindred/"],
+  [/wrangle|expo|react native|travel guide|micro-guide/i, "Wrangle case study", "/case-studies/wrangle/"],
+  [/audiobook|narrat|text-to-speech|tts/i, "PDF-to-Audiobook case study", "/case-studies/pdf-to-audiobook/"],
+  [/portfolio assistant|this site|this portfolio/i, "RAG Portfolio Assistant", "/case-studies/rag-portfolio-assistant/"],
+  [/jefferson|checkout|course platform|stripe|kindred platform|caregiver|project/i, "Projects", "/projects/"],
+  [/benchsci|preply|datarobot|micromart|pitchly|nebullam|experience|worked at|career|role/i, "Experience", "/experience/"],
+  [/skill|stack|python|typescript|react|node|aws|docker/i, "Skills", "/skills/"],
+  [/goal|hobb|piano|bucket|travel/i, "Goals", "/goals/"],
+  [/blog|writ|boxing|essay/i, "Blog", "/blog/"],
+  [/recommend|testimonial|nebullam/i, "Recommendations", "/recommendation/"],
+];
+const linksFor = (text) => {
+  const out = [];
+  for (const [re, label, to] of LINKS) if (re.test(text) && !out.some((o) => o.to === to)) out.push({ label, to });
+  return out.slice(0, 3);
+};
 
 const display = `"Space Grotesk", "Signika", sans-serif`;
 const blink = keyframes`0%,80%,100%{opacity:.25}40%{opacity:1}`;
@@ -103,6 +125,10 @@ const Log = styled.div`
   .msg p { margin: 0 0 0.5rem; }
   .thinking { align-items: center; color: var(--muted); display: flex; font-size: 0.9rem; gap: 0.6rem; }
   .thinking i { animation: ${blink} 1.2s infinite; background: var(--accent); border-radius: 50%; display: inline-block; height: 7px; width: 7px; }
+  .refs { align-items: center; display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: -0.35rem; }
+  .refs small { color: var(--muted); font-size: 0.72rem; letter-spacing: 0.1em; margin-right: 0.2rem; text-transform: uppercase; }
+  .refs a { background: rgba(255,180,84,0.1); border: 1px solid rgba(255,180,84,0.35); border-radius: 999px; color: var(--ink); font-size: 0.82rem; padding: 0.3rem 0.75rem; text-decoration: none; transition: background .2s, color .2s; }
+  .refs a:hover, .refs a:focus-visible { background: var(--accent); color: #0b0d12; }
   .sugg { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.25rem; }
   .sugg button { background: transparent; border: 1px solid var(--line); border-radius: 14px; color: var(--muted); cursor: pointer; font: 0.88rem "Signika", sans-serif; padding: 0.55rem 0.85rem; text-align: left; transition: color .2s, border-color .2s, background .2s; }
   .sugg button:hover { background: rgba(255,255,255,0.05); border-color: var(--accent); color: var(--ink); }
@@ -211,7 +237,11 @@ const ChatComponent = () => {
         body: JSON.stringify({ query: q }),
       });
       const data = await res.json().catch(() => ({}));
-      if (res.ok && data.response) push({ role: "bot", html: toHtml(data.response) });
+      if (res.ok && data.response) {
+        push({ role: "bot", html: toHtml(data.response) });
+        const links = linksFor(`${q} ${data.response}`);
+        if (links.length) push({ role: "links", links });
+      }
       else push({ role: "bot", html: `I'm having trouble right now. You can reach Bhimesh directly at ${OWNER_EMAIL}.` });
     } catch (e) {
       push({ role: "bot", html: `I couldn't connect just now. You can reach Bhimesh directly at ${OWNER_EMAIL}.` });
@@ -286,6 +316,13 @@ const ChatComponent = () => {
               {msgs.map((m, i) =>
                 m.role === "card" ? (
                   <ConnectCard key={i} />
+                ) : m.role === "links" ? (
+                  <div key={i} className="refs" aria-label="Related pages">
+                    <small>Read more</small>
+                    {m.links.map((l) => (
+                      <Link key={l.to} to={l.to} onClick={() => setOpen(false)}>{l.label} <span aria-hidden="true">→</span></Link>
+                    ))}
+                  </div>
                 ) : (
                   <div key={i} className={`msg ${m.role}`} dangerouslySetInnerHTML={{ __html: m.html }} />
                 )

@@ -12,11 +12,11 @@
   transform: scaleY(0.0);
 }
 
-circle {
+.backButton circle {
   fill: #E1F1F6;
   transition: transform ease 400ms;
 }
-circle.middle {
+.backButton circle.middle {
   transition: transform ease 500ms;
 }
 circle.back {

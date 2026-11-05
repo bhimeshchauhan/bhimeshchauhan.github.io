@@ -109,6 +109,94 @@ const caseStudies = [
     }
   },
   {
+    slug: "jefferson-fisher",
+    title: "Jefferson Fisher launch platform",
+    label: "High-traffic commerce and learning platform",
+    summary:
+      "I led engineering for the Rare Days platform behind Jefferson Fisher's launch: assessments, checkout and course delivery that generated about $700K USD in total sales in under 48 hours.",
+    scope: [
+      "Led the build of the launch platform for Rare Days' client Jefferson Fisher, from checkout and entitlements through course delivery and the admin tools the team used to run it.",
+      "Designed checkout around launch-day demand: database-driven products, authenticated repeat purchase, and queue, 'you're up' and try-again screens for high traffic.",
+      "Built group-tier purchasing (promo codes by email and PDF, redemption status on the profile) and bulk entitlement grants from a CSV upload with an audit trail.",
+      "Shipped the admin studio for publishing course content, with versioning, update-in-place and revert-to-version, and extended event tracking for the October launch."
+    ],
+    architecture: [
+      "Next.js application with Better Auth for identity and Neon Postgres (Drizzle) for data.",
+      "Stripe powers checkout, including Cash App, with takeover and declined-payment cases handled.",
+      "Sanity holds course content and Mux serves video, with intro and outro videos driven from the CMS.",
+      "A waiting-room queue protects checkout when traffic spikes.",
+      "Sentry and event analytics give visibility into the launch as it happens."
+    ],
+    decisions: [
+      "Put a queue in front of checkout so the spike degrades gracefully instead of failing payments.",
+      "Made products database-driven, so offers can change without a redeploy.",
+      "Kept an audit trail on bulk entitlement grants, because they change what customers can access."
+    ],
+    reliability: [
+      "Playwright end-to-end and Vitest tests, run in CI.",
+      "Security fixes handled promptly, including admin-only authorization on sensitive course and billing actions.",
+      "Documented deploy and rollback steps for the team."
+    ],
+    outcome:
+      "The launch generated about $700K USD in total sales in under 48 hours.",
+    technologies: ["Next.js", "TypeScript", "Stripe", "Neon Postgres", "Sanity", "Mux", "Better Auth", "Playwright"],
+    seo: {
+      description:
+        "Case study: Bhimesh Chauhan led engineering for the Jefferson Fisher launch platform at Rare Days, which generated about $700K USD in sales in under 48 hours.",
+      keywords: ["high-traffic checkout", "Stripe", "Next.js", "launch engineering", "e-commerce platform"]
+    }
+  },
+  {
+    slug: "ask-kindred",
+    title: "Ask Kindred",
+    label: "Production RAG assistant for customer communities",
+    summary:
+      "I led Ask Kindred from SDK integration through production: a retrieval-grounded assistant serving about 200 daily active users across three customer companies.",
+    scope: [
+      "Led the product from SDK integration through production for three customer companies, owning the system from retrieval architecture through backend delivery and reliable releases.",
+      "Built reusable content-ingestion, retrieval and production safeguards across CMS and community data, improving the quality, trust and reliability of customer-facing AI.",
+      "Designed the multi-tenant SaaS architecture, including backend infrastructure and role-aware access controls, and mentored engineers on the team."
+    ],
+    architecture: [
+      "Customers embed the assistant through an SDK integration.",
+      "Content from CMS and community sources is ingested and prepared for retrieval.",
+      "Answers are grounded in retrieved content and returned with citations.",
+      "Conversation history and user feedback are kept so quality can be reviewed and improved.",
+      "Sentry across frontend and backend makes production issues easier to detect, diagnose and resolve before users feel them."
+    ],
+    decisions: [
+      "Grounded retrieval with citations, so customer-facing answers can be checked against their source.",
+      "Reusable ingestion and retrieval building blocks, shared with other Rare Days projects instead of rebuilt per customer.",
+      "Role-aware access controls in a multi-tenant design, so each customer sees only their own content."
+    ],
+    reliability: [
+      "Introduced Sentry across frontend and backend services.",
+      "Delivered 10+ CI improvements that strengthened release quality and platform reliability.",
+      "Built production safeguards into the ingestion and retrieval layer."
+    ],
+    outcome:
+      "Ask Kindred serves approximately 200 daily active users across three customer companies, with grounded retrieval, citations, conversation history and feedback running in production.",
+    technologies: [
+      "RAG architecture",
+      "LLM chatbots",
+      "Multi-tenant SaaS",
+      "Access control",
+      "CI/CD",
+      "Sentry"
+    ],
+    seo: {
+      description:
+        "Case study: Bhimesh Chauhan led Ask Kindred, a production RAG assistant serving about 200 daily active users across three customer companies.",
+      keywords: [
+        "production RAG",
+        "LLM chatbot",
+        "multi-tenant SaaS",
+        "retrieval augmented generation",
+        "AI platform engineering"
+      ]
+    }
+  },
+  {
     slug: "rag-portfolio-assistant",
     title: "RAG Portfolio Assistant",
     label: "Grounded AI applications",
@@ -216,7 +304,8 @@ const caseStudies = [
 const extras = {
   "scrubs-copilot": {
     order: 0,
-    role: "Founder and senior founding lead engineer",
+    role: "Founder and CTO",
+    team: "Led a team of 4–5 engineers and designers",
     status: "Built from zero to a production MVP with clinicians",
     flow: ["Ambient audio", "Transcription (Whisper)", "RAG retrieval + LLM", "Structured note", "Clinician review"],
     flowDetail: [
@@ -233,10 +322,51 @@ const extras = {
       { value: "RAG + LLM", label: "real-time transcription into structured notes" }
     ]
   },
-  wrangle: {
+  "jefferson-fisher": {
     order: 1,
+    role: "Lead engineer",
+    team: "Led a team of 4–5 engineers and designers",
+    status: "Launched October 2026",
+    keyResult: "~$700K USD in sales in under 48 hours",
+    flow: ["Landing + assessment", "Queue", "Stripe checkout", "Entitlements", "Course delivery"],
+    flowDetail: [
+      "The marketing page and assessment bring buyers in, with event tracking extended for the launch.",
+      "A waiting room absorbs the traffic spike so checkout stays healthy.",
+      "Stripe checkout handles database-driven products, repeat purchase and declined-payment recovery.",
+      "Entitlements are granted on purchase, in bulk from CSV, or for group-tier codes, with an audit trail.",
+      "Course content from Sanity and video from Mux are delivered to the buyer."
+    ],
+    results: [
+      { value: "$700K", label: "USD in total sales" },
+      { value: "<48h", label: "to reach it, at launch" },
+      { value: "Queue", label: "high-traffic waiting room built for the spike" }
+    ]
+  },
+  "ask-kindred": {
+    order: 2,
+    role: "Lead engineer",
+    team: "Led a team of 4–5 engineers and designers",
+    status: "In production at Rare Days",
+    keyResult: "~200 daily users across three customer companies",
+    flow: ["Customer SDK", "Content ingestion", "Grounded retrieval + citations", "History + feedback", "Observability"],
+    flowDetail: [
+      "Customers embed the assistant through an SDK integration.",
+      "Content from CMS and community sources is ingested and prepared for retrieval, with reusable production safeguards.",
+      "Answers are grounded in retrieved content and returned with citations so they can be checked.",
+      "Conversation history and user feedback are kept so quality can be reviewed and improved.",
+      "Sentry across frontend and backend surfaces production issues before they reach users."
+    ],
+    results: [
+      { value: "~200", label: "daily active users in production" },
+      { value: "3", label: "customer companies served" },
+      { value: "10+", label: "CI improvements to release quality" }
+    ]
+  },
+  wrangle: {
+    order: 3,
     role: "Lead engineer, mobile and platform",
-    status: "In active development, 890 commits since February 2026",
+    team: "Led a team of 4–5 engineers and designers",
+    status: "In active development",
     flow: ["Expo / React Native app", "NestJS + Fastify API", "Supabase Postgres + private storage", "Background image processing"],
     flowDetail: [
       "Expo and React Native provide the mobile workflow for capture, curation and guide discovery.",
@@ -263,8 +393,9 @@ const extras = {
     }
   },
   "pdf-to-audiobook": {
-    order: 2,
+    order: 4,
     role: "Designer and engineer",
+    team: "Solo, personal project",
     status: "Personal project",
     flow: ["Document ingestion", "NLP analysis", "Narration plan", "Voice rendering"],
     flowDetail: [
@@ -281,8 +412,9 @@ const extras = {
     ]
   },
   "rag-portfolio-assistant": {
-    order: 3,
+    order: 5,
     role: "Sole engineer",
+    team: "Solo, personal project",
     status: "Live on this site",
     flow: ["Portfolio content", "pgvector retrieval", "Edge function", "LLM answer", "React chat UI"],
     flowDetail: [

@@ -63,6 +63,11 @@ export default [
     path: "/blog/",
   },
   {
+    icon: goals,
+    label: "Goals",
+    path: "/goals/",
+  },
+  {
     icon: contact,
     label: "Contact",
     path: "/contact/",

@@ -158,13 +158,14 @@ export const DetailSection = styled.section`
   background: ${panelBackground};
   border: 1px solid ${panelBorder};
   border-radius: 18px;
-  margin-top: 1.25rem;
-  padding: clamp(1.25rem, 4vw, 2.1rem);
+  margin-top: 1.75rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
 
   p,
   li {
     color: #dbe6f8;
-    line-height: 1.65;
+    line-height: 1.7;
+    max-width: 70ch;
   }
 
   p:last-child,
@@ -239,10 +240,13 @@ export const KeyResult = styled.p`
 export const MetaStrip = styled.dl`
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin: 1.5rem 0 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 1.75rem 0 0;
 
-  @media (max-width: 700px) {
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @media (max-width: 520px) {
     grid-template-columns: 1fr;
   }
 

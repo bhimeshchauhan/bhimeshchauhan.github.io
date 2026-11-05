@@ -33,7 +33,7 @@ const Wrapper = styled.div`
   > nav, > footer { position: relative; z-index: 1; }
 `;
 
-// Slow-drifting colour blobs + film grain behind everything.
+// Slow, dim colour blobs behind everything.
 const Ambient = styled.div`
   inset: 0;
   overflow: hidden;
@@ -43,19 +43,12 @@ const Ambient = styled.div`
   .blob {
     border-radius: 50%;
     filter: blur(90px);
-    opacity: 0.5;
+    opacity: 0.3;
     position: absolute;
   }
   .a { background: #3b4bd8; height: 46vmax; left: -12vmax; top: -14vmax; width: 46vmax; }
-  .b { background: #ff9d3a; height: 34vmax; opacity: 0.22; right: -10vmax; top: 30vh; width: 34vmax; }
-  .c { background: #7c3aed; bottom: -16vmax; height: 40vmax; left: 25vw; opacity: 0.28; width: 40vmax; }
-  .grain {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.5'/></svg>");
-    inset: 0;
-    mix-blend-mode: overlay;
-    opacity: 0.18;
-    position: absolute;
-  }
+  .b { background: #ff9d3a; height: 34vmax; opacity: 0.12; right: -10vmax; top: 30vh; width: 34vmax; }
+  .c { background: #7c3aed; bottom: -16vmax; height: 40vmax; left: 25vw; opacity: 0.16; width: 40vmax; }
 `;
 
 const drift = (x, y, d) => ({
@@ -71,10 +64,9 @@ const Layout = ({ children, seo = {} }) => (
             <Seo {...seo} pathname={seo.pathname || location.pathname} />
             <ScrollProgress />
             <Ambient aria-hidden="true">
-              <motion.div className="blob a" {...drift(80, 60, 22)} />
-              <motion.div className="blob b" {...drift(-70, 50, 26)} />
-              <motion.div className="blob c" {...drift(60, -70, 30)} />
-              <div className="grain" />
+              <motion.div className="blob a" {...drift(60, 40, 48)} />
+              <motion.div className="blob b" {...drift(-50, 40, 56)} />
+              <motion.div className="blob c" {...drift(40, -50, 64)} />
             </Ambient>
             <Wrapper>
               <a className="skip-link" href="#main">Skip to content</a>

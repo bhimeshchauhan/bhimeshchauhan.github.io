@@ -65,6 +65,7 @@ const CaseStudyDetail = ({ study }) => (
 
     <MetaStrip aria-label="Case study facts">
       <div><dt>Role</dt><dd>{study.role}</dd></div>
+      <div><dt>Team</dt><dd>{study.team}</dd></div>
       <div><dt>Status</dt><dd>{study.status}</dd></div>
       <div><dt>Stack</dt><dd>{study.technologies.slice(0, 4).join(", ")}</dd></div>
     </MetaStrip>
@@ -106,7 +107,7 @@ const CaseStudyDetail = ({ study }) => (
     )}
 
     <DetailSection>
-      <h2>What I built</h2>
+      <h2>What I owned</h2>
       {study.scope.map((item) => (
         <p key={item}>{item}</p>
       ))}

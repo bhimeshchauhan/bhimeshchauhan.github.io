@@ -6,6 +6,10 @@ import spaceIcon from "../assets/images/projects/spaceflight.svg";
 import terrainIcon from "../assets/images/projects/terrain.svg";
 import connect4Icon from "../assets/images/projects/connect4.svg";
 import pitchlyIcon from "../assets/images/projects/pitchly-icon.svg";
+import coursePlatform from "../assets/images/projects/course-platform.svg";
+import kindredIcon from "../assets/images/projects/kindred.svg";
+import chatbotPlatform from "../assets/images/projects/chatbot-platform.svg";
+import wrangleIcon from "../assets/images/projects/wrangle.svg";
 import Scrubs from "../assets/images/projects/scrubs.jpeg";
 import rag from "../assets/images/projects/rag-icon.svg";
 import pitchly from '../assets/images/pitchly.webp';
@@ -18,6 +22,42 @@ import nebullam5 from '../assets/images/nebullam-5.png';
 import sudoku from '../assets/images/sudoku.webp';
 
 export default [
+  {
+    id: 20,
+    title: "Jefferson Fisher launch platform (Rare Days client)",
+    icon: coursePlatform,
+    description:
+      "Learning platform with assessments, DB-driven product checkout, a high-traffic waiting queue, group-tier promo codes, bulk entitlements from CSV with an audit trail, and an admin studio for publishing course content. The launch generated about $700K USD in total sales in under 48 hours.",
+    year: "2026",
+    techUsed: "Next.js, TypeScript, Stripe, Neon Postgres, Drizzle, Sanity, Mux, Better Auth, Sentry, Playwright, Vitest"
+  },
+  {
+    id: 21,
+    title: "Kindred: caregiver support platform",
+    icon: kindredIcon,
+    description:
+      "Pilot platform for structured caregiver programs: digital onboarding, cohort and session management, support plans, daily logs, passwordless sign-in, and coach and admin tooling.",
+    year: "2026",
+    techUsed: "Django, PostgreSQL, Next.js, React, TypeScript"
+  },
+  {
+    id: 22,
+    title: "RareDaysAI: multi-tenant RAG chatbot platform",
+    icon: chatbotPlatform,
+    description:
+      "Configurable, content-specific chatbot platform for clients, distributed as an npm SDK and CLI with a React chat widget. Retrieval is namespaced per tenant, with reranking, model routing, a semantic cache and input and output security guards. Kindred is the reference implementation.",
+    year: "2026",
+    techUsed: "TypeScript, Next.js, AWS (Lambda, CloudFront, WAF, Bedrock, DynamoDB), Pinecone, SST, npm SDK"
+  },
+  {
+    id: 23,
+    title: "Wrangle: travel photos into micro-guides",
+    icon: wrangleIcon,
+    description:
+      "Mobile app and platform that turns travel photos into ranked, structured micro-guides. Expo and React Native client, NestJS API, Supabase Postgres with private media, background image processing, and three automated deploy pipelines.",
+    year: "2026",
+    techUsed: "Expo, React Native, NestJS, Fastify, Supabase, Postgres, Zod, Turborepo, Sentry"
+  },
   {
     id: 8,
     title: "Medical LLM for Clinical Documentation (Scrubs Co-Pilot)",
