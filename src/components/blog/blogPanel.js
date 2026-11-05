@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import './blogPanel.css'
 import blogs from '../../data/blog';
-import {BlogWriteUp} from './BlogWriteUp';
+import {BlogWriteUp} from './blogWriteUp';
 import axios from 'axios';
 
 export const BlogPanel = () => {
