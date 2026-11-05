@@ -24,6 +24,9 @@ export const RecBox = styled.div`
   padding: clamp(1.25rem, 4vw, 2.25rem);
   color: #eeeeee;
   h3 a{
+    align-items: center;
+    display: inline-flex;
+    min-height: 44px;
     margin: 0;
     color: #eeeeee;
     text-decoration: none;

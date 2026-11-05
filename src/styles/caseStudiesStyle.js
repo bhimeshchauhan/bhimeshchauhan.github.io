@@ -100,7 +100,10 @@ export const TagList = styled.ul`
 `;
 
 export const CaseStudyLink = styled.a`
+  align-items: center;
   align-self: flex-start;
+  display: inline-flex;
+  min-height: 44px;
   color: #ffffff;
   font-size: 1rem;
   font-weight: 600;
@@ -137,6 +140,9 @@ export const DetailShell = styled.article`
 `;
 
 export const Breadcrumb = styled.a`
+  align-items: center;
+  display: inline-flex;
+  min-height: 44px;
   color: #badbff;
   font-size: 0.95rem;
   text-decoration: none;

@@ -246,7 +246,7 @@
     border: 1px solid rgba(255, 207, 74, 0.38);
     border-radius: 999px;
     color: #ffcf4a;
-    font-size: 0.66rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     line-height: 1;
@@ -333,6 +333,6 @@
     }
 
     .skillCardBody p {
-        font-size: 0.73rem;
+        font-size: 0.78rem;
     }
 }

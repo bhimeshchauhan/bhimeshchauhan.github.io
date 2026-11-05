@@ -33,7 +33,7 @@ const Wrap = styled.div`
   .legend i.on { background: #ffb454; box-shadow: 0 0 8px #ffb454; }
   .legend i.off { border: 1.5px solid rgba(242,240,234,0.55); }
   svg { display: block; width: 100%; height: auto; }
-  .lbl { fill: #a3a8b8; font-family: "Signika", sans-serif; font-size: 11px; }
+  .lbl { fill: #a3a8b8; font-family: "Signika", sans-serif; font-size: 12px; }
   .row { fill: #f2f0ea; font-family: "Signika", sans-serif; font-size: 12px; font-weight: 600; }
   .line { fill: none; stroke: #ffb454; stroke-linecap: round; stroke-opacity: 0.45; stroke-width: 1.4; stroke-dasharray: var(--len); animation: ${draw} 2.2s ease-out both; }
   .star { cursor: pointer; outline: none; }

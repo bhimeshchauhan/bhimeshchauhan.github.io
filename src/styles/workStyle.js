@@ -68,6 +68,9 @@ export const StepperHead = styled.div`
     font-weight: 300;
   }
   a{
+    align-items: center;
+    display: inline-flex;
+    min-height: 44px;
     font-size: 23px;
     font-weight: 300;
     color: #eeeeee;

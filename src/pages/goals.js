@@ -33,7 +33,7 @@ const Filters = styled.div`
   display: flex;
   gap: 0.5rem;
   margin-bottom: 2.5rem;
-  button { background: transparent; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); cursor: pointer; font: 600 0.9rem "Signika", sans-serif; padding: 0.5rem 1.1rem; transition: all 0.2s ease; }
+  button { background: transparent; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); cursor: pointer; font: 600 0.9rem "Signika", sans-serif; min-height: 44px; padding: 0.5rem 1.1rem; transition: all 0.2s ease; }
   button:hover { color: var(--ink); }
   button.on { background: var(--accent); border-color: var(--accent); color: #0b0d12; }
 `;

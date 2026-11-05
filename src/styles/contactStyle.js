@@ -80,7 +80,7 @@ export const Icon = styled.span`
 
 export const Input = styled.input`
   width: 100%;
-  height: 2em;
+  height: 2.75em;
   background: transparent;
   border: none;
   outline: none;

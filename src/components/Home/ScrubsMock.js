@@ -43,7 +43,7 @@ const Cols = styled.div`
 const Col = styled.div`
   h3 {
     color: var(--accent);
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.14em;
     margin: 0 0 0.6rem;
@@ -62,7 +62,7 @@ const Col = styled.div`
   p small {
     color: var(--muted);
     display: block;
-    font-size: 0.68rem;
+    font-size: 0.75rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -84,7 +84,7 @@ const Badge = styled(motion.div)`
 
 const Fine = styled.p`
   color: var(--muted);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   margin: 0.8rem 0 0;
   opacity: 0.7;
 `;
