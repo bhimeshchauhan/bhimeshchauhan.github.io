@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-const panelBackground = "rgba(21, 33, 92, 0.58)";
-const panelBorder = "rgba(214, 231, 255, 0.24)";
+const panelBackground = "rgba(255, 255, 255, 0.04)";
+const panelBorder = "rgba(255, 255, 255, 0.12)";
 
 export const CaseStudiesWrapper = styled.div`
   color: #f3f7ff;
@@ -41,7 +41,7 @@ export const CaseStudyGrid = styled.section`
 `;
 
 export const CaseStudyCardShell = styled.article`
-  background: linear-gradient(145deg, rgba(95, 113, 177, 0.33), ${panelBackground});
+  background: ${panelBackground};
   border: 1px solid ${panelBorder};
   border-radius: 20px;
   display: flex;
@@ -51,7 +51,7 @@ export const CaseStudyCardShell = styled.article`
   transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 
   &:hover {
-    border-color: rgba(163, 201, 255, 0.65);
+    border-color: rgba(255, 180, 84, 0.55);
     box-shadow: 0 18px 42px rgba(3, 9, 44, 0.3);
     transform: translateY(-5px);
   }
@@ -72,7 +72,7 @@ export const CaseStudyCardShell = styled.article`
 `;
 
 export const Eyebrow = styled.p`
-  color: #85c7ff !important;
+  color: var(--accent) !important;
   font-size: 0.78rem !important;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -247,7 +247,7 @@ export const MetaStrip = styled.dl`
   }
 
   dt {
-    color: #85c7ff;
+    color: var(--accent);
     font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0.1em;
@@ -316,7 +316,7 @@ export const FlowDiagram = styled.ol`
   }
 
   li:not(:last-child)::after {
-    color: #85c7ff;
+    color: var(--accent);
     content: "→";
     position: absolute;
     right: -1.3rem;

@@ -3,16 +3,32 @@ import React from "react";
 import styled from "styled-components";
 
 const LinkNav = styled(Link)`
-  color: #e2f2f7;
+  color: var(--ink);
+  position: relative;
   margin-right: 35px;
   transition: color 0.2s ease-out;
   text-decoration: none;
   :hover {
-    color: #7fa1e8;
-    transition: color 0.2s;
+    color: var(--accent);
   }
   &.active {
-    color: #7fa1e8;
+    color: var(--accent);
+  }
+  .nav-label::after {
+    background: var(--accent);
+    bottom: -2px;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    width: 100%;
+  }
+  :hover .nav-label::after,
+  &.active .nav-label::after {
+    transform: scaleX(1);
   }
   display: inline-flex;
   align-items: center;

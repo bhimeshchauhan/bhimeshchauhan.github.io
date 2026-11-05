@@ -661,3 +661,21 @@ a:focus-visible, button:focus-visible { outline: 2px solid #9ed2ff; outline-offs
 .cta-row{display:flex;flex-wrap:wrap;gap:1rem}
 .cta-row a{width:auto;min-width:200px;height:56px;padding:0 1.5rem}
 @media (max-width:700px){.cta-row a{width:100%}}
+
+/* ---- design tokens ---- */
+:root{--bg:#07080c;--ink:#f2f0ea;--muted:#a3a8b8;--accent:#ffb454;--line:rgba(255,255,255,.12);--card:rgba(255,255,255,.04)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink)}
+::selection{background:var(--accent);color:#0b0d12}
+.footerAbsolute, div.footerInitial, footer.defaultFooter{background:transparent;border-top:1px solid var(--line);margin:5rem -8vw 0;padding:2rem 8vw 1.5rem}
+.defaultFooter a{color:var(--ink);text-decoration:none;font-weight:500;transition:color .2s}
+.defaultFooter a:hover{color:var(--accent)}
+.defaultFooter p{color:var(--muted)}
+.proof-chips,.cta-row{display:none}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none !important}}
+
+/* nav icon/label swap (moved here from bhimeshStyle.css, which only the old home imported) */
+.fa-icon{display:none}
+.nav-label{display:inline}
+@media only screen and (max-width:1050px){.fa-icon{display:inline-block}.nav-label{display:none}}
+.nav-list{gap:.25rem}
