@@ -53,6 +53,11 @@ export default [
     path: "/projects/",
   },
   {
+    icon: skills,
+    label: "Skills",
+    path: "/skills/",
+  },
+  {
     icon: blog,
     label: "Blog",
     path: "/blog/",

@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import caseStudies from "../../data/caseStudies";
+import skillGroups from "../../data/skills";
 import { CountUp, Magnetic, Reveal } from "../motion/primitives";
 import { Button } from "./Hero";
 
@@ -374,4 +375,249 @@ export const Contact = () => (
       </div>
     </Reveal>
   </Cta>
+);
+
+/* ---------- Stack (logos from the Skills data) ---------- */
+const StackGrid = styled.ul`
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li { margin: 0; }
+  a {
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    color: var(--ink);
+    display: flex;
+    gap: 0.8rem;
+    padding: 0.9rem 1rem;
+    text-decoration: none;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+  a:hover, a:focus-visible { border-color: rgba(255, 180, 84, 0.55); transform: translateY(-3px); }
+  img { height: 28px; object-fit: contain; width: 28px; }
+  span { font-size: 0.95rem; font-weight: 500; }
+`;
+const STACK = (() => {
+  const seen = new Set();
+  const out = [];
+  skillGroups.forEach((g) =>
+    g.skills.forEach((s) => {
+      if (s.icon && s.icon.includes("simpleicons") && !seen.has(s.icon)) {
+        seen.add(s.icon);
+        out.push(s);
+      }
+    })
+  );
+  return out.slice(0, 16);
+})();
+export const Stack = () => (
+  <section>
+    <SectionHead title="Stack" note="What I build and operate with, in production." />
+    <StackGrid>
+      {STACK.map((s, i) => (
+        <Reveal as="li" key={s.title} delay={(i % 4) * 0.05} y={14}>
+          <Link to="/skills/">
+            <img src={s.icon} alt="" loading="lazy" width="28" height="28" />
+            <span>{s.title}</span>
+          </Link>
+        </Reveal>
+      ))}
+    </StackGrid>
+  </section>
+);
+
+/* ---------- About: animated portrait ---------- */
+const AboutGrid = styled.section`
+  align-items: center;
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  margin-top: 7rem;
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+  h2 {
+    color: var(--ink);
+    font-family: ${display};
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin: 0 0 1rem;
+  }
+  p { color: var(--muted); font-size: 1.1rem; line-height: 1.65; margin: 0 0 1rem; max-width: 36rem; }
+  p strong { color: var(--ink); }
+  ul { display: grid; gap: 0.6rem; list-style: none; margin: 1.5rem 0 0; padding: 0; }
+  li { border-left: 2px solid var(--accent); color: var(--ink); margin: 0; padding-left: 0.9rem; }
+  li small { color: var(--muted); display: block; font-size: 0.85rem; }
+`;
+const Stage = styled.div`
+  perspective: 900px;
+  margin: 0 auto;
+  max-width: 380px;
+  width: 100%;
+`;
+const Tilt = styled(motion.div)`
+  aspect-ratio: 4 / 5;
+  position: relative;
+  transform-style: preserve-3d;
+  width: 100%;
+  .glow {
+    background: radial-gradient(closest-side, rgba(255, 180, 84, 0.35), rgba(124, 58, 237, 0.18) 60%, transparent 75%);
+    filter: blur(30px);
+    inset: -12% -18% -4%;
+    position: absolute;
+    transform: translateZ(-40px);
+  }
+  .frame {
+    inset: 0;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 28px 28px 0 0;
+    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 62%, transparent 100%);
+  }
+  .frame img {
+    filter: saturate(0.9) contrast(1.06);
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 20%;
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease;
+    width: 100%;
+  }
+  .frame::after {
+    background: linear-gradient(200deg, rgba(255, 180, 84, 0.28), transparent 45%),
+      linear-gradient(20deg, rgba(59, 75, 216, 0.38), transparent 55%);
+    content: "";
+    inset: 0;
+    mix-blend-mode: soft-light;
+    position: absolute;
+  }
+  .frame::before {
+    background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.22) 50%, transparent 60%);
+    content: "";
+    inset: 0;
+    position: absolute;
+    transform: translateX(-120%);
+    transition: transform 0.9s ease;
+    z-index: 2;
+  }
+  &:hover .frame::before { transform: translateX(120%); }
+  &:hover .frame img { filter: saturate(1) contrast(1.08); transform: scale(1.05); }
+  .mono {
+    align-items: center;
+    color: var(--accent);
+    display: flex;
+    font-family: ${display};
+    font-size: 5rem;
+    font-weight: 700;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+  }
+  .chip {
+    background: rgba(10, 12, 18, 0.72);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    position: absolute;
+    transform: translateZ(60px);
+    white-space: nowrap;
+  }
+  .chip::before {
+    background: var(--accent);
+    border-radius: 50%;
+    content: "";
+    display: inline-block;
+    height: 6px;
+    margin-right: 0.5rem;
+    width: 6px;
+  }
+`;
+const CHIPS = [
+  { t: "RAG", s: { top: "6%", left: "-12%" }, d: 0 },
+  { t: "LLM systems", s: { top: "38%", right: "-16%" }, d: 0.8 },
+  { t: "Distributed", s: { bottom: "10%", left: "-10%" }, d: 1.6 }
+];
+const Portrait = () => {
+  const [failed, setFailed] = React.useState(false);
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const sx = useSpring(mx, { stiffness: 140, damping: 16 });
+  const sy = useSpring(my, { stiffness: 140, damping: 16 });
+  const rotateY = useTransform(sx, [-0.5, 0.5], [-14, 14]);
+  const rotateX = useTransform(sy, [-0.5, 0.5], [12, -12]);
+  return (
+    <Stage
+      onMouseMove={(e) => {
+        const r = e.currentTarget.getBoundingClientRect();
+        mx.set((e.clientX - r.left) / r.width - 0.5);
+        my.set((e.clientY - r.top) / r.height - 0.5);
+      }}
+      onMouseLeave={() => {
+        mx.set(0);
+        my.set(0);
+      }}
+    >
+      <Reveal y={40}>
+        <Tilt style={{ rotateX, rotateY }}>
+          <div className="glow" aria-hidden="true" />
+          <motion.div
+            className="frame"
+            initial={{ clipPath: "inset(100% 0 0 0)", scale: 1.08 }}
+            whileInView={{ clipPath: "inset(0% 0 0 0)", scale: 1 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {failed ? (
+              <div className="mono" aria-hidden="true">BC</div>
+            ) : (
+              <img src="/me.jpg" alt="Portrait of Bhimesh Chauhan" width="380" height="475" loading="lazy" onError={() => setFailed(true)} />
+            )}
+          </motion.div>
+          {CHIPS.map(({ t, s, d }) => (
+            <motion.span
+              key={t}
+              className="chip"
+              style={s}
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: d }}
+            >
+              {t}
+            </motion.span>
+          ))}
+        </Tilt>
+      </Reveal>
+    </Stage>
+  );
+};
+export const About = () => (
+  <AboutGrid>
+    <Portrait />
+    <Reveal delay={0.1}>
+      <h2>Hello, I'm Bhimesh.</h2>
+      <p>
+        <strong>Lead software engineer and founder.</strong> I have spent over a decade building production software, and lately that means AI platforms: RAG pipelines, LLM workflows and the distributed systems that keep them reliable.
+      </p>
+      <p>I like owning a system from retrieval architecture to release process, and mentoring the engineers around it.</p>
+      <ul>
+        <li>
+          Iowa State University
+          <small>B.S. Electrical Engineering, minor in Entrepreneurial Studies</small>
+        </li>
+        <li>
+          Currently
+          <small>Lead Software Engineer at Rare Days</small>
+        </li>
+      </ul>
+    </Reveal>
+  </AboutGrid>
 );

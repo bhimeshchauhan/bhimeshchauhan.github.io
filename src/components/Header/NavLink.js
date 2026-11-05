@@ -3,45 +3,35 @@ import React from "react";
 import styled from "styled-components";
 
 const LinkNav = styled(Link)`
-  color: var(--ink);
-  position: relative;
-  margin-right: 35px;
-  transition: color 0.2s ease-out;
+  align-items: center;
+  border-radius: 999px;
+  color: var(--muted);
+  display: inline-flex;
+  font-weight: 500;
+  min-height: 44px;
+  padding: 0 1.05rem;
   text-decoration: none;
+  transition: color 0.25s ease, background 0.25s ease;
   :hover {
-    color: var(--accent);
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--ink);
   }
   &.active {
+    background: rgba(255, 180, 84, 0.16);
     color: var(--accent);
   }
-  .nav-label::after {
-    background: var(--accent);
-    bottom: -2px;
-    content: "";
-    height: 2px;
-    left: 0;
-    position: absolute;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    width: 100%;
-  }
-  :hover .nav-label::after,
-  &.active .nav-label::after {
-    transform: scaleX(1);
-  }
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
   @media (max-width: 700px) {
-    margin-right: 14px;
-    :last-of-type {
-      display: flex;
-    }
+    padding: 0 0.8rem;
   }
 `;
 const NavLink = ({ info }) => (
-  <LinkNav to={info.path} aria-label={info.label} title={info.label} activeClassName="active" partiallyActive={info.path !== "/"}>
+  <LinkNav
+    to={info.path}
+    aria-label={info.label}
+    title={info.label}
+    activeClassName="active"
+    partiallyActive={info.path !== "/"}
+  >
     {info.icon} <span className="nav-label">{info.label}</span>
   </LinkNav>
 );

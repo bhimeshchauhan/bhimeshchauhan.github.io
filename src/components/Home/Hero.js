@@ -151,6 +151,22 @@ export const Button = styled.a`
   }
 `;
 
+const Visual = styled.div`
+  position: relative;
+  .desk {
+    display: block;
+    margin: 0 auto;
+    max-width: min(520px, 88%);
+    height: auto;
+  }
+  @media (min-width: 961px) {
+    .card {
+      margin: 0.5rem 0 0 auto;
+      width: 100%;
+    }
+  }
+`;
+
 const Float = styled(motion.div)`
   background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025));
   backdrop-filter: blur(14px);
@@ -251,6 +267,7 @@ const MockCopilot = () => {
   const reduce = useReducedMotion();
   return (
     <Float
+      className="card"
       initial={{ opacity: 0, y: 40, rotate: 1.5 }}
       animate={reduce ? { opacity: 1, y: 0 } : { opacity: 1, y: [0, -10, 0], rotate: 0 }}
       transition={
@@ -348,7 +365,19 @@ const Hero = () => {
           </Magnetic>
         </Actions>
       </motion.div>
-      <MockCopilot />
+      <Visual>
+        <motion.img
+          className="desk"
+          src="/coding.webp"
+          alt="Illustration of a developer working at a desk"
+          width="800"
+          height="600"
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.3 }}
+        />
+        <MockCopilot />
+      </Visual>
     </Section>
   );
 };
