@@ -3,10 +3,10 @@
 
 export const INSTAGRAM_CONFIG = {
   // Your Instagram Access Token (long-lived token)
-  ACCESS_TOKEN: 'IGAAMmNDzMZBn1BZAE5oSkc2anV4THJkdDVnWFV2QUR4NGNSNmU5RnpuMlNiV0llR0ZA2b3AzbzlVeVV3YzN2amxhTEhuQi1ZAdXg5Q1F2TDVLMy1JN0dBUDFIanlINDZAJWjNXSnNheWtROGUtcUw3Q2VZAVVJlMWladHZAUdHhtODNyYwZDZD',
+  ACCESS_TOKEN: '',
   
   // Your Instagram User ID
-  USER_ID: '17841404397311129',
+  USER_ID: '',
   
   // Your Instagram App Client ID (optional, for additional features)
   CLIENT_ID: 'your_client_id_here',
