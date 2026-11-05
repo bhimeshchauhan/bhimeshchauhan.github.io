@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://bhimeshchauhan.github.io/</loc></url>
-  <url><loc>https://bhimeshchauhan.github.io/experience/</loc></url>
-  <url><loc>https://bhimeshchauhan.github.io/case-studies/</loc></url>
-  <url><loc>https://bhimeshchauhan.github.io/case-studies/wrangle/</loc></url>
-  <url><loc>https://bhimeshchauhan.github.io/case-studies/scrubs-copilot/</loc></url>
-  <url><loc>https://bhimeshchauhan.github.io/case-studies/rag-portfolio-assistant/</loc></url>
-  <url><loc>https://bhimeshchauhan.github.io/case-studies/pdf-to-audiobook/</loc></url>
-  <url><loc>https://bhimeshchauhan.github.io/projects/</loc></url>
-  <url><loc>https://bhimeshchauhan.github.io/skills/</loc></url>
-  <url><loc>https://bhimeshchauhan.github.io/blog/</loc></url>
-  <url><loc>https://bhimeshchauhan.github.io/recommendation/</loc></url>
-  <url><loc>https://bhimeshchauhan.github.io/contact/</loc></url>
+  <url><loc>https://bhimeshchauhan.github.io/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://bhimeshchauhan.github.io/experience/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://bhimeshchauhan.github.io/case-studies/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://bhimeshchauhan.github.io/projects/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://bhimeshchauhan.github.io/skills/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://bhimeshchauhan.github.io/blog/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://bhimeshchauhan.github.io/recommendation/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://bhimeshchauhan.github.io/contact/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://bhimeshchauhan.github.io/case-studies/scrubs-copilot/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://bhimeshchauhan.github.io/case-studies/wrangle/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://bhimeshchauhan.github.io/case-studies/pdf-to-audiobook/</loc><lastmod>2026-11-05</lastmod></url>
+  <url><loc>https://bhimeshchauhan.github.io/case-studies/rag-portfolio-assistant/</loc><lastmod>2026-11-05</lastmod></url>
 </urlset>
