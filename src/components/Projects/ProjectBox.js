@@ -1,153 +1,228 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Reveal } from '../motion/primitives'
 
-const Box = styled.div`
-//  max-width: 450px;
+const display = `"Space Grotesk", "Signika", sans-serif`
 
-  width: 100%;
-  min-height: 470px;
-  border-radius: 8px;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),
-            0 3px 1px -2px rgba(0,0,0,0.12),
-            0 1px 5px 0 rgba(0,0,0,0.2);
-  transition: box-shadow 0.3s ease-out;
-  background-color: #17191B;
-  margin: 0 4% 4%;
-  :hover {
-    box-shadow:  0 8px 17px 2px rgba(0,0,0,0.14),
-            0 3px 14px 2px rgba(0,0,0,0.12),
-            0 5px 5px -3px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.3s;
+const Box = styled.article`
+  --mx: 50%;
+  --my: 0%;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  &::before {
+    background: radial-gradient(520px circle at var(--mx) var(--my), rgba(255, 180, 84, 0.12), transparent 60%);
+    content: "";
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    transition: opacity 0.3s ease;
   }
-  @media (max-width: 700px) {
-    width: 100%;
-    min-height: auto;
-    max-width: initial;
+  &:hover {
+    border-color: rgba(255, 180, 84, 0.45);
   }
-  @media (min-width: 768px) and (max-width: 1030px) {
-    width: 100%;
-    min-height: auto;
-    box-sizing: border-box;
-    max-width: 100%;
-    margin: 0 0 4%;
+  &:hover::before {
+    opacity: 1;
+  }
+  > * {
+    position: relative;
   }
 `
-const BoxIcon = styled.div`
-  height: 120px;
-  display: flex;
-  justify-content: flex-start;
+
+const Head = styled.header`
   align-items: center;
-  padding: 4%;
-  box-sizing: border-box;
-  border-radius: inherit;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  background-color: rgba(127, 161, 232, 0.3);
-  img{
-    width: 10%;
-    margin-right: 3%;
-    margin-bottom: 0;
-    margin-left: -3%;
+  display: flex;
+  gap: 1.1rem;
+  padding: 1.5rem 1.75rem 0;
+  .icon {
+    border-radius: 18px;
+    flex: none;
+    height: 64px;
+    width: 64px;
   }
-  h3{
+  .titles {
+    flex: 1;
+    min-width: 0;
+  }
+  h2 {
+    color: var(--ink);
+    font-family: ${display};
+    font-size: clamp(1.25rem, 2.6vw, 1.85rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
     margin: 0;
-    flex:1;
-    color: #FFF;
   }
-  @media (max-width: 700px) {
-    img{
-      width: 40%;
-    }
+  .year {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    flex: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    padding: 0.3rem 0.75rem;
+  }
+  @media (max-width: 560px) {
+    flex-wrap: wrap;
+    .year { order: -1; }
   }
 `
-const BoxDescription = styled.div`
-  padding: 5%;
-  flex-direction: column;
-  display: FLEX;
-  height: calc(100% - 120px);
-  p{
-    color: #FFF;
+
+const Body = styled.div`
+  padding: 1.25rem 1.75rem 1.75rem;
+  .desc {
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    margin: 0 0 1.25rem;
+    max-width: 62rem;
   }
-  a{
-    color: #7fa1e8;
-    font-size: 20px;
-    font-weight: bold;
-    display: block;
-    margin:0 0 10px;
-    text-decoration: none;
+`
+
+const Media = styled.div`
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+  &.gallery {
+    background: rgba(0, 0, 0, 0.25);
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding: 0.75rem;
+    scroll-snap-type: x proximity;
+    scrollbar-color: rgba(255, 180, 84, 0.6) transparent;
+    scrollbar-width: thin;
   }
-  .projectItem {
-    display:flex;
-    overflow-x: scroll !important;
-    /* width */
-    ::-webkit-scrollbar {
-      height: 10px;
-    }
-
-    /* Track */
-    ::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 5px grey;
-      border-radius: 10px;
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-      background: rgb(127, 178, 232);
-      border-radius: 10px;
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(127, 178, 232, 0.5);
-    }
-
-    img {
-        max-width: 50%;
-        margin: 1%;
-    }
+  &.gallery img {
+    border-radius: 10px;
+    flex: none;
+    height: clamp(180px, 28vw, 300px);
+    scroll-snap-align: start;
+    width: auto;
   }
   iframe {
+    background: #0d0f11;
+    border: 0;
+    display: block;
     min-height: 20em;
     max-height: 500px;
+    width: 100%;
   }
 `
-const BoxStack = styled.div`
-  margin-top: 4%;
-  p{
-    margin: 0;
-  }
-`
-const ProjectBox = ({ info }) => (
-    <Box className="projectBox">
-      <BoxIcon>
-        <img src={info.icon} alt={`${info.title} project icon`} loading="lazy" decoding="async" style={{ borderRadius: 20 }} />
-        <h3>{info.title}</h3>
-      </BoxIcon>
-      <BoxDescription>
-        {
-            info.iframe ?
-            <div dangerouslySetInnerHTML={{__html:info.iframe}} /> :
-            <div className='projectItem'>
-                {info.media?.map((item) =>
-                    <img src={item} alt={`${info.title} architecture diagram`} loading="lazy" decoding="async" />
-                )}
-            </div>
-        }
-        <BoxStack>
-          {
-            info.githubPath != null ?
-            <a href={info.githubPath}>On Github </a> : ''
-          }
-          {
-            info.demoPath != null ?
-            <a href={info.demoPath}>Project Demo </a> : ''
-          }
-          <p>Summary - {info.description}</p>
-          <p>Development year - {info.year} </p>
-          <p>Technology stack - {info.techUsed} </p>
-        </BoxStack>
-      </BoxDescription>
-    </Box>
-);
 
-export default ProjectBox;
+const Tags = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  li {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink);
+    font-size: 0.82rem;
+    margin: 0;
+    padding: 0.3rem 0.7rem;
+  }
+`
+
+const Links = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  a {
+    align-items: center;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink);
+    display: inline-flex;
+    font-size: 0.95rem;
+    font-weight: 600;
+    gap: 0.45rem;
+    padding: 0.6rem 1.15rem;
+    text-decoration: none;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+  a:hover,
+  a:focus-visible {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #0b0d12;
+  }
+`
+
+// Split on top-level commas only, so "AWS (EC2, S3)" stays one tag.
+const splitTech = (text = '') => {
+  const out = []
+  let depth = 0
+  let cur = ''
+  for (const ch of text) {
+    if (ch === '(') depth++
+    if (ch === ')') depth--
+    if (ch === ',' && depth === 0) {
+      out.push(cur.trim())
+      cur = ''
+    } else cur += ch
+  }
+  if (cur.trim()) out.push(cur.trim())
+  return out
+}
+
+const track = (e) => {
+  const r = e.currentTarget.getBoundingClientRect()
+  e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
+  e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
+}
+
+const ProjectBox = ({ info }) => (
+  <Reveal>
+    <Box className="projectBox" onMouseMove={track}>
+      <Head>
+        <img className="icon" src={info.icon} alt="" loading="lazy" decoding="async" width="64" height="64" />
+        <div className="titles">
+          <h2>{info.title}</h2>
+        </div>
+        {info.year && <span className="year">{info.year}</span>}
+      </Head>
+      <Body>
+        {info.iframe ? (
+          <Media dangerouslySetInnerHTML={{ __html: info.iframe }} />
+        ) : info.media?.length ? (
+          <Media className="gallery">
+            {info.media.map((item, i) => (
+              <img key={item} src={item} alt={`${info.title} screenshot ${i + 1}`} loading="lazy" decoding="async" />
+            ))}
+          </Media>
+        ) : null}
+        <p className="desc">{info.description}</p>
+        <Tags aria-label={`${info.title} technology stack`}>
+          {splitTech(info.techUsed).map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+        </Tags>
+        <Links>
+          {info.demoPath != null && (
+            <a href={info.demoPath} target="_blank" rel="noopener noreferrer">
+              Live demo <span aria-hidden="true">↗</span>
+            </a>
+          )}
+          {info.githubPath != null && (
+            <a href={info.githubPath} target="_blank" rel="noopener noreferrer">
+              GitHub <span aria-hidden="true">↗</span>
+            </a>
+          )}
+        </Links>
+      </Body>
+    </Box>
+  </Reveal>
+)
+
+export default ProjectBox
