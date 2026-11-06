@@ -206,7 +206,7 @@ const Hero = () => (
       <Actions>
         <Button as={Link} to="/case-studies/" className="primary">View case studies →</Button>
         <Button href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</Button>
-        <TextLink href="#fit">Is he right for your role? →</TextLink>
+        <TextLink as={Link} to="/hire/#fit">Role fit →</TextLink>
         <TextLink href="https://github.com/bhimeshchauhan" target="_blank" rel="noopener noreferrer">GitHub ↗</TextLink>
       </Actions>
     </div>

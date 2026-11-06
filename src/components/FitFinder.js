@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import FitInput from "./chat/FitInput";
 import { useAssistantOnline } from "../utils/assistant";
@@ -19,6 +19,13 @@ const Wrap = styled.section`
 // Hidden while the assistant backend is offline, since the chat is what answers.
 const FitFinder = ({ id = "fit" }) => {
   const online = useAssistantOnline();
+  // The section only exists once the assistant is confirmed online, so a #fit link has nothing to scroll to at first.
+  useEffect(() => {
+    if (online && window.location.hash === `#${id}`) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView();
+    }
+  }, [online, id]);
   if (!online) return null;
   return (
     <Wrap id={id} aria-labelledby={`${id}-title`}>
