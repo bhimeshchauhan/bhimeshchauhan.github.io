@@ -146,11 +146,13 @@ const CaseStudyDetail = ({ study }) => (
     <DetailSection>
       <h2>System at a glance</h2>
       {study.flow && <Flow study={study} />}
-      <ArchitectureList>
-        {study.architecture.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ArchitectureList>
+      {!study.flowDetail && (
+        <ArchitectureList>
+          {study.architecture.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ArchitectureList>
+      )}
     </DetailSection>
 
     <DetailColumns>

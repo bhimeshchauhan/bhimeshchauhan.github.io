@@ -25,6 +25,7 @@ export default [
   {
     id: 20,
     title: "Jefferson Fisher launch platform (Rare Days client)",
+    caseStudy: "jefferson-fisher",
     icon: coursePlatform,
     description:
       "Learning platform with assessments, DB-driven product checkout, a high-traffic waiting queue, group-tier promo codes, bulk entitlements from CSV with an audit trail, and an admin studio for publishing course content. The launch generated about $700K USD in total sales in under 48 hours.",
@@ -43,6 +44,7 @@ export default [
   {
     id: 22,
     title: "RareDaysAI: multi-tenant RAG chatbot platform",
+    caseStudy: "raredays-ai-platform",
     icon: chatbotPlatform,
     description:
       "Configurable, content-specific chatbot platform for clients, distributed as an npm SDK and CLI with a React chat widget. Retrieval is namespaced per tenant, with reranking, model routing, a semantic cache and input and output security guards. Kindred is the reference implementation.",
@@ -52,6 +54,8 @@ export default [
   {
     id: 23,
     title: "Wrangle: travel photos into micro-guides",
+    caseStudy: "wrangle",
+    media: ["/wrangle/review.jpg", "/wrangle/map.jpg", "/wrangle/finish.jpg"],
     icon: wrangleIcon,
     description:
       "Mobile app and platform that turns travel photos into ranked, structured micro-guides. Expo and React Native client, NestJS API, Supabase Postgres with private media, background image processing, and three automated deploy pipelines.",
@@ -61,6 +65,7 @@ export default [
   {
     id: 8,
     title: "Medical LLM for Clinical Documentation (Scrubs Co-Pilot)",
+    caseStudy: "scrubs-copilot",
     icon: Scrubs,
     description:
       "Specialized medical LLM for ambient listening, transcription, and structured chart generation. HIPAA-conscious RAG architecture; integrates with EHR systems and voice-based intake.",
@@ -71,6 +76,7 @@ export default [
   {
     id: 9,
     title: "RAG Portfolio Assistant",
+    caseStudy: "rag-portfolio-assistant",
     icon: rag,
     description:
       "Production RAG chatbot powering this portfolio. It retrieves relevant site context from pgvector and prompts an LLM to provide grounded answers, with CORS-safe and cost-aware delivery.",

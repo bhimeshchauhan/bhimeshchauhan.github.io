@@ -1,10 +1,7 @@
 import styled from "styled-components";
 
-const panelBackground = "rgba(255, 255, 255, 0.04)";
-const panelBorder = "rgba(255, 255, 255, 0.12)";
-
 export const CaseStudiesWrapper = styled.div`
-  color: #f3f7ff;
+  color: var(--ink);
   margin: 3.5rem auto 0;
   max-width: 1120px;
   width: 100%;
@@ -15,16 +12,18 @@ export const CaseStudiesIntro = styled.header`
   margin-bottom: 2.75rem;
 
   h1 {
+    color: var(--ink);
+    font-family: "Space Grotesk", "Inter", sans-serif;
     font-size: clamp(2.25rem, 6vw, 4.5rem);
-    font-weight: 400;
+    font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1;
     margin: 0 0 1rem;
   }
 
   p {
-    color: #d4dff5;
-    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    color: var(--muted);
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
     line-height: 1.6;
     margin: 0;
   }
@@ -41,30 +40,30 @@ export const CaseStudyGrid = styled.section`
 `;
 
 export const CaseStudyCardShell = styled.article`
-  background: ${panelBackground};
-  border: 1px solid ${panelBorder};
-  border-radius: 20px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   min-height: 295px;
   padding: 1.65rem;
-  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  transition: border-color 0.2s ease;
 
   &:hover {
-    border-color: rgba(255, 180, 84, 0.55);
-    box-shadow: 0 18px 42px rgba(3, 9, 44, 0.3);
-    transform: translateY(-5px);
+    border-color: var(--accent);
   }
 
   h2 {
-    font-size: clamp(1.55rem, 3vw, 2.1rem);
-    font-weight: 400;
-    line-height: 1.08;
+    color: var(--ink);
+    font-family: "Space Grotesk", "Inter", sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
     margin: 0.6rem 0 0.9rem;
   }
 
   p {
-    color: #d8e3f8;
+    color: var(--muted);
     font-size: 1rem;
     line-height: 1.55;
     margin: 0 0 1.3rem;
@@ -86,13 +85,12 @@ export const TagList = styled.ul`
   gap: 0.45rem;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 0 !important;
 
   li {
-    background: rgba(117, 162, 237, 0.17);
-    border: 1px solid rgba(166, 204, 255, 0.25);
-    border-radius: 999px;
-    color: #e9f2ff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    color: var(--ink);
     font-size: 0.83rem;
     line-height: 1.2;
     padding: 0.38rem 0.64rem;
@@ -104,37 +102,39 @@ export const CaseStudyLink = styled.a`
   align-self: flex-start;
   display: inline-flex;
   min-height: 44px;
-  color: #ffffff;
+  color: var(--ink);
   font-size: 1rem;
   font-weight: 600;
   margin-top: auto;
   text-decoration: none;
 
   &:hover {
-    color: #9ed2ff;
+    color: var(--accent);
   }
 `;
 
 export const DetailShell = styled.article`
-  color: #edf4ff;
+  color: var(--ink);
   margin: 3rem auto 0;
   max-width: 940px;
   width: 100%;
 
   h1,
   h2 {
-    font-weight: 400;
+    font-family: "Space Grotesk", "Inter", sans-serif;
+    font-weight: 700;
   }
 
   h1 {
-    font-size: clamp(2.5rem, 7vw, 5.2rem);
-    letter-spacing: -0.05em;
-    line-height: 0.95;
+    font-size: clamp(2.5rem, 7vw, 4.6rem);
+    letter-spacing: -0.045em;
+    line-height: 0.98;
     margin: 0.45rem 0 1.35rem;
   }
 
   h2 {
-    font-size: clamp(1.45rem, 3vw, 2rem);
+    font-size: 1.05rem;
+    letter-spacing: 0;
     margin: 0 0 0.9rem;
   }
 `;
@@ -143,35 +143,64 @@ export const Breadcrumb = styled.a`
   align-items: center;
   display: inline-flex;
   min-height: 44px;
-  color: #badbff;
+  color: var(--muted);
   font-size: 0.95rem;
   text-decoration: none;
 
   &:hover {
-    color: #ffffff;
+    color: var(--accent);
   }
 `;
 
 export const DetailSummary = styled.p`
-  color: #dbe7fa;
-  font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+  color: #d9d7d0;
+  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
   line-height: 1.5;
   margin: 0;
   max-width: 850px;
 `;
 
 export const DetailSection = styled.section`
-  background: ${panelBackground};
-  border: 1px solid ${panelBorder};
-  border-radius: 18px;
-  margin-top: 1.75rem;
-  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.25rem 2.5rem;
+  grid-template-columns: 11rem minmax(0, 1fr);
+  margin-top: 2.5rem;
+  padding-top: 1.75rem;
+
+  > h2 {
+    color: var(--accent);
+    font-size: 0.8rem;
+    grid-column: 1;
+    grid-row: 1;
+    letter-spacing: 0.1em;
+    margin: 0.3rem 0 0;
+    text-transform: uppercase;
+  }
+  > *:not(h2) {
+    grid-column: 2;
+  }
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+    > h2,
+    > *:not(h2) {
+      grid-column: 1;
+    }
+    > h2 {
+      grid-row: auto;
+      margin-bottom: 0.6rem;
+    }
+  }
 
   p,
   li {
-    color: #dbe6f8;
+    color: #d9d7d0;
     line-height: 1.7;
     max-width: 70ch;
+  }
+
+  p {
+    margin: 0 0 1rem;
   }
 
   p:last-child,
@@ -205,8 +234,8 @@ export const ArchitectureList = styled.ol`
 
   li::before {
     align-items: center;
-    background: rgba(116, 174, 255, 0.25);
-    border: 1px solid rgba(178, 215, 255, 0.5);
+    background: none;
+    border: 1px solid var(--line);
     border-radius: 50%;
     color: #ffffff;
     content: counter(architecture);
@@ -222,14 +251,7 @@ export const ArchitectureList = styled.ol`
 `;
 
 export const DetailColumns = styled.div`
-  display: grid;
-  gap: 1.25rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-top: 1.25rem;
-
-  @media (max-width: 700px) {
-    grid-template-columns: 1fr;
-  }
+  display: block;
 `;
 
 export const DetailFooter = styled.footer`
@@ -265,79 +287,84 @@ export const MetaStrip = styled.dl`
   }
 
   dd {
-    color: #edf4ff;
+    color: var(--ink);
     margin: 0.2rem 0 0;
   }
 `;
 
 export const StatGrid = styled.ul`
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem 2rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   list-style: none;
-  margin: 1.5rem 0 0 !important;
+  margin: 1.5rem 0 1.75rem !important;
   padding: 0 !important;
 
+  &:has(li:nth-child(4):last-child) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   @media (max-width: 700px) {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 
   li {
-    background: rgba(117, 162, 237, 0.14);
-    border: 1px solid rgba(166, 204, 255, 0.25);
-    border-radius: 14px;
+    border-left: 2px solid var(--accent);
     margin: 0 !important;
-    padding: 1rem;
+    padding: 0.1rem 0 0.1rem 1rem;
   }
 
   strong {
-    color: #ffffff;
+    color: var(--ink);
     display: block;
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-family: "Space Grotesk", "Inter", sans-serif;
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    letter-spacing: -0.03em;
     line-height: 1.1;
   }
 
   span {
-    color: #d4dff5;
-    font-size: 0.95rem;
+    color: var(--muted);
+    display: block;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    margin-top: 0.25rem;
   }
 `;
 
 export const FlowDiagram = styled.ol`
   align-items: stretch;
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  flex-wrap: nowrap;
+  gap: 1.25rem;
   list-style: none;
   margin: 0 0 1.5rem !important;
   padding: 0 !important;
 
   li {
-    flex: 1 1 140px;
+    flex: 1 1 0;
+    min-width: 0;
     margin: 0 !important;
     position: relative;
   }
   li button {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 12px;
-    color: #ffffff;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    color: var(--ink);
     cursor: pointer;
     font: inherit;
     font-weight: 600;
     height: 100%;
-    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+    padding: 0.7rem 0.4rem;
     text-align: center;
-    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    transition: background 0.2s ease, border-color 0.2s ease;
     width: 100%;
   }
   li button:hover,
   li button.on {
-    background: rgba(255, 180, 84, 0.16);
+    background: rgba(255, 180, 84, 0.12);
     border-color: var(--accent);
-  }
-  li button.on {
-    transform: translateY(-2px);
   }
 
   li:not(:last-child)::after {
@@ -351,6 +378,7 @@ export const FlowDiagram = styled.ol`
 
   @media (max-width: 700px) {
     flex-direction: column;
+    gap: 1.5rem;
 
     li:not(:last-child)::after {
       content: "↓";
@@ -412,7 +440,7 @@ export const PhoneFrame = styled.div`
 export const FlowDetail = styled.p`
   animation: flowIn 0.35s ease both;
   border-left: 3px solid var(--accent);
-  color: #edf4ff !important;
+  color: var(--ink) !important;
   margin: 0 0 1.5rem !important;
   padding: 0.25rem 0 0.25rem 1rem;
   @keyframes flowIn {

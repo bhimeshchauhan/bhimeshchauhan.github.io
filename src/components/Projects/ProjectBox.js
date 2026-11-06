@@ -1,101 +1,68 @@
 import React from 'react'
+import { Link } from 'gatsby'
 import styled from 'styled-components'
-import { Reveal } from '../motion/primitives'
 
 const display = `"Space Grotesk", "Inter", sans-serif`
 
 const Box = styled.article`
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  overflow: hidden;
-  position: relative;
-  transition: border-color 0.2s ease;
-  &:hover {
-    border-color: var(--accent);
-  }
-  > * {
-    position: relative;
-  }
-`
-
-const Head = styled.header`
-  align-items: center;
-  display: flex;
-  gap: 1.1rem;
-  padding: 1.5rem 1.75rem 0;
-  .icon {
-    border-radius: 18px;
-    flex: none;
-    height: 64px;
-    width: 64px;
-  }
-  .titles {
-    flex: 1;
-    min-width: 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.5rem 2.5rem;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  padding: 2rem 0;
+  .year {
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    padding-top: 0.55rem;
   }
   h2 {
     color: var(--ink);
     font-family: ${display};
-    font-size: clamp(1.25rem, 2.6vw, 1.85rem);
+    font-size: clamp(1.35rem, 2.8vw, 1.9rem);
     font-weight: 700;
     letter-spacing: -0.025em;
-    line-height: 1.1;
-    margin: 0;
+    line-height: 1.15;
+    margin: 0 0 0.9rem;
   }
-  .year {
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    color: var(--muted);
-    flex: none;
-    font-size: 0.82rem;
-    letter-spacing: 0.06em;
-    padding: 0.3rem 0.75rem;
-  }
-  @media (max-width: 560px) {
-    flex-wrap: wrap;
-    .year { order: -1; }
-  }
-`
-
-const Body = styled.div`
-  padding: 1.25rem 1.75rem 1.75rem;
   .desc {
     color: var(--muted);
     font-size: 1.05rem;
     line-height: 1.65;
     margin: 0 0 1.25rem;
-    max-width: 62rem;
+    max-width: 46rem;
+  }
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+    .year { padding-top: 0; }
   }
 `
 
 const Media = styled.div`
   border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: 8px;
   margin-bottom: 1.25rem;
   overflow: hidden;
   &.gallery {
-    background: rgba(0, 0, 0, 0.25);
     display: flex;
     gap: 0.75rem;
     overflow-x: auto;
     padding: 0.75rem;
-    scroll-snap-type: x proximity;
-    scrollbar-color: rgba(255, 180, 84, 0.6) transparent;
+    scrollbar-color: var(--accent) transparent;
     scrollbar-width: thin;
   }
   &.gallery img {
-    border-radius: 10px;
+    border-radius: 6px;
     flex: none;
     height: clamp(180px, 28vw, 300px);
-    scroll-snap-align: start;
     width: auto;
   }
   iframe {
     background: #0d0f11;
     border: 0;
     display: block;
-    min-height: 20em;
     max-height: 500px;
+    min-height: 20em;
     width: 100%;
   }
 `
@@ -108,13 +75,12 @@ const Tags = styled.ul`
   margin: 0 0 1.25rem;
   padding: 0;
   li {
-    background: rgba(255, 255, 255, 0.04);
     border: 1px solid var(--line);
-    border-radius: 999px;
+    border-radius: 4px;
     color: var(--ink);
     font-size: 0.82rem;
     margin: 0;
-    padding: 0.3rem 0.7rem;
+    padding: 0.3rem 0.65rem;
   }
 `
 
@@ -124,23 +90,22 @@ const Links = styled.div`
   gap: 0.7rem;
   a {
     align-items: center;
-    background: transparent;
     border: 1px solid var(--line);
-    border-radius: 999px;
+    border-radius: 8px;
     color: var(--ink);
     display: inline-flex;
     font-size: 0.95rem;
     font-weight: 600;
     gap: 0.45rem;
-    padding: 0.6rem 1.15rem;
+    min-height: 44px;
+    padding: 0 1.1rem;
     text-decoration: none;
-    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    transition: border-color 0.2s ease, color 0.2s ease;
   }
   a:hover,
   a:focus-visible {
-    background: var(--accent);
     border-color: var(--accent);
-    color: #0b0d12;
+    color: var(--accent);
   }
 `
 
@@ -161,47 +126,41 @@ const splitTech = (text = '') => {
   return out
 }
 
-
 const ProjectBox = ({ info }) => (
-  <Reveal>
-    <Box className="projectBox">
-      <Head>
-        <div className="titles">
-          <h2>{info.title}</h2>
-        </div>
-        {info.year && <span className="year">{info.year}</span>}
-      </Head>
-      <Body>
-        {info.iframe ? (
-          <Media dangerouslySetInnerHTML={{ __html: info.iframe }} />
-        ) : info.media?.length ? (
-          <Media className="gallery">
-            {info.media.map((item, i) => (
-              <img key={item} src={item} alt={`${info.title} screenshot ${i + 1}`} loading="lazy" decoding="async" />
-            ))}
-          </Media>
-        ) : null}
-        <p className="desc">{info.description}</p>
-        <Tags aria-label={`${info.title} technology stack`}>
-          {splitTech(info.techUsed).map((t) => (
-            <li key={t}>{t}</li>
+  <Box className="projectBox">
+    <span className="year">{info.year || ''}</span>
+    <div>
+      <h2>{info.title}</h2>
+      {info.iframe ? (
+        <Media dangerouslySetInnerHTML={{ __html: info.iframe }} />
+      ) : info.media?.length ? (
+        <Media className="gallery">
+          {info.media.map((item, i) => (
+            <img key={item} src={item} alt={`${info.title} screenshot ${i + 1}`} loading="lazy" decoding="async" />
           ))}
-        </Tags>
-        <Links>
-          {info.demoPath != null && (
-            <a href={info.demoPath} target="_blank" rel="noopener noreferrer">
-              Live demo <span aria-hidden="true">↗</span>
-            </a>
-          )}
-          {info.githubPath != null && (
-            <a href={info.githubPath} target="_blank" rel="noopener noreferrer">
-              GitHub <span aria-hidden="true">↗</span>
-            </a>
-          )}
-        </Links>
-      </Body>
-    </Box>
-  </Reveal>
+        </Media>
+      ) : null}
+      <p className="desc">{info.description}</p>
+      <Tags aria-label={`${info.title} technology stack`}>
+        {splitTech(info.techUsed).map((t) => (
+          <li key={t}>{t}</li>
+        ))}
+      </Tags>
+      <Links>
+        {info.caseStudy && <Link to={`/case-studies/${info.caseStudy}/`}>Read the case study →</Link>}
+        {info.demoPath != null && (
+          <a href={info.demoPath} target="_blank" rel="noopener noreferrer">
+            Live demo <span aria-hidden="true">↗</span>
+          </a>
+        )}
+        {info.githubPath != null && (
+          <a href={info.githubPath} target="_blank" rel="noopener noreferrer">
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+        )}
+      </Links>
+    </div>
+  </Box>
 )
 
 export default ProjectBox

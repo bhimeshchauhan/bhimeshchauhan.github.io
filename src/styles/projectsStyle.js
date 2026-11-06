@@ -28,7 +28,6 @@ export const ProjectsIntro = styled.header`
 `
 
 export const ProjectsSection = styled.div`
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: 1fr;
+  border-bottom: 1px solid var(--line);
+  display: block;
 `
