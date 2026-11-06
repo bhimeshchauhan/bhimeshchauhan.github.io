@@ -46,6 +46,26 @@ const loadScript = (src, global) =>
     document.head.appendChild(s);
   });
 
+// pdf.js returns text in small fragments. Joining them all with spaces turns letter-spaced headings into "R A R E D A Y S",
+// so add a space only where there is a real horizontal gap, and a newline where the line changes.
+export const joinItems = (items) => {
+  let out = "";
+  let prev = null;
+  for (const it of items) {
+    const t = it.transform || [];
+    const x = t[4] || 0, y = t[5] || 0, h = it.height || 10;
+    if (prev) {
+      if (Math.abs(y - prev.y) > Math.max(2, prev.h * 0.5)) out += "\n";
+      else if (x - prev.end > prev.h * 0.3) out += " ";
+    }
+    out += it.str || "";
+    prev = { y, end: x + (it.width || 0), h };
+    if (it.hasEOL) { out += "\n"; prev = null; }
+  }
+  // Letter-spaced capitals ("E N G I N E E R I N G") that still slipped through: collapse runs of 4+ single capitals.
+  return out.replace(/\b(?:[A-Z] ){3,}[A-Z]\b/g, (m) => m.replace(/ /g, ""));
+};
+
 const readPdf = async (buf) => {
   const pdfjs = await import(/* webpackIgnore: true */ "/vendor/pdf.min.mjs");
   pdfjs.GlobalWorkerOptions.workerSrc = "/vendor/pdf.worker.min.mjs";
@@ -57,7 +77,7 @@ const readPdf = async (buf) => {
     for (let i = 1; i <= Math.min(doc.numPages, MAX_PDF_PAGES) && out.length < MAX_CHARS; i++) {
       const page = await doc.getPage(i);
       const content = await page.getTextContent();
-      out += content.items.map((it) => it.str || "").join(" ") + "\n\n";
+      out += joinItems(content.items) + "\n\n";
     }
     return out;
   } catch (e) {
