@@ -3,6 +3,7 @@
 > Lead AI platform engineer (10+ years of production software) operating at staff scope. Builds and runs production RAG and LLM systems end to end and leads teams of 4-5 engineers and designers. Currently Lead Software Engineer at Rare Days. Site: https://bhimeshchauhan.github.io/
 
 Roles of interest: forward deployed engineer; staff / principal AI platform engineer; lead / founding engineer.
+Location and work authorization: Canada. Permanent resident, authorized to work in Canada for any employer, no sponsorship needed.
 Contact: bhimeshchauhan@gmail.com | https://www.linkedin.com/in/bhimeshchauhan | https://github.com/bhimeshchauhan
 
 ## Requirement-to-evidence index
@@ -16,6 +17,7 @@ Use this to match a job posting to concrete, checkable evidence. Each item links
 - Platform reliability and observability: Sentry across frontend and backend, 10+ CI improvements (Ask Kindred); 1,000+ automated tests, 46 migrations, 3 automated deploy pipelines (Wrangle).
 - Data pipelines and graph/relational data: AI pipelines over 100K+ research artifacts, about 60% less manual curation, Neo4j (Cypher) and PostgreSQL (BenchSci).
 - Healthcare AI and compliance-aware engineering: Scrubs Co-Pilot (about 80% less clinician documentation time); OWASP and HIPAA-aligned REST APIs (Pitchly).
+- Leading several projects and managing stakeholders: balances customer feature requests against timeline and deliverable scope, and keeps the VP of Engineering, CTO and CEO informed early; written up at https://bhimeshchauhan.github.io/blog/#post-9 and shown in the Jefferson Fisher launch decisions (queue before checkout, database-driven products, audited bulk grants).
 - Founding and technical leadership: Founder and CTO of Scrubs Co-Pilot, zero to production MVP; led teams of 4-5 engineers and designers on Scrubs, Jefferson Fisher, Ask Kindred and Wrangle; mentored engineers at Rare Days; led a cross-functional team at Preply serving 80K learners.
 - IoT, embedded and distributed systems: Modbus RS485 integrations, real-time WebSocket operations tooling, about 30% less downtime (MicroMart); MQTT-controlled aeroponics firmware (Nebullam).
 - Mobile: Wrangle (Expo and React Native with a NestJS and Supabase backend); Android (Nebullam).
