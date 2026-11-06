@@ -12,7 +12,7 @@ export const BlogPanel = () => {
         }
         let setObj = {}
         blogs.forEach((item) => {
-            if(image[item.panelImage] === undefined) {
+            if(item.panelImage && image[item.panelImage] === undefined) {
                 axios.get('https://api.unsplash.com/photos/'+item.panelImage, {headers: headers})
                 .then(res => {
                     const panelImage = item.panelImage;
@@ -32,7 +32,7 @@ export const BlogPanel = () => {
                             <div
                             className="best-post-image"
                             style={{
-                                backgroundImage: `url(${image[item.panelImage]})`
+                                backgroundImage: `url(${item.panelImageUrl || image[item.panelImage]})`
                             }}
                             ></div>
                                 <div className="best-post-content">

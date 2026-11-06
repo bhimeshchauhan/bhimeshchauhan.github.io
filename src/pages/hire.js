@@ -29,7 +29,8 @@ const roles = [
       ["Delivered 10+ CI improvements and added Sentry across frontend and backend services.", "/case-studies/ask-kindred/"],
       ["Wrangle platform: 1,000+ automated tests, 46 migrations, 3 automated deploy pipelines (counted from the repository).", "/case-studies/wrangle/"],
       ["BenchSci: AI pipelines over 100K+ research artifacts, about 60% less manual curation, plus lineage and auditability practices.", "/experience/"],
-      ["Every case study documents its design decisions and reliability approach.", "/case-studies/"]
+      ["Every case study documents its design decisions and reliability approach.", "/case-studies/"],
+      ["Wrote up how I balance customer requests, timeline and stakeholder expectations (VP Engineering, CTO, CEO) across several projects.", "/blog/#post-9"]
     ],
     keywords: "staff engineer, principal engineer, AI platform, architecture, multi-tenant, reliability, RAG, observability"
   },
@@ -40,7 +41,8 @@ const roles = [
       ["Founder and CTO of Scrubs Co-Pilot: built from zero to a production MVP with clinicians.", "/case-studies/scrubs-copilot/"],
       ["Led teams of 4–5 engineers and designers across Scrubs Co-Pilot, the Jefferson Fisher launch, Ask Kindred and Wrangle.", "/case-studies/"],
       ["Set the technical roadmap from MVP through production, balancing clinical quality, security and reliability.", "/experience/"],
-      ["Mentored engineers at Rare Days; led a cross-functional team at Preply serving 80K learners.", "/experience/"]
+      ["Mentored engineers at Rare Days; led a cross-functional team at Preply serving 80K learners.", "/experience/"],
+      ["Wrote up how I balance customer requests, timeline and stakeholder expectations (VP Engineering, CTO, CEO) across several projects.", "/blog/#post-9"]
     ],
     keywords: "lead engineer, founding engineer, CTO, engineering lead, technical leadership, hiring and mentoring"
   }
@@ -48,6 +50,7 @@ const roles = [
 
 const facts = [
   ["Current role", "Lead Software Engineer, Rare Days (Jan 2026 – present)"],
+  ["Location", "Canada. Permanent resident, authorized to work in Canada for any employer, no sponsorship needed"],
   ["Experience", "10+ years of production software; earlier roles at Scrubs Co-Pilot, BenchSci, MicroMart, Preply, DataRobot, Pitchly and Nebullam"],
   ["Focus", "Production RAG and LLM systems, multi-tenant SaaS, healthcare AI, high-traffic commerce, IoT and distributed systems"],
   ["Stack", "TypeScript, Python, React, Next.js, Node.js, NestJS, PostgreSQL, pgvector, Neo4j, Supabase, AWS, Docker, Stripe, Sentry, CI/CD"],

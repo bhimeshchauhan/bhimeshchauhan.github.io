@@ -22,9 +22,9 @@ const parseTemplate = (tag, html) => {
             } else {
                 return ``;
             }
-        });
+        }).join('');
         data += "</p>"
-        return data.split(',').join('');
+        return data;
     } else if(tag === 'blockquote') {
         return(<blockquote>{html}</blockquote>);
     } else if(tag === "pre") {
@@ -43,9 +43,9 @@ const parseTemplate = (tag, html) => {
             } else {
                 return ``;
             }
-        });
+        }).join('');
         data += "</pre>";
-        return data.split(',').join('');
+        return data;
     }
 }
 

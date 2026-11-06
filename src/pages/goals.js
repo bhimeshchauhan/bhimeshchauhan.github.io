@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import styled from "styled-components";
 import goals from "../data/Goals";
+import places from "../data/places";
 import Layout from "../components/layout";
 import { Reveal } from "../components/motion/primitives";
 import Globe from "../components/Goals/Globe";
@@ -8,6 +9,9 @@ import Constellation from "../components/Goals/Constellation";
 import { sceneFor } from "../components/Goals/Scenes";
 
 const display = `"Space Grotesk", "Signika", sans-serif`;
+const placeName = (p) => p.label || p.country;
+const homeNames = places.filter((p) => p.kinds.some((k) => k !== "visited")).map(placeName);
+const seenNames = places.filter((p) => p.kinds.every((k) => k === "visited")).map(placeName);
 
 const Wrap = styled.div`
   margin: 0 auto;
@@ -52,13 +56,15 @@ const Stage = styled.aside`
   border-radius: 28px;
   display: flex;
   flex-direction: column;
-  height: min(520px, calc(100vh - 8rem));
+  height: min(600px, calc(100vh - 7rem));
   overflow: hidden;
   position: sticky;
   top: 6.5rem;
   .view { flex: 1; min-height: 0; position: relative; }
   .view > * { animation: stageIn 0.45s ease both; inset: 0; position: absolute; }
   figcaption { border-top: 1px solid var(--line); color: var(--muted); font-size: 0.95rem; padding: 0.9rem 1.2rem; }
+  .legend { display: grid; gap: 0.25rem; font-size: 0.85rem; margin-top: 0.55rem; }
+  .legend i { border-radius: 50%; display: inline-block; height: 9px; margin-right: 0.45rem; width: 9px; }
   figcaption b { color: var(--ink); display: block; font-family: ${display}; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.15rem; }
   @keyframes stageIn { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
   @media (max-width: 1000px) { position: relative; top: 0; height: 320px; order: -1; }
@@ -172,7 +178,11 @@ const Goals = () => {
             {Scene ? <Scene /> : <Globe />}
           </div>
           <figcaption>
-            {scene ? (<><b>{scene[2]}</b>{active.trim()}</>) : (<><b>Places so far</b>Drag the globe. Hover a star or a goal to see it play out.</>)}
+            {scene ? (<><b>{scene[2]}</b>{active.trim()}</>) : (<><b>Places so far</b>Drag the globe. Hover a star or a goal to see it play out.
+              <span className="legend">
+                {homeNames.length > 0 && <span><i style={{ background: "#ffb454" }} />Lived or worked: {homeNames.join(", ")}</span>}
+                {seenNames.length > 0 && <span><i style={{ background: "#8fa0ff" }} />Visited: {seenNames.join(", ")}</span>}
+              </span></>)}
           </figcaption>
         </Stage>
         </Split>

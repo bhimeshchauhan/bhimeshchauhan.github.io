@@ -1,5 +1,55 @@
 export default [
     {
+        id: 9,
+        author: "Bhimesh Chauhan",
+        panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
+        title: "Leading Several Projects at Once: Scope, Time and Stakeholders",
+        tagLine: "How I balance what customers ask for, what the timeline allows, and what a team can actually deliver.",
+        dated: "5th November, 2026 - Canada",
+        description: [
+            ['img', "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80"],
+            ['h3', "Three people want three different things"],
+            ['p', [
+                ['normal', "At Rare Days I lead more than one project at a time, and each one has people pulling in different directions. Customers want more features. The team needs a plan it can really finish. My VP of Engineering, our CTO and our CEO each need to know what will ship and when. Most of the job is holding those three pulls in balance, and this is how I think about it."]
+            ]],
+            ['h3', "Fix the date, flex the scope"],
+            ['p', [
+                ['normal', "Customers rarely ask for too much in a single request. Each ask is reasonable on its own. The trouble is the sum of the asks against a date that does not move. So I treat the date as the constraint and the scope as the variable, and I get specific about what has to move, shrink or wait to make room for something new."]
+            ]],
+            ['p', [
+                ['normal', "When a new request arrives, a plain yes or no is rarely the useful answer. The useful answer is what we would trade to fit it in, and what it would cost us if we do not."]
+            ]],
+            ['h3', "A concrete case: the Jefferson Fisher launch"],
+            ['p', [
+                ['normal', "The Jefferson Fisher launch was the clearest version of this. I led engineering for the platform behind it: checkout, entitlements and course delivery, with a team of 4 to 5 engineers and designers. The demand was concentrated into a short window, so the plan had to be honest about where limited time would go."]
+            ]],
+            ['p', [
+                ['normal', "Three decisions show the pattern. We put a queue in front of checkout, so a traffic spike degrades gracefully instead of failing payments. We made products database-driven, so offers could change without a redeploy. And we kept an audit trail on bulk entitlement grants, because they change what customers can access. Each one protects the moments that are hard to undo and keeps later changes cheap."]
+            ]],
+            ['p', [
+                ['normal', "The launch generated about "], ['strong', "$700K USD in total sales in under 48 hours"], ['normal', "."]
+            ]],
+            ['h3', "Keeping stakeholders free of surprises"],
+            ['p', [
+                ['normal', "With my VP of Engineering, the CTO and the CEO the goal is the same: no surprises. They should hear about a risk from me while there is still time to act on it, not after it has turned into a missed date. Managing expectations is mostly that habit, applied early and repeatedly."]
+            ]],
+            ['h3', "Running several projects without rebuilding everything"],
+            ['p', [
+                ['normal', "Leading several projects only works if the work compounds. The ingestion and retrieval capabilities I built for Ask Kindred were reused on other Rare Days projects instead of rebuilt each time, and I mentor engineers on the team so the knowledge does not live in one head. Ask Kindred itself now serves about 200 daily active users across three customer companies."]
+            ]],
+            ['h3', "What I would tell another lead"],
+            ['p', [
+                ['strong', "Fix the date and flex the scope. "], ['normal', "Say what you would trade, not just yes or no."]
+            ]],
+            ['p', [
+                ['strong', "Protect the irreversible first. "], ['normal', "Payments, access and data deserve time before polish does."]
+            ]],
+            ['p', [
+                ['strong', "Tell leadership early. "], ['normal', "A risk raised with time to spare is a decision. A risk raised late is a surprise."]
+            ]],
+        ]
+    },
+    {
         id: 8,
         author: "Bhimesh Chauhan",
         panelImage: "sJ6az6-T1u8",

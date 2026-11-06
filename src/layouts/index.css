@@ -699,7 +699,7 @@ body{background:var(--bg);color:var(--ink)}
 body .best-post{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden}
 body .best-post-content{background:transparent}
 body .blogWriteUp{background:transparent}
-body .blogWriteUp h1{color:var(--ink);font-family:"Space Grotesk","Signika",sans-serif;font-weight:700;letter-spacing:-0.03em}
+body .blogWriteUp h1{font-size:clamp(1.6rem,6.5vw,2.6rem);overflow-wrap:break-word;color:var(--ink);font-family:"Space Grotesk","Signika",sans-serif;font-weight:700;letter-spacing:-0.03em}
 body .blogWriteUp .uk-article, body .blogWriteUp article{background:transparent}
 body .blogWriteUp p{color:var(--muted)}
 body .blogWriteUp h3{color:var(--ink)}

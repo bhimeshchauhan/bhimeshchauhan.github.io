@@ -24,7 +24,8 @@ export const personSchema = {
     "image": `${SITE}/me.jpg`,
     "email": "mailto:bhimeshchauhan@gmail.com",
     "jobTitle": "Lead AI Platform Engineer",
-    "description": "Lead AI platform engineer operating at staff scope, with experience embedded with customer teams (forward-deployed work). Builds and runs production RAG and LLM systems end to end, from retrieval architecture to launch-day reliability, and leads teams of 4-5 engineers and designers.",
+    "homeLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressCountry": "CA" } },
+    "description": "Canada-based (permanent resident, authorized to work in Canada) lead AI platform engineer operating at staff scope, with experience embedded with customer teams (forward-deployed work). Builds and runs production RAG and LLM systems end to end, from retrieval architecture to launch-day reliability, and leads teams of 4-5 engineers and designers.",
     "sameAs": [
         "https://www.linkedin.com/in/bhimeshchauhan",
         "https://github.com/bhimeshchauhan"

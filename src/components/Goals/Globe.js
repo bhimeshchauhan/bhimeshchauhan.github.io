@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
+import places from "../../data/places";
+import { decodeCountries, makeLocator } from "../../utils/topo";
 
-// Places from the blog and experience data: Vancouver, Toronto, Boston, Mexico City, Lima, Barcelona, Mumbai, Tokyo.
-const PLACES = [
-  [49.28, -123.12], [43.65, -79.38], [42.36, -71.06], [19.43, -99.13],
-  [-12.05, -77.04], [41.39, 2.17], [19.08, 72.88], [35.68, 139.69],
-];
+const PLACES = places.flatMap((p) => p.cities);
+// Land dots by status: lived/worked glow amber, visited are periwinkle, everywhere else is dim.
+const KIND = new Map(places.map((p) => [p.country, p.kinds.some((k) => k !== "visited") ? "home" : "visited"]));
+const COLORS = { home: 0xffb454, visited: 0x8fa0ff, land: 0x3a4170 };
 
 // Draggable 3D globe. Falls back to a note when WebGL is unavailable.
 const Globe = () => {
@@ -31,13 +32,13 @@ const Globe = () => {
       el.appendChild(renderer.domElement);
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(40, el.clientWidth / el.clientHeight, 0.1, 100);
-      camera.position.set(0, 0.5, 6.8);
+      camera.position.set(0, 0.5, 5.8);
 
       const group = new THREE.Group();
       scene.add(group);
       const R = 1.6;
       group.add(new THREE.Mesh(new THREE.SphereGeometry(R * 0.995, 48, 32), new THREE.MeshBasicMaterial({ color: 0x0b0d16 })));
-      const ringMat = new THREE.LineBasicMaterial({ color: 0x7c8cff, transparent: true, opacity: 0.32 });
+      const ringMat = new THREE.LineBasicMaterial({ color: 0x7c8cff, transparent: true, opacity: 0.16 });
       const ring = (pts) => group.add(new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts), ringMat));
       for (let lat = -60; lat <= 60; lat += 30) {
         const r = R * Math.cos((lat * Math.PI) / 180), y = R * Math.sin((lat * Math.PI) / 180);
@@ -51,6 +52,29 @@ const Globe = () => {
         const phi = ((90 - lat) * Math.PI) / 180, th = ((lon + 180) * Math.PI) / 180;
         return new THREE.Vector3(-r * Math.sin(phi) * Math.cos(th), r * Math.cos(phi), r * Math.sin(phi) * Math.sin(th));
       };
+      // Land as a dot map: sample the sphere evenly, keep points that fall inside a country, colour by status.
+      try {
+        const topo = await (await fetch("/world/countries-110m.json")).json();
+        if (disposed) return;
+        const locate = makeLocator(decodeCountries(topo));
+        const N = 9000, pos = [], col = [], c = new THREE.Color();
+        for (let i = 0; i < N; i++) {
+          const lat = (Math.asin(1 - (2 * (i + 0.5)) / N) * 180) / Math.PI;
+          const lon = ((i * 137.508) % 360) - 180;
+          const name = locate(lon, lat);
+          if (!name) continue;
+          const v = toVec(lat, lon, R * 1.003);
+          pos.push(v.x, v.y, v.z);
+          c.setHex(COLORS[KIND.get(name)] || COLORS.land);
+          col.push(c.r, c.g, c.b);
+        }
+        const geo = new THREE.BufferGeometry();
+        geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+        geo.setAttribute("color", new THREE.Float32BufferAttribute(col, 3));
+        group.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.036, vertexColors: true, sizeAttenuation: true })));
+      } catch (e) {
+        // No land data: the grid and city markers still render.
+      }
       const dots = [];
       PLACES.forEach(([lat, lon]) => {
         const m = new THREE.Mesh(new THREE.SphereGeometry(0.045, 12, 12), new THREE.MeshBasicMaterial({ color: 0xffb454 }));
@@ -58,13 +82,6 @@ const Globe = () => {
         group.add(m);
         dots.push(m);
       });
-      // Arcs between consecutive places
-      for (let i = 0; i < PLACES.length - 1; i++) {
-        const a = toVec(...PLACES[i], R), b = toVec(...PLACES[i + 1], R);
-        const mid = a.clone().add(b).multiplyScalar(0.5).normalize().multiplyScalar(R * 1.35);
-        const curve = new THREE.QuadraticBezierCurve3(a, mid, b);
-        group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(40)), new THREE.LineBasicMaterial({ color: 0xffb454, transparent: true, opacity: 0.45 })));
-      }
       group.rotation.x = 0.35;
 
       const controls = new OrbitControls(camera, renderer.domElement);
@@ -101,7 +118,7 @@ const Globe = () => {
   }, []);
 
   if (failed) return <p style={{ color: "#a3a8b8", textAlign: "center", padding: "2rem" }}>The 3D globe needs WebGL.</p>;
-  return <div ref={mount} style={{ width: "100%", height: "100%", cursor: "grab" }} aria-label="3D globe with places I have worked and traveled. Drag to rotate." role="img" />;
+  return <div ref={mount} style={{ width: "100%", height: "100%", cursor: "grab" }} aria-label={`3D globe highlighting countries I have lived, worked or traveled in: ${places.map((p) => p.label || p.country).join(", ")}. Drag to rotate.`} role="img" />;
 };
 
 export default Globe;
