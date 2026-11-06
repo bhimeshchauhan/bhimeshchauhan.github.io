@@ -53,15 +53,16 @@ a {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  width: 60%;
+  flex: 0 0 160px;
   height: 100%;
   border-radius: 15px;
   margin-right: 25px;
   transition: 1s;
-  max-width: 159px;
 }
 
 .best-post-content{
+    flex: 1 1 0;
+    min-width: 0;
     height: 100%;
     padding-top: 3%;
 }
@@ -84,7 +85,8 @@ a {
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   overflow-y: scroll;
   height: 31rem;
-  width: 97%;
+  width: 100%;
+  box-sizing: border-box;
   box-shadow: inset 0px 0px 25px 0px rgba(255, 255, 255, 0.15);
   padding: 5%;
   border-radius: 15px;

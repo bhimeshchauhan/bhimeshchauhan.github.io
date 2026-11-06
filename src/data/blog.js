@@ -52,7 +52,7 @@ export default [
     {
         id: 11,
         author: "Bhimesh Chauhan",
-        panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
+        panelImageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80",
         title: 'Why I Moved Live Reranking Off My Own Model',
         tagLine: 'I benchmarked a self-hosted reranker against a managed one. The extrapolation I planned around was wrong by a factor of ten.',
         dated: '30th October, 2026 - Canada',
@@ -98,7 +98,7 @@ export default [
     {
         id: 10,
         author: "Bhimesh Chauhan",
-        panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
+        panelImageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1000&q=80",
         title: "Designing a Grounded RAG Assistant: The Choices Behind the Chat on This Site",
         tagLine: "Thresholds, timeouts, token caps and a refusal path: what I decided for the assistant on this portfolio, and what I have not measured yet.",
         dated: "14th September, 2026 - Canada",
@@ -186,7 +186,7 @@ export default [
     {
         id: 12,
         author: "Bhimesh Chauhan",
-        panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
+        panelImageUrl: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1000&q=80",
         title: 'How I Evaluate a RAG Assistant: 55 Questions and Three Rounds of Tuning',
         tagLine: 'What a small fixed question set caught that spot-checking never would, and what it still cannot tell me.',
         dated: '19th March, 2026 - Canada',
