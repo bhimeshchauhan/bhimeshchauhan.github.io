@@ -5,6 +5,13 @@
     <link>https://bhimeshchauhan.github.io/blog/</link>
     <description>Notes on engineering, AI and building products.</description>
     <item>
+      <title>Designing a Grounded RAG Assistant: The Choices Behind the Chat on This Site</title>
+      <link>https://bhimeshchauhan.github.io/blog/#post-10</link>
+      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/#post-10</guid>
+      <pubDate>Fri, 06 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Thresholds, timeouts, token caps and a refusal path: what I decided for the assistant on this portfolio, and what I have not measured yet.</description>
+    </item>
+    <item>
       <title>Leading Several Projects at Once: Scope, Time and Stakeholders</title>
       <link>https://bhimeshchauhan.github.io/blog/#post-9</link>
       <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/#post-9</guid>
