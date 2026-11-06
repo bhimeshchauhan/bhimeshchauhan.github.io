@@ -100,6 +100,7 @@ serve(async (req)=>{
     if (!OPENROUTER_API_KEY) throw new Error("OPENROUTER_API_KEY missing.");
     if (!COHERE_API_KEY) throw new Error("COHERE_API_KEY missing.");
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+    const t0 = Date.now();
     // 0) Greeting guard (we assume convo is about Bhimesh; greet warmly without RAG)
     if (isGreeting(query)) {
       return jsonResponse({
@@ -124,6 +125,7 @@ serve(async (req)=>{
     });
     // 2) Embed the query (augment with Bhimesh for better retrieval signal)
     const embedQuery = `Bhimesh: ${query}`;
+    const tEmbed0 = Date.now();
     const embedTO = withTimeout(8000);
     const embedRes = await fetch(COHERE_EMBED_URL, {
       method: "POST",
@@ -150,7 +152,9 @@ serve(async (req)=>{
     const embedJson = await embedRes.json();
     const [embedding] = embedJson?.embeddings ?? [];
     if (!embedding) throw new Error("No embedding returned by Cohere.");
+    const embed_ms = Date.now() - tEmbed0;
     // 3) RAG search in Supabase
+    const tSearch0 = Date.now();
     const { data: chunks, error } = await supabase.rpc("match_information_chunks", {
       query_embedding: embedding,
       match_threshold: RAG_MATCH_THRESHOLD,
@@ -158,6 +162,7 @@ serve(async (req)=>{
       filter_sources: null
     });
     if (error) throw new Error(`Postgres RPC error: ${error.message}`);
+    const search_ms = Date.now() - tSearch0;
     const context = Array.isArray(chunks) ? chunks.map((c)=>c.content).join("\n\n") : "";
     // 4) Answer as Bhimesh’s PA (grounded, concise, human)
     const systemPrompt = `
@@ -180,6 +185,7 @@ If the requested detail is not in the documents:
 • Say you don’t have that in the documents, and provide a next step:
   “You can reach Bhimesh at bhimeshchauhan@gmail.com for details.”
 `.trim();
+    const tLlm0 = Date.now();
     const answer = await callOpenRouter({
       apiKey: OPENROUTER_API_KEY,
       model: DEFAULT_MODEL,
@@ -199,8 +205,25 @@ If the requested detail is not in the documents:
       timeoutMs: 12000
     });
     const safe = s(answer) || "I don’t see that in the documents. You can reach Bhimesh at bhimeshchauhan@gmail.com for details.";
+    // Trace for the "how this answer was made" panel: timings, models and what was retrieved.
+    // Retrieved text is public portfolio content, trimmed to a short preview.
+    const trace = {
+      embed_ms,
+      search_ms,
+      llm_ms: Date.now() - tLlm0,
+      total_ms: Date.now() - t0,
+      model: DEFAULT_MODEL,
+      embed_model: COHERE_EMBED_MODEL,
+      threshold: RAG_MATCH_THRESHOLD,
+      chunks: (Array.isArray(chunks) ? chunks : []).slice(0, RAG_MATCH_COUNT).map((c)=>({
+        score: typeof c.similarity === "number" ? Number(c.similarity.toFixed(3)) : null,
+        source: s(c.source ?? c.source_name ?? ""),
+        preview: s(c.content).slice(0, 140)
+      }))
+    };
     return jsonResponse({
-      response: safe
+      response: safe,
+      trace
     });
   } catch (err) {
     console.error("ask-ai error:", err?.message || err);

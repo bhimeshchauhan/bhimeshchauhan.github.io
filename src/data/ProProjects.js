@@ -1,15 +1,5 @@
 import persona from "../assets/images/projects/persona.svg";
 import aeroponics from "../assets/images/projects/aeroponics.svg";
-import sudokuIcon from "../assets/images/projects/sudoku.svg";
-import lifeIcon from "../assets/images/projects/life.svg";
-import spaceIcon from "../assets/images/projects/spaceflight.svg";
-import terrainIcon from "../assets/images/projects/terrain.svg";
-import connect4Icon from "../assets/images/projects/connect4.svg";
-import pitchlyIcon from "../assets/images/projects/pitchly-icon.svg";
-import coursePlatform from "../assets/images/projects/course-platform.svg";
-import kindredIcon from "../assets/images/projects/kindred.svg";
-import chatbotPlatform from "../assets/images/projects/chatbot-platform.svg";
-import wrangleIcon from "../assets/images/projects/wrangle.svg";
 import Scrubs from "../assets/images/projects/scrubs.jpeg";
 import rag from "../assets/images/projects/rag-icon.svg";
 import pitchly from '../assets/images/pitchly.webp';
@@ -26,7 +16,6 @@ export default [
     id: 20,
     title: "Jefferson Fisher launch platform (Rare Days client)",
     caseStudy: "jefferson-fisher",
-    icon: coursePlatform,
     description:
       "Learning platform with assessments, DB-driven product checkout, a high-traffic waiting queue, group-tier promo codes, bulk entitlements from CSV with an audit trail, and an admin studio for publishing course content. The launch generated about $700K USD in total sales in under 48 hours.",
     year: "2026",
@@ -35,7 +24,6 @@ export default [
   {
     id: 21,
     title: "Kindred: caregiver support platform",
-    icon: kindredIcon,
     description:
       "Pilot platform for structured caregiver programs: digital onboarding, cohort and session management, support plans, daily logs, passwordless sign-in, and coach and admin tooling.",
     year: "2026",
@@ -45,7 +33,6 @@ export default [
     id: 22,
     title: "RareDaysAI: multi-tenant RAG chatbot platform",
     caseStudy: "raredays-ai-platform",
-    icon: chatbotPlatform,
     description:
       "Configurable, content-specific chatbot platform for clients, distributed as an npm SDK and CLI with a React chat widget. Retrieval is namespaced per tenant, with reranking, model routing, a semantic cache and input and output security guards. Kindred is the reference implementation.",
     year: "2026",
@@ -56,7 +43,6 @@ export default [
     title: "Wrangle: travel photos into micro-guides",
     caseStudy: "wrangle",
     media: ["/wrangle/review.jpg", "/wrangle/map.jpg", "/wrangle/finish.jpg"],
-    icon: wrangleIcon,
     description:
       "Mobile app and platform that turns travel photos into ranked, structured micro-guides. Expo and React Native client, NestJS API, Supabase Postgres with private media, background image processing, and three automated deploy pipelines.",
     year: "2026",
@@ -66,7 +52,6 @@ export default [
     id: 8,
     title: "Medical LLM for Clinical Documentation (Scrubs Co-Pilot)",
     caseStudy: "scrubs-copilot",
-    icon: Scrubs,
     description:
       "Specialized medical LLM for ambient listening, transcription, and structured chart generation. HIPAA-conscious RAG architecture; integrates with EHR systems and voice-based intake.",
     demoPath: "https://bhimeshchauhan.github.io",
@@ -77,7 +62,6 @@ export default [
     id: 9,
     title: "RAG Portfolio Assistant",
     caseStudy: "rag-portfolio-assistant",
-    icon: rag,
     description:
       "Production RAG chatbot powering this portfolio. It retrieves relevant site context from pgvector and prompts an LLM to provide grounded answers, with CORS-safe and cost-aware delivery.",
     githubPath: "https://github.com/bhimeshchauhan/bhimeshchauhan.github.io",
@@ -89,7 +73,6 @@ export default [
   {
     id: 7,
     title: "Persona Detection for Language Learning",
-    icon: persona,
     description:
       "Graph-based learner persona detection to personalize lesson paths. Neo4j + KNN; Flask inference API; optimized Cypher queries for latency and scale.",
     year: "2022",
@@ -98,7 +81,6 @@ export default [
   {
     id: 2,
     title: "Forms App (Pitchly)",
-    icon: pitchlyIcon,
     description:
       "Schema-driven form builder used by financial and legal teams, with GraphQL and REST data flows, role-based permissions, and autosave. Optimized queries and CDN caching for global users.",
     media: [pitchly, pitchlyForm],
@@ -109,7 +91,6 @@ export default [
   {
     id: 1,
     title: "Remote Monitoring – Aeroponics System",
-    icon: aeroponics,
     description:
       "Android IoT app to monitor and control high-pressure aeroponics. Telemetry and commands run over MQTT/HTTP, supported by backend dashboards, sensor charts, and ML-based growth recommendations.",
     media: [nebullam1, nebullam2, nebullam3, nebullam4, nebullam5],
@@ -121,7 +102,6 @@ export default [
     id: 4,
     side: true,
     title: "Sudoku AR + Deep Learning",
-    icon: sudokuIcon,
     description:
       "End-to-end Sudoku solver: detects a grid from camera frames, recognizes digits, and solves the puzzle via backtracking. Built a dataset and augmentation pipeline, with model selection in Keras/TensorFlow.",
     media: [sudoku],
@@ -132,7 +112,6 @@ export default [
     id: 10,
     side: true,
     title: "Conway's Game of Life",
-    icon: lifeIcon,
     description:
       "Interactive cellular automaton simulation with preset seed patterns, adjustable grid size and speed, manual cell toggling, and step-through mode. Canvas-rendered with glow effects.",
     iframe: '<iframe width="100%" height="480" src="/game-of-life-embed" style="border:none;border-radius:4px;background:#0d0f11" allowfullscreen></iframe>',
@@ -145,7 +124,6 @@ export default [
     id: 6,
     side: true,
     title: "SpaceFlight – Unity Game",
-    icon: spaceIcon,
     description:
       "Arcade-style space flight with 6DOF controls and collision physics. Gameplay loop, input mapping, scene management, and asset pipeline via Blender.",
     githubPath: "https://github.com/bhimeshchauhan/SpaceExpo",
@@ -157,7 +135,6 @@ export default [
     id: 5,
     side: true,
     title: "Procedural Terrain Generation",
-    icon: terrainIcon,
     description:
       "WebGL-based procedural terrain using Gaussian noise + mesh generation; interactive camera + shading pipeline; focused on geometry + GPU rendering fundamentals.",
     iframe:
@@ -169,7 +146,6 @@ export default [
     id: 3,
     side: true,
     title: "Connect Four – AI Game",
-    icon: connect4Icon,
     description:
       "AI Connect-4 with two modes: MINIMAX (alpha–beta pruning) and a naïve baseline. Search space ~4.53T boards; demonstrates heuristic evaluation, pruning effectiveness, and game-tree search.",
     githubPath: "https://github.com/bhimeshchauhan/connect_four",

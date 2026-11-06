@@ -9,6 +9,7 @@ import { CONNECT_INTENT, OWNER_EMAIL, whatsappLink } from "../../utils/connect";
 import { Link } from "gatsby";
 import ConnectCard from "./ConnectCard";
 import FitCard from "./FitCard";
+import Trace from "./Trace";
 
 // Deep links shown under an answer. Most specific first; matched against question + answer.
 const LINKS = [
@@ -253,6 +254,7 @@ const ChatComponent = () => {
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.response) {
         push({ role: "bot", html: toHtml(data.response) });
+        if (data.trace && Array.isArray(data.trace.chunks)) push({ role: "trace", trace: data.trace });
         const links = linksFor(`${q} ${data.response}`);
         if (links.length) push({ role: "links", links });
       }
@@ -379,6 +381,8 @@ const ChatComponent = () => {
                   <ConnectCard key={i} />
                 ) : m.role === "fit" ? (
                   <FitCard key={i} onSubmit={runFit} busy={busy} />
+                ) : m.role === "trace" ? (
+                  <Trace key={i} trace={m.trace} />
                 ) : m.role === "links" ? (
                   <div key={i} className="refs" aria-label="Related pages">
                     <small>Read more</small>
