@@ -1,50 +1,5 @@
 export default [
     {
-        id: 10,
-        author: "Bhimesh Chauhan",
-        panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
-        title: "Designing a Grounded RAG Assistant: The Choices Behind the Chat on This Site",
-        tagLine: "Thresholds, timeouts, token caps and a refusal path: what I decided for the assistant on this portfolio, and what I have not measured yet.",
-        dated: "6th November, 2026 - Canada",
-        description: [
-            ['h3', "Start from what the answer is allowed to say"],
-            ['p', [
-                ['normal', "The assistant on this site answers questions about my work. The first decision was a boundary: it may use only the retrieved context. The system prompt says so directly, tells the model not to claim experience that is not in the documents, and gives it a fallback line that points the visitor to my email. A grounded assistant that says \"I don't have that\" is more useful to a recruiter than a fluent one that invents a detail."]
-            ]],
-            ['h3', "The request path"],
-            ['p', [
-                ['normal', "A question goes to a Supabase edge function. It is embedded with Cohere (embed-english-v3.0), prefixed with the subject so short queries like \"hobbies\" still land near the right chunks. A pgvector function returns up to 10 chunks above a 0.75 similarity threshold. Those chunks, the last five turns of history and the question go to the language model through OpenRouter. The answer is capped at 500 tokens."]
-            ]],
-            ['h3', "Small guards that carry weight"],
-            ['p', [
-                ['strong', "Skip retrieval for greetings. "], ['normal', "A pattern check answers \"hi\" without an embedding call or a model call. It saves cost and latency on the cheapest class of request."]
-            ]],
-            ['p', [
-                ['strong', "Time out every network hop. "], ['normal', "The embedding call has an 8 second limit and the model call 12. A slow provider returns an error the UI can handle instead of a hung chat."]
-            ]],
-            ['p', [
-                ['strong', "Keep config in the environment. "], ['normal', "Model, embedding model, match threshold, match count and token cap are environment values, so tuning retrieval does not need a code change."]
-            ]],
-            ['p', [
-                ['strong', "Keep secrets server side. "], ['normal', "Retrieval and model keys live in the edge function. The browser only sends a question and receives text, which it sanitizes before rendering."]
-            ]],
-            ['h3', "What I have not measured"],
-            ['p', [
-                ['normal', "The 0.75 threshold and the top-10 count were chosen by inspection, not by an evaluation set. There is no recorded retrieval hit rate or answer-quality score for this assistant yet. The next step is a small fixed set of recruiter-style questions with expected source chunks, run on every change to the prompt, threshold or content, so a regression shows up as a failed check rather than as a bad answer in front of a visitor."]
-            ]],
-            ['h3', "What I would tell another team"],
-            ['p', [
-                ['strong', "Write the refusal path first. "], ['normal', "Decide what the system says when it does not know before you tune how well it answers."]
-            ]],
-            ['p', [
-                ['strong', "Make tuning knobs configuration. "], ['normal', "Thresholds and caps change often early on."]
-            ]],
-            ['p', [
-                ['strong', "Be honest about what is unmeasured. "], ['normal', "Naming the missing evaluation is the first line of its spec."]
-            ]],
-        ]
-    },
-    {
         id: 9,
         author: "Bhimesh Chauhan",
         panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
@@ -95,6 +50,97 @@ export default [
         ]
     },
     {
+        id: 11,
+        author: "Bhimesh Chauhan",
+        panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
+        title: 'Why I Moved Live Reranking Off My Own Model',
+        tagLine: 'I benchmarked a self-hosted reranker against a managed one. The extrapolation I planned around was wrong by a factor of ten.',
+        dated: '30th October, 2026 - Canada',
+        description: [
+            ['h3', 'The plan'],
+            ['p', [
+                ['normal', 'Retrieval for a chat assistant is two steps: a vector search returns candidate passages, then a reranker reads each one against the question and puts the best first. I wanted a self-hosted reranker (a 149M-parameter cross-encoder, int8 ONNX) because it was cheap. About $6 a month at 30,000 queries on Lambda, against about $60 for a managed reranker.']
+            ]],
+            ['h3', 'What I assumed and what I measured'],
+            ['p', [
+                ['normal', "My first estimate came from one measurement on a small container. At 1 vCPU, ten passages took about 7.5 seconds, and 0.25 vCPU took about 28. I extrapolated that a 10 GB Lambda would take about 1.25 seconds. That number was never measured. Our account's Lambda memory ceiling is 3 GB, so the 10 GB option did not exist."]
+            ]],
+            ['p', [
+                ['normal', 'When I measured the real thing on 3 GB, latency depended heavily on passage length. Ten passages of about 40 words took 1.3 seconds. At about 120 words it was 3.1 seconds. At about 400 words, which is our real chunk size, it took 10.5 to 11 seconds.']
+            ]],
+            ['h3', 'The decision'],
+            ['p', [
+                ['normal', 'Live chat times out the reranker at 3 seconds. Self-hosted would have timed out on nearly every real request and then fallen through to the managed one anyway, adding 3 seconds to every answer. So the managed reranker became the live path, and the self-hosted one stays for eval runs only, where a 30 second timeout is fine and the cost is zero.']
+            ]],
+            ['p', [
+                ['normal', 'Managed reranking is billed per query, so I gave up the cost advantage knowingly. The estimate was about $60 a month at 30,000 queries, against a time to first token that has to stay under 5 seconds.']
+            ]],
+            ['h3', 'The fallback matters more than the winner'],
+            ['p', [
+                ['strong', 'A reranker failure never fails an answer. '],
+                ['normal', 'If the managed reranker errors, the answer falls back to the vector search order. It is a little worse and it still answers. A reranker is an optimization on top of retrieval, so it should not be able to take retrieval down.']
+            ]],
+            ['h3', 'What I would tell another team'],
+            ['p', [
+                ['strong', 'Benchmark with your real chunk size. '],
+                ['normal', 'Latency scaled with passage length, so a test on short strings told me nothing useful.']
+            ]],
+            ['p', [
+                ['strong', 'Label extrapolations as extrapolations. '],
+                ['normal', 'The 1.25 second figure sat in a decision table next to measured ones, and it looked like data.']
+            ]],
+            ['p', [
+                ['strong', 'Keep the loser. '],
+                ['normal', 'The self-hosted model still earns its place for evals, and the config makes each reranker a per-tenant setting.']
+            ]],
+        ]
+    },
+    {
+        id: 10,
+        author: "Bhimesh Chauhan",
+        panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
+        title: "Designing a Grounded RAG Assistant: The Choices Behind the Chat on This Site",
+        tagLine: "Thresholds, timeouts, token caps and a refusal path: what I decided for the assistant on this portfolio, and what I have not measured yet.",
+        dated: "14th September, 2026 - Canada",
+        description: [
+            ['h3', "Start from what the answer is allowed to say"],
+            ['p', [
+                ['normal', "The assistant on this site answers questions about my work. The first decision was a boundary: it may use only the retrieved context. The system prompt says so directly, tells the model not to claim experience that is not in the documents, and gives it a fallback line that points the visitor to my email. A grounded assistant that says \"I don't have that\" is more useful to a recruiter than a fluent one that invents a detail."]
+            ]],
+            ['h3', "The request path"],
+            ['p', [
+                ['normal', "A question goes to a Supabase edge function. It is embedded with Cohere (embed-english-v3.0), prefixed with the subject so short queries like \"hobbies\" still land near the right chunks. A pgvector function returns up to 10 chunks above a 0.75 similarity threshold. Those chunks, the last five turns of history and the question go to the language model through OpenRouter. The answer is capped at 500 tokens."]
+            ]],
+            ['h3', "Small guards that carry weight"],
+            ['p', [
+                ['strong', "Skip retrieval for greetings. "], ['normal', "A pattern check answers \"hi\" without an embedding call or a model call. It saves cost and latency on the cheapest class of request."]
+            ]],
+            ['p', [
+                ['strong', "Time out every network hop. "], ['normal', "The embedding call has an 8 second limit and the model call 12. A slow provider returns an error the UI can handle instead of a hung chat."]
+            ]],
+            ['p', [
+                ['strong', "Keep config in the environment. "], ['normal', "Model, embedding model, match threshold, match count and token cap are environment values, so tuning retrieval does not need a code change."]
+            ]],
+            ['p', [
+                ['strong', "Keep secrets server side. "], ['normal', "Retrieval and model keys live in the edge function. The browser only sends a question and receives text, which it sanitizes before rendering."]
+            ]],
+            ['h3', "What I have not measured"],
+            ['p', [
+                ['normal', "The 0.75 threshold and the top-10 count were chosen by inspection, not by an evaluation set. There is no recorded retrieval hit rate or answer-quality score for this assistant yet. The next step is a small fixed set of recruiter-style questions with expected source chunks, run on every change to the prompt, threshold or content, so a regression shows up as a failed check rather than as a bad answer in front of a visitor."]
+            ]],
+            ['h3', "What I would tell another team"],
+            ['p', [
+                ['strong', "Write the refusal path first. "], ['normal', "Decide what the system says when it does not know before you tune how well it answers."]
+            ]],
+            ['p', [
+                ['strong', "Make tuning knobs configuration. "], ['normal', "Thresholds and caps change often early on."]
+            ]],
+            ['p', [
+                ['strong', "Be honest about what is unmeasured. "], ['normal', "Naming the missing evaluation is the first line of its spec."]
+            ]],
+        ]
+    },
+    {
         id: 8,
         author: "Bhimesh Chauhan",
         panelImage: "sJ6az6-T1u8",
@@ -134,6 +180,56 @@ export default [
             ['h3', "When presence slips"],
             ['p', [
                 ['normal', "Of course, I do not stay present the whole time, and it would be strange to expect that I could. A thought can pull me away in the middle of something simple, and I can realize a few seconds later that I have been moving without really noticing what I am doing, as though my body had continued while the rest of me stepped into another room. I used to treat that lapse as a failure, as though attention should be held perfectly once it has been found, but that expectation only gives the wandering more power. Now I am more interested in the return itself, in the small choice to notice that I have left and not make a drama out of it. There is something humane in discovering that the mind wandered and choosing, without much ceremony, to come back to the feet, the breath, the distance, and the next instruction."],
+            ]],
+        ]
+    },
+    {
+        id: 12,
+        author: "Bhimesh Chauhan",
+        panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
+        title: 'How I Evaluate a RAG Assistant: 55 Questions and Three Rounds of Tuning',
+        tagLine: 'What a small fixed question set caught that spot-checking never would, and what it still cannot tell me.',
+        dated: '19th March, 2026 - Canada',
+        description: [
+            ['h3', 'A fixed set beats spot-checking'],
+            ['p', [
+                ['normal', 'Spot-checking a RAG assistant tells you about the question you happened to type. I wanted the same questions every run, so a change to a prompt, a threshold or the reranker could be compared like for like. The set has 55 queries: 20 on topics the knowledge base covers, 10 that are out of scope (weather, recipes, football), 10 that signal distress, and 5 multi-turn conversations of 15 turns in total.']
+            ]],
+            ['p', [
+                ['normal', 'Each run writes a CSV with time to first token, time spent in embedding, retrieval and reranking, the chunks retrieved, their scores, the model used and whether the answer was a fallback. Domain experts review the answers, so the harness checks routing and grounding and leaves wording to people.']
+            ]],
+            ['h3', 'Round one: the baseline'],
+            ['p', [
+                ['normal', 'Seven of ten distress queries were classified correctly. Three were missed: domestic violence, implicit hopelessness and implicit self-harm. Out-of-scope queries took about 6 seconds to get a first token, because the reranker was reading irrelevant passages. Some in-scope questions got "I don\'t have enough information" even though five retrieved passages scored above 0.8.']
+            ]],
+            ['h3', 'Round two: fix the real causes'],
+            ['p', [
+                ['normal', 'I widened the distress patterns for the missed phrasings and skipped reranking entirely when the best vector score is below a floor, which took out-of-scope time to first token from about 6 seconds to about 500 milliseconds. I also changed the prompt from "fall back if the context is insufficient" to "share what you can, fall back only if the context is unrelated".']
+            ]],
+            ['h3', 'Round three: remove the way to fail'],
+            ['p', [
+                ['normal', 'Two out-of-scope questions ("write a poem", "capital of France") were answered from the model\'s own training data, because the fallback itself called the model and the model ignored the instruction. I replaced it with a fixed message streamed directly, so the fallback path cannot answer anything. I also lowered the vector floor from 0.25 to 0.20 after a real question about night-time wandering scored 0.225 and was wrongly dropped.']
+            ]],
+            ['h3', 'Where it landed'],
+            ['p', [
+                ['normal', 'All ten distress queries were classified correctly. All ten out-of-scope queries were refused, with zero grounding violations. 19 of 20 in-scope queries were answered, and 13 of 15 multi-turn turns. The misses are gaps in the corpus, not system faults. Rewriting follow-up questions into standalone queries fixed three of the multi-turn fallbacks, at a cost of 2 to 3 seconds on follow-up turns.']
+            ]],
+            ['h3', 'What it cannot tell me'],
+            ['p', [
+                ['normal', 'Fifty-five questions is a regression net, not a quality guarantee. It says nothing about questions nobody thought to write, and the answers still need expert review. The set only works if production failures are turned into new rows.']
+            ]],
+            ['h3', 'What I would tell another team'],
+            ['p', [
+                ['strong', 'Test the refusals as hard as the answers. '],
+                ['normal', 'The worst failure was a confident answer to a question the system should have declined.']
+            ]],
+            ['p', [
+                ['strong', 'Fix the path, not the prompt. '],
+                ['normal', 'The strongest fix was a code path that cannot call the model, not a firmer instruction.']
+            ]],
+            ['p', [
+                ['strong', 'Keep the numbers beside the change. '],
+                ['normal', 'Each tuning round is only legible because the CSV before and after it exists.']
             ]],
         ]
     },
@@ -310,99 +406,119 @@ export default [
         ]
     },
     {
-        id: 1,
+        id: 3,
         author: "Bhimesh Chauhan",
-        panelImage: "da0acHr41p8",
-        title: "Learn and Understand Recursion in JavaScript",
-        tagLine: "I’ll walk you through two popular JS recursion examples in 10 minutes so you can finally understand how recursion works in JavaScript.",
-        dated: "12th January, 2020 - Boston, MA",
+        panelImage: "XttrC5E0HDM",
+        title: "Fine-Tuning LLMs for Domain-Specific Applications",
+        tagLine: "In this blog, I’ll walk you through the basics of fine-tuning LLMs and explain the steps required to make them more effective for specific tasks.",
+        dated: "14th September, 2024 - Toronto, CA",
         description: [
-            ['img', "https://cdn-images-1.medium.com/max/2000/1*DkkJtUJr6f4H0HXD_3A0sQ.jpeg"],
-            ['h3', "What is Recursion?"],
+            ['img', "https://cdn-images-1.medium.com/max/2000/1*2mzg61san4ffmVmN_0fP_Q.png"],
+            ['h3', "What is Fine-Tuning?"],
             ['p', [
-                ['em', "Recursion is simply when a function calls itself."],
+                ['em', "Fine-tuning involves adjusting the parameters of a pre-trained language model on new, specialized data."],
             ]],
             ['p', [
-                ['normal', "Lets jump right in and take a look at probably the most famous recursion example. This example returns the factorial of a supplied integer:"],
+                ['normal', "Pre-trained models like GPT or BERT are trained on large datasets containing general information, but they may not perform well on niche topics like medical diagnoses or legal cases. Fine-tuning helps tailor these models to excel in specific domains."],
             ]],
             ['pre', [
-                ['normal', 'function factorial(x) {'],
+                ['normal', 'const fineTuneModel = async (dataset) => {'],
                 ['br', 'br'],
-                ['normal', '  if (x &lt; 0) return;'],
+                ['normal', '  const model = await loadPretrainedModel("gpt-3.5-turbo");'],
                 ['br', 'br'],
-                ['normal', '  if (x === 0) return 1;'],
+                ['normal', '  model.train(dataset, { epochs: 5 });'],
                 ['br', 'br'],
-                ['normal', '  return x * factorial(x - 1);'],
+                ['normal', '  return model;'],
                 ['br', 'br'],
-                ['normal', '}'],
+                ['normal', '};'],
                 ['br', 'br'],
+                ['normal', 'const medicalModel = fineTuneModel(medicalData);'],
                 ['br', 'br'],
-                ['normal', 'factorial(3);'],
-                ['br', 'br'],
-                ['strong', '// 6'],
+                ['strong', '// Model fine-tuned on medical notes'],
             ]],
             ['p', [
-                ['strong', "Woah. It’s Okay if that makes no sense to you."],
-                ['normal', "The important part is happening on line 4:"],
-                ['code', "return x * factorial(x — 1);"],
-                ['normal', ". As you can see, the function is actually calling itself again ("],
-                ['code', "factorial(x-1)"],
-                ['normal', "), but with a parameter that is one less than when it was called the first time. This makes it a recursive function."]
+                ['strong', "Fine-tuning helps overcome generalization issues."],
+                ['normal', " When LLMs are fine-tuned, they become more focused and relevant for specific queries, improving their performance on tasks related to the target domain."]
             ]],
-            ['blockquote', "Before I break down that code example any further, it’s important you understand what factorials are."],
+            ['blockquote', "Let’s dive deeper into why fine-tuning matters for real-world use cases."],
             ['p', [
-                ['normal', "To get the factorial of a number you multiply that number by itself minus one until you reach the number one."]
+                ['normal', "Think of fine-tuning as adjusting a generic recipe to suit your specific taste. You retain the original recipe's structure but make changes to align with your personal preferences."]
             ]],
             ['p', [
-                ['normal', "Example 1: The factorial of 4 is 4 * 3 * 2 * 1, or "],
-                ['strong', "24"],
-                ['normal', "."]
+                ['normal', "Example 1: A financial assistant chatbot fine-tuned on recent market trends can provide better advice compared to a general-purpose model."],
             ]],
             ['p', [
-                ['normal','"Example 2: The factorial of 2 is just 2 * 1, or "'],
-                ['strong', "2"],
-                ['normal', "."]
-            ]],
-            ['p', [
-                ['normal', "Awesome, now that our High School Math lesson is over, we can return to the good stuff!"]
+                ['normal', "Example 2: A customer support bot tailored to your business responds accurately to common issues and inquiries, reducing response time and improving customer satisfaction."],
             ]],
             ['hr', "hr"],
-            ['h3', "The three key features of recursion"],
+            ['h3', "How to Fine-Tune an LLM?"],
             ['p', [
-                ['normal', "All recursive functions should have three key features:"]
+                ['normal', "Fine-tuning can be broken down into a few key steps:"]
             ]],
-            ['h4', "A Termination Condition"],
+            ['h4', "1. Data Preparation"],
             ['p', [
-                ['normal', "Simply put: "],
-                ['code', "if(something bad happend)[ STOP };"],
-                ['normal', " The Termination Condition is our recursion fail-safe. Think of it like your emergency brake. It’s put there in case of bad input to prevent the recursion from ever running. In our factorial example, if"],
-                ['code', "(x &lt; 0) return;"],
-                ['normal', "is our termination condition. It’s not possible to factorial a negative number and thus, we don’t even want to run our recursion if a negative number is input."]
+                ['normal', "Collect and clean your dataset. Ensure the text is properly formatted and labeled if necessary. For example, if you're fine-tuning on medical notes, each record should contain consistent terminology and structure."]
             ]],
-            ['h4', "A Base Case"],
+            ['h4', "2. Model Loading"],
             ['p', [
-                ['normal', "Simply put: "],
-                ['code', "if(this happens) [ Yay! We're done };"],
-                ['normal', " The Base Case is similar to our termination condition in that it also stops our recursion. But remember, the termination condition is a catch-all for bad data. Whereas the base case is the goal of our recursive function. Base cases are usually within an if statement. In the factorial example, if"],
-                ['code', "(x === 0) return 1;"],
-                ['normal', " is our base case. We know that once we’ve gotten x down to zero, we’ve succeeded in determining our factorial!"],
+                ['normal', "Start by loading a pre-trained model, like GPT or BERT, from a model hub or library."],
+                ['code', "const model = await loadPretrainedModel('bert-base');"]
+            ]],
+            ['h4', "3. Training the Model"],
+            ['p', [
+                ['normal', "Feed your specialized data into the model using your preferred framework (e.g., PyTorch, TensorFlow). Make sure to adjust hyperparameters, like the learning rate, to avoid overfitting."],
+                ['code', "model.train(data, { batchSize: 16, epochs: 3 });"]
+            ]],
+            ['h4', "4. Evaluating and Fine-Tuning"],
+            ['p', [
+                ['normal', "Evaluate the fine-tuned model's performance using metrics like accuracy or F1-score. Continue adjusting the parameters as needed."]
+            ]],
+            ['blockquote', "Remember: A good fine-tuning process requires careful evaluation to ensure the model generalizes well to unseen data."],
+            ['hr', "hr"],
+            ['h3', "Applications of Fine-Tuning"],
+            ['p', [
+                ['normal', "Fine-tuning LLMs opens up a world of possibilities:"]
+            ]],
+            ['h4', "Healthcare"],
+            ['p', [
+                ['normal', "A fine-tuned LLM can assist doctors by summarizing patient records and providing recommendations based on the latest research."]
+            ]],
+            ['h4', "Finance"],
+            ['p', [
+                ['normal', "In the finance industry, LLMs fine-tuned on stock data can generate accurate reports and forecasts."]
+            ]],
+            ['h4', "Legal Advice"],
+            ['p', [
+                ['normal', "LLMs trained on legal documents can assist in drafting contracts and answering legal questions with precise language."]
+            ]],
+            ['hr', "hr"],
+            ['h3', "Key Benefits of Fine-Tuning"],
+            ['p', [
+                ['strong', "1. Increased Accuracy:"],
+                ['normal', " Models become more reliable for specific tasks and queries."]
             ]],
             ['p', [
-                ['normal', "Simply put: Our function calling itself. In the factorial example,"],
-                ['code', "return x * factorial(x — 1);"],
-                ['normal', " is where the recursion actually happens. We’re returning the value of the number x multiplied by the value of whatever"],
-                ['code', "factorial(x-1)"],
-                ['normal', "evaluates to."]
+                ['strong', "2. Faster Response:"],
+                ['normal', " Tailored models provide answers more efficiently, improving user satisfaction."]
+            ]],
+            ['p', [
+                ['strong', "3. Reduced Hallucination:"],
+                ['normal', " By focusing on relevant data, fine-tuned models are less likely to produce misleading information."]
+            ]],
+            ['p', [
+                ['normal', "Fine-tuning is essential for LLMs to reach their full potential in real-world applications."]
             ]]
         ]
-    },
+    }
+
+,
     {
         id: 2,
         author: "Bhimesh Chauhan",
         panelImage: "YKW0JjP7rlU",
         title: "Implementing Retrieval-Augmented Generation (RAG) with LLMs",
         tagLine: "In this post, we’ll explore how RAG enhances Large Language Models (LLMs) by integrating real-time data retrieval, using simple examples to illustrate the process.",
-        dated: "22th July, 2024 - Toronto, CA",
+        dated: "22nd July, 2024 - Toronto, CA",
         description: [
             ['img', "https://cdn-images-1.medium.com/v2/resize:fit:4000/format:webp/1*nsCTjifxfS_fTm9_lx_AuA.png"],
             ['h3', "What is Retrieval-Augmented Generation (RAG)?"],
@@ -511,107 +627,89 @@ export default [
         ]
     },
     {
-        id: 3,
+        id: 1,
         author: "Bhimesh Chauhan",
-        panelImage: "XttrC5E0HDM",
-        title: "Fine-Tuning LLMs for Domain-Specific Applications",
-        tagLine: "In this blog, I’ll walk you through the basics of fine-tuning LLMs and explain the steps required to make them more effective for specific tasks.",
-        dated: "14th September, 2024 - Toronto, CA",
+        panelImage: "da0acHr41p8",
+        title: "Learn and Understand Recursion in JavaScript",
+        tagLine: "I’ll walk you through two popular JS recursion examples in 10 minutes so you can finally understand how recursion works in JavaScript.",
+        dated: "12th January, 2020 - Boston, MA",
         description: [
-            ['img', "https://cdn-images-1.medium.com/max/2000/1*2mzg61san4ffmVmN_0fP_Q.png"],
-            ['h3', "What is Fine-Tuning?"],
+            ['img', "https://cdn-images-1.medium.com/max/2000/1*DkkJtUJr6f4H0HXD_3A0sQ.jpeg"],
+            ['h3', "What is Recursion?"],
             ['p', [
-                ['em', "Fine-tuning involves adjusting the parameters of a pre-trained language model on new, specialized data."],
+                ['em', "Recursion is simply when a function calls itself."],
             ]],
             ['p', [
-                ['normal', "Pre-trained models like GPT or BERT are trained on large datasets containing general information, but they may not perform well on niche topics like medical diagnoses or legal cases. Fine-tuning helps tailor these models to excel in specific domains."],
+                ['normal', "Lets jump right in and take a look at probably the most famous recursion example. This example returns the factorial of a supplied integer:"],
             ]],
             ['pre', [
-                ['normal', 'const fineTuneModel = async (dataset) => {'],
+                ['normal', 'function factorial(x) {'],
                 ['br', 'br'],
-                ['normal', '  const model = await loadPretrainedModel("gpt-3.5-turbo");'],
+                ['normal', '  if (x &lt; 0) return;'],
                 ['br', 'br'],
-                ['normal', '  model.train(dataset, { epochs: 5 });'],
+                ['normal', '  if (x === 0) return 1;'],
                 ['br', 'br'],
-                ['normal', '  return model;'],
+                ['normal', '  return x * factorial(x - 1);'],
                 ['br', 'br'],
-                ['normal', '};'],
+                ['normal', '}'],
                 ['br', 'br'],
-                ['normal', 'const medicalModel = fineTuneModel(medicalData);'],
                 ['br', 'br'],
-                ['strong', '// Model fine-tuned on medical notes'],
+                ['normal', 'factorial(3);'],
+                ['br', 'br'],
+                ['strong', '// 6'],
             ]],
             ['p', [
-                ['strong', "Fine-tuning helps overcome generalization issues."],
-                ['normal', " When LLMs are fine-tuned, they become more focused and relevant for specific queries, improving their performance on tasks related to the target domain."]
+                ['strong', "Woah. It’s Okay if that makes no sense to you."],
+                ['normal', "The important part is happening on line 4:"],
+                ['code', "return x * factorial(x — 1);"],
+                ['normal', ". As you can see, the function is actually calling itself again ("],
+                ['code', "factorial(x-1)"],
+                ['normal', "), but with a parameter that is one less than when it was called the first time. This makes it a recursive function."]
             ]],
-            ['blockquote', "Let’s dive deeper into why fine-tuning matters for real-world use cases."],
+            ['blockquote', "Before I break down that code example any further, it’s important you understand what factorials are."],
             ['p', [
-                ['normal', "Think of fine-tuning as adjusting a generic recipe to suit your specific taste. You retain the original recipe's structure but make changes to align with your personal preferences."]
+                ['normal', "To get the factorial of a number you multiply that number by itself minus one until you reach the number one."]
             ]],
             ['p', [
-                ['normal', "Example 1: A financial assistant chatbot fine-tuned on recent market trends can provide better advice compared to a general-purpose model."],
+                ['normal', "Example 1: The factorial of 4 is 4 * 3 * 2 * 1, or "],
+                ['strong', "24"],
+                ['normal', "."]
             ]],
             ['p', [
-                ['normal', "Example 2: A customer support bot tailored to your business responds accurately to common issues and inquiries, reducing response time and improving customer satisfaction."],
+                ['normal','"Example 2: The factorial of 2 is just 2 * 1, or "'],
+                ['strong', "2"],
+                ['normal', "."]
+            ]],
+            ['p', [
+                ['normal', "Awesome, now that our High School Math lesson is over, we can return to the good stuff!"]
             ]],
             ['hr', "hr"],
-            ['h3', "How to Fine-Tune an LLM?"],
+            ['h3', "The three key features of recursion"],
             ['p', [
-                ['normal', "Fine-tuning can be broken down into a few key steps:"]
+                ['normal', "All recursive functions should have three key features:"]
             ]],
-            ['h4', "1. Data Preparation"],
+            ['h4', "A Termination Condition"],
             ['p', [
-                ['normal', "Collect and clean your dataset. Ensure the text is properly formatted and labeled if necessary. For example, if you're fine-tuning on medical notes, each record should contain consistent terminology and structure."]
+                ['normal', "Simply put: "],
+                ['code', "if(something bad happend)[ STOP };"],
+                ['normal', " The Termination Condition is our recursion fail-safe. Think of it like your emergency brake. It’s put there in case of bad input to prevent the recursion from ever running. In our factorial example, if"],
+                ['code', "(x &lt; 0) return;"],
+                ['normal', "is our termination condition. It’s not possible to factorial a negative number and thus, we don’t even want to run our recursion if a negative number is input."]
             ]],
-            ['h4', "2. Model Loading"],
+            ['h4', "A Base Case"],
             ['p', [
-                ['normal', "Start by loading a pre-trained model, like GPT or BERT, from a model hub or library."],
-                ['code', "const model = await loadPretrainedModel('bert-base');"]
-            ]],
-            ['h4', "3. Training the Model"],
-            ['p', [
-                ['normal', "Feed your specialized data into the model using your preferred framework (e.g., PyTorch, TensorFlow). Make sure to adjust hyperparameters, like the learning rate, to avoid overfitting."],
-                ['code', "model.train(data, { batchSize: 16, epochs: 3 });"]
-            ]],
-            ['h4', "4. Evaluating and Fine-Tuning"],
-            ['p', [
-                ['normal', "Evaluate the fine-tuned model's performance using metrics like accuracy or F1-score. Continue adjusting the parameters as needed."]
-            ]],
-            ['blockquote', "Remember: A good fine-tuning process requires careful evaluation to ensure the model generalizes well to unseen data."],
-            ['hr', "hr"],
-            ['h3', "Applications of Fine-Tuning"],
-            ['p', [
-                ['normal', "Fine-tuning LLMs opens up a world of possibilities:"]
-            ]],
-            ['h4', "Healthcare"],
-            ['p', [
-                ['normal', "A fine-tuned LLM can assist doctors by summarizing patient records and providing recommendations based on the latest research."]
-            ]],
-            ['h4', "Finance"],
-            ['p', [
-                ['normal', "In the finance industry, LLMs fine-tuned on stock data can generate accurate reports and forecasts."]
-            ]],
-            ['h4', "Legal Advice"],
-            ['p', [
-                ['normal', "LLMs trained on legal documents can assist in drafting contracts and answering legal questions with precise language."]
-            ]],
-            ['hr', "hr"],
-            ['h3', "Key Benefits of Fine-Tuning"],
-            ['p', [
-                ['strong', "1. Increased Accuracy:"],
-                ['normal', " Models become more reliable for specific tasks and queries."]
+                ['normal', "Simply put: "],
+                ['code', "if(this happens) [ Yay! We're done };"],
+                ['normal', " The Base Case is similar to our termination condition in that it also stops our recursion. But remember, the termination condition is a catch-all for bad data. Whereas the base case is the goal of our recursive function. Base cases are usually within an if statement. In the factorial example, if"],
+                ['code', "(x === 0) return 1;"],
+                ['normal', " is our base case. We know that once we’ve gotten x down to zero, we’ve succeeded in determining our factorial!"],
             ]],
             ['p', [
-                ['strong', "2. Faster Response:"],
-                ['normal', " Tailored models provide answers more efficiently, improving user satisfaction."]
-            ]],
-            ['p', [
-                ['strong', "3. Reduced Hallucination:"],
-                ['normal', " By focusing on relevant data, fine-tuned models are less likely to produce misleading information."]
-            ]],
-            ['p', [
-                ['normal', "Fine-tuning is essential for LLMs to reach their full potential in real-world applications."]
+                ['normal', "Simply put: Our function calling itself. In the factorial example,"],
+                ['code', "return x * factorial(x — 1);"],
+                ['normal', " is where the recursion actually happens. We’re returning the value of the number x multiplied by the value of whatever"],
+                ['code', "factorial(x-1)"],
+                ['normal', "evaluates to."]
             ]]
         ]
     }
