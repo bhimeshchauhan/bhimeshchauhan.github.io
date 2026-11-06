@@ -1,91 +1,66 @@
-import React from 'react'
-import SocialContact from '../components/Contact/SocialContact'
-import contact from '../data/Contact'
-import social from '../data/Social'
-import { ContactWrapper, ContactContainer, ContactHeader, InputBox, Input, Label, FormContainer, TextArea, FormButton } from '../styles/contactStyle.js'
-import Layout from '../components/layout'
+import React from "react";
+import styled from "styled-components";
+import { Link } from "gatsby";
+import Layout from "../components/layout";
+import ContactForm from "../components/Contact/ContactForm";
+import { OWNER_EMAIL, mailtoLink, whatsappLink } from "../utils/connect";
 
-const StyledInput = () => {
-  return (
-    <InputBox>
-      <Input id="email" name="email" type="email" placeholder=''required />
-      <Label htmlFor="email">Email</Label>
-    </InputBox>
-  );
-};
+const display = `"Space Grotesk", "Signika", sans-serif`;
 
-const StyledTextArea = () => {
-  return (
-    <InputBox>
-      <TextArea id="msg" type="text" name="message" required />
-      <Label htmlFor="msg">Message</Label>
-    </InputBox>
-  );
-}
+const Wrap = styled.div`
+  margin: 1rem auto 2rem;
+  max-width: 1080px;
+  width: 100%;
+  h1 { color: var(--ink); font-family: ${display}; font-size: clamp(2.2rem, 6vw, 3.8rem); font-weight: 700; letter-spacing: -0.04em; line-height: 1.02; margin: 1rem 0 0.6rem; }
+  .lede { color: var(--muted); font-size: clamp(1.02rem, 2vw, 1.2rem); line-height: 1.6; margin: 0 0 2rem; max-width: 44rem; }
+  .grid { align-items: start; display: grid; gap: 1.25rem; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr); }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .grid > aside { order: 2; } }
+`;
+const Side = styled.aside`
+  display: grid;
+  gap: 1rem;
+  @media (min-width: 901px) { position: sticky; top: 6.5rem; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 1.3rem 1.4rem; }
+  h2 { color: var(--ink); font-family: ${display}; font-size: 1.1rem; letter-spacing: -0.01em; margin: 0 0 0.7rem; }
+  ul { display: grid; gap: 0.1rem; list-style: none; margin: 0; padding: 0; }
+  li a { align-items: center; color: var(--ink); display: flex; gap: 0.6rem; min-height: 44px; text-decoration: none; }
+  li a span { color: var(--muted); font-size: 0.85rem; }
+  li a:hover { color: var(--accent); }
+  p { color: var(--muted); line-height: 1.55; margin: 0; }
+  p a { color: var(--accent); text-underline-offset: 3px; }
+  .fact { color: var(--ink); margin-top: 0.5rem; }
+`;
 
 const Contact = () => (
-  <Layout seo={{ title: "Contact", description: "Get in touch with Bhimesh Chauhan about lead or staff AI platform engineering roles and collaborations." }}>
-    <ContactWrapper>
-      <ContactContainer>
-          <ContactHeader>
-            Get in touch
-          </ContactHeader>
-            <form action="https://getform.io/f/275143c6-10cf-4c83-a630-0c7381081eb6" method="POST">
-              <FormContainer>
-                  <StyledInput />
-                  <StyledTextArea />
-                  <FormButton type="submit">Send message</FormButton>
-              </FormContainer>
-            </form>
-      {/* <form action="">
-        <h2>Login</h2>
-
-        <div class="input-box">
-          <span class="icon">
-            <ion-icon name="mail"></ion-icon>
-          </span>
-          <input type="email" required>
-          <label>Email</label>
-        </div>
-
-        <div class="input-box">
-          <span class="icon">
-            <ion-icon name="lock-closed"></ion-icon>
-          </span>
-          <input type="password" required>
-          <label>Password</label>
-        </div>
-
-        <div class="remember-forgot">
-          <label><input type="checkbox"> Remember me</label>
-          <a href="#">Forgot Password?</a>
-        </div>
-
-        <button type="submit">Login</button>
-
-        <div class="register-link">
-          <p>Don't have an account? <a href="#">Register</a></p>
-        </div>
-      </form> */}
-
-      </ContactContainer>
-      {/* <ContactHeader>Get in touch</ContactHeader>
-      <ContactDetails>
-          <ContactBox>
-            <h3>Contact Details</h3>
-            {
-              contact.map(item => (<SocialContact key={item.id} info={item} />))
-            }
-          </ContactBox>
-          <ContactBox>
-            <h3>Look me up online</h3>
-            {
-              social.map(item => (<SocialContact key={item.id} info={item} />))
-            }
-          </ContactBox>
-      </ContactDetails> */}
-    </ContactWrapper>
+  <Layout seo={{ title: "Contact", description: "Contact Bhimesh Chauhan about lead, staff or forward-deployed AI platform engineering roles, contracts and collaborations. Based in Canada." }}>
+    <Wrap>
+      <h1>Get in touch</h1>
+      <p className="lede">Hiring, a contract, a collaboration or just a hello. Use the form for the fastest useful reply, or reach me directly.</p>
+      <div className="grid">
+        <Side>
+          <div className="card">
+            <h2>Reach me directly</h2>
+            <ul>
+              <li><a href={mailtoLink()}>Email <span>{OWNER_EMAIL}</span></a></li>
+              <li><a href="https://www.linkedin.com/in/bhimeshchauhan" target="_blank" rel="noopener noreferrer">LinkedIn <span>/in/bhimeshchauhan</span></a></li>
+              <li><a href={whatsappLink()} target="_blank" rel="noopener noreferrer">WhatsApp <span>click to chat</span></a></li>
+              <li><a href="https://github.com/bhimeshchauhan" target="_blank" rel="noopener noreferrer">GitHub <span>/bhimeshchauhan</span></a></li>
+            </ul>
+          </div>
+          <div className="card">
+            <h2>Good to know</h2>
+            <p>Based in Canada. Permanent resident, authorized to work in Canada for any employer, no sponsorship needed.</p>
+            <p className="fact">Roles of interest: forward deployed, staff or principal AI platform, and lead or founding engineering.</p>
+          </div>
+          <div className="card">
+            <h2>Before you write</h2>
+            <p>The <Link to="/hire/">role-fit page</Link> maps those roles to shipped work, and the assistant on every page answers questions about my experience.</p>
+          </div>
+        </Side>
+        <ContactForm />
+      </div>
+    </Wrap>
   </Layout>
-)
+);
 
-export default Contact
+export default Contact;
