@@ -14,10 +14,18 @@ const Projects = () => (
         <p>Products I have architected and shipped, from clinical AI and RAG systems to IoT, games and graphics experiments.</p>
       </ProjectsIntro>
       <ProjectsSection>
-        {proProjects.map((item) => (
+        {proProjects.filter((p) => !p.side).map((item) => (
           <ProjectBox key={item.id} info={item} iframe={item.iframe} />
         ))}
       </ProjectsSection>
+      <details style={{ marginTop: "3rem" }}>
+        <summary style={{ cursor: "pointer", color: "var(--muted)", fontSize: "0.8rem", letterSpacing: "0.14em", textTransform: "uppercase" }}>Earlier and side projects</summary>
+        <ProjectsSection style={{ marginTop: "1.5rem" }}>
+          {proProjects.filter((p) => p.side).map((item) => (
+            <ProjectBox key={item.id} info={item} iframe={item.iframe} />
+          ))}
+        </ProjectsSection>
+      </details>
     </ProjectsWrapper>
   </Layout>
 );

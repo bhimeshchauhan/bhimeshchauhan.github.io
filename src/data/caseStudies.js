@@ -249,6 +249,61 @@ const caseStudies = [
     }
   },
   {
+    slug: "raredays-ai-platform",
+    title: "RareDaysAI: a reusable RAG platform",
+    label: "AI platform engineering",
+    summary:
+      "I built the platform behind Ask Kindred so each new client is a config file and an ingest, not a new project. It ships as an npm SDK, a CLI and a hosted multi-tenant backend.",
+    scope: [
+      "Authored most of the platform, about 90% of the commits in the repository, from the retrieval pipeline to the SDK, CLI and admin tooling.",
+      "Designed the tenant model: each client gets isolated vector storage, its own tone and prompts, model routing and crisis handling, all declared in one config-as-code file.",
+      "Wrote the architecture decision record for moving from one stack per tenant to pooled regional cells with dedicated cells for compliance clients."
+    ],
+    architecture: [
+      "Clients embed a React, React Native or script-tag widget, or call the REST API with the TypeScript SDK.",
+      "The CLI scaffolds a config, pushes it to the backend, merges live edits the way git does, and ingests a knowledge base.",
+      "Each answer checks a semantic cache, embeds the query, searches the tenant's vector namespace, reranks, classifies the topic, routes to a model and streams a cited response.",
+      "Input, output and session guards, per-tenant capacity caps and a region capacity gate sit in front of the model providers."
+    ],
+    decisions: [
+      "Compared hosted chatbot vendors against a custom Pinecone-backed build before committing, with the goal of a high-quality assistant at a fraction of vendor cost.",
+      "Moved live reranking from a self-hosted model to a managed one after measuring 10 to 11 seconds for real-size passages. The self-hosted model stays for eval runs only.",
+      "Proposed pooled regional cells over one stack per tenant, because a streamed answer holds a Lambda concurrency slot for 5 to 15 seconds while about 95% of that is waiting on the model. The record names the trade-off: shared quotas need per-tenant caps.",
+      "Made config the contract. A push that conflicts with live edits stops instead of overwriting them."
+    ],
+    reliability: [
+      "Deploys go to staging first, then production behind an approval.",
+      "Per-tenant caps on concurrent chats, requests per minute and monthly tokens stop one client from starving another.",
+      "On a model throttle the platform falls back from the larger model to the smaller one before failing the request.",
+      "A reranker failure never fails an answer. Retrieval order is the fallback.",
+      "Every stack resource is tagged, and model spend is attributed to the calling stack, so cost per client is a report, not a guess."
+    ],
+    outcome:
+      "Three customer companies run on it, and a new client starts from a config file and an ingest.",
+    technologies: [
+      "TypeScript",
+      "Next.js",
+      "AWS Bedrock",
+      "Pinecone",
+      "DynamoDB",
+      "SST",
+      "Turborepo",
+      "React Native",
+      "GitHub Actions"
+    ],
+    seo: {
+      description:
+        "Case study: Bhimesh Chauhan built a reusable multi-tenant RAG platform with an npm SDK, CLI, config-as-code tenants and per-client cost attribution.",
+      keywords: [
+        "multi-tenant RAG",
+        "AI platform",
+        "SDK",
+        "config as code",
+        "AWS Bedrock"
+      ]
+    }
+  },
+  {
     slug: "pdf-to-audiobook",
     title: "PDF-to-Audiobook",
     label: "Applied NLP and voice experiences",
@@ -348,6 +403,27 @@ const extras = {
     team: "Led a team of 4–5 engineers and designers",
     status: "In production at Rare Days",
     keyResult: "~200 daily users across three customer companies",
+    operations: [
+      { value: "<5s", label: "time to first token" },
+      { value: "99.99%", label: "availability" },
+      { value: "~$15", label: "cost per client" }
+    ],
+    evals: {
+      summary:
+        "Quality is checked against a fixed set of 55 queries run through the deployed endpoint, with timing and retrieval scores exported for review. Tuning ran in three evaluation-driven rounds.",
+      rows: [
+        { value: "55", label: "fixed test queries: 20 in scope, 10 out of scope, 10 crisis, 5 multi-turn conversations" },
+        { value: "10/10", label: "crisis queries routed correctly, up from 7/10 at baseline" },
+        { value: "10/10", label: "out-of-scope queries refused with no grounding violations" },
+        { value: "19/20", label: "in-scope queries answered; the miss is a gap in the corpus" }
+      ],
+      points: [
+        "Skipping the reranker when the top vector score is below a floor cut out-of-scope time to first token from about 6 seconds to about 500 milliseconds.",
+        "Rewriting follow-up questions into standalone queries fixed three multi-turn fallbacks. 13 of 15 turns answer, and the two misses are corpus gaps.",
+        "The fallback streams a fixed message instead of calling the model, so it cannot answer from training data.",
+        "The same set reruns from the CLI and each run is recorded with the reranker that ordered each case, so a change to a prompt, threshold or reranker is compared against the same questions."
+      ]
+    },
     flow: ["Customer SDK", "Content ingestion", "Grounded retrieval + citations", "History + feedback", "Observability"],
     flowDetail: [
       "Customers embed the assistant through an SDK integration.",
@@ -363,7 +439,7 @@ const extras = {
     ]
   },
   wrangle: {
-    order: 3,
+    order: 4,
     role: "Lead engineer, mobile and platform",
     team: "Led a team of 4–5 engineers and designers",
     status: "In active development",
@@ -392,8 +468,33 @@ const extras = {
       ]
     }
   },
+  "raredays-ai-platform": {
+    order: 3,
+    role: "Lead engineer and architect",
+    team: "Led a team of 4–5 engineers and designers",
+    status: "In production at Rare Days",
+    keyResult: "A new client is a config file and an ingest",
+    flow: ["SDK / widget", "CLI + config", "Cache, embed, retrieve, rerank", "Route + guards", "Streamed cited answer"],
+    flowDetail: [
+      "Clients use a React, React Native or script-tag widget, or the TypeScript SDK against the REST API.",
+      "The CLI pushes a config-as-code file, merges live edits like git and ingests the knowledge base.",
+      "A semantic cache, query embedding, tenant-namespaced vector search and reranking prepare grounded context.",
+      "Topic classification routes to a model while guards, capacity caps and a region gate protect providers and other tenants.",
+      "The answer streams back with citations, and history and feedback feed the eval set."
+    ],
+    operations: [
+      { value: "<5s", label: "time to first token" },
+      { value: "99.99%", label: "availability" },
+      { value: "~$15", label: "cost per client" }
+    ],
+    results: [
+      { value: "3", label: "customer companies on the platform" },
+      { value: "~90%", label: "of repository commits authored by me" },
+      { value: "SDK + CLI", label: "web, React Native and script-tag clients" }
+    ]
+  },
   "pdf-to-audiobook": {
-    order: 4,
+    order: 5,
     role: "Designer and engineer",
     team: "Solo, personal project",
     status: "Personal project",
@@ -412,7 +513,7 @@ const extras = {
     ]
   },
   "rag-portfolio-assistant": {
-    order: 5,
+    order: 6,
     role: "Sole engineer",
     team: "Solo, personal project",
     status: "Live on this site",

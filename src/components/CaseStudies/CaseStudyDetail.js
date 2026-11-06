@@ -86,6 +86,36 @@ const CaseStudyDetail = ({ study }) => (
       {study.resultsSource && <SourceNote>{study.resultsSource}</SourceNote>}
     </DetailSection>
 
+    {study.evals && (
+      <DetailSection>
+        <h2>How quality is measured</h2>
+        <p>{study.evals.summary}</p>
+        <StatGrid>
+          {study.evals.rows.map(({ value, label }) => (
+            <li key={label}>
+              <strong>{value}</strong>
+              <span>{label}</span>
+            </li>
+          ))}
+        </StatGrid>
+        <List items={study.evals.points} />
+      </DetailSection>
+    )}
+
+    {study.operations && (
+      <DetailSection>
+        <h2>Speed, uptime and cost</h2>
+        <StatGrid>
+          {study.operations.map(({ value, label }) => (
+            <li key={label}>
+              <strong>{value}</strong>
+              <span>{label}</span>
+            </li>
+          ))}
+        </StatGrid>
+      </DetailSection>
+    )}
+
     {study.demo && (
       <DetailSection>
         <h2>Product in action</h2>

@@ -198,7 +198,7 @@ const Hero = () => (
       </Title>
       <Role>Lead AI platform engineer</Role>
       <Lede>
-        <strong>I built Scrubs Co-Pilot</strong>, ambient clinical AI that cut clinician documentation time by about 80%.
+        <strong>I lead Ask Kindred</strong>, a production RAG assistant serving about 200 daily users across three customer companies. Before that: Scrubs Co-Pilot, which cut clinician documentation time by about 80%.
       </Lede>
       <Now>
         Currently <b>Lead Software Engineer at Rare Days</b>

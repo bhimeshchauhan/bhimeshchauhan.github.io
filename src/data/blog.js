@@ -1,5 +1,50 @@
 export default [
     {
+        id: 10,
+        author: "Bhimesh Chauhan",
+        panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
+        title: "Designing a Grounded RAG Assistant: The Choices Behind the Chat on This Site",
+        tagLine: "Thresholds, timeouts, token caps and a refusal path: what I decided for the assistant on this portfolio, and what I have not measured yet.",
+        dated: "6th November, 2026 - Canada",
+        description: [
+            ['h3', "Start from what the answer is allowed to say"],
+            ['p', [
+                ['normal', "The assistant on this site answers questions about my work. The first decision was a boundary: it may use only the retrieved context. The system prompt says so directly, tells the model not to claim experience that is not in the documents, and gives it a fallback line that points the visitor to my email. A grounded assistant that says \"I don't have that\" is more useful to a recruiter than a fluent one that invents a detail."]
+            ]],
+            ['h3', "The request path"],
+            ['p', [
+                ['normal', "A question goes to a Supabase edge function. It is embedded with Cohere (embed-english-v3.0), prefixed with the subject so short queries like \"hobbies\" still land near the right chunks. A pgvector function returns up to 10 chunks above a 0.75 similarity threshold. Those chunks, the last five turns of history and the question go to the language model through OpenRouter. The answer is capped at 500 tokens."]
+            ]],
+            ['h3', "Small guards that carry weight"],
+            ['p', [
+                ['strong', "Skip retrieval for greetings. "], ['normal', "A pattern check answers \"hi\" without an embedding call or a model call. It saves cost and latency on the cheapest class of request."]
+            ]],
+            ['p', [
+                ['strong', "Time out every network hop. "], ['normal', "The embedding call has an 8 second limit and the model call 12. A slow provider returns an error the UI can handle instead of a hung chat."]
+            ]],
+            ['p', [
+                ['strong', "Keep config in the environment. "], ['normal', "Model, embedding model, match threshold, match count and token cap are environment values, so tuning retrieval does not need a code change."]
+            ]],
+            ['p', [
+                ['strong', "Keep secrets server side. "], ['normal', "Retrieval and model keys live in the edge function. The browser only sends a question and receives text, which it sanitizes before rendering."]
+            ]],
+            ['h3', "What I have not measured"],
+            ['p', [
+                ['normal', "The 0.75 threshold and the top-10 count were chosen by inspection, not by an evaluation set. There is no recorded retrieval hit rate or answer-quality score for this assistant yet. The next step is a small fixed set of recruiter-style questions with expected source chunks, run on every change to the prompt, threshold or content, so a regression shows up as a failed check rather than as a bad answer in front of a visitor."]
+            ]],
+            ['h3', "What I would tell another team"],
+            ['p', [
+                ['strong', "Write the refusal path first. "], ['normal', "Decide what the system says when it does not know before you tune how well it answers."]
+            ]],
+            ['p', [
+                ['strong', "Make tuning knobs configuration. "], ['normal', "Thresholds and caps change often early on."]
+            ]],
+            ['p', [
+                ['strong', "Be honest about what is unmeasured. "], ['normal', "Naming the missing evaluation is the first line of its spec."]
+            ]],
+        ]
+    },
+    {
         id: 9,
         author: "Bhimesh Chauhan",
         panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",

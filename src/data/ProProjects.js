@@ -113,6 +113,7 @@ export default [
   },
   {
     id: 4,
+    side: true,
     title: "Sudoku AR + Deep Learning",
     icon: sudokuIcon,
     description:
@@ -123,6 +124,7 @@ export default [
   },
   {
     id: 10,
+    side: true,
     title: "Conway's Game of Life",
     icon: lifeIcon,
     description:
@@ -135,6 +137,7 @@ export default [
   },
   {
     id: 6,
+    side: true,
     title: "SpaceFlight – Unity Game",
     icon: spaceIcon,
     description:
@@ -146,6 +149,7 @@ export default [
   },
   {
     id: 5,
+    side: true,
     title: "Procedural Terrain Generation",
     icon: terrainIcon,
     description:
@@ -157,6 +161,7 @@ export default [
   },
   {
     id: 3,
+    side: true,
     title: "Connect Four – AI Game",
     icon: connect4Icon,
     description:
