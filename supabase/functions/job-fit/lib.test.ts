@@ -60,3 +60,11 @@ Deno.test("clientIp prefers cf-connecting-ip, then first x-forwarded-for", () =>
   assertEquals(clientIp(new Headers({ "cf-connecting-ip": "9.9.9.9", "x-forwarded-for": "1.2.3.4" })), "9.9.9.9");
   assertEquals(clientIp(new Headers()), "unknown");
 });
+
+Deno.test("looksLikeJobPosting: real postings (even poor-fit ones) yes, recipe/article no", async () => {
+  const { looksLikeJobPosting } = await import("./lib.ts");
+  assert(looksLikeJobPosting("Principal Rust Systems Engineer. Requirements: 12+ years of Rust. You will lead a team of 20 engineers. Nice to have: Kubernetes. On-site."));
+  assert(looksLikeJobPosting("Senior Platform Engineer. We are looking for an engineer with experience with Postgres. Responsibilities include on-call. Remote."));
+  assertFalse(looksLikeJobPosting("Classic tomato soup. Roast six tomatoes with garlic and olive oil. Blend with stock, season, simmer, and serve with grilled cheese."));
+  assertFalse(looksLikeJobPosting("A short essay about the history of bridges and how they were built across rivers in the nineteenth century."));
+});

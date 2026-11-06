@@ -42,6 +42,10 @@ export function filterOutput(raw: string): { text: string; flagged: boolean } {
   return { text: t, flagged };
 }
 
+// Cheap lexical check: does this read like a job posting? Used only to decide whether to retry after a model refusal.
+const POSTING_WORDS = [/requirements?/i, /responsibilit/i, /qualifications?/i, /you will/i, /we are (looking|hiring)/i, /years of/i, /nice to have/i, /experience (with|in)/i, /\b(apply|salary|benefits|on-?site|remote|hybrid)\b/i, /\b(engineer|developer|manager|architect|analyst|designer)\b/i, /\bteam\b/i];
+export const looksLikeJobPosting = (text: string): boolean => POSTING_WORDS.filter((re) => re.test(text)).length >= 4;
+
 export function clientIp(h: Headers): string {
   const xf = h.get("x-forwarded-for") || "";
   return (h.get("cf-connecting-ip") || xf.split(",")[0] || "unknown").trim().slice(0, 64);
