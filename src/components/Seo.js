@@ -22,7 +22,7 @@ const Seo = ({
   const isHome = pathname === "/";
   const pageTitle = isHome ? siteMeta.title : `${title} | Bhimesh Chauhan`;
   const canonicalUrl = absoluteUrl(pathname);
-  const imageUrl = absoluteUrl("/og.png"); // 1200x630 share card with photo, title and proof points
+  const imageUrl = absoluteUrl("/og-card.jpg"); // 1200x630 share card (jpeg, kept small for WhatsApp) with photo, title and proof points
   const schemas = [];
 
   if (isHome) schemas.push(personSchema, aboutWebsite);
@@ -43,7 +43,7 @@ const Seo = ({
         { property: "og:image", content: imageUrl },
         { property: "og:image:width", content: "1200" },
         { property: "og:image:height", content: "630" },
-        { property: "og:image:type", content: "image/png" },
+        { property: "og:image:type", content: "image/jpeg" },
         { property: "og:image:alt", content: "Bhimesh Chauhan, Lead / Staff-Level AI Platform Engineer. $700K launch in 48 hours, about 80% less clinician documentation time." },
         { property: "og:site_name", content: "Bhimesh Chauhan" },
         { name: "twitter:card", content: "summary_large_image" },
