@@ -7,11 +7,11 @@ const LAST = "job-fit-last";
 
 const Box = styled.div`
   color: var(--ink, #f2f0ea);
-  font-family: "Signika", sans-serif;
-  textarea { background: rgba(0,0,0,0.3); border: 1px solid var(--line, rgba(255,255,255,0.16)); border-radius: 12px; box-sizing: border-box; color: var(--ink, #f2f0ea); font: 1rem "Signika", sans-serif; min-height: 120px; padding: 0.65rem 0.75rem; resize: vertical; width: 100%; }
+  font-family: "Inter", sans-serif;
+  textarea { background: rgba(0,0,0,0.3); border: 1px solid var(--line, rgba(255,255,255,0.16)); border-radius: 12px; box-sizing: border-box; color: var(--ink, #f2f0ea); font: 1rem "Inter", sans-serif; min-height: 120px; padding: 0.65rem 0.75rem; resize: vertical; width: 100%; }
   textarea:focus { border-color: var(--accent, #ffb454); outline: none; }
   .row { align-items: center; display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.6rem; }
-  .btn { align-items: center; background: transparent; border: 1px solid var(--line, rgba(255,255,255,0.22)); border-radius: 999px; color: var(--ink, #f2f0ea); cursor: pointer; display: inline-flex; font: 600 0.9rem "Signika", sans-serif; min-height: 44px; padding: 0.45rem 1rem; }
+  .btn { align-items: center; background: transparent; border: 1px solid var(--line, rgba(255,255,255,0.22)); border-radius: 999px; color: var(--ink, #f2f0ea); cursor: pointer; display: inline-flex; font: 600 0.9rem "Inter", sans-serif; min-height: 44px; padding: 0.45rem 1rem; }
   .btn:hover, .btn:focus-visible { border-color: var(--accent, #ffb454); }
   .btn.primary { background: var(--accent, #ffb454); border-color: var(--accent, #ffb454); color: #0b0d12; }
   .btn[disabled] { cursor: default; opacity: 0.5; }

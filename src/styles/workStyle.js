@@ -15,7 +15,7 @@ export const WorkWrapper = styled.div`
   width: 100%;
   h1{
     color: var(--ink);
-    font-family: "Space Grotesk", "Signika", sans-serif;
+    font-family: "Space Grotesk", "Inter", sans-serif;
     font-size: clamp(2.2rem, 5.5vw, 4rem);
     font-weight: 700;
     letter-spacing: -0.04em;
@@ -32,7 +32,7 @@ export const EdWrapper = styled.div`
   flex:1;
   h1{
     color: var(--ink);
-    font-family: "Space Grotesk", "Signika", sans-serif;
+    font-family: "Space Grotesk", "Inter", sans-serif;
     font-size: clamp(2.2rem, 5.5vw, 4rem);
     font-weight: 700;
     letter-spacing: -0.04em;

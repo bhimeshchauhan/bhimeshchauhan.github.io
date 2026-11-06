@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 import { profilePageSchema } from "../utils/schema";
 import FitFinder from "../components/FitFinder";
 
-const display = `"Space Grotesk", "Signika", sans-serif`;
+const display = `"Space Grotesk", "Inter", sans-serif`;
 
 // Role-fit evidence. Every line below is already stated on a case study or the experience page.
 const roles = [

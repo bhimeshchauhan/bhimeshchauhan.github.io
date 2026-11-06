@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 import ContactForm from "../components/Contact/ContactForm";
 import { OWNER_EMAIL, mailtoLink, whatsappLink } from "../utils/connect";
 
-const display = `"Space Grotesk", "Signika", sans-serif`;
+const display = `"Space Grotesk", "Inter", sans-serif`;
 
 const Wrap = styled.div`
   margin: 1rem auto 2rem;

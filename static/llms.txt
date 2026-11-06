@@ -10,7 +10,7 @@ Roles of interest: forward deployed engineer, staff / principal AI platform engi
 - [Hire: role fit and evidence](https://bhimeshchauhan.github.io/hire/): the three role types above, each with the shipped work behind it and posting keywords.
 
 ## Leadership
-- [Leading several projects at once: scope, time and stakeholders](https://bhimeshchauhan.github.io/blog/#post-9): balancing customer feature requests against the timeline and what a team can deliver, and keeping the VP of Engineering, CTO and CEO free of surprises; grounded in the Jefferson Fisher launch.
+- [Leading several projects at once: scope, time and stakeholders](https://bhimeshchauhan.github.io/blog/leading-several-projects-at-once/): balancing customer feature requests against the timeline and what a team can deliver, and keeping the VP of Engineering, CTO and CEO free of surprises; grounded in the Jefferson Fisher launch.
 
 ## Case studies (shipped work, with measurable outcomes)
 - [Jefferson Fisher launch platform](https://bhimeshchauhan.github.io/case-studies/jefferson-fisher/): led engineering for a client launch at Rare Days; about $700K USD in total sales in under 48 hours; Next.js, Stripe, queue-protected checkout.

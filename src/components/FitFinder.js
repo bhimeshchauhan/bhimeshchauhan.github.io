@@ -11,7 +11,7 @@ const Wrap = styled.section`
   padding: clamp(1.25rem, 4vw, 2.25rem);
   scroll-margin-top: 6rem;
   .eyebrow { color: var(--accent); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; margin: 0 0 0.6rem; text-transform: uppercase; }
-  h2 { color: var(--ink); font-family: "Space Grotesk", "Signika", sans-serif; font-size: clamp(1.5rem, 3.4vw, 2.2rem); letter-spacing: -0.03em; line-height: 1.1; margin: 0 0 0.6rem; }
+  h2 { color: var(--ink); font-family: "Space Grotesk", "Inter", sans-serif; font-size: clamp(1.5rem, 3.4vw, 2.2rem); letter-spacing: -0.03em; line-height: 1.1; margin: 0 0 0.6rem; }
   .lede { color: var(--muted); line-height: 1.55; margin: 0 0 1.2rem; max-width: 42rem; }
 `;
 

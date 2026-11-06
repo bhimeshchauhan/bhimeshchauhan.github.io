@@ -1,8 +1,7 @@
-export default [
+const posts = [
     {
         id: 9,
         author: "Bhimesh Chauhan",
-        panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
         title: "Leading Several Projects at Once: Scope, Time and Stakeholders",
         tagLine: "How I balance what customers ask for, what the timeline allows, and what a team can actually deliver.",
         dated: "5th November, 2026 - Canada",
@@ -52,7 +51,6 @@ export default [
     {
         id: 11,
         author: "Bhimesh Chauhan",
-        panelImageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80",
         title: 'Why I Moved Live Reranking Off My Own Model',
         tagLine: 'I benchmarked a self-hosted reranker against a managed one. The extrapolation I planned around was wrong by a factor of ten.',
         dated: '30th October, 2026 - Canada',
@@ -68,6 +66,17 @@ export default [
             ['p', [
                 ['normal', 'When I measured the real thing on 3 GB, latency depended heavily on passage length. Ten passages of about 40 words took 1.3 seconds. At about 120 words it was 3.1 seconds. At about 400 words, which is our real chunk size, it took 10.5 to 11 seconds.']
             ]],
+            ['bars', {
+                title: "Rerank time for 10 passages, by passage length",
+                unit: "s", max: 12,
+                rows: [
+                    { label: "~40 words", value: 1.3 },
+                    { label: "~120 words", value: 3.1 },
+                    { label: "~400 words (our chunk size)", value: 10.8, text: "10.5\u201311s" }
+                ],
+                marker: { value: 3, label: "3s live timeout" },
+                caption: "Measured warm on Lambda at 3 GB, us-east-1, 2026-10-29."
+            }],
             ['h3', 'The decision'],
             ['p', [
                 ['normal', 'Live chat times out the reranker at 3 seconds. Self-hosted would have timed out on nearly every real request and then fallen through to the managed one anyway, adding 3 seconds to every answer. So the managed reranker became the live path, and the self-hosted one stays for eval runs only, where a 30 second timeout is fine and the cost is zero.']
@@ -98,7 +107,6 @@ export default [
     {
         id: 10,
         author: "Bhimesh Chauhan",
-        panelImageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1000&q=80",
         title: "Designing a Grounded RAG Assistant: The Choices Behind the Chat on This Site",
         tagLine: "Thresholds, timeouts, token caps and a refusal path: what I decided for the assistant on this portfolio, and what I have not measured yet.",
         dated: "14th September, 2026 - Canada",
@@ -110,6 +118,13 @@ export default [
             ['h3', "The request path"],
             ['p', [
                 ['normal', "A question goes to a Supabase edge function. It is embedded with Cohere (embed-english-v3.0), prefixed with the subject so short queries like \"hobbies\" still land near the right chunks. A pgvector function returns up to 10 chunks above a 0.75 similarity threshold. Those chunks, the last five turns of history and the question go to the language model through OpenRouter. The answer is capped at 500 tokens."]
+            ]],
+            ['steps', [
+                ["Question", "last 5 turns of history"],
+                ["Embed", "Cohere, 8s timeout"],
+                ["Search", "pgvector, top 10 above 0.75"],
+                ["Answer", "grounded prompt, 12s timeout, 500 tokens"],
+                ["Render", "sanitized in the browser"]
             ]],
             ['h3', "Small guards that carry weight"],
             ['p', [
@@ -143,7 +158,6 @@ export default [
     {
         id: 8,
         author: "Bhimesh Chauhan",
-        panelImage: "sJ6az6-T1u8",
         title: "Boxing and the Practice of Staying Present",
         tagLine: "A few notes from learning how quickly attention can leave the room.",
         dated: "28th June, 2026 - Vancouver, BC",
@@ -186,7 +200,6 @@ export default [
     {
         id: 12,
         author: "Bhimesh Chauhan",
-        panelImageUrl: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1000&q=80",
         title: 'How I Evaluate a RAG Assistant: 55 Questions and Three Rounds of Tuning',
         tagLine: 'What a small fixed question set caught that spot-checking never would, and what it still cannot tell me.',
         dated: '19th March, 2026 - Canada',
@@ -214,6 +227,15 @@ export default [
             ['p', [
                 ['normal', 'All ten distress queries were classified correctly. All ten out-of-scope queries were refused, with zero grounding violations. 19 of 20 in-scope queries were answered, and 13 of 15 multi-turn turns. The misses are gaps in the corpus, not system faults. Rewriting follow-up questions into standalone queries fixed three of the multi-turn fallbacks, at a cost of 2 to 3 seconds on follow-up turns.']
             ]],
+            ['pairs', {
+                title: "What three rounds of tuning changed",
+                rows: [
+                    { label: "Distress queries classified correctly", before: "7 of 10", after: "10 of 10", beforePct: 70, afterPct: 100 },
+                    { label: "Out-of-scope time to first token", before: "~6 s", after: "~0.5 s", beforePct: 100, afterPct: 8 },
+                    { label: "Out-of-scope questions answered from training data", before: "2 of 10", after: "0 of 10", beforePct: 20, afterPct: 0 }
+                ],
+                caption: "From the fixed 55-query set, baseline against the final round."
+            }],
             ['h3', 'What it cannot tell me'],
             ['p', [
                 ['normal', 'Fifty-five questions is a regression net, not a quality guarantee. It says nothing about questions nobody thought to write, and the answers still need expert review. The set only works if production failures are turned into new rows.']
@@ -236,7 +258,6 @@ export default [
     {
         id: 7,
         author: "Bhimesh Chauhan",
-        panelImage: "9h_bJdGqzCk",
         title: "Horse Riding, Balance, and Trust",
         tagLine: "Learning that balance is more listening than control.",
         dated: "21st February, 2026 - Tokyo, Japan",
@@ -279,7 +300,6 @@ export default [
     {
         id: 6,
         author: "Bhimesh Chauhan",
-        panelImage: "Tq4YjCa2BSc",
         title: "Learning to Think With My Hands Through Sculpting",
         tagLine: "Notes on making room for material, friction, and surprise.",
         dated: "9th October, 2025 - Mumbai, India",
@@ -322,7 +342,6 @@ export default [
     {
         id: 5,
         author: "Bhimesh Chauhan",
-        panelImage: "_4qHg0z1bfE",
         title: "Klimt and the Courage to Make Work That Is Too Much",
         tagLine: "What I notice when decoration refuses to apologize.",
         dated: "17th June, 2025 - Mexico City, Mexico",
@@ -365,7 +384,6 @@ export default [
     {
         id: 4,
         author: "Bhimesh Chauhan",
-        panelImage: "PDX_a_82obo",
         title: "What Music Has Taught Me About Attention",
         tagLine: "A few small observations about listening all the way through.",
         dated: "13th February, 2025 - Peru",
@@ -408,7 +426,6 @@ export default [
     {
         id: 3,
         author: "Bhimesh Chauhan",
-        panelImage: "XttrC5E0HDM",
         title: "Fine-Tuning LLMs for Domain-Specific Applications",
         tagLine: "In this blog, I’ll walk you through the basics of fine-tuning LLMs and explain the steps required to make them more effective for specific tasks.",
         dated: "14th September, 2024 - Toronto, CA",
@@ -515,7 +532,6 @@ export default [
     {
         id: 2,
         author: "Bhimesh Chauhan",
-        panelImage: "YKW0JjP7rlU",
         title: "Implementing Retrieval-Augmented Generation (RAG) with LLMs",
         tagLine: "In this post, we’ll explore how RAG enhances Large Language Models (LLMs) by integrating real-time data retrieval, using simple examples to illustrate the process.",
         dated: "22nd July, 2024 - Toronto, CA",
@@ -629,7 +645,6 @@ export default [
     {
         id: 1,
         author: "Bhimesh Chauhan",
-        panelImage: "da0acHr41p8",
         title: "Learn and Understand Recursion in JavaScript",
         tagLine: "I’ll walk you through two popular JS recursion examples in 10 minutes so you can finally understand how recursion works in JavaScript.",
         dated: "12th January, 2020 - Boston, MA",
@@ -714,3 +729,14 @@ export default [
         ]
     }
 ];
+
+const slugify = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 70).replace(/-$/, "");
+
+const slugs = {
+  9: "leading-several-projects-at-once",
+  10: "grounded-rag-assistant-design",
+  11: "moving-live-reranking-off-my-own-model",
+  12: "evaluating-a-rag-assistant"
+};
+
+module.exports = posts.map((p) => ({ ...p, slug: slugs[p.id] || slugify(p.title) }));

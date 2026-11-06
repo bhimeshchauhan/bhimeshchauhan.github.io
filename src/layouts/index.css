@@ -1,5 +1,5 @@
 html {
-  font-family: 'Signika', sans-serif;
+  font-family: 'Inter', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   background-color: #1D1E20 !important;
@@ -201,7 +201,7 @@ html {
 }
 body {
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: 'Signika', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -231,7 +231,7 @@ h1 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: 'Signika', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 2.25rem;
@@ -247,7 +247,7 @@ h2 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: 'Signika', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.62671rem;
@@ -263,7 +263,7 @@ h3 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: 'Signika', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.38316rem;
@@ -279,7 +279,7 @@ h4 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: 'Signika', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1rem;
@@ -295,7 +295,7 @@ h5 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: 'Signika', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.85028rem;
@@ -311,7 +311,7 @@ h6 {
   padding-top: 0;
   margin-bottom: 1.45rem;
   color: inherit;
-  font-family: 'Signika', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.78405rem;
@@ -615,7 +615,7 @@ pre tt:after {
   content: "";
 }
 div,p{
-  font-family: 'Signika', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 .Wrapper{
   background-image: url('../assets/images/blue-bg.png');
@@ -677,13 +677,12 @@ body{background:var(--bg);color:var(--ink)}
 /* nav icon/label swap (moved here from bhimeshStyle.css, which only the old home imported) */
 .fa-icon{display:none}
 .nav-label{display:inline}
-@media only screen and (max-width:1050px){.fa-icon{display:inline-block}.nav-label{display:none}}
 .nav-list{gap:.25rem}
 
 /* ---- nav: sticky glass pill ---- */
 .nav{position:sticky;top:.75rem;z-index:50;justify-content:space-between;margin-bottom:1.5rem}
 .nav .nav-list:first-child svg{margin:-24px -14px}
-.nav .nav-list:nth-child(2){gap:.15rem;padding:.3rem;border:1px solid var(--line);border-radius:999px;background:rgba(10,12,18,.6);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);line-height:1}
+.nav .nav-list:nth-child(2){gap:.15rem;padding:.3rem;border:1px solid var(--line);border-radius:999px;background:var(--bg);line-height:1}
 .nav .nav-list > a{margin:0}
 /* Mobile: the pill is wider than the screen with 9 items, so make it a contained horizontal scroller (was clipped, Art/Contact unreachable). */
 .nav .nav-list:nth-child(2){min-width:0;max-width:100%;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch}
@@ -699,7 +698,7 @@ body{background:var(--bg);color:var(--ink)}
 body .best-post{background:var(--card);border:1px solid var(--line);border-radius:24px;overflow:hidden}
 body .best-post-content{background:transparent}
 body .blogWriteUp{background:transparent}
-body .blogWriteUp h1{font-size:clamp(1.6rem,6.5vw,2.6rem);overflow-wrap:break-word;color:var(--ink);font-family:"Space Grotesk","Signika",sans-serif;font-weight:700;letter-spacing:-0.03em}
+body .blogWriteUp h1{font-size:clamp(1.6rem,6.5vw,2.6rem);overflow-wrap:break-word;color:var(--ink);font-family:"Space Grotesk","Inter",sans-serif;font-weight:700;letter-spacing:-0.03em}
 body .blogWriteUp .uk-article, body .blogWriteUp article{background:transparent}
 body .blogWriteUp p{color:var(--muted)}
 body .blogWriteUp h3{color:var(--ink)}

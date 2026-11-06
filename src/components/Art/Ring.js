@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { FEED_URL, FEED_KEY } from "../../utils/art";
 
-const display = `"Space Grotesk", "Signika", sans-serif`;
+const display = `"Space Grotesk", "Inter", sans-serif`;
 // A slight downward tilt (rotateX) makes the ring read as a ring, not a flat row.
 // --back pushes the whole ring away by its radius so front cards render at true size (no magnified, clipped cards).
 const spin = keyframes`from{transform:translateZ(var(--back)) rotateX(-5deg) rotateY(0)}to{transform:translateZ(var(--back)) rotateX(-5deg) rotateY(360deg)}`;
@@ -79,7 +79,7 @@ const Flip = styled(motion.div)`
   .info small { color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.75rem; }
   .info p { color: var(--ink); line-height: 1.6; margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
   .row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: auto; }
-  .row a, .row button { align-items: center; display: inline-flex; min-height: 44px; background: transparent; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); cursor: pointer; font: 600 0.9rem "Signika", sans-serif; padding: 0.55rem 1.1rem; text-decoration: none; transition: background .2s, color .2s, border-color .2s; }
+  .row a, .row button { align-items: center; display: inline-flex; min-height: 44px; background: transparent; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); cursor: pointer; font: 600 0.9rem "Inter", sans-serif; padding: 0.55rem 1.1rem; text-decoration: none; transition: background .2s, color .2s, border-color .2s; }
   .row .primary { background: var(--accent); border-color: var(--accent); color: #0b0d12; }
   .row a:hover, .row button:hover { border-color: var(--accent); }
   h3 { color: var(--ink); font-family: ${display}; font-size: 1.5rem; letter-spacing: -0.02em; margin: 0; }

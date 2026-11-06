@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
-import { useReducedMotion } from "framer-motion";
 import caseStudies from "../../data/caseStudies";
 import recommendations from "../../data/Recommendation";
-import { CountUp, Reveal } from "../motion/primitives";
+import { Reveal } from "../motion/primitives";
 import { Button } from "./Hero";
 import ScrubsMock from "./ScrubsMock";
 
-const display = `"Space Grotesk", "Signika", sans-serif`;
+const display = `"Space Grotesk", "Inter", sans-serif`;
 
 /* ---------- Stats ---------- */
 const StatsGrid = styled.ul`
@@ -54,7 +53,7 @@ export const Stats = () => (
     {STATS.map((s, i) => (
       <Reveal as="li" key={s.label} delay={i * 0.08}>
         <strong>
-          <CountUp to={s.to} prefix={s.prefix} suffix={s.suffix} />
+          {s.prefix}{s.to}{s.suffix}
         </strong>
         <span>{s.label}</span>
       </Reveal>
@@ -103,11 +102,8 @@ const Grid = styled.div`
   }
 `;
 const Card = styled(Link)`
-  --mx: 50%;
-  --my: 50%;
-  background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 24px;
+  border-radius: 8px;
   color: var(--ink);
   display: flex;
   flex-direction: column;
@@ -116,22 +112,10 @@ const Card = styled(Link)`
   padding: 1.75rem;
   position: relative;
   text-decoration: none;
-  transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  &::before {
-    background: radial-gradient(420px circle at var(--mx) var(--my), rgba(255, 180, 84, 0.16), transparent 60%);
-    content: "";
-    inset: 0;
-    opacity: 0;
-    position: absolute;
-    transition: opacity 0.3s ease;
-  }
+  transition: border-color 0.2s ease;
   &:hover,
   &:focus-visible {
-    border-color: rgba(255, 180, 84, 0.55);
-    transform: translateY(-6px);
-  }
-  &:hover::before {
-    opacity: 1;
+    border-color: var(--accent);
   }
   > * {
     position: relative;
@@ -208,17 +192,10 @@ const Card = styled(Link)`
     transform: translate(4px, -4px);
   }
 `;
-const track = (e) => {
-  const r = e.currentTarget.getBoundingClientRect();
-  e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
-  e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
-};
 export const Work = () => {
   const [lead, ...rest] = caseStudies.slice(0, 3);
   const body = (s, i) => (
     <>
-      <span className="num">0{i + 1}</span>
-      <span className="arrow" aria-hidden="true">↗</span>
       <h3>{s.title}</h3>
       <p className="result">{s.keyResult}</p>
       <p className="sum">{s.summary}</p>
@@ -233,7 +210,7 @@ export const Work = () => {
     <section>
       <SectionHead title="Selected work" note="Three systems I led end to end, and what changed." />
       <Reveal>
-        <Card to={`/case-studies/${lead.slug}/`} onMouseMove={track} className="featured" aria-label={`${lead.title} case study`}>
+        <Card to={`/case-studies/${lead.slug}/`} className="featured" aria-label={`${lead.title} case study`}>
           <div className="copy">{body(lead, 0)}</div>
           {lead.slug === "scrubs-copilot" && (
             <div className="visual" aria-hidden="true">
@@ -245,7 +222,7 @@ export const Work = () => {
       <Grid style={{ marginTop: "1.5rem" }}>
         {rest.map((s, i) => (
           <Reveal key={s.slug} delay={i * 0.1}>
-            <Card to={`/case-studies/${s.slug}/`} onMouseMove={track} style={{ height: "100%" }} className={s.demo ? "has-thumb" : undefined}>
+            <Card to={`/case-studies/${s.slug}/`} style={{ height: "100%" }} className={s.demo ? "has-thumb" : undefined}>
               {s.demo && <img className="thumb" src={s.demo.poster} alt="" loading="lazy" width="384" height="784" />}
               {body(s, i + 1)}
             </Card>
@@ -261,7 +238,7 @@ const Cta = styled.section`
   align-items: center;
   display: grid;
   gap: 3rem;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  grid-template-columns: 1fr;
   margin: 10rem 0 2rem;
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
@@ -277,8 +254,7 @@ const Cta = styled.section`
     margin: 0 0 1.25rem;
   }
   h2 em {
-    -webkit-text-stroke: 2px var(--accent);
-    color: transparent;
+    color: var(--accent);
     font-style: normal;
   }
   p {
@@ -293,19 +269,8 @@ const Cta = styled.section`
     flex-wrap: wrap;
     gap: 0.9rem;
   }
-  .art {
-    margin: 0 auto;
-    max-width: 520px;
-    pointer-events: none;
-    width: 100%;
-    -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%);
-    mask-image: radial-gradient(closest-side, #000 62%, transparent 100%);
-  }
-  .art img { display: block; height: auto; opacity: 0.72; width: 100%; }
-  @media (max-width: 900px) { .art { max-width: 340px; } }
 `;
 export const Contact = () => {
-  const reduce = useReducedMotion();
   return (
     <Cta>
       <Reveal>
@@ -319,11 +284,6 @@ export const Contact = () => {
           <Button href="https://github.com/bhimeshchauhan" target="_blank" rel="noopener noreferrer">GitHub</Button>
         </div>
       </Reveal>
-      {!reduce && (
-        <div className="art" aria-hidden="true">
-          <img src="/coding.webp" alt="" width="800" height="600" loading="lazy" decoding="async" />
-        </div>
-      )}
     </Cta>
   );
 };

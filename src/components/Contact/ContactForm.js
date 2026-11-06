@@ -7,7 +7,7 @@ const Box = styled.section`
   border: 1px solid var(--line);
   border-radius: 28px;
   padding: clamp(1.25rem, 4vw, 2.25rem);
-  h2 { color: var(--ink); font-family: "Space Grotesk", "Signika", sans-serif; font-size: clamp(1.4rem, 3vw, 1.8rem); letter-spacing: -0.02em; margin: 0 0 0.35rem; }
+  h2 { color: var(--ink); font-family: "Space Grotesk", "Inter", sans-serif; font-size: clamp(1.4rem, 3vw, 1.8rem); letter-spacing: -0.02em; margin: 0 0 0.35rem; }
   .lede { color: var(--muted); line-height: 1.55; margin: 0 0 1.4rem; }
   form { display: grid; gap: 1rem; }
   .two { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
@@ -16,13 +16,13 @@ const Box = styled.section`
   legend { color: var(--accent); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; margin-bottom: 0.6rem; padding: 0; text-transform: uppercase; }
   label { color: var(--muted); display: grid; font-size: 0.8rem; gap: 0.35rem; letter-spacing: 0.06em; text-transform: uppercase; }
   label .opt { letter-spacing: 0; opacity: 0.7; text-transform: none; }
-  input, select, textarea { background: rgba(0,0,0,0.3); border: 1px solid var(--line); border-radius: 12px; box-sizing: border-box; color: var(--ink); font: 1rem "Signika", sans-serif; letter-spacing: 0; min-height: 46px; padding: 0.7rem 0.85rem; text-transform: none; width: 100%; }
+  input, select, textarea { background: rgba(0,0,0,0.3); border: 1px solid var(--line); border-radius: 12px; box-sizing: border-box; color: var(--ink); font: 1rem "Inter", sans-serif; letter-spacing: 0; min-height: 46px; padding: 0.7rem 0.85rem; text-transform: none; width: 100%; }
   select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%; background-repeat: no-repeat; background-size: 6px 6px, 6px 6px; padding-right: 2.2rem; }
   select option { background: #11131c; color: var(--ink); }
   input:focus, select:focus, textarea:focus { border-color: var(--accent); outline: none; }
   textarea { min-height: 140px; resize: vertical; }
   .hp { height: 0; left: -9999px; opacity: 0; position: absolute; width: 0; }
-  button[type=submit] { background: var(--accent); border: 0; border-radius: 999px; color: #0b0d12; cursor: pointer; font: 700 1rem "Signika", sans-serif; min-height: 48px; padding: 0.9rem 1.5rem; }
+  button[type=submit] { background: var(--accent); border: 0; border-radius: 999px; color: #0b0d12; cursor: pointer; font: 700 1rem "Inter", sans-serif; min-height: 48px; padding: 0.9rem 1.5rem; }
   button[disabled] { cursor: default; opacity: 0.5; }
   .err { color: #ff9a8a; margin: 0; }
   .ok { color: #9ee6a8; font-size: 1.05rem; line-height: 1.5; margin: 0; }

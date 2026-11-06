@@ -6,7 +6,7 @@ const Card = styled.div`
   background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
   color: #f2f0ea;
-  font-family: "Signika", sans-serif;
+  font-family: "Inter", sans-serif;
   max-width: 100%;
   padding: 0.95rem;
   p { margin: 0 0 0.7rem; font-size: 0.92rem; line-height: 1.45; color: #d9d7d0; }
@@ -17,7 +17,7 @@ const Card = styled.div`
     border-radius: 999px;
     color: #f2f0ea;
     cursor: pointer;
-    font: 600 0.82rem "Signika", sans-serif;
+    font: 600 0.82rem "Inter", sans-serif;
     padding: 0.45rem 0.8rem;
     text-decoration: none;
     transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
@@ -30,7 +30,7 @@ const Card = styled.div`
     border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 10px;
     color: #f2f0ea;
-    font: 0.9rem "Signika", sans-serif;
+    font: 0.9rem "Inter", sans-serif;
     padding: 0.55rem 0.7rem;
     width: 100%;
     box-sizing: border-box;

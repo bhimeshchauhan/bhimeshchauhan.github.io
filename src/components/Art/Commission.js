@@ -16,11 +16,11 @@ const Box = styled.section`
   .two { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
   @media (max-width: 600px) { .two { grid-template-columns: 1fr; } }
   label { color: var(--muted); display: grid; font-size: 0.82rem; gap: 0.35rem; letter-spacing: 0.06em; text-transform: uppercase; }
-  input, select, textarea { background: rgba(0,0,0,0.3); border: 1px solid var(--line); border-radius: 12px; color: var(--ink); font: 1rem "Signika", sans-serif; letter-spacing: 0; padding: 0.7rem 0.85rem; text-transform: none; width: 100%; box-sizing: border-box; }
+  input, select, textarea { background: rgba(0,0,0,0.3); border: 1px solid var(--line); border-radius: 12px; color: var(--ink); font: 1rem "Inter", sans-serif; letter-spacing: 0; padding: 0.7rem 0.85rem; text-transform: none; width: 100%; box-sizing: border-box; }
   input:focus, select:focus, textarea:focus { border-color: var(--accent); outline: none; }
   textarea { min-height: 120px; resize: vertical; }
   .hp { height: 0; left: -9999px; opacity: 0; position: absolute; width: 0; }
-  button[type=submit] { background: var(--accent); border: 0; border-radius: 999px; color: #0b0d12; cursor: pointer; font: 700 1rem "Signika", sans-serif; padding: 0.9rem 1.5rem; }
+  button[type=submit] { background: var(--accent); border: 0; border-radius: 999px; color: #0b0d12; cursor: pointer; font: 700 1rem "Inter", sans-serif; padding: 0.9rem 1.5rem; }
   button[disabled] { opacity: 0.5; cursor: default; }
   .err { color: #ff9a8a; margin: 0; }
   .ok { color: #9ee6a8; font-size: 1.05rem; margin: 0; }

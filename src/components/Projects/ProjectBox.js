@@ -2,31 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import { Reveal } from '../motion/primitives'
 
-const display = `"Space Grotesk", "Signika", sans-serif`
+const display = `"Space Grotesk", "Inter", sans-serif`
 
 const Box = styled.article`
-  --mx: 50%;
-  --my: 0%;
-  background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 24px;
+  border-radius: 8px;
   overflow: hidden;
   position: relative;
-  transition: border-color 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  &::before {
-    background: radial-gradient(520px circle at var(--mx) var(--my), rgba(255, 180, 84, 0.12), transparent 60%);
-    content: "";
-    inset: 0;
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    transition: opacity 0.3s ease;
-  }
+  transition: border-color 0.2s ease;
   &:hover {
-    border-color: rgba(255, 180, 84, 0.45);
-  }
-  &:hover::before {
-    opacity: 1;
+    border-color: var(--accent);
   }
   > * {
     position: relative;
@@ -176,17 +161,11 @@ const splitTech = (text = '') => {
   return out
 }
 
-const track = (e) => {
-  const r = e.currentTarget.getBoundingClientRect()
-  e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
-  e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
-}
 
 const ProjectBox = ({ info }) => (
   <Reveal>
-    <Box className="projectBox" onMouseMove={track}>
+    <Box className="projectBox">
       <Head>
-        <img className="icon" src={info.icon} alt="" loading="lazy" decoding="async" width="64" height="64" />
         <div className="titles">
           <h2>{info.title}</h2>
         </div>

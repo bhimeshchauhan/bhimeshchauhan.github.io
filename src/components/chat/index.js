@@ -31,7 +31,7 @@ const linksFor = (text) => {
   return out.slice(0, 3);
 };
 
-const display = `"Space Grotesk", "Signika", sans-serif`;
+const display = `"Space Grotesk", "Inter", sans-serif`;
 const blink = keyframes`0%,80%,100%{opacity:.25}40%{opacity:1}`;
 
 const ring = keyframes`0%{box-shadow:0 0 0 0 rgba(255,180,84,.55)}70%{box-shadow:0 0 0 12px rgba(255,180,84,0)}100%{box-shadow:0 0 0 0 rgba(255,180,84,0)}`;
@@ -58,7 +58,7 @@ const Launcher = styled.button`
   color: var(--ink);
   cursor: pointer;
   display: flex;
-  font-family: "Signika", sans-serif;
+  font-family: "Inter", sans-serif;
   gap: 0.75rem;
   max-width: min(340px, calc(100vw - 32px));
   padding: 0.4rem 1.1rem 0.4rem 0.4rem;
@@ -91,7 +91,7 @@ const Panel = styled(motion.section)`
   right: 20px;
   width: min(390px, calc(100vw - 24px));
   z-index: 1000;
-  font-family: "Signika", sans-serif;
+  font-family: "Inter", sans-serif;
   color: var(--ink);
   @media (max-width: 560px) { bottom: 0; height: 100vh; right: 0; width: 100vw; border-radius: 0; }
 `;
@@ -133,7 +133,7 @@ const Log = styled.div`
   .refs a { background: rgba(255,180,84,0.1); border: 1px solid rgba(255,180,84,0.35); border-radius: 999px; color: var(--ink); font-size: 0.82rem; padding: 0.3rem 0.75rem; text-decoration: none; transition: background .2s, color .2s; }
   .refs a:hover, .refs a:focus-visible { background: var(--accent); color: #0b0d12; }
   .sugg { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 0.25rem; }
-  .sugg button { background: transparent; border: 1px solid var(--line); border-radius: 14px; color: var(--muted); cursor: pointer; font: 0.88rem "Signika", sans-serif; padding: 0.55rem 0.85rem; text-align: left; transition: color .2s, border-color .2s, background .2s; }
+  .sugg button { background: transparent; border: 1px solid var(--line); border-radius: 14px; color: var(--muted); cursor: pointer; font: 0.88rem "Inter", sans-serif; padding: 0.55rem 0.85rem; text-align: left; transition: color .2s, border-color .2s, background .2s; }
   .sugg button:hover { background: rgba(255,255,255,0.05); border-color: var(--accent); color: var(--ink); }
 `;
 
@@ -143,7 +143,7 @@ const Compose = styled.form`
   display: flex;
   gap: 0.5rem;
   padding: 0.7rem 0.8rem;
-  input { background: transparent; border: 0; color: var(--ink); flex: 1; font: 1rem "Signika", sans-serif; min-width: 0; outline: none; padding: 0.5rem 0.4rem; }
+  input { background: transparent; border: 0; color: var(--ink); flex: 1; font: 1rem "Inter", sans-serif; min-width: 0; outline: none; padding: 0.5rem 0.4rem; }
   input::placeholder { color: var(--muted); }
   button { background: var(--accent); border: 0; border-radius: 50%; color: #0b0d12; cursor: pointer; font-size: 1.1rem; font-weight: 700; height: 38px; width: 38px; }
   button:disabled { opacity: 0.4; cursor: default; }
