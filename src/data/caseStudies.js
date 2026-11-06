@@ -406,7 +406,7 @@ const extras = {
     operations: [
       { value: "<5s", label: "time to first token" },
       { value: "99.99%", label: "availability" },
-      { value: "~$15", label: "cost per client" }
+      { value: "~$15", label: "cost per client, per month" }
     ],
     evals: {
       summary:
@@ -485,7 +485,7 @@ const extras = {
     operations: [
       { value: "<5s", label: "time to first token" },
       { value: "99.99%", label: "availability" },
-      { value: "~$15", label: "cost per client" }
+      { value: "~$15", label: "cost per client, per month" }
     ],
     results: [
       { value: "3", label: "customer companies on the platform" },

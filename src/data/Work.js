@@ -20,7 +20,7 @@ export default [
       '● Built the RAG pipeline and chatbot experience, improving retrieval quality for customer-facing AI capabilities.<br/>' +
       '● Designed the multi-tenant SaaS architecture, including backend infrastructure and role-aware access controls.<br/>' +
       '● Delivered 10+ CI improvements that strengthened release quality and platform reliability.<br/>' +
-      '● Kept time to first token under 5 seconds at 99.99% availability, at about $15 per client.<br/>' +
+      '● Kept time to first token under 5 seconds at 99.99% availability, at about $15 per client per month.<br/>' +
       '● Mentored a junior engineer and created reusable AI capabilities for other Rare Days projects.<br/>' +
       '**Key Skills:** RAG architecture, LLM chatbots, multi-tenant SaaS, backend infrastructure, access control, CI/CD, technical leadership.'
   },
