@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import places from "../../data/places";
 import { decodeCountries, makeLocator } from "../../utils/topo";
 
-const PLACES = places.flatMap((p) => p.cities);
+const PLACES = places.flatMap((p) => p.cities || []);
 // Land dots by status: lived/worked glow amber, visited are periwinkle, everywhere else is dim.
 const KIND = new Map(places.map((p) => [p.country, p.kinds.some((k) => k !== "visited") ? "home" : "visited"]));
 const COLORS = { home: 0xffb454, visited: 0x8fa0ff, land: 0x3a4170 };
