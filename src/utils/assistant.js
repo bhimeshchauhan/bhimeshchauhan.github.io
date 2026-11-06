@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 // Public Supabase anon key (safe to ship; access is limited by RLS and the function itself).
 export const ASK_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2cmthY2V5Z2l4dWpqYWtoZnNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ1MTQzMDIsImV4cCI6MjA3MDA5MDMwMn0.2l3kNQ_rIn1zjz9jXkyrHQ7Ku3xOMhrZrBTo4sDJeMY";
 export const ASK_URL = "https://svrkaceygixujjakhfsl.functions.supabase.co/ask-ai";
+export const JOB_FIT_URL = process.env.GATSBY_FIT_URL || "https://svrkaceygixujjakhfsl.functions.supabase.co/job-fit";
 const KEY = "assistant-health";
 const TTL = 10 * 60 * 1000;
 
@@ -41,3 +42,4 @@ export const useAssistantOnline = () => {
 // Lets any component ask the chat widget a question.
 export const askAssistant = (question) =>
   window.dispatchEvent(new CustomEvent("ask-assistant", { detail: question }));
+

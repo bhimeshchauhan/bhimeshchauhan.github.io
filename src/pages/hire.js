@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 import Layout from "../components/layout";
 import { profilePageSchema } from "../utils/schema";
+import FitFinder from "../components/FitFinder";
 
 const display = `"Space Grotesk", "Signika", sans-serif`;
 
@@ -67,7 +68,7 @@ const Wrap = styled.div`
   .lede { color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.25rem); line-height: 1.6; margin: 0 0 1.5rem; max-width: 46rem; }
   h2 { color: var(--ink); font-family: ${display}; font-size: clamp(1.4rem, 3vw, 1.9rem); letter-spacing: -0.02em; margin: 3rem 0 1.25rem; }
   .actions { display: flex; flex-wrap: wrap; gap: 0.7rem; }
-  .btn { align-items: center; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); display: inline-flex; font-weight: 600; min-height: 44px; padding: 0 1.3rem; text-decoration: none; transition: border-color 0.2s, background 0.2s; }
+  .btn { align-items: center; background: transparent; cursor: pointer; font-family: inherit; font-size: 1rem; border: 1px solid var(--line); border-radius: 999px; color: var(--ink); display: inline-flex; font-weight: 600; min-height: 44px; padding: 0 1.3rem; text-decoration: none; transition: border-color 0.2s, background 0.2s; }
   .btn:hover { border-color: var(--accent); }
   .btn.primary { background: var(--accent); border-color: var(--accent); color: #0b0d12; }
 `;
@@ -141,11 +142,14 @@ const Hire = () => (
         I fit, and the shipped work behind each.
       </p>
       <div className="actions">
-        <a className="btn primary" href="mailto:bhimeshchauhan@gmail.com">Email me</a>
+        <a className="btn primary" href="#fit">Is this role a fit?</a>
+        <a className="btn" href="mailto:bhimeshchauhan@gmail.com">Email me</a>
         <a className="btn" href="https://www.linkedin.com/in/bhimeshchauhan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a className="btn" href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume (PDF)</a>
         <Link className="btn" to="/case-studies/">Case studies</Link>
       </div>
+
+      <FitFinder />
 
       <h2>Roles I fit, and the evidence</h2>
       <Grid>

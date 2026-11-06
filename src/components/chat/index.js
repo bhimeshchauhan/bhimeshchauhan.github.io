@@ -2,10 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import DOMPurify from "dompurify";
-import { ASK_KEY, ASK_URL, useAssistantOnline } from "../../utils/assistant";
+import { ASK_KEY, ASK_URL, JOB_FIT_URL, useAssistantOnline } from "../../utils/assistant";
+import { renderFit } from "../../utils/fitRender";
+import { MAX_CHARS } from "../../utils/fitFiles";
 import { CONNECT_INTENT, OWNER_EMAIL, whatsappLink } from "../../utils/connect";
 import { Link } from "gatsby";
 import ConnectCard from "./ConnectCard";
+import FitCard from "./FitCard";
 
 // Deep links shown under an answer. Most specific first; matched against question + answer.
 const LINKS = [
@@ -167,6 +170,8 @@ const PROMPTS = [
   "What's his tech stack?",
   "Can I message him?",
 ];
+// Asking to be matched against a role opens the job-description card instead of calling the model.
+const FIT_INTENT = /(job description|how (do|does|would) (you|he|bhimesh) fit|am i a fit|is he a (good )?fit|fit for (the|this|a|our) (role|job|position)|match (him|you|bhimesh)? ?(to|with|against) (a|the|this|my)? ?(role|job|position|posting)|compare.*(role|job|posting))/i;
 const THINKING = ["Searching the resume", "Reading case studies", "Checking project notes", "Writing an answer"];
 
 const useRotate = (list, ms) => {
@@ -205,6 +210,7 @@ const ChatComponent = () => {
     { role: "bot", html: "Hi, I'm Bhimesh's assistant. Ask me about his work and experience, or I can pass him a message." },
   ]);
   const logRef = useRef(null);
+  const fitCtx = useRef(null); // the job description + analysis, so follow-up questions have context
   const inputRef = useRef(null);
   const [pi, prompt] = useRotate(PROMPTS, 3200);
   const [ti, thinking] = useRotate(THINKING, 1400);
@@ -224,6 +230,11 @@ const ChatComponent = () => {
     if (!q || busy) return;
     setText("");
     push({ role: "me", html: DOMPurify.sanitize(q, { ALLOWED_TAGS: [] }) });
+    if (FIT_INTENT.test(q)) {
+      push({ role: "bot", html: "Happy to. Paste the job description or upload a file below and I will show how Bhimesh fits." });
+      push({ role: "fit" });
+      return;
+    }
     if (CONNECT_INTENT.test(q)) {
       push({ role: "bot", html: "Happy to connect you with Bhimesh." });
       push({ role: "card" });
@@ -234,7 +245,10 @@ const ChatComponent = () => {
       const res = await fetch(ASK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${ASK_KEY}` },
-        body: JSON.stringify({ query: q }),
+        body: JSON.stringify({
+          query: q,
+          ...(fitCtx.current ? { history: [{ user: `I shared this job description: ${fitCtx.current.jd}`, assistant: fitCtx.current.analysis }] } : {}),
+        }),
       });
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.response) {
@@ -250,14 +264,61 @@ const ChatComponent = () => {
     }
   };
 
+  // Runs a job-fit analysis as part of the conversation, so the visitor can keep asking about the role.
+  const runFit = async (raw) => {
+    const t = String(raw || "").trim().slice(0, MAX_CHARS);
+    if (!t) return;
+    setOpen(true);
+    setMsgs((prev) => prev.filter((m) => m.role !== "fit"));
+    if (busy) return push({ role: "bot", html: "I am finishing another answer. Please send the job description again in a moment." });
+    const snippet = t.replace(/\s+/g, " ").slice(0, 110);
+    push({ role: "me", html: DOMPurify.sanitize(`Show how Bhimesh fits this role: “${snippet}…”`, { ALLOWED_TAGS: [] }) });
+    setBusy(true);
+    try {
+      const res = await fetch(JOB_FIT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${ASK_KEY}` },
+        body: JSON.stringify({ text: t }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && typeof data.analysis === "string") {
+        fitCtx.current = { jd: t.slice(0, 2500), analysis: data.analysis.slice(0, 2500) };
+        push({ role: "bot", fit: true, html: renderFit(data.analysis) });
+        push({ role: "bot", html: 'Ask me anything about this role, such as how Bhimesh would handle a gap, or <a href="/contact/">contact him about it</a>.' });
+        // Show the top of the analysis, not the bottom of the chat.
+        setTimeout(() => {
+          const l = logRef.current;
+          const els = l && l.querySelectorAll(".msg.fit");
+          if (els && els.length) l.scrollTop += els[els.length - 1].getBoundingClientRect().top - l.getBoundingClientRect().top - 8;
+        }, 150);
+      } else {
+        const why = typeof data.error === "string" && data.error.length < 300 ? data.error : `I could not complete the analysis right now. You can reach Bhimesh directly at ${OWNER_EMAIL}.`;
+        push({ role: "bot", html: DOMPurify.sanitize(why, { ALLOWED_TAGS: [] }) });
+      }
+    } catch (e) {
+      push({ role: "bot", html: `I could not connect just now. You can reach Bhimesh directly at ${OWNER_EMAIL}.` });
+    } finally {
+      setBusy(false);
+    }
+  };
+
   // Lets other parts of the site open the assistant with a question.
   useEffect(() => {
     const onAsk = (e) => {
       setOpen(true);
       if (e.detail) send(e.detail);
     };
+    const onFit = (e) => {
+      if (e.detail && e.detail.text) return runFit(e.detail.text);
+      setOpen(true);
+      setMsgs((prev) => (prev.some((m) => m.role === "fit") ? prev : [...prev, { role: "fit" }]));
+    };
     window.addEventListener("ask-assistant", onAsk);
-    return () => window.removeEventListener("ask-assistant", onAsk);
+    window.addEventListener("assistant-fit", onFit);
+    return () => {
+      window.removeEventListener("ask-assistant", onAsk);
+      window.removeEventListener("assistant-fit", onFit);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [busy]);
 
@@ -316,6 +377,8 @@ const ChatComponent = () => {
               {msgs.map((m, i) =>
                 m.role === "card" ? (
                   <ConnectCard key={i} />
+                ) : m.role === "fit" ? (
+                  <FitCard key={i} onSubmit={runFit} busy={busy} />
                 ) : m.role === "links" ? (
                   <div key={i} className="refs" aria-label="Related pages">
                     <small>Read more</small>
@@ -324,7 +387,7 @@ const ChatComponent = () => {
                     ))}
                   </div>
                 ) : (
-                  <div key={i} className={`msg ${m.role}`} dangerouslySetInnerHTML={{ __html: m.html }} />
+                  <div key={i} className={`msg ${m.role}${m.fit ? " fit" : ""}`} dangerouslySetInnerHTML={{ __html: m.html }} />
                 )
               )}
               {busy && <div className="msg bot thinking" role="status"><i />{thinking}…</div>}
@@ -333,6 +396,7 @@ const ChatComponent = () => {
                   {SUGGESTIONS.map((s) => (
                     <button key={s} type="button" onClick={() => send(s)}>{s}</button>
                   ))}
+                  <button type="button" onClick={() => push({ role: "fit" })}>Match Bhimesh to a job description</button>
                 </div>
               )}
             </Log>
