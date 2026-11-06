@@ -18,6 +18,7 @@ import '@fontsource/maven-pro/400.css'
 import '../layouts/index.css'
 import Header from './Header/header';
 import Footer from './Footer/footer';
+import ChatComponent from './chat';
 
 const Wrapper = styled.div`
   background: transparent;
@@ -81,6 +82,7 @@ const Layout = ({ children, seo = {} }) => (
               </motion.main>
               <Footer footerClass="" />
             </Wrapper>
+            <ChatComponent />
           </>
         }}
     </Location>
