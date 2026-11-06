@@ -7,7 +7,9 @@ export const renderFit = (md) => {
   const inline = (t) =>
     t
       .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-      .replace(/\[([^\]]+)\]\((https:\/\/bhimeshchauhan\.github\.io\/[^)\s]*)\)/g, '<a href="$2">$1</a>');
+      .replace(/\[([^\]]+)\]\((https:\/\/bhimeshchauhan\.github\.io\/[^)\s]*)\)/g, '<a href="$2">$1</a>')
+      // a bare site URL the model left unwrapped becomes a short "source" link (trailing punctuation stays outside)
+      .replace(/(?<![(">])(https:\/\/bhimeshchauhan\.github\.io\/[^\s)<]*?)([.,;:]?)(?=\s|$|\)|<)/g, '<a href="$1">source</a>$2');
   const out = [];
   let list = false;
   for (const line of esc.split("\n")) {
