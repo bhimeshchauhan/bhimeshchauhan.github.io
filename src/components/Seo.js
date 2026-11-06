@@ -1,6 +1,5 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import bhimeshHeader from "../assets/images/bhimesh_header.png";
 import favicon from "../assets/images/bhimesh-favicon.svg";
 import { aboutWebsite, personSchema, siteMeta } from "../data/Seo";
 
@@ -23,7 +22,7 @@ const Seo = ({
   const isHome = pathname === "/";
   const pageTitle = isHome ? siteMeta.title : `${title} | Bhimesh Chauhan`;
   const canonicalUrl = absoluteUrl(pathname);
-  const imageUrl = absoluteUrl(bhimeshHeader);
+  const imageUrl = absoluteUrl("/og.png"); // 1200x630 share card with photo, title and proof points
   const schemas = [];
 
   if (isHome) schemas.push(personSchema, aboutWebsite);
@@ -42,13 +41,16 @@ const Seo = ({
         { property: "og:type", content: type },
         { property: "og:url", content: canonicalUrl },
         { property: "og:image", content: imageUrl },
-        { property: "og:image:alt", content: "Bhimesh Chauhan, Lead AI Platform Engineer" },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { property: "og:image:type", content: "image/png" },
+        { property: "og:image:alt", content: "Bhimesh Chauhan, Lead / Staff-Level AI Platform Engineer. $700K launch in 48 hours, about 80% less clinician documentation time." },
         { property: "og:site_name", content: "Bhimesh Chauhan" },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: pageTitle },
         { name: "twitter:description", content: description },
         { name: "twitter:image", content: imageUrl },
-        { name: "twitter:image:alt", content: "Bhimesh Chauhan, Lead AI Platform Engineer" }
+        { name: "twitter:image:alt", content: "Bhimesh Chauhan, Lead / Staff-Level AI Platform Engineer" }
       ]}
       link={[
         { rel: "canonical", href: canonicalUrl },
