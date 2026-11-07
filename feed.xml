@@ -6,85 +6,85 @@
     <description>Notes on engineering, AI and building products.</description>
     <item>
       <title>Leading Several Projects at Once: Scope, Time and Stakeholders</title>
-      <link>https://bhimeshchauhan.github.io/blog/#post-9</link>
-      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/#post-9</guid>
+      <link>https://bhimeshchauhan.github.io/blog/leading-several-projects-at-once/</link>
+      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/leading-several-projects-at-once/</guid>
       <pubDate>Thu, 05 Nov 2026 00:00:00 GMT</pubDate>
       <description>How I balance what customers ask for, what the timeline allows, and what a team can actually deliver.</description>
     </item>
     <item>
       <title>Why I Moved Live Reranking Off My Own Model</title>
-      <link>https://bhimeshchauhan.github.io/blog/#post-11</link>
-      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/#post-11</guid>
+      <link>https://bhimeshchauhan.github.io/blog/moving-live-reranking-off-my-own-model/</link>
+      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/moving-live-reranking-off-my-own-model/</guid>
       <pubDate>Fri, 30 Oct 2026 00:00:00 GMT</pubDate>
       <description>I benchmarked a self-hosted reranker against a managed one. The extrapolation I planned around was wrong by a factor of ten.</description>
     </item>
     <item>
       <title>Designing a Grounded RAG Assistant: The Choices Behind the Chat on This Site</title>
-      <link>https://bhimeshchauhan.github.io/blog/#post-10</link>
-      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/#post-10</guid>
+      <link>https://bhimeshchauhan.github.io/blog/grounded-rag-assistant-design/</link>
+      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/grounded-rag-assistant-design/</guid>
       <pubDate>Mon, 14 Sep 2026 00:00:00 GMT</pubDate>
       <description>Thresholds, timeouts, token caps and a refusal path: what I decided for the assistant on this portfolio, and what I have not measured yet.</description>
     </item>
     <item>
       <title>Boxing and the Practice of Staying Present</title>
-      <link>https://bhimeshchauhan.github.io/blog/#post-8</link>
-      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/#post-8</guid>
+      <link>https://bhimeshchauhan.github.io/blog/boxing-and-the-practice-of-staying-present/</link>
+      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/boxing-and-the-practice-of-staying-present/</guid>
       <pubDate>Sun, 28 Jun 2026 00:00:00 GMT</pubDate>
       <description>A few notes from learning how quickly attention can leave the room.</description>
     </item>
     <item>
       <title>How I Evaluate a RAG Assistant: 55 Questions and Three Rounds of Tuning</title>
-      <link>https://bhimeshchauhan.github.io/blog/#post-12</link>
-      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/#post-12</guid>
+      <link>https://bhimeshchauhan.github.io/blog/evaluating-a-rag-assistant/</link>
+      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/evaluating-a-rag-assistant/</guid>
       <pubDate>Thu, 19 Mar 2026 00:00:00 GMT</pubDate>
       <description>What a small fixed question set caught that spot-checking never would, and what it still cannot tell me.</description>
     </item>
     <item>
       <title>Horse Riding, Balance, and Trust</title>
-      <link>https://bhimeshchauhan.github.io/blog/#post-7</link>
-      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/#post-7</guid>
+      <link>https://bhimeshchauhan.github.io/blog/horse-riding-balance-and-trust/</link>
+      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/horse-riding-balance-and-trust/</guid>
       <pubDate>Sat, 21 Feb 2026 00:00:00 GMT</pubDate>
       <description>Learning that balance is more listening than control.</description>
     </item>
     <item>
       <title>Learning to Think With My Hands Through Sculpting</title>
-      <link>https://bhimeshchauhan.github.io/blog/#post-6</link>
-      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/#post-6</guid>
+      <link>https://bhimeshchauhan.github.io/blog/learning-to-think-with-my-hands-through-sculpting/</link>
+      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/learning-to-think-with-my-hands-through-sculpting/</guid>
       <pubDate>Thu, 09 Oct 2025 00:00:00 GMT</pubDate>
       <description>Notes on making room for material, friction, and surprise.</description>
     </item>
     <item>
       <title>Klimt and the Courage to Make Work That Is Too Much</title>
-      <link>https://bhimeshchauhan.github.io/blog/#post-5</link>
-      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/#post-5</guid>
+      <link>https://bhimeshchauhan.github.io/blog/klimt-and-the-courage-to-make-work-that-is-too-much/</link>
+      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/klimt-and-the-courage-to-make-work-that-is-too-much/</guid>
       <pubDate>Tue, 17 Jun 2025 00:00:00 GMT</pubDate>
       <description>What I notice when decoration refuses to apologize.</description>
     </item>
     <item>
       <title>What Music Has Taught Me About Attention</title>
-      <link>https://bhimeshchauhan.github.io/blog/#post-4</link>
-      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/#post-4</guid>
+      <link>https://bhimeshchauhan.github.io/blog/what-music-has-taught-me-about-attention/</link>
+      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/what-music-has-taught-me-about-attention/</guid>
       <pubDate>Thu, 13 Feb 2025 00:00:00 GMT</pubDate>
       <description>A few small observations about listening all the way through.</description>
     </item>
     <item>
       <title>Fine-Tuning LLMs for Domain-Specific Applications</title>
-      <link>https://bhimeshchauhan.github.io/blog/#post-3</link>
-      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/#post-3</guid>
+      <link>https://bhimeshchauhan.github.io/blog/fine-tuning-llms-for-domain-specific-applications/</link>
+      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/fine-tuning-llms-for-domain-specific-applications/</guid>
       <pubDate>Sat, 14 Sep 2024 00:00:00 GMT</pubDate>
       <description>In this blog, I’ll walk you through the basics of fine-tuning LLMs and explain the steps required to make them more effective for specific tasks.</description>
     </item>
     <item>
       <title>Implementing Retrieval-Augmented Generation (RAG) with LLMs</title>
-      <link>https://bhimeshchauhan.github.io/blog/#post-2</link>
-      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/#post-2</guid>
+      <link>https://bhimeshchauhan.github.io/blog/implementing-retrieval-augmented-generation-rag-with-llms/</link>
+      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/implementing-retrieval-augmented-generation-rag-with-llms/</guid>
       <pubDate>Mon, 22 Jul 2024 00:00:00 GMT</pubDate>
       <description>In this post, we’ll explore how RAG enhances Large Language Models (LLMs) by integrating real-time data retrieval, using simple examples to illustrate the process.</description>
     </item>
     <item>
       <title>Learn and Understand Recursion in JavaScript</title>
-      <link>https://bhimeshchauhan.github.io/blog/#post-1</link>
-      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/#post-1</guid>
+      <link>https://bhimeshchauhan.github.io/blog/learn-and-understand-recursion-in-javascript/</link>
+      <guid isPermaLink="true">https://bhimeshchauhan.github.io/blog/learn-and-understand-recursion-in-javascript/</guid>
       <pubDate>Sun, 12 Jan 2020 00:00:00 GMT</pubDate>
       <description>I’ll walk you through two popular JS recursion examples in 10 minutes so you can finally understand how recursion works in JavaScript.</description>
     </item>
