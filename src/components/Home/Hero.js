@@ -131,23 +131,19 @@ const TextLink = styled.a`
 
 const Portrait = styled(motion.figure)`
   margin: 0 auto;
-  max-width: 380px;
+  max-width: 480px;
   position: relative;
   width: 100%;
   img {
-    aspect-ratio: 4 / 5;
-    border-radius: 8px 8px 0 0;
     display: block;
     height: auto;
-    -webkit-mask-image: linear-gradient(to bottom, #000 66%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 66%, transparent 100%);
-    object-fit: cover;
-    object-position: 50% 20%;
+    -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
     position: relative;
     width: 100%;
   }
   @media (max-width: 900px) {
-    max-width: 280px;
+    max-width: 320px;
   }
 `;
 
@@ -182,7 +178,7 @@ const Hero = () => (
       </Actions>
     </div>
     <Portrait initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.3, ease: EASE }}>
-      <img src="/me.jpg" alt="Portrait of Bhimesh Chauhan" width="380" height="475" fetchpriority="high" />
+      <img src="/me-cutout.webp" alt="Portrait of Bhimesh Chauhan" width="800" height="800" fetchpriority="high" />
     </Portrait>
   </Section>
 );
