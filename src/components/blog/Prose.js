@@ -27,16 +27,16 @@ const Fig = styled.figure`
   margin: 2rem 0;
   padding: 1.25rem 1.25rem 1rem;
   figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 0.9rem; }
-  .t { color: var(--ink); font-family: ${display}; font-size: 1rem; font-weight: 600; margin: 0 0 1rem; }
-  .row { display: grid; gap: 0.35rem 1rem; grid-template-columns: 9.5rem 1fr 4.5rem; align-items: center; margin-bottom: 0.7rem; font-size: 0.9rem; }
-  .row > span:first-child { color: var(--muted); }
-  .track { background: rgba(255,255,255,0.06); border-radius: 3px; height: 14px; position: relative; }
-  .bar { background: var(--accent); border-radius: 3px; height: 100%; }
-  .bar.old { background: rgba(255,255,255,0.35); }
-  .mark { border-left: 2px dashed var(--ink); bottom: -4px; position: absolute; top: -4px; }
-  .mark b { color: var(--ink); font-size: 0.72rem; font-weight: 500; left: 6px; position: absolute; top: -1.2rem; white-space: nowrap; }
-  .val { color: var(--ink); font-variant-numeric: tabular-nums; margin-left: 0.5rem; }
-  @media (max-width: 560px) { .row { grid-template-columns: 1fr 4.5rem; } .row > span:first-child { grid-column: 1 / -1; } }
+  .rc-t { color: var(--ink); font-family: ${display}; font-size: 1rem; font-weight: 600; margin: 0 0 1rem; }
+  .rc-row { display: grid; gap: 0.35rem 1rem; grid-template-columns: 9.5rem 1fr 4.5rem; align-items: center; margin-bottom: 0.7rem; font-size: 0.9rem; }
+  .rc-row > span:first-child { color: var(--muted); }
+  .rc-track { background: rgba(255,255,255,0.06); border-radius: 3px; height: 14px; position: relative; }
+  .rc-bar { background: var(--accent); border-radius: 3px; height: 100%; }
+  .rc-bar.rc-before { background: rgba(255,255,255,0.35); }
+  .rc-mark { border-left: 2px dashed var(--ink); bottom: -4px; position: absolute; top: -4px; }
+  .rc-mark b { color: var(--ink); font-size: 0.72rem; font-weight: 500; left: 6px; position: absolute; top: -1.2rem; white-space: nowrap; }
+  .rc-val { color: var(--ink); font-variant-numeric: tabular-nums; margin-left: 0.5rem; }
+  @media (max-width: 560px) { .rc-row { grid-template-columns: 1fr 4.5rem; } .rc-row > span:first-child { grid-column: 1 / -1; } }
 `;
 
 const StepList = styled.ol`
@@ -55,15 +55,15 @@ const fmt = (v, unit) => `${v}${unit || ""}`;
 
 export const Bars = ({ title, unit, max, rows, marker, caption }) => (
   <Fig>
-    <p className="t">{title}</p>
+    <p className="rc-t">{title}</p>
     {rows.map((r) => (
-      <div className="row" key={r.label}>
+      <div className="rc-row" key={r.label}>
         <span>{r.label}</span>
-        <span className="track" role="img" aria-label={`${r.label}: ${fmt(r.value, unit)}`}>
-          <span className="bar" style={{ display: "block", width: `${Math.min(100, (r.value / max) * 100)}%` }} />
-          {marker && r === rows[0] && <span className="mark" style={{ left: `${(marker.value / max) * 100}%`, height: `${rows.length * 2.05}rem` }}><b>{marker.label}</b></span>}
+        <span className="rc-track" role="img" aria-label={`${r.label}: ${fmt(r.value, unit)}`}>
+          <span className="rc-bar" style={{ display: "block", width: `${Math.min(100, (r.value / max) * 100)}%` }} />
+          {marker && r === rows[0] && <span className="rc-mark" style={{ left: `${(marker.value / max) * 100}%`, height: `${rows.length * 2.05}rem` }}><b>{marker.label}</b></span>}
         </span>
-        <span className="val" style={{ marginLeft: 0 }}>{r.text || fmt(r.value, unit)}</span>
+        <span className="rc-val" style={{ marginLeft: 0 }}>{r.text || fmt(r.value, unit)}</span>
       </div>
     ))}
     {caption && <figcaption>{caption}</figcaption>}
@@ -72,19 +72,19 @@ export const Bars = ({ title, unit, max, rows, marker, caption }) => (
 
 export const Pairs = ({ title, rows, caption }) => (
   <Fig>
-    <p className="t">{title}</p>
+    <p className="rc-t">{title}</p>
     {rows.map((r) => (
       <div key={r.label} style={{ marginBottom: "1rem" }}>
         <div style={{ color: "var(--muted)", fontSize: "0.9rem", marginBottom: "0.3rem" }}>{r.label}</div>
-        <div className="row" style={{ marginBottom: "0.25rem" }}>
+        <div className="rc-row" style={{ marginBottom: "0.25rem" }}>
           <span>Before</span>
-          <span className="track"><span className="bar old" style={{ display: "block", width: `${r.beforePct}%` }} /></span>
-          <span className="val" style={{ marginLeft: 0 }}>{r.before}</span>
+          <span className="rc-track"><span className="rc-bar rc-before" style={{ display: "block", width: `${r.beforePct}%` }} /></span>
+          <span className="rc-val" style={{ marginLeft: 0 }}>{r.before}</span>
         </div>
-        <div className="row" style={{ marginBottom: 0 }}>
+        <div className="rc-row" style={{ marginBottom: 0 }}>
           <span>After</span>
-          <span className="track"><span className="bar" style={{ display: "block", width: `${r.afterPct}%` }} /></span>
-          <span className="val" style={{ marginLeft: 0 }}>{r.after}</span>
+          <span className="rc-track"><span className="rc-bar" style={{ display: "block", width: `${r.afterPct}%` }} /></span>
+          <span className="rc-val" style={{ marginLeft: 0 }}>{r.after}</span>
         </div>
       </div>
     ))}

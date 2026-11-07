@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { FEED_URL, FEED_KEY } from "../../utils/art";
 
 const display = `"Space Grotesk", "Inter", sans-serif`;
 // A slight downward tilt (rotateX) makes the ring read as a ring, not a flat row.
 // --back pushes the whole ring away by its radius so front cards render at true size (no magnified, clipped cards).
+const shimmer = keyframes`from{background-position:200% 0}to{background-position:-200% 0}`;
 const spin = keyframes`from{transform:translateZ(var(--back)) rotateX(-5deg) rotateY(0)}to{transform:translateZ(var(--back)) rotateX(-5deg) rotateY(360deg)}`;
 
 // Full-bleed (breaks out of the page column) with soft faded ends instead of a hard clip.
@@ -32,7 +33,10 @@ const Carousel = styled.div`
   @media (prefers-reduced-motion: reduce) { animation: none; }
 `;
 const Card = styled.button`
-  background: #11131c;
+  background: linear-gradient(100deg, #11131c 30%, #262b3d 50%, #11131c 70%) 0 0 / 200% 100%;
+  animation: ${shimmer} 1.6s linear infinite;
+  &.ready, &.ghost.ready { animation: none; background: #11131c; }
+  &.ghost { pointer-events: none; }
   border: 1px solid var(--line);
   border-radius: 18px;
   cursor: pointer;
@@ -45,7 +49,8 @@ const Card = styled.button`
   transition: border-color 0.25s ease, filter 0.25s ease;
   width: var(--w);
   &:hover, &:focus-visible { border-color: var(--accent); filter: brightness(1.12); }
-  img { backface-visibility: hidden; border-radius: 17px; display: block; height: 100%; object-fit: cover; pointer-events: none; width: 100%; }
+  img { backface-visibility: hidden; border-radius: 17px; display: block; height: 100%; object-fit: cover; opacity: 0; pointer-events: none; transition: opacity 0.45s ease; width: 100%; }
+  &.ready img { opacity: 1; }
   /* Card back: cards on the far side of the ring show a dark panel instead of a mirrored drawing. */
   &::after { background: linear-gradient(160deg, #161a28, #0b0d14); backface-visibility: hidden; border-radius: 17px; content: ""; inset: 0; position: absolute; transform: rotateY(180deg); }
 `;
@@ -119,7 +124,22 @@ const Ring = ({ onCommission }) => {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  if (items === null) return <Empty>Loading the gallery…</Empty>;
+  if (items === null) {
+    const n = 12;
+    const r = Math.round((w + 16) / (2 * Math.tan(Math.PI / n)));
+    return (
+      <>
+        <Stage aria-hidden="true">
+          <Carousel style={{ "--dur": "60s", "--back": `${-r}px` }}>
+            {Array.from({ length: n }, (_, i) => (
+              <Card as="div" className="ghost" key={i} style={{ "--w": `${w}px`, transform: `rotateY(${(360 / n) * i}deg) translateZ(${r}px)` }} />
+            ))}
+          </Carousel>
+        </Stage>
+        <Empty role="status" style={{ paddingTop: 0 }}>Loading the gallery…</Empty>
+      </>
+    );
+  }
   if (!items.length) return <Empty>{failed ? "The live feed is unavailable right now." : "No posts to show yet."}</Empty>;
 
   // Repeat items so the ring is always full (>= 12 cards), then size the radius so neighbours nearly touch.
@@ -139,7 +159,7 @@ const Ring = ({ onCommission }) => {
               aria-label={`Open artwork ${i + 1}${it.caption ? ": " + it.caption.slice(0, 60) : ""}`}
               onClick={() => setOpen(it)}
             >
-              <img src={it.image} alt="" loading="lazy" decoding="async" />
+              <img src={it.image} alt="" loading="lazy" decoding="async" ref={(el) => { if (el && el.complete) el.parentElement.classList.add("ready"); }} onLoad={(e) => e.currentTarget.parentElement.classList.add("ready")} />
             </Card>
           ))}
         </Carousel>

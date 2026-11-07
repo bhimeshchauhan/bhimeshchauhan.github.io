@@ -52,7 +52,7 @@ export const blogSchema = (posts) => ({
     "@type": "BlogPosting",
     headline: p.title,
     description: p.tagLine,
-    url: `${SITE}/blog/${p.slug}/`,
+    url: `${SITE}/blog/#post-${p.id}`,
     author: { "@id": personId }
   }))
 });

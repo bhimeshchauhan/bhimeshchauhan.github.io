@@ -1,7 +1,8 @@
-const posts = [
+export default [
     {
         id: 9,
         author: "Bhimesh Chauhan",
+        panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
         title: "Leading Several Projects at Once: Scope, Time and Stakeholders",
         tagLine: "How I balance what customers ask for, what the timeline allows, and what a team can actually deliver.",
         dated: "5th November, 2026 - Canada",
@@ -51,6 +52,7 @@ const posts = [
     {
         id: 11,
         author: "Bhimesh Chauhan",
+        panelImageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80",
         title: 'Why I Moved Live Reranking Off My Own Model',
         tagLine: 'I benchmarked a self-hosted reranker against a managed one. The extrapolation I planned around was wrong by a factor of ten.',
         dated: '30th October, 2026 - Canada',
@@ -107,6 +109,7 @@ const posts = [
     {
         id: 10,
         author: "Bhimesh Chauhan",
+        panelImageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1000&q=80",
         title: "Designing a Grounded RAG Assistant: The Choices Behind the Chat on This Site",
         tagLine: "Thresholds, timeouts, token caps and a refusal path: what I decided for the assistant on this portfolio, and what I have not measured yet.",
         dated: "14th September, 2026 - Canada",
@@ -158,6 +161,7 @@ const posts = [
     {
         id: 8,
         author: "Bhimesh Chauhan",
+        panelImage: "sJ6az6-T1u8",
         title: "Boxing and the Practice of Staying Present",
         tagLine: "A few notes from learning how quickly attention can leave the room.",
         dated: "28th June, 2026 - Vancouver, BC",
@@ -200,6 +204,7 @@ const posts = [
     {
         id: 12,
         author: "Bhimesh Chauhan",
+        panelImageUrl: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1000&q=80",
         title: 'How I Evaluate a RAG Assistant: 55 Questions and Three Rounds of Tuning',
         tagLine: 'What a small fixed question set caught that spot-checking never would, and what it still cannot tell me.',
         dated: '19th March, 2026 - Canada',
@@ -258,6 +263,7 @@ const posts = [
     {
         id: 7,
         author: "Bhimesh Chauhan",
+        panelImage: "9h_bJdGqzCk",
         title: "Horse Riding, Balance, and Trust",
         tagLine: "Learning that balance is more listening than control.",
         dated: "21st February, 2026 - Tokyo, Japan",
@@ -300,6 +306,7 @@ const posts = [
     {
         id: 6,
         author: "Bhimesh Chauhan",
+        panelImage: "Tq4YjCa2BSc",
         title: "Learning to Think With My Hands Through Sculpting",
         tagLine: "Notes on making room for material, friction, and surprise.",
         dated: "9th October, 2025 - Mumbai, India",
@@ -342,6 +349,7 @@ const posts = [
     {
         id: 5,
         author: "Bhimesh Chauhan",
+        panelImage: "_4qHg0z1bfE",
         title: "Klimt and the Courage to Make Work That Is Too Much",
         tagLine: "What I notice when decoration refuses to apologize.",
         dated: "17th June, 2025 - Mexico City, Mexico",
@@ -384,6 +392,7 @@ const posts = [
     {
         id: 4,
         author: "Bhimesh Chauhan",
+        panelImage: "PDX_a_82obo",
         title: "What Music Has Taught Me About Attention",
         tagLine: "A few small observations about listening all the way through.",
         dated: "13th February, 2025 - Peru",
@@ -426,6 +435,7 @@ const posts = [
     {
         id: 3,
         author: "Bhimesh Chauhan",
+        panelImage: "XttrC5E0HDM",
         title: "Fine-Tuning LLMs for Domain-Specific Applications",
         tagLine: "In this blog, I’ll walk you through the basics of fine-tuning LLMs and explain the steps required to make them more effective for specific tasks.",
         dated: "14th September, 2024 - Toronto, CA",
@@ -532,6 +542,7 @@ const posts = [
     {
         id: 2,
         author: "Bhimesh Chauhan",
+        panelImage: "YKW0JjP7rlU",
         title: "Implementing Retrieval-Augmented Generation (RAG) with LLMs",
         tagLine: "In this post, we’ll explore how RAG enhances Large Language Models (LLMs) by integrating real-time data retrieval, using simple examples to illustrate the process.",
         dated: "22nd July, 2024 - Toronto, CA",
@@ -645,6 +656,7 @@ const posts = [
     {
         id: 1,
         author: "Bhimesh Chauhan",
+        panelImage: "da0acHr41p8",
         title: "Learn and Understand Recursion in JavaScript",
         tagLine: "I’ll walk you through two popular JS recursion examples in 10 minutes so you can finally understand how recursion works in JavaScript.",
         dated: "12th January, 2020 - Boston, MA",
@@ -729,14 +741,3 @@ const posts = [
         ]
     }
 ];
-
-const slugify = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 70).replace(/-$/, "");
-
-const slugs = {
-  9: "leading-several-projects-at-once",
-  10: "grounded-rag-assistant-design",
-  11: "moving-live-reranking-off-my-own-model",
-  12: "evaluating-a-rag-assistant"
-};
-
-module.exports = posts.map((p) => ({ ...p, slug: slugs[p.id] || slugify(p.title) }));

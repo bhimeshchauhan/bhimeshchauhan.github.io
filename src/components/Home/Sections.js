@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import styled from "styled-components";
 import caseStudies from "../../data/caseStudies";
 import recommendations from "../../data/Recommendation";
+import { useReducedMotion } from "framer-motion";
 import { Reveal } from "../motion/primitives";
 import { Button } from "./Hero";
 import ScrubsMock from "./ScrubsMock";
@@ -238,7 +239,7 @@ const Cta = styled.section`
   align-items: center;
   display: grid;
   gap: 3rem;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   margin: 10rem 0 2rem;
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
@@ -269,8 +270,19 @@ const Cta = styled.section`
     flex-wrap: wrap;
     gap: 0.9rem;
   }
+  .art {
+    margin: 0 auto;
+    max-width: 520px;
+    pointer-events: none;
+    width: 100%;
+    -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%);
+    mask-image: radial-gradient(closest-side, #000 62%, transparent 100%);
+  }
+  .art img { display: block; height: auto; opacity: 0.72; width: 100%; }
+  @media (max-width: 900px) { .art { max-width: 340px; } }
 `;
 export const Contact = () => {
+  const reduce = useReducedMotion();
   return (
     <Cta>
       <Reveal>
@@ -284,6 +296,11 @@ export const Contact = () => {
           <Button href="https://github.com/bhimeshchauhan" target="_blank" rel="noopener noreferrer">GitHub</Button>
         </div>
       </Reveal>
+      {!reduce && (
+        <div className="art" aria-hidden="true">
+          <img src="/coding.webp" alt="" width="800" height="600" loading="lazy" decoding="async" />
+        </div>
+      )}
     </Cta>
   );
 };
