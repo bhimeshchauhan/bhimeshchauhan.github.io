@@ -120,12 +120,12 @@ export default [
             ]],
             ['h3', "The request path"],
             ['p', [
-                ['normal', "A question goes to a Supabase edge function. It is embedded with Cohere (embed-english-v3.0), prefixed with the subject so short queries like \"hobbies\" still land near the right chunks. A pgvector function returns up to 10 chunks above a 0.75 similarity threshold. Those chunks, the last five turns of history and the question go to the language model through OpenRouter. The answer is capped at 500 tokens."]
+                ['normal', "A question goes to a Supabase edge function. It is embedded with Cohere (embed-english-v3.0), prefixed with the subject so short queries like \"hobbies\" still land near the right chunks. The request asks a pgvector function for up to 10 chunks with a 0.75 match threshold. Those chunks, the last five turns of history and the question go to the language model through OpenRouter. The answer is capped at 500 tokens."]
             ]],
             ['steps', [
                 ["Question", "last 5 turns of history"],
                 ["Embed", "Cohere, 8s timeout"],
-                ["Search", "pgvector, top 10 above 0.75"],
+                ["Search", "pgvector, up to 10 matches"],
                 ["Answer", "grounded prompt, 12s timeout, 500 tokens"],
                 ["Render", "sanitized in the browser"]
             ]],
@@ -144,7 +144,7 @@ export default [
             ]],
             ['h3', "What I have not measured"],
             ['p', [
-                ['normal', "The 0.75 threshold and the top-10 count were chosen by inspection, not by an evaluation set. There is no recorded retrieval hit rate or answer-quality score for this assistant yet. The next step is a small fixed set of recruiter-style questions with expected source chunks, run on every change to the prompt, threshold or content, so a regression shows up as a failed check rather than as a bad answer in front of a visitor."]
+                ['normal', "The 0.75 threshold and the top-10 count were chosen by inspection, not by an evaluation set, and the trace panel now on this site shows why that matters: in a live test the scores the database returned were between 0.25 and 0.44, well under 0.75, so I cannot yet say the threshold filters the way I described above. Some of the retrieved chunks are also raw source files rather than prose. There is no recorded retrieval hit rate or answer-quality score for this assistant yet. The next step is a small fixed set of recruiter-style questions with expected source chunks, run on every change to the prompt, threshold or content, so a regression shows up as a failed check rather than as a bad answer in front of a visitor."]
             ]],
             ['h3', "What I would tell another team"],
             ['p', [

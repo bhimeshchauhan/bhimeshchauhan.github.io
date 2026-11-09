@@ -38,7 +38,7 @@ const Trace = ({ trace: t }) => (
       <div><dt>Total</dt><dd>{ms(t.total_ms)}</dd></div>
     </dl>
     {t.chunks.length ? (
-      <ol aria-label={`Passages above similarity ${t.threshold}`}>
+      <ol aria-label="Retrieved passages with similarity score">
         {t.chunks.map((c, i) => (
           <li key={i}>
             <span>{c.score == null ? "" : c.score.toFixed(2)}</span>
@@ -47,7 +47,7 @@ const Trace = ({ trace: t }) => (
         ))}
       </ol>
     ) : (
-      <p className="none">No passage scored above {t.threshold}, so the answer falls back to the no-context reply.</p>
+      <p className="none">No passages were retrieved, so the answer falls back to the no-context reply.</p>
     )}
   </Wrap>
 );
