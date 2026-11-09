@@ -52,6 +52,7 @@ const roles = [
 const facts = [
   ["Current role", "Lead Software Engineer, Rare Days (Jan 2026 – present)"],
   ["Location", "Canada. Permanent resident, authorized to work in Canada for any employer, no sponsorship needed"],
+  ["Worked in", "Has lived and worked in Canada, the United States and Spain"],
   ["Experience", "10+ years of production software; earlier roles at Scrubs Co-Pilot, BenchSci, MicroMart, Preply, DataRobot, Pitchly and Nebullam"],
   ["Focus", "Production RAG and LLM systems, multi-tenant SaaS, healthcare AI, high-traffic commerce, IoT and distributed systems"],
   ["Stack", "TypeScript, Python, React, Next.js, Node.js, NestJS, PostgreSQL, pgvector, Neo4j, Supabase, AWS, Docker, Stripe, Sentry, CI/CD"],

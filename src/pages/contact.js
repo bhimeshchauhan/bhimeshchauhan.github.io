@@ -49,7 +49,7 @@ const Contact = () => (
           </div>
           <div className="card">
             <h2>Good to know</h2>
-            <p>Based in Canada. Permanent resident, authorized to work in Canada for any employer, no sponsorship needed.</p>
+            <p>Based in Canada. Permanent resident, authorized to work in Canada for any employer, no sponsorship needed. I have lived and worked in Canada, the United States and Spain.</p>
             <p className="fact">Roles of interest: forward deployed, staff or principal AI platform, and lead or founding engineering.</p>
           </div>
           <div className="card">
