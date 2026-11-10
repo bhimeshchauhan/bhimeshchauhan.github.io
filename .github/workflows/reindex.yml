@@ -1,0 +1,63 @@
+name: Re-index assistant
+
+# Rebuilds the portfolio assistant's search index when the content it reads changes, then re-runs the retrieval
+# check on the fresh-question set and fails the run if the right chunk stops being retrieved.
+# Needs repository secrets SUPABASE_URL (already set), SUPABASE_SERVICE_ROLE_KEY and COHERE_API_KEY.
+# Until those two are added the job only prints a notice and passes.
+on:
+  push:
+    branches: [dev]
+    paths:
+      - static/llms-full.txt
+      - src/data/**
+      - scripts/build-rag-chunks.cjs
+      - backend/scripts/embed_resume_and_goals.py
+      - backend/scripts/retrieval_eval*.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: reindex
+  cancel-in-progress: false
+
+jobs:
+  reindex:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      COHERE_API_KEY: ${{ secrets.COHERE_API_KEY }}
+    steps:
+      - name: Check secrets
+        id: gate
+        run: |
+          if [ -z "$SUPABASE_SERVICE_ROLE_KEY" ] || [ -z "$COHERE_API_KEY" ] || [ -z "$SUPABASE_URL" ]; then
+            echo "::notice::Skipping: add SUPABASE_SERVICE_ROLE_KEY and COHERE_API_KEY as repository secrets to enable auto re-indexing."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v5
+        if: steps.gate.outputs.run == 'true'
+      - uses: actions/setup-node@v5
+        if: steps.gate.outputs.run == 'true'
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.run == 'true'
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/scripts/requirements-index.txt
+      - name: Install
+        if: steps.gate.outputs.run == 'true'
+        run: pip install -r backend/scripts/requirements-index.txt
+      - name: Re-index
+        if: steps.gate.outputs.run == 'true'
+        run: python backend/scripts/embed_resume_and_goals.py
+      - name: Retrieval check (fresh questions; fails below 85% top-8)
+        if: steps.gate.outputs.run == 'true'
+        run: python backend/scripts/retrieval_eval.py --set holdout --min-hit-k 0.85

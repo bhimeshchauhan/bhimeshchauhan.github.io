@@ -64,6 +64,8 @@ const add = (source, tag, list) => list.forEach((content) => chunks.push({ sourc
     const [title, ...lines] = sec.split("\n");
     if (/^Machine-readable/i.test(title)) continue;
     if (/^Work history/i.test(title)) {
+      const jobs = lines.filter((l) => l.startsWith("### ")).map((l) => clean(l.slice(4)));
+      add("profile", "timeline", pack("Career timeline, most recent first:", [jobs.join("; ") + "."]));
       for (const sub of lines.join("\n").split(/\n### /).filter((s) => s.trim())) {
         const [h, ...l] = sub.replace(/^### /, "").split("\n");
         add("profile", "work", pack(`Work history: ${clean(h)}.`, l));
@@ -133,6 +135,14 @@ for (const p of loadData("ProProjects.js")) {
   add("extras", "interests", pack("Bhimesh's interests and hobbies.", [interests.join(", ") + "."]));
   const rec = loadData("Recommendation.js");
   for (const r of rec) add("extras", "recommendation", pack(`Recommendation for Bhimesh from ${r.name}, ${r.designation}.`, [r.description]));
+}
+
+{
+  const places = loadData("places.js");
+  const names = (kind) => places.filter((p) => p.kinds.includes(kind)).map((p) => p.label || p.country);
+  const home = places.filter((p) => p.kinds.includes("lived") || p.kinds.includes("worked")).map((p) => p.label || p.country);
+  const visited = places.filter((p) => !home.includes(p.label || p.country)).map((p) => p.label || p.country);
+  add("extras", "places", pack("Where Bhimesh has lived, worked and travelled.", [`Lived and worked in ${home.join(", ")}.`, `Has also visited ${visited.join(", ")}.`]));
 }
 
 const seen = new Set();

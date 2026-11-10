@@ -26,7 +26,15 @@ const Wrap = styled.details`
 
 const ms = (n) => (n >= 1000 ? `${(n / 1000).toFixed(1)} s` : `${Math.round(n)} ms`);
 
-const Trace = ({ trace: t }) => (
+const Trace = ({ trace: t }) =>
+  t.refused ? (
+    <Wrap>
+      <summary>
+        <b>No model was called</b> · best match {t.best_score} · {ms(t.total_ms)}
+      </summary>
+      <p className="none">Nothing in the portfolio was close enough to this question, so the assistant replied with a fixed message instead of guessing.</p>
+    </Wrap>
+  ) : (
   <Wrap>
     <summary>
       <b>How this answer was made</b> · {t.chunks.length} passage{t.chunks.length === 1 ? "" : "s"} retrieved · {ms(t.total_ms)}

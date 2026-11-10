@@ -1,0 +1,4 @@
+# Minimal dependencies for indexing and the retrieval check (the full requirements.txt is for the old FAISS backend).
+cohere==5.16.2
+supabase==2.18.0
+python-dotenv==0.21.1

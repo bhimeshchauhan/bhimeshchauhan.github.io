@@ -529,16 +529,17 @@ const extras = {
     results: [],
     evals: {
       summary:
-        "Retrieval is checked against 28 fixed recruiter-style questions, each with text that must appear in the retrieved chunks. It checks that the right evidence reaches the model, not that the answer is good. I tuned the chunking against the same set, so the numbers are optimistic.",
+        "Retrieval is checked against two fixed question sets: 28 I tuned against and 30 written afterwards and never tuned against. Each question has text that must appear in the retrieved chunks, so it checks that the right evidence reaches the model, not that the answer is good. Both sets are written by me.",
       rows: [
-        { value: "93%", label: "right chunk in the top 3, up from 50% before re-indexing" },
-        { value: "100%", label: "right chunk in the top 10, up from 68%" },
-        { value: "0%", label: "retrieved chunks that look like code, down from 74%" },
-        { value: "-27%", label: "chunks sent to the model after tuning the distance and cap" }
+        { value: "97%", label: "right chunk in the top 8 on the 30 fresh questions, after fixing two content gaps (90% on the first run)" },
+        { value: "70%", label: "right chunk in the top 3 on the fresh questions, against 93% on the set I tuned against" },
+        { value: "0%", label: "retrieved chunks that look like code, down from 74% before re-indexing" },
+        { value: "12 of 16", label: "unrelated questions refused with a fixed reply and no model call" }
       ],
       points: [
         "The index used to hold raw source files in 500-character slices. It now holds prose chunks that each start with their own context.",
         "The match setting is a maximum cosine distance, not a minimum similarity. 0.70 with 8 chunks matches the old 0.75 with 10 and sends 27% fewer.",
+        "The fresh set exposed missing content (a career timeline and the places I have visited), which I added. Top-3 ranking slipped to 63% as a result.",
         "The live chat shows a trace of what it retrieved, with scores and timings, under each answer."
       ]
     }

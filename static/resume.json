@@ -6,7 +6,9 @@
     "image": "https://bhimeshchauhan.github.io/me.jpg",
     "email": "bhimeshchauhan@gmail.com",
     "url": "https://bhimeshchauhan.github.io/",
-    "location": { "countryCode": "CA" },
+    "location": {
+      "countryCode": "CA"
+    },
     "summary": "Based in Canada: permanent resident, authorized to work in Canada for any employer, no sponsorship needed. Lead AI platform engineer (10+ years of production software) operating at staff scope, with experience embedded with customer teams. Builds and runs production RAG and LLM systems end to end, from retrieval architecture to launch-day reliability, and leads teams of 4-5 engineers and designers. Roles of interest: forward deployed engineer, staff / principal AI platform engineer, lead / founding engineer.",
     "profiles": [
       {
@@ -29,6 +31,9 @@
       "summary": "Architected and built a multi-tenant SaaS platform with a production RAG chatbot, owning the system from retrieval architecture through backend delivery and reliable releases.",
       "highlights": [
         "Led Ask Kindred from SDK integration through production, serving approximately 200 daily active users across three customer companies with grounded retrieval, citations, conversation history and feedback.",
+        "Built RareDaysAI, the reusable multi-tenant RAG platform behind it, shipped as an npm SDK and CLI with config-as-code tenants, staging-then-approval production deploys, per-tenant capacity caps and per-client cost attribution. About 90% of the repository's commits are mine.",
+        "Runs it at under 5 seconds to first token and 99.99% availability for about $15 per client per month.",
+        "Evaluates retrieval and refusal behaviour against fixed question sets: a 55-query set for Ask Kindred (distress queries routed correctly 7/10 to 10/10, all out-of-scope queries refused with no grounding violations).",
         "Led engineering for the Jefferson Fisher launch platform: about $700K USD in total sales in under 48 hours.",
         "Designed the multi-tenant SaaS architecture, including backend infrastructure and role-aware access controls.",
         "Delivered 10+ CI improvements that strengthened release quality and platform reliability.",
@@ -146,6 +151,11 @@
       "name": "Ask Kindred",
       "description": "Production RAG assistant serving about 200 daily active users across three customer companies.",
       "url": "https://bhimeshchauhan.github.io/case-studies/ask-kindred/"
+    },
+    {
+      "name": "RareDaysAI platform",
+      "description": "Reusable multi-tenant RAG platform: npm SDK and CLI, config-as-code tenants, staged production deploys, per-tenant capacity caps, under 5 seconds to first token at 99.99% availability.",
+      "url": "https://bhimeshchauhan.github.io/case-studies/raredays-ai-platform/"
     },
     {
       "name": "Scrubs Co-Pilot",
