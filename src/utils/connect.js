@@ -2,8 +2,8 @@ import { track } from "./track";
 
 // One place for how visitors can reach Bhimesh.
 export const OWNER_EMAIL = "bhimeshchauhan@gmail.com";
-// Calendar link for a short intro call (Cal.com, Calendly, ...). Leave empty and the "Book a call" buttons stay hidden.
-export const BOOKING_URL = "";
+// Calendar link for a 30-minute intro call (Cal.com). Set it to "" and the "Book a call" buttons stay hidden.
+export const BOOKING_URL = "https://cal.com/bhimesh-chauhan-jmfvtu/30min";
 // Click-to-chat: opens WhatsApp on the visitor's device addressed to this number (digits only, with country code).
 export const WHATSAPP_NUMBER = "14376601725";
 // Same Getform inbox the Contact page already posts to; it emails the owner.

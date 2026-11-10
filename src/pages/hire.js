@@ -144,7 +144,7 @@ const Hire = () => (
         I fit, and the shipped work behind each.
       </p>
       <div className="actions">
-        {BOOKING_URL && <a className="btn primary" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a 15-minute call</a>}
+        {BOOKING_URL && <a className="btn primary" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a 30-minute call</a>}
         <a className={BOOKING_URL ? "btn" : "btn primary"} href="#fit">Is this role a fit?</a>
         <a className="btn" href="mailto:bhimeshchauhan@gmail.com">Email me</a>
         <a className="btn" href="https://www.linkedin.com/in/bhimeshchauhan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
