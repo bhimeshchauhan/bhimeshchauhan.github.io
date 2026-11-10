@@ -7,7 +7,7 @@ import Layout from '../components/layout'
 import { BlogPanel } from '../components/blog/blogPanel'
 
 const BlogLayout = () => (
-  <Layout seo={{ title: "Blog", description: "Essays and reflections from Bhimesh Chauhan on engineering, AI systems, and building products.", structuredData: blogSchema(Blog) }}>
+  <Layout seo={{ title: "Blog", image: "/og/blog.jpg", imageAlt: "Bhimesh Chauhan: notes on engineering, AI and building products", description: "Essays and reflections from Bhimesh Chauhan on engineering, AI systems, and building products.", structuredData: blogSchema(Blog) }}>
       <BlogWrapper>
         <h1>Blog: notes on engineering, AI and building products</h1>
         <Blogs className="blog-container">

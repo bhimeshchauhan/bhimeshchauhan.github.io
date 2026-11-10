@@ -5,6 +5,7 @@ import Layout from "../components/layout";
 import { profilePageSchema } from "../utils/schema";
 import FitFinder from "../components/FitFinder";
 import { BOOKING_URL } from "../utils/connect";
+import { track } from "../utils/track";
 
 const display = `"Space Grotesk", "Inter", sans-serif`;
 
@@ -129,6 +130,8 @@ const Hire = () => (
       description:
         "Where Bhimesh Chauhan fits: forward deployed, staff/principal AI platform and lead/founding engineering roles, with the shipped evidence behind each.",
       pathname: "/hire/",
+      image: "/og/hire.jpg",
+      imageAlt: "Hire Bhimesh Chauhan for AI platform work that has to ship. $700K in 48 hours, about 80% less documentation time, about 200 daily users",
       structuredData: profilePageSchema({
         pathname: "/hire/",
         name: "Hire Bhimesh Chauhan: role fit and evidence",
@@ -152,6 +155,36 @@ const Hire = () => (
         <Link className="btn" to="/case-studies/">Case studies</Link>
       </div>
 
+      <figure style={{ margin: "2rem 0 0", maxWidth: "960px" }}>
+        <video
+          controls
+          playsInline
+          preload="none"
+          poster="/walkthrough-poster.jpg"
+          width="1280"
+          height="720"
+          style={{ aspectRatio: "16 / 9", background: "#000", border: "1px solid var(--line)", borderRadius: "8px", display: "block", height: "auto", width: "100%" }}
+          onPlay={() => track("walkthrough_play", { page: "/hire/" })}
+          aria-describedby="walkthrough-transcript"
+        >
+          <source src="/walkthrough.mp4" type="video/mp4" />
+        </video>
+        <figcaption style={{ color: "var(--muted)", fontSize: "0.9rem", marginTop: "0.6rem" }}>
+          An 80-second walkthrough, recorded on this site against the live assistant. Captions are burned in; no audio.
+        </figcaption>
+        <details id="walkthrough-transcript" style={{ marginTop: "0.5rem" }}>
+          <summary style={{ color: "var(--ink)", cursor: "pointer" }}>Read the transcript</summary>
+          <ol style={{ color: "#d9d7d0", lineHeight: 1.7 }}>
+            <li>Bhimesh Chauhan, lead AI platform engineer. This is a real recording of this site and its assistant.</li>
+            <li>Ask the assistant anything about my work. It answers from a search index of my work.</li>
+            <li>Every answer shows what it retrieved: the passages, their scores and the timings.</li>
+            <li>Questions that are not about me get a fixed reply, with no model call.</li>
+            <li>The platform behind it: a reusable multi-tenant RAG platform that ships as an SDK and CLI. Under 5 seconds to first token, 99.99% availability, about $15 per client per month.</li>
+            <li>Retrieval quality is measured and published, including the misses: 29 of 30 found on questions it was never tuned on, and 19 of 30 in the top 3.</li>
+            <li>Book a 30-minute call, or check how I fit a role.</li>
+          </ol>
+        </details>
+      </figure>
       <FitFinder />
 
       <h2>Roles I fit, and the evidence</h2>

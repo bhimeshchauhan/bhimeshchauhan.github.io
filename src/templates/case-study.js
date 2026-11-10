@@ -40,6 +40,8 @@ const CaseStudyTemplate = ({ pageContext }) => {
         description: study.seo.description,
         pathname,
         type: "article",
+        image: `/og/case-${study.slug}.jpg`,
+        imageAlt: `${study.title}: ${study.keyResult}`,
         structuredData
       }}
     >

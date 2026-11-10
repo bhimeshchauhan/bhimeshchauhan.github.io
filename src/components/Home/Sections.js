@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
 import caseStudies from "../../data/caseStudies";
+import blogPosts from "../../data/blog";
 import recommendations from "../../data/Recommendation";
 import { useReducedMotion } from "framer-motion";
 import { Reveal } from "../motion/primitives";
@@ -230,6 +231,50 @@ export const Work = () => {
           </Reveal>
         ))}
       </Grid>
+    </section>
+  );
+};
+
+/* ---------- Recent writing ---------- */
+const WritingList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li { border-top: 1px solid var(--line); margin: 0; }
+  li:last-child { border-bottom: 1px solid var(--line); }
+  a { color: var(--ink); display: grid; gap: 0.25rem 2rem; grid-template-columns: 11rem minmax(0, 1fr); padding: 1.4rem 0; text-decoration: none; }
+  a:hover h3, a:focus-visible h3 { color: var(--accent); }
+  time { color: var(--muted); font-size: 0.9rem; padding-top: 0.3rem; }
+  h3 { font-family: ${display}; font-size: clamp(1.25rem, 2.4vw, 1.6rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; margin: 0; transition: color 0.2s; }
+  p { color: var(--muted); grid-column: 2; margin: 0.35rem 0 0; max-width: 46rem; }
+  @media (max-width: 700px) { a { grid-template-columns: 1fr; } p { grid-column: 1; } }
+`;
+// The two technical posts that show how I measure and fix the systems above.
+const FEATURED_POSTS = [13, 11];
+export const Writing = () => {
+  const posts = FEATURED_POSTS.map((id) => blogPosts.find((p) => p.id === id)).filter(Boolean);
+  if (!posts.length) return null;
+  return (
+    <section>
+      <SectionHead title="Recent writing" note="How I measure and fix the systems above." />
+      <Reveal>
+        <WritingList>
+          {posts.map((p) => (
+            <li key={p.id}>
+              <Link to={`/blog/#post-${p.id}`}>
+                <time>{p.dated.split(" - ")[0]}</time>
+                <h3>{p.title}</h3>
+                <p>{p.tagLine}</p>
+              </Link>
+            </li>
+          ))}
+        </WritingList>
+        <p style={{ margin: "1.25rem 0 0" }}>
+          <Link to="/blog/" style={{ color: "var(--accent)" }}>All posts →</Link>{" "}
+          <span style={{ color: "var(--muted)" }}>·</span>{" "}
+          <Link to="/evidence/" style={{ color: "var(--accent)" }}>See the measured retrieval results →</Link>
+        </p>
+      </Reveal>
     </section>
   );
 };
