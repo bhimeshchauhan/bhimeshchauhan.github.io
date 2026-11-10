@@ -49,6 +49,14 @@ export default [
     techUsed: "Expo, React Native, NestJS, Fastify, Supabase, Postgres, Zod, Turborepo, Sentry"
   },
   {
+    id: 24,
+    title: "Piano: Android app that teaches piano from a MIDI keyboard",
+    description:
+      "Personal Android app that teaches piano from zero using a connected keyboard. It reads every note over USB-MIDI in real time and runs a tutor that does not advance on a wrong note, with falling-note and practice modes, bar navigation and section looping, and per-bar mastery tracking that restarts near the mistake. A harmony analyzer names keys, Roman numerals and chords, and a structured lesson path covers reading, scales, intervals and chord progressions. It imports MIDI and MusicXML, plays back through a built-in synth, and works fully offline. In active development; the core has 28 unit-test files.",
+    year: "2026",
+    techUsed: "Kotlin, Jetpack Compose, USB-MIDI, MIDI and MusicXML parsing, Android audio synthesis, Unit testing"
+  },
+  {
     id: 8,
     title: "Medical LLM for Clinical Documentation (Scrubs Co-Pilot)",
     caseStudy: "scrubs-copilot",
