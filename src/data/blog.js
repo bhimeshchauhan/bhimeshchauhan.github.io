@@ -1,5 +1,73 @@
 export default [
     {
+        id: 13,
+        author: "Bhimesh Chauhan",
+        panelImageUrl: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1000&q=80",
+        title: "My Portfolio Assistant Was Retrieving Code. I Measured It, Then Fixed It.",
+        tagLine: "28 questions, one fixed check, and what I found when I finally looked at what my assistant was actually retrieving.",
+        dated: "10th November, 2026 - Canada",
+        description: [
+            ['h3', "Why I measured"],
+            ['p', [
+                ['normal', "The assistant on this site answers questions about my work, and I had never measured whether it retrieved the right passages. I wrote a fixed set of 28 recruiter-style questions, each with a piece of text that must appear in the retrieved chunks, such as \"Ask Kindred\" for a question about Rare Days. It is a retrieval check, not an answer-quality check: it tells me whether the right evidence reached the model, not whether the model used it well."]
+            ]],
+            ['h3', "The baseline"],
+            ['p', [
+                ['normal', "The right chunk was in the top 3 for 14 of 28 questions (50%) and in the top 10 for 19 (68%). Worse, 74% of everything retrieved looked like code. The trace panel I added to the chat showed passages like an import line for a logo image."]
+            ]],
+            ['h3', "Two causes"],
+            ['p', [
+                ['strong', "The index held raw source files. "], ['normal', "My indexer embedded my site's data files as text, in 500-character slices, so most chunks were imports, brackets and file paths rather than sentences about my work."]
+            ]],
+            ['p', [
+                ['strong', "I had misread the threshold. "], ['normal', "The function's match setting is a maximum cosine distance, not a minimum similarity. My 0.75 meant \"similarity at least 0.25\", which let weak matches through. A setting of 0.3 returned nothing at all, which is how I found out."]
+            ]],
+            ['h3', "The fix"],
+            ['p', [
+                ['normal', "I rebuilt the index from prose: the profile text, the case studies, the blog and the project list. Each chunk starts with its own context, such as \"Case study: Ask Kindred. Speed, uptime and cost.\", so it makes sense when retrieved alone. The first pass reached 61% in the top 3 and 93% in the top 10, and the two misses taught me something. A generic \"What Bhimesh owned\" chunk was matching unrelated questions, because the search adds my name to every query, so I took the name out of generic labels. And I had packed 13 different requirements into a few large chunks, so I split them to one each."]
+            ]],
+            ['pairs', {
+                title: "The same 28 questions, before and after",
+                rows: [
+                    { label: "Right chunk in the top 3", before: "50%", after: "93%", beforePct: 50, afterPct: 93 },
+                    { label: "Right chunk in the top 10", before: "68%", after: "100%", beforePct: 68, afterPct: 100 },
+                    { label: "Retrieved chunks that look like code", before: "74%", after: "0%", beforePct: 74, afterPct: 0 }
+                ],
+                caption: "Retrieval check on the live database, default settings, before and after re-indexing."
+            }],
+            ['h3', "Then I tightened the settings"],
+            ['p', [
+                ['normal', "With clean chunks I could ask how few the model needs. A maximum distance of 0.70 with 8 chunks gave the same results as 0.75 with 10, and sends 27% fewer chunks to the model. Tighter than that started losing answers."]
+            ]],
+            ['bars', {
+                title: "Chunks sent to the model across the 28 questions",
+                unit: "", max: 260,
+                rows: [
+                    { label: "0.75, up to 10", value: 244, text: "244 (93% / 100%)" },
+                    { label: "0.70, up to 8", value: 177, text: "177 (93% / 100%)" },
+                    { label: "0.65, up to 6", value: 122, text: "122 (93% / 93%)" },
+                    { label: "0.60, up to 6", value: 90, text: "90 (79% / 79%)" },
+                    { label: "0.55, up to 5", value: 57, text: "57 (46% / 46%)" }
+                ],
+                caption: "Maximum distance and cap, with top-3 and top-k hit rates in brackets. I chose 0.70 and 8."
+            }],
+            ['h3', "What this does not show"],
+            ['p', [
+                ['normal', "I tuned the chunking against these same 28 questions, so the final numbers are optimistic. A fresh set written by someone else is the honest next test. The check also looks for a piece of text, so it cannot tell me whether an answer was good. The index is also rebuilt by hand, so it can drift from the site until the script is run again."]
+            ]],
+            ['h3', "What I would tell another team"],
+            ['p', [
+                ['strong', "Look at what you actually retrieve. "], ['normal', "A chat that sounds fluent hides a bad index. The trace panel is what made the problem visible."]
+            ]],
+            ['p', [
+                ['strong', "Check what a parameter means before you tune it. "], ['normal', "I had been reading a distance as a similarity."]
+            ]],
+            ['p', [
+                ['strong', "Index prose, not source files. "], ['normal', "And give every chunk its own context."]
+            ]],
+        ]
+    },
+    {
         id: 9,
         author: "Bhimesh Chauhan",
         panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
@@ -120,12 +188,12 @@ export default [
             ]],
             ['h3', "The request path"],
             ['p', [
-                ['normal', "A question goes to a Supabase edge function. It is embedded with Cohere (embed-english-v3.0), prefixed with the subject so short queries like \"hobbies\" still land near the right chunks. The request asks a pgvector function for up to 10 chunks with a 0.75 match threshold. Those chunks, the last five turns of history and the question go to the language model through OpenRouter. The answer is capped at 500 tokens."]
+                ['normal', "A question goes to a Supabase edge function. It is embedded with Cohere (embed-english-v3.0), prefixed with the subject so short queries like \"hobbies\" still land near the right chunks. The request asks a pgvector function for the closest chunks, with a maximum cosine distance and a cap on how many come back. (Updated November 2026: I started at 0.75 and 10, and measured my way to 0.70 and 8. The 0.75 was a distance, not a similarity, which I had wrong.) Those chunks, the last five turns of history and the question go to the language model through OpenRouter. The answer is capped at 500 tokens."]
             ]],
             ['steps', [
                 ["Question", "last 5 turns of history"],
                 ["Embed", "Cohere, 8s timeout"],
-                ["Search", "pgvector, up to 10 matches"],
+                ["Search", "pgvector, closest 8 within distance 0.70"],
                 ["Answer", "grounded prompt, 12s timeout, 500 tokens"],
                 ["Render", "sanitized in the browser"]
             ]],
@@ -144,7 +212,7 @@ export default [
             ]],
             ['h3', "What I have not measured"],
             ['p', [
-                ['normal', "The 0.75 threshold and the top-10 count were chosen by inspection, not by an evaluation set, and the trace panel now on this site shows why that matters: in a live test the scores the database returned were between 0.25 and 0.44, well under 0.75, so I cannot yet say the threshold filters the way I described above. Some of the retrieved chunks are also raw source files rather than prose. There is no recorded retrieval hit rate or answer-quality score for this assistant yet. The next step is a small fixed set of recruiter-style questions with expected source chunks, run on every change to the prompt, threshold or content, so a regression shows up as a failed check rather than as a bad answer in front of a visitor."]
+                ['normal', "I had not measured the retrieval when I wrote this, and when I did it was worse than I assumed. The measurement, the cause and the fix are in the next post up."]
             ]],
             ['h3', "What I would tell another team"],
             ['p', [

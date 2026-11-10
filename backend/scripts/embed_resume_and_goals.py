@@ -1,17 +1,30 @@
-import os
-import json
-import uuid
-import re
-import fitz  # PyMuPDF
-import json as json_mod
-import cohere
-from pathlib import Path
-from supabase import create_client, Client
-from dotenv import load_dotenv
+"""Indexes the portfolio's content into Supabase (information_chunks) for the assistant's retrieval.
 
-# === ENV SETUP ===
-env_path = Path(__file__).resolve().parents[2] / '.env'
-load_dotenv(dotenv_path=env_path)
+  python backend/scripts/embed_resume_and_goals.py            # build + embed + upload the clean prose chunks
+  python backend/scripts/embed_resume_and_goals.py --drop-legacy   # then remove the old raw-source/PDF chunks
+  python backend/scripts/embed_resume_and_goals.py --goals     # also re-index src/data/Goals.js
+
+Chunks come from scripts/build-rag-chunks.cjs: llms-full.txt, case studies, blog posts, projects and a few
+small facts, as prose with a context prefix. They are NOT slices of raw src/data/*.js files: that is what the
+old `site_data` source was, and it made retrieval return import statements and JSX.
+
+Run backend/scripts/retrieval_eval.py before and after to compare. Upload is per source and embeds first, so a
+failed embedding never leaves a source empty.
+"""
+import argparse
+import json
+import os
+import re
+import subprocess
+import uuid
+from pathlib import Path
+
+import cohere
+from dotenv import load_dotenv
+from supabase import Client, create_client
+
+ROOT = Path(__file__).resolve().parents[2]
+load_dotenv(ROOT / ".env")
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_SERVICE_ROLE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
@@ -20,20 +33,60 @@ COHERE_API_KEY = os.getenv("COHERE_API_KEY")
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
 co = cohere.Client(COHERE_API_KEY)
 
-# === EMBEDDING FUNCTION ===
+CLEAN_SOURCES = ["profile", "case_study", "blog", "projects", "extras"]
+LEGACY_SOURCES = ["site_data", "resume"]  # raw-source and PDF-fragment chunks the clean sources replace
+
+
 def get_embeddings(texts):
-    if not texts:
-        return []
-    print(f"🧠 Embedding {len(texts)} texts with Cohere...")
     out = []
     for i in range(0, len(texts), 96):  # Cohere embed accepts at most 96 texts per call
         response = co.embed(texts=texts[i:i + 96], model="embed-english-v3.0", input_type="search_document")
         out.extend(response.embeddings)
     return out
 
-# === TEXT CHUNKING ===
+
+def upload(rows, source):
+    """rows: [{content, tag, embedding}]. Replaces everything stored under `source`."""
+    supabase.table("information_chunks").delete().eq("source", source).execute()
+    for i in range(0, len(rows), 40):
+        supabase.table("information_chunks").insert([
+            {
+                "id": str(uuid.uuid4()),
+                "content": r["content"],
+                "embedding": r["embedding"],
+                "source": source,
+                "tags": [r["tag"]],
+                "is_active": True,
+                "version": 2,
+            }
+            for r in rows[i:i + 40]
+        ]).execute()
+    print(f"  {source}: {len(rows)} chunks")
+
+
+def index_clean_chunks():
+    built = subprocess.run(["node", str(ROOT / "scripts" / "build-rag-chunks.cjs")], capture_output=True, text=True, check=True)
+    chunks = json.loads(built.stdout)
+    print(built.stderr.strip())
+    # Embed everything first, then write per source.
+    embeddings = get_embeddings([c["content"] for c in chunks])
+    by_source = {}
+    for c, e in zip(chunks, embeddings):
+        by_source.setdefault(c["source"], []).append({**c, "embedding": e})
+    for source in CLEAN_SOURCES:
+        if source in by_source:
+            upload(by_source[source], source)
+
+
+def drop_legacy():
+    for source in LEGACY_SOURCES:
+        supabase.table("information_chunks").delete().eq("source", source).execute()
+        print(f"  removed legacy source: {source}")
+
+
+# --- Goals (unchanged behaviour): src/data/Goals.js is parsed as JSON-ish and chunked by sentence ---
 def chunk_text(text, max_length=500):
-    sentences = re.split(r'(?<=[.?!])\s+', text)
+    sentences = re.split(r"(?<=[.?!])\s+", text)
     chunks, current = [], ""
     for sentence in sentences:
         if len(current) + len(sentence) <= max_length:
@@ -46,95 +99,30 @@ def chunk_text(text, max_length=500):
         chunks.append(current.strip())
     return chunks
 
-# === SUPABASE INSERTION ===
-def upload_chunks(chunks, source, tags=None, replace=True):
-    # Embed first so a failed embedding never leaves the source empty.
-    embeddings = get_embeddings(chunks)
-    if replace:
-        print(f"🧹 Deleting existing chunks for source: {source}")
-        supabase.table("information_chunks").delete().eq("source", source).execute()
-    print(f"📦 Uploading {len(chunks)} chunks for '{source}'...")
-    for i, (chunk, embedding) in enumerate(zip(chunks, embeddings), 1):
-        supabase.table("information_chunks").insert({
-            "id": str(uuid.uuid4()),
-            "content": chunk,
-            "embedding": embedding,
-            "source": source,
-            "tags": tags or [],
-            "is_active": True,
-            "version": 1
-        }).execute()
-        print(f"✅ Uploaded chunk {i}/{len(chunks)}")
 
-# === PROCESS RESUME PDF ===
-def process_resume(pdf_path):
-    print(f"📄 Processing resume: {pdf_path}")
-    doc = fitz.open(str(pdf_path))
-    text = "".join(page.get_text() for page in doc)
-    chunks = chunk_text(text)
-    upload_chunks(chunks, source="resume")
-    print(f"✅ Uploaded {len(chunks)} resume chunks.")
-
-# === PROCESS GOALS JSON ===
 def process_goals(goals_js_path):
-    print(f"🎯 Processing goals: {goals_js_path}")
-    with open(goals_js_path, 'r') as f:
+    with open(goals_js_path, "r") as f:
         js_code = f.read()
-
-    # Remove `export default` and convert JS object syntax to JSON
-    js_code_clean = re.sub(r'export\s+default\s+', '', js_code).strip()
-    if js_code_clean.endswith(';'):
+    js_code_clean = re.sub(r"export\s+default\s+", "", js_code).strip()
+    if js_code_clean.endswith(";"):
         js_code_clean = js_code_clean[:-1]
-    # Quote unquoted keys and convert JS booleans
-    js_code_clean = re.sub(r'(?<=[{,\n])\s*(\w+)\s*:', r' "\1":', js_code_clean)
-    js_code_clean = js_code_clean.replace(': true', ': true').replace(': false', ': false')
-    # Remove trailing commas before } or ]
-    js_code_clean = re.sub(r',\s*([}\]])', r'\1', js_code_clean)
-
-    try:
-        goals = json_mod.loads(js_code_clean)
-    except Exception as e:
-        print("❌ Failed to parse goals JSON:", e)
-        return
-
-    all_goal_chunks = []
-    for section in goals:
-        year = section['name']
-        for item in section['todo']:
-            if item['desc']:
-                goal_text = f"[{year}] {item['desc']}"
-                all_goal_chunks.append(goal_text)
-
-    chunks = chunk_text(" ".join(all_goal_chunks))
-    upload_chunks(chunks, source="goals")
-    print(f"✅ Uploaded {len(chunks)} goal chunks.")
+    js_code_clean = re.sub(r"(?<=[{,\n])\s*(\w+)\s*:", r' "\1":', js_code_clean)
+    js_code_clean = re.sub(r",\s*([}\]])", r"\1", js_code_clean)
+    goals = json.loads(js_code_clean)
+    texts = [f"[{s['name']}] {i['desc']}" for s in goals for i in s["todo"] if i["desc"]]
+    chunks = chunk_text(" ".join(texts))
+    embeddings = get_embeddings(chunks)
+    upload([{"content": c, "tag": "goals", "embedding": e} for c, e in zip(chunks, embeddings)], "goals")
 
 
-# === STRIP JS EXPORTS ===
-def strip_js_exports(content):
-    content = re.sub(r'export\s+default\s+', '', content)
-    content = re.sub(r'export\s+\{.*?\}', '', content)
-    return content.strip()
-
-# === PROCESS STATIC SITE DATA ===
-def process_site_data(folder_path="src/data"):
-    print(f"📁 Processing site data from: {folder_path}")
-    data_dir = Path(folder_path)
-    print(f"🧹 Deleting existing chunks for source: site_data")
-    supabase.table("information_chunks").delete().eq("source", "site_data").execute()
-
-    for js_file in sorted(data_dir.glob("*.js")):
-        with open(js_file, "r", encoding="utf-8") as f:
-            raw = f.read()
-            cleaned = strip_js_exports(raw)
-            tag = js_file.stem
-            chunks = chunk_text(cleaned)
-            upload_chunks(chunks, source="site_data", tags=[tag], replace=False)
-            print(f"✅ Uploaded {len(chunks)} chunks from {js_file.name}")
-
-# === MAIN ENTRY ===
 if __name__ == "__main__":
-    root = Path(__file__).resolve().parents[2]
-    process_resume(root / "static" / "resume.pdf")
-    process_goals(root / "src/data/Goals.js")
-    process_site_data(root / "src/data")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--drop-legacy", action="store_true", help="remove the old site_data and resume chunks")
+    ap.add_argument("--goals", action="store_true", help="also re-index Goals.js")
+    args = ap.parse_args()
+    if args.drop_legacy:
+        drop_legacy()
+    else:
+        index_clean_chunks()
+        if args.goals:
+            process_goals(ROOT / "src" / "data" / "Goals.js")

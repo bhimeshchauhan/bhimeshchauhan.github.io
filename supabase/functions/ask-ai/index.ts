@@ -14,8 +14,11 @@ const COHERE_EMBED_URL = "https://api.cohere.ai/v1/embed";
 const DEFAULT_MODEL = Deno.env.get("OPENROUTER_MODEL") || "mistralai/mistral-small-3.2-24b-instruct";
 const COHERE_EMBED_MODEL = Deno.env.get("COHERE_EMBED_MODEL") || "embed-english-v3.0";
 // RAG params
-const RAG_MATCH_THRESHOLD = Number(Deno.env.get("RAG_MATCH_THRESHOLD") ?? 0.75);
-const RAG_MATCH_COUNT = Number(Deno.env.get("RAG_MATCH_COUNT") ?? 10);
+// match_information_chunks treats the threshold as a maximum cosine DISTANCE (0.70 keeps similarity >= 0.30), not a
+// minimum similarity. 0.70 with 8 chunks matched 0.75 with 10 on the retrieval check (backend/scripts/retrieval_eval.py)
+// while sending 27% fewer chunks to the model.
+const RAG_MATCH_THRESHOLD = Number(Deno.env.get("RAG_MATCH_THRESHOLD") ?? 0.7);
+const RAG_MATCH_COUNT = Number(Deno.env.get("RAG_MATCH_COUNT") ?? 8);
 // Token caps (explicit to satisfy strict TS configs)
 const ANSWER_MAX_TOKENS = Number(Deno.env.get("OPENROUTER_ANSWER_MAX_TOKENS") ?? 500);
 // ---------- Utils ----------

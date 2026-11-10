@@ -526,7 +526,22 @@ const extras = {
       "The React chat interface sanitizes the response before it reaches the page."
     ],
     keyResult: "Retrieval-grounded assistant running on this site",
-    results: []
+    results: [],
+    evals: {
+      summary:
+        "Retrieval is checked against 28 fixed recruiter-style questions, each with text that must appear in the retrieved chunks. It checks that the right evidence reaches the model, not that the answer is good. I tuned the chunking against the same set, so the numbers are optimistic.",
+      rows: [
+        { value: "93%", label: "right chunk in the top 3, up from 50% before re-indexing" },
+        { value: "100%", label: "right chunk in the top 10, up from 68%" },
+        { value: "0%", label: "retrieved chunks that look like code, down from 74%" },
+        { value: "-27%", label: "chunks sent to the model after tuning the distance and cap" }
+      ],
+      points: [
+        "The index used to hold raw source files in 500-character slices. It now holds prose chunks that each start with their own context.",
+        "The match setting is a maximum cosine distance, not a minimum similarity. 0.70 with 8 chunks matches the old 0.75 with 10 and sends 27% fewer.",
+        "The live chat shows a trace of what it retrieved, with scores and timings, under each answer."
+      ]
+    }
   }
 };
 
