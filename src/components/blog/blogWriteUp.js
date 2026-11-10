@@ -4,7 +4,7 @@ import { Block } from './Prose';
 
 const parseTemplate = (tag, html) => {
     if(tag === "img") {
-        return(<img className='uk-width-1-1' src={html} alt="Blog article visual related to Bhimesh Chauhan's engineering and AI work"/>);
+        return(<img className='uk-width-1-1' src={html} alt="" loading="lazy" decoding="async"/>);
     } else if(tag === "h4") {
         return(<h4>{html}</h4>);
     } else if(tag === "h3") {
@@ -62,7 +62,7 @@ export const BlogWriteUp = (props) => {
                             <p>{props.article.dated}</p>
                         </div>
                     </div>
-                    <h1>{props.article.title}</h1>
+                    <h2>{props.article.title}</h2>
                     <p>{props.article.tagLine}</p>
                 </header>
                 {

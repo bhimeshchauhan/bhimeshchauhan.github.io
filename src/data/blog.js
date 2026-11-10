@@ -2,9 +2,9 @@ export default [
     {
         id: 13,
         author: "Bhimesh Chauhan",
-        panelImageUrl: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1000&q=80",
+        panelImageUrl: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=400&q=70",
         title: "My Portfolio Assistant Was Retrieving Code. I Measured It, Then Fixed It.",
-        tagLine: "28 questions, one fixed check, and what I found when I finally looked at what my assistant was actually retrieving.",
+        tagLine: "Two fixed question sets, one honest correction to my own numbers, and what I found when I finally looked at what my assistant was retrieving.",
         dated: "10th November, 2026 - Canada",
         description: [
             ['h3', "Why I measured"],
@@ -33,7 +33,7 @@ export default [
                     { label: "Right chunk in the top 10", before: "68%", after: "100%", beforePct: 68, afterPct: 100 },
                     { label: "Retrieved chunks that look like code", before: "74%", after: "0%", beforePct: 74, afterPct: 0 }
                 ],
-                caption: "Retrieval check on the live database, default settings, before and after re-indexing."
+                caption: "Measured on the 28 questions I tuned against, right after re-indexing. After the two fixes below, that set reads 89% and 100%."
             }],
             ['h3', "Then I tightened the settings"],
             ['p', [
@@ -51,9 +51,31 @@ export default [
                 ],
                 caption: "Maximum distance and cap, with top-3 and top-k hit rates in brackets. I chose 0.70 and 8."
             }],
+            ['h3', "Then I checked on questions I had not tuned against"],
+            ['p', [
+                ['normal', "Tuning against the same 28 questions flatters the result, so I wrote 30 new ones afterwards, in different phrasing, including informal and misspelled ones, and ran them without changing anything. The right chunk was in the top 3 for 70% and in the top 8 for 90%. That is the number to trust, and it is lower than 93% and 100%."]
+            ]],
+            ['p', [
+                ['normal', "The three misses were informative. Two were missing content: the index had my jobs but no ordered career timeline, so \"what did he do before Rare Days?\" had nothing to match, and the countries I have visited were not indexed at all. I added one chunk for each. The third, a question about how the assistant avoids making things up, is a plain retrieval miss that I have not fixed."]
+            ]],
+            ['bars', {
+                title: "Right chunk retrieved, by question set",
+                unit: "%", max: 100,
+                rows: [
+                    { label: "Tuned set, top 3", value: 93, text: "93%" },
+                    { label: "Fresh set, top 3", value: 70, text: "70%" },
+                    { label: "Fresh set, top 8", value: 90, text: "90%" },
+                    { label: "Fresh, top 8, after two fixes", value: 97, text: "97%" }
+                ],
+                caption: "The fresh set is 30 questions written after the tuning. The last bar is optimistic, because I fixed the two gaps after seeing them fail. Top-3 ranking slipped to 63% after I added the timeline chunk, which now competes for top spots."
+            }],
+            ['h3', "Refusing what is not about me"],
+            ['p', [
+                ['normal', "A fixed question set also told me how the assistant handles things that are not about me. Real questions never scored below 0.415 for their best match, and unrelated ones (weather, trivia, code help, requests to ignore its instructions) scored 0.39 at most, many at zero. That gap is narrow, so I set the cutoff at 0.34, well clear of real questions. Below it the assistant replies with a fixed message and does not call the model at all, which is cheaper and cannot answer from training data. It catches 12 of 16 unrelated questions. The other four are left to a stricter rule in the prompt."]
+            ]],
             ['h3', "What this does not show"],
             ['p', [
-                ['normal', "I tuned the chunking against these same 28 questions, so the final numbers are optimistic. A fresh set written by someone else is the honest next test. The check also looks for a piece of text, so it cannot tell me whether an answer was good. The index is also rebuilt by hand, so it can drift from the site until the script is run again."]
+                ['normal', "Both question sets were written by me, so neither is independent. The check looks for a piece of text in the retrieved chunks, so it cannot tell me whether an answer was good. The index is also rebuilt by a script I run, so it can drift from the site until I run it again."]
             ]],
             ['h3', "What I would tell another team"],
             ['p', [
@@ -70,12 +92,12 @@ export default [
     {
         id: 9,
         author: "Bhimesh Chauhan",
-        panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
+        panelImageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=400&q=70",
         title: "Leading Several Projects at Once: Scope, Time and Stakeholders",
         tagLine: "How I balance what customers ask for, what the timeline allows, and what a team can actually deliver.",
         dated: "5th November, 2026 - Canada",
         description: [
-            ['img', "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80"],
+            ['img', "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=75"],
             ['h3', "Three people want three different things"],
             ['p', [
                 ['normal', "At Rare Days I lead more than one project at a time, and each one has people pulling in different directions. Customers want more features. The team needs a plan it can really finish. My VP of Engineering, our CTO and our CEO each need to know what will ship and when. Most of the job is holding those three pulls in balance, and this is how I think about it."]
@@ -120,7 +142,7 @@ export default [
     {
         id: 11,
         author: "Bhimesh Chauhan",
-        panelImageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80",
+        panelImageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=70",
         title: 'Why I Moved Live Reranking Off My Own Model',
         tagLine: 'I benchmarked a self-hosted reranker against a managed one. The extrapolation I planned around was wrong by a factor of ten.',
         dated: '30th October, 2026 - Canada',
@@ -177,7 +199,7 @@ export default [
     {
         id: 10,
         author: "Bhimesh Chauhan",
-        panelImageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1000&q=80",
+        panelImageUrl: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=70",
         title: "Designing a Grounded RAG Assistant: The Choices Behind the Chat on This Site",
         tagLine: "Thresholds, timeouts, token caps and a refusal path: what I decided for the assistant on this portfolio, and what I have not measured yet.",
         dated: "14th September, 2026 - Canada",
@@ -229,12 +251,12 @@ export default [
     {
         id: 8,
         author: "Bhimesh Chauhan",
-        panelImage: "sJ6az6-T1u8",
+        panelImageUrl: "https://images.unsplash.com/flagged/photo-1574005280900-3ff489fa1f70?auto=format&fit=crop&w=400&q=70",
         title: "Boxing and the Practice of Staying Present",
         tagLine: "A few notes from learning how quickly attention can leave the room.",
         dated: "28th June, 2026 - Vancouver, BC",
         description: [
-            ['img', "https://images.unsplash.com/flagged/photo-1574005280900-3ff489fa1f70?auto=format&fit=crop&w=1600&q=80"],
+            ['img', "https://images.unsplash.com/flagged/photo-1574005280900-3ff489fa1f70?auto=format&fit=crop&w=900&q=75"],
             ['h3', "The first few minutes"],
             ['p', [
                 ['normal', "I notice how much of my mind arrives somewhere else before the work has even begun. I can be standing still and already arranging the rest of the day, replaying a conversation, or deciding what I should have said. Boxing makes that habit unusually visible because the next instruction comes before I have finished following the last one. In those first few minutes, presence is not a mood I summon so much as a series of small returns."],
@@ -272,7 +294,7 @@ export default [
     {
         id: 12,
         author: "Bhimesh Chauhan",
-        panelImageUrl: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1000&q=80",
+        panelImageUrl: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=400&q=70",
         title: 'How I Evaluate a RAG Assistant: 55 Questions and Three Rounds of Tuning',
         tagLine: 'What a small fixed question set caught that spot-checking never would, and what it still cannot tell me.',
         dated: '19th March, 2026 - Canada',
@@ -331,12 +353,12 @@ export default [
     {
         id: 7,
         author: "Bhimesh Chauhan",
-        panelImage: "9h_bJdGqzCk",
+        panelImageUrl: "https://images.unsplash.com/photo-1594768816441-1dd241ffaa67?auto=format&fit=crop&w=400&q=70",
         title: "Horse Riding, Balance, and Trust",
         tagLine: "Learning that balance is more listening than control.",
         dated: "21st February, 2026 - Tokyo, Japan",
         description: [
-            ['img', "https://images.unsplash.com/photo-1594768816441-1dd241ffaa67?auto=format&fit=crop&w=1600&q=80"],
+            ['img', "https://images.unsplash.com/photo-1594768816441-1dd241ffaa67?auto=format&fit=crop&w=900&q=75"],
             ['h3', "A different kind of balance"],
             ['p', [
                 ['normal', "I used to think balance meant holding myself perfectly still, as if steadiness were a pose I could achieve and keep. Riding has made it feel more like a conversation made of very small adjustments. The body is never really frozen, and trying to make it so usually creates a new kind of stiffness. What I notice instead is the quieter work of responding before an imbalance has become a problem."],
@@ -374,12 +396,12 @@ export default [
     {
         id: 6,
         author: "Bhimesh Chauhan",
-        panelImage: "Tq4YjCa2BSc",
+        panelImageUrl: "https://images.unsplash.com/photo-1422246358533-95dcd3d48961?auto=format&fit=crop&w=400&q=70",
         title: "Learning to Think With My Hands Through Sculpting",
         tagLine: "Notes on making room for material, friction, and surprise.",
         dated: "9th October, 2025 - Mumbai, India",
         description: [
-            ['img', "https://images.unsplash.com/photo-1422246358533-95dcd3d48961?auto=format&fit=crop&w=1600&q=80"],
+            ['img', "https://images.unsplash.com/photo-1422246358533-95dcd3d48961?auto=format&fit=crop&w=900&q=75"],
             ['h3', "Before there is a plan"],
             ['p', [
                 ['normal', "I am used to beginning with words, outlines, and a sense that I should know what I mean before I start. Working with material asks me to begin by looking, touching, and waiting a little longer. The first information is often not an idea but a weight, a texture, or the way a surface catches the light. I find that shift both disorienting and relieving because it makes room for thought that has not yet found a sentence."],
@@ -417,12 +439,12 @@ export default [
     {
         id: 5,
         author: "Bhimesh Chauhan",
-        panelImage: "_4qHg0z1bfE",
+        panelImageUrl: "https://images.unsplash.com/photo-1775343970376-3bb5fd1171b6?auto=format&fit=crop&w=400&q=70",
         title: "Klimt and the Courage to Make Work That Is Too Much",
         tagLine: "What I notice when decoration refuses to apologize.",
         dated: "17th June, 2025 - Mexico City, Mexico",
         description: [
-            ['img', "https://images.unsplash.com/photo-1775343970376-3bb5fd1171b6?auto=format&fit=crop&w=1600&q=80"],
+            ['img', "https://images.unsplash.com/photo-1775343970376-3bb5fd1171b6?auto=format&fit=crop&w=900&q=75"],
             ['h3', "Looking for the edges"],
             ['p', [
                 ['normal', "When I look at Klimt, I keep noticing how much is allowed to happen at once. Pattern, gold, faces, ornament, and flatness all seem to make room for one another without agreeing to become simple. My eye keeps moving because there is no single, tidy place to settle. I have been thinking about that abundance not as decoration piled on top of an image, but as part of the image's way of asking to be looked at."],
@@ -460,12 +482,12 @@ export default [
     {
         id: 4,
         author: "Bhimesh Chauhan",
-        panelImage: "PDX_a_82obo",
+        panelImageUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=400&q=70",
         title: "What Music Has Taught Me About Attention",
         tagLine: "A few small observations about listening all the way through.",
         dated: "13th February, 2025 - Peru",
         description: [
-            ['img', "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1600&q=80"],
+            ['img', "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=75"],
             ['h3', "The urge to skip ahead"],
             ['p', [
                 ['normal', "I catch myself wanting the familiar part of a song before it arrives. Sometimes I want the chorus, sometimes the line I already know, and sometimes I only want the feeling I associate with it. Listening has made that impatience easier to spot. The beginning of a song can seem like an obstacle when I have already decided which moment is supposed to matter."],
@@ -503,12 +525,12 @@ export default [
     {
         id: 3,
         author: "Bhimesh Chauhan",
-        panelImage: "XttrC5E0HDM",
+        panelImageUrl: "https://images.unsplash.com/photo-1712246754649-119c1cef4a43?auto=format&fit=crop&w=400&q=70",
         title: "Fine-Tuning LLMs for Domain-Specific Applications",
         tagLine: "In this blog, I’ll walk you through the basics of fine-tuning LLMs and explain the steps required to make them more effective for specific tasks.",
         dated: "14th September, 2024 - Toronto, CA",
         description: [
-            ['img', "https://cdn-images-1.medium.com/max/2000/1*2mzg61san4ffmVmN_0fP_Q.png"],
+            ['img', "https://cdn-images-1.medium.com/max/900/1*2mzg61san4ffmVmN_0fP_Q.png"],
             ['h3', "What is Fine-Tuning?"],
             ['p', [
                 ['em', "Fine-tuning involves adjusting the parameters of a pre-trained language model on new, specialized data."],
@@ -610,12 +632,12 @@ export default [
     {
         id: 2,
         author: "Bhimesh Chauhan",
-        panelImage: "YKW0JjP7rlU",
+        panelImageUrl: "https://images.unsplash.com/photo-1516192518150-0d8fee5425e3?auto=format&fit=crop&w=400&q=70",
         title: "Implementing Retrieval-Augmented Generation (RAG) with LLMs",
         tagLine: "In this post, we’ll explore how RAG enhances Large Language Models (LLMs) by integrating real-time data retrieval, using simple examples to illustrate the process.",
         dated: "22nd July, 2024 - Toronto, CA",
         description: [
-            ['img', "https://cdn-images-1.medium.com/v2/resize:fit:4000/format:webp/1*nsCTjifxfS_fTm9_lx_AuA.png"],
+            ['img', "https://cdn-images-1.medium.com/v2/resize:fit:900/format:webp/1*nsCTjifxfS_fTm9_lx_AuA.png"],
             ['h3', "What is Retrieval-Augmented Generation (RAG)?"],
             ['p', [
                 ['em', "RAG combines the power of LLMs with external knowledge retrieval."],
@@ -724,12 +746,12 @@ export default [
     {
         id: 1,
         author: "Bhimesh Chauhan",
-        panelImage: "da0acHr41p8",
+        panelImageUrl: "https://images.unsplash.com/photo-1574505324536-bdb84f668114?auto=format&fit=crop&w=400&q=70",
         title: "Learn and Understand Recursion in JavaScript",
         tagLine: "I’ll walk you through two popular JS recursion examples in 10 minutes so you can finally understand how recursion works in JavaScript.",
         dated: "12th January, 2020 - Boston, MA",
         description: [
-            ['img', "https://cdn-images-1.medium.com/max/2000/1*DkkJtUJr6f4H0HXD_3A0sQ.jpeg"],
+            ['img', "https://cdn-images-1.medium.com/max/900/1*DkkJtUJr6f4H0HXD_3A0sQ.jpeg"],
             ['h3', "What is Recursion?"],
             ['p', [
                 ['em', "Recursion is simply when a function calls itself."],

@@ -1,48 +1,32 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import './blogPanel.css'
 import blogs from '../../data/blog';
 import {BlogWriteUp} from './blogWriteUp';
-import axios from 'axios';
 
-export const BlogPanel = () => {
-    const [image, setImage] = useState({});
-    useEffect(()=>{
-        const headers = {
-            authorization: "Client-ID dgD-DQc4cGrBqLvLT5GklBY2j24L1kxAVj7z_4sx3H0"
-        }
-        let setObj = {}
-        blogs.forEach((item) => {
-            if(item.panelImage && image[item.panelImage] === undefined) {
-                axios.get('https://api.unsplash.com/photos/'+item.panelImage, {headers: headers})
-                .then(res => {
-                    const panelImage = item.panelImage;
-                    setObj[panelImage] = res.data.urls.raw
-                    setImage({...image, ...setObj});
-                })
+// Card images are plain <img loading="lazy"> so the 12 cards below the fold are not fetched on first load.
+export const BlogPanel = () => (
+    <div className="container pt-3">
+        <div className="row">
+            {
+                blogs.map(item => (
+                    <article className="best-post" id={`post-${item.id}`} key={item.id}>
+                        <div className="best-post-image">
+                            <img
+                                src={item.panelImageUrl}
+                                alt=""
+                                width="160"
+                                height="560"
+                                loading="lazy"
+                                decoding="async"
+                                style={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'inherit' }}
+                            />
+                        </div>
+                        <div className="best-post-content">
+                            <div className="best-post-content-sub"><BlogWriteUp article={item}/></div>
+                        </div>
+                    </article>
+                ))
             }
-        })
-
-    })
-    return (
-        <div className="container pt-3">
-            <div className="row">
-                {
-                    blogs.map(item => (
-                        <article className="best-post" id={`post-${item.id}`} key={item.id}>
-                            <div
-                            className="best-post-image"
-                            style={{
-                                backgroundImage: `url(${item.panelImageUrl || image[item.panelImage]})`
-                            }}
-                            ></div>
-                                <div className="best-post-content">
-                                <div className="best-post-content-sub"><BlogWriteUp article={item}/></div>
-                            </div>
-                        </article>
-                    ))
-                }
-
-            </div>
         </div>
-    )
-}
+    </div>
+)
