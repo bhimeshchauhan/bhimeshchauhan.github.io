@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "gatsby";
 import Layout from "../components/layout";
 import ContactForm from "../components/Contact/ContactForm";
-import { OWNER_EMAIL, mailtoLink, whatsappLink } from "../utils/connect";
+import { BOOKING_URL, OWNER_EMAIL, mailtoLink, whatsappLink } from "../utils/connect";
 
 const display = `"Space Grotesk", "Inter", sans-serif`;
 
@@ -41,6 +41,7 @@ const Contact = () => (
           <div className="card">
             <h2>Reach me directly</h2>
             <ul>
+              {BOOKING_URL && <li><a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a call <span>15 minutes</span></a></li>}
               <li><a href={mailtoLink()}>Email <span>{OWNER_EMAIL}</span></a></li>
               <li><a href="https://www.linkedin.com/in/bhimeshchauhan" target="_blank" rel="noopener noreferrer">LinkedIn <span>/in/bhimeshchauhan</span></a></li>
               <li><a href={whatsappLink()} target="_blank" rel="noopener noreferrer">WhatsApp <span>click to chat</span></a></li>

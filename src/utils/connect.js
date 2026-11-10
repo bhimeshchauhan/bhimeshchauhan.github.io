@@ -1,5 +1,9 @@
+import { track } from "./track";
+
 // One place for how visitors can reach Bhimesh.
 export const OWNER_EMAIL = "bhimeshchauhan@gmail.com";
+// Calendar link for a short intro call (Cal.com, Calendly, ...). Leave empty and the "Book a call" buttons stay hidden.
+export const BOOKING_URL = "";
 // Click-to-chat: opens WhatsApp on the visitor's device addressed to this number (digits only, with country code).
 export const WHATSAPP_NUMBER = "14376601725";
 // Same Getform inbox the Contact page already posts to; it emails the owner.
@@ -37,6 +41,7 @@ export const sendMessageToOwner = async ({ name, email, message, honeypot = "" }
     const res = await fetch(GETFORM_URL, { method: "POST", body, headers: { Accept: "application/json" } });
     if (!res.ok) throw new Error(String(res.status));
     try { sessionStorage.setItem("connect-last", String(Date.now())); } catch (err) {}
+    track("contact_message_sent");
     return { ok: true };
   } catch (err) {
     return { ok: false, error: `Could not send right now. Please email ${OWNER_EMAIL} directly.` };

@@ -4,6 +4,7 @@ import { Link } from "gatsby";
 import Layout from "../components/layout";
 import { profilePageSchema } from "../utils/schema";
 import FitFinder from "../components/FitFinder";
+import { BOOKING_URL } from "../utils/connect";
 
 const display = `"Space Grotesk", "Inter", sans-serif`;
 
@@ -143,7 +144,8 @@ const Hire = () => (
         I fit, and the shipped work behind each.
       </p>
       <div className="actions">
-        <a className="btn primary" href="#fit">Is this role a fit?</a>
+        {BOOKING_URL && <a className="btn primary" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a 15-minute call</a>}
+        <a className={BOOKING_URL ? "btn" : "btn primary"} href="#fit">Is this role a fit?</a>
         <a className="btn" href="mailto:bhimeshchauhan@gmail.com">Email me</a>
         <a className="btn" href="https://www.linkedin.com/in/bhimeshchauhan" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a className="btn" href="/resume.pdf" target="_blank" rel="noopener noreferrer">Resume (PDF)</a>
