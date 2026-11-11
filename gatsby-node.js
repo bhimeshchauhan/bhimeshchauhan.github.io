@@ -4,7 +4,7 @@ const vm = require("vm");
 const caseStudies = require("./src/data/caseStudies");
 
 const SITE = "https://bhimeshchauhan.github.io";
-const PAGES = ["/", "/experience/", "/case-studies/", "/projects/", "/skills/", "/blog/", "/recommendation/", "/art/", "/goals/", "/hire/", "/contact/", "/resume/", "/evidence/"];
+const PAGES = ["/", "/experience/", "/case-studies/", "/projects/", "/skills/", "/blog/", "/recommendation/", "/art/", "/goals/", "/hire/", "/contact/", "/resume/", "/evidence/", "/activity/"];
 
 exports.createPages = ({ actions }) => {
   caseStudies.forEach(({ slug }) => {
