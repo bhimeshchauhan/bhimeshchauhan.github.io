@@ -5,7 +5,6 @@ export const PROFILE = `# Bhimesh Chauhan: full profile
 
 Roles of interest: forward deployed engineer; staff / principal AI platform engineer; lead / founding engineer.
 Location and work authorization: Canada. Permanent resident, authorized to work in Canada for any employer, no sponsorship needed.
-Availability: open to contract work (preferred) and full-time roles; can start immediately. Contract engagements as a sole proprietor or through a corporation, 8 to 40 hours a week depending on the needs of the business. Works Pacific and Eastern time zones. US companies are engaged as an independent contractor working from Canada.
 International experience: has lived and worked in Canada, the United States and Spain.
 Contact: bhimeshchauhan@gmail.com | https://www.linkedin.com/in/bhimeshchauhan | https://github.com/bhimeshchauhan
 

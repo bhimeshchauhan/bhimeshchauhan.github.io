@@ -54,9 +54,6 @@ const roles = [
 const facts = [
   ["Current role", "Lead Software Engineer, Rare Days (Jan 2026 – present)"],
   ["Location", "Canada. Permanent resident, authorized to work in Canada for any employer, no sponsorship needed"],
-  ["Availability", "Can start immediately. Contract work preferred; full-time roles also considered"],
-  ["Engagement", "Contracts as a sole proprietor or through a corporation, 8 to 40 hours a week depending on the needs of the business. US companies are engaged as an independent contractor working from Canada"],
-  ["Time zones", "Pacific and Eastern"],
   ["Worked in", "Has lived and worked in Canada, the United States and Spain"],
   ["Experience", "10+ years of production software; earlier roles at Scrubs Co-Pilot, BenchSci, MicroMart, Preply, DataRobot, Pitchly and Nebullam"],
   ["Focus", "Production RAG and LLM systems, multi-tenant SaaS, healthcare AI, high-traffic commerce, IoT and distributed systems"],
@@ -131,14 +128,14 @@ const Hire = () => (
     seo={{
       title: "Hire: Forward Deployed / Staff / Lead AI Engineer",
       description:
-        "Where Bhimesh Chauhan fits: forward deployed, staff/principal AI platform and lead/founding engineering roles, with the shipped evidence behind each. Open to contract (preferred) and full-time; can start immediately.",
+        "Where Bhimesh Chauhan fits: forward deployed, staff/principal AI platform and lead/founding engineering roles, with the shipped evidence behind each.",
       pathname: "/hire/",
       image: "/og/hire.jpg",
       imageAlt: "Hire Bhimesh Chauhan for AI platform work that has to ship. $700K in 48 hours, about 80% less documentation time, about 200 daily users",
       structuredData: profilePageSchema({
         pathname: "/hire/",
         name: "Hire Bhimesh Chauhan: role fit and evidence",
-        description: "Role-fit summary for forward deployed, staff and lead AI platform engineering roles, with links to shipped work. Open to contract (preferred) and full-time roles."
+        description: "Role-fit summary for forward deployed, staff and lead AI platform engineering roles, with links to shipped work."
       })
     }}
   >
@@ -148,10 +145,6 @@ const Hire = () => (
         Lead AI platform engineer with 10+ years of production software. I build and run customer-facing AI systems end to end,
         from retrieval architecture to launch-day reliability, and lead the teams around them. Below: the three kinds of role
         I fit, and the shipped work behind each.
-      </p>
-      <p className="lede">
-        <strong>Available now.</strong> Open to contract work (preferred) and full-time roles. Contracts run 8 to 40 hours a week
-        depending on what the business needs, and I can start immediately.
       </p>
       <div className="actions">
         {BOOKING_URL && <a className="btn primary" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a 30-minute call</a>}
