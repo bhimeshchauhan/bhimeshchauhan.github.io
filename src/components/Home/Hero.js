@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
-import { motion } from "framer-motion";
 
-const EASE = [0.22, 1, 0.36, 1];
+// Entrance animations are CSS, not Framer Motion, so the name and portrait are never server-rendered hidden and held back until JS hydrates.
+const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 // Update when you publish a meaningful change; reviewers read recency as a signal.
 const UPDATED = "November 2026";
 
@@ -46,6 +46,13 @@ const Title = styled.h1`
     display: block;
     overflow: hidden;
     padding-bottom: 0.08em;
+  }
+  .ln > span {
+    animation: line-up 0.9s ${EASE} both;
+    display: block;
+  }
+  @keyframes line-up {
+    from { transform: translateY(110%); }
   }
   .accent {
     color: var(--muted);
@@ -129,7 +136,8 @@ const TextLink = styled.a`
   }
 `;
 
-const Portrait = styled(motion.figure)`
+const Portrait = styled.figure`
+  animation: portrait-in 0.9s ${EASE} 0.3s both;
   margin: 0 auto;
   max-width: 480px;
   position: relative;
@@ -142,6 +150,9 @@ const Portrait = styled(motion.figure)`
     position: relative;
     width: 100%;
   }
+  @keyframes portrait-in {
+    from { opacity: 0; transform: translateY(24px); }
+  }
   @media (max-width: 900px) {
     max-width: 320px;
   }
@@ -149,9 +160,7 @@ const Portrait = styled(motion.figure)`
 
 const Line = ({ children, delay, className }) => (
   <span className="ln">
-    <motion.span className={className} style={{ display: "block" }} initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ duration: 0.9, delay, ease: EASE }}>
-      {children}
-    </motion.span>
+    <span className={className} style={{ animationDelay: `${delay}s` }}>{children}</span>
   </span>
 );
 
@@ -177,7 +186,7 @@ const Hero = () => (
         <TextLink href="https://github.com/bhimeshchauhan" target="_blank" rel="noopener noreferrer">GitHub ↗</TextLink>
       </Actions>
     </div>
-    <Portrait initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.3, ease: EASE }}>
+    <Portrait>
       <img src="/me-cutout.webp" alt="Portrait of Bhimesh Chauhan" width="800" height="800" fetchpriority="high" />
     </Portrait>
   </Section>

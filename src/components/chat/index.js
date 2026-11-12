@@ -338,7 +338,7 @@ const ChatComponent = () => {
           onClick={() => { setText(prompt); setOpen(true); }}
           aria-label="Open chat with Bhimesh's assistant"
         >
-          <Avatar><img src="/me.jpg" alt="" width="42" height="42" /></Avatar>
+          <Avatar><img src="/me-avatar.webp" alt="" width="42" height="42" /></Avatar>
           <span className="txt">
             <span className="lbl">Ask me anything</span>
             <span className="prompt" aria-hidden="true">
@@ -362,7 +362,7 @@ const ChatComponent = () => {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <Head>
-              <Avatar><img src="/me.jpg" alt="" width="42" height="42" /></Avatar>
+              <Avatar><img src="/me-avatar.webp" alt="" width="42" height="42" /></Avatar>
               <div className="who">
                 <small>Live · try asking</small>
                 <button type="button" className="live" onClick={() => { setText(prompt); inputRef.current && inputRef.current.focus(); }} aria-label={`Use suggested question: ${prompt}`}>

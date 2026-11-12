@@ -56,7 +56,7 @@ export const BlogWriteUp = (props) => {
             <article className="uk-article uk-section-small">
                 <header className="uk-container">
                     <div className="author">
-                        <img src="/me.jpg" className="avatar" alt="Bhimesh Chauhan" width="48" height="48" style={{ borderRadius: "50%", objectFit: "cover", objectPosition: "50% 20%", width: 48, height: 48 }}/>
+                        <img src="/me-avatar.webp" className="avatar" alt="Bhimesh Chauhan" width="48" height="48" style={{ borderRadius: "50%", objectFit: "cover", objectPosition: "50% 20%", width: 48, height: 48 }}/>
                         <div className="info uk-text-meta">
                             <div className="best-post-content-cat">{props.article.author}</div>
                             <p>{props.article.dated}</p>

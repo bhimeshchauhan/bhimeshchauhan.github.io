@@ -27,7 +27,9 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   overflow-x: clip;
-  > main { flex: 1; position: relative; z-index: 1; }
+  /* Page entrance is a CSS animation, not Framer Motion: it runs from the first paint, so the content is never server-rendered at opacity 0 and held hidden until JS hydrates. */
+  > main { animation: page-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; flex: 1; position: relative; z-index: 1; }
+  @keyframes page-in { from { opacity: 0; transform: translateY(14px); } }
   > nav, > footer { position: relative; z-index: 1; }
 `;
 
@@ -69,14 +71,9 @@ const Layout = ({ children, seo = {} }) => (
             <Wrapper>
               <a className="skip-link" href="#main">Skip to content</a>
               <Header />
-              <motion.main
-                id="main"
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              >
+              <main id="main">
                 {children}
-              </motion.main>
+              </main>
               <Footer footerClass="" />
             </Wrapper>
             <ChatComponent />
