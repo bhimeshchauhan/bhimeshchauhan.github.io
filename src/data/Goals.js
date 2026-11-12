@@ -321,10 +321,6 @@ export default [
         fin: false,
       },
       {
-        desc: "Own apartment in Manhattan and Singapore.",
-        fin: false,
-      },
-      {
         desc: "See Northern Lights.",
         fin: true,
       },
@@ -349,14 +345,6 @@ export default [
       {
         desc:
           "Create a not-for-profit aimed to work in less developed areas of the world.",
-        fin: false,
-      },
-      {
-        desc: "$100,000 in yearly revenue.",
-        fin: true,
-      },
-      {
-        desc: "$1,000,000 in yearly revenue.",
         fin: false,
       },
       {
