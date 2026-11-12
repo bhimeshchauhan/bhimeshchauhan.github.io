@@ -20,6 +20,7 @@ export const personSchema = {
     "@type": "Person",
     "@id": personId,
     "name": "Bhimesh Chauhan",
+    "alternateName": "Bhimesh S. Chauhan",
     "url": `${SITE}/`,
     "image": `${SITE}/me.jpg`,
     "email": "mailto:bhimeshchauhan@gmail.com",
