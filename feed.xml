@@ -5,6 +5,13 @@
     <link>https://bhimeshchauhan.com/blog/</link>
     <description>Notes on engineering, AI and building products.</description>
     <item>
+      <title>I Gave My Portfolio an MCP Server So Your AI Can Read It</title>
+      <link>https://bhimeshchauhan.com/blog/#post-14</link>
+      <guid isPermaLink="true">https://bhimeshchauhan.com/blog/#post-14</guid>
+      <pubDate>Thu, 12 Nov 2026 00:00:00 GMT</pubDate>
+      <description>Four tools, no model behind them, and a handful of guardrails so a public endpoint cannot turn into a bill or a problem.</description>
+    </item>
+    <item>
       <title>My Portfolio Assistant Was Retrieving Code. I Measured It, Then Fixed It.</title>
       <link>https://bhimeshchauhan.com/blog/#post-13</link>
       <guid isPermaLink="true">https://bhimeshchauhan.com/blog/#post-13</guid>
