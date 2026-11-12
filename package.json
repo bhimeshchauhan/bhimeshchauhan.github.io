@@ -59,7 +59,8 @@
     "now-build": "npm run build",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
-    "deploy": "gatsby clean && gatsby build && touch public/.nojekyll && gh-pages -d public -b master --dotfiles"
+    "deploy": "gatsby clean && gatsby build && touch public/.nojekyll && gh-pages -d public -b master --dotfiles",
+    "build:mcp-content": "node scripts/build-rag-chunks.cjs > supabase/functions/mcp/content.json"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
