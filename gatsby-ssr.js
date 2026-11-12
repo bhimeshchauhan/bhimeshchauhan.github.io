@@ -3,7 +3,8 @@ const inter = require("@fontsource/inter/files/inter-latin-400-normal.woff2");
 const grotesk = require("@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff2");
 
 // Preload the two fonts used above the fold so the first paint does not swap.
-exports.onRenderBody = ({ setHeadComponents }) => {
+exports.onRenderBody = ({ setHeadComponents, setHtmlAttributes }) => {
+  setHtmlAttributes({ lang: "en" });
   setHeadComponents(
     [inter, grotesk].map((f) => {
       const href = typeof f === "string" ? f : f && f.default;

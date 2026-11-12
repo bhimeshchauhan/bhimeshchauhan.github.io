@@ -17,6 +17,7 @@ const CaseStudyTemplate = ({ pageContext }) => {
     headline: study.title,
     description: study.seo.description,
     mainEntityOfPage: `https://bhimeshchauhan.com${pathname}`,
+    image: `https://bhimeshchauhan.com/og/case-${study.slug}.jpg`,
     author: {
       "@type": "Person",
       name: "Bhimesh Chauhan",
