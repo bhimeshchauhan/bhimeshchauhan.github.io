@@ -1,5 +1,75 @@
 export default [
     {
+        id: 14,
+        author: "Bhimesh Chauhan",
+        panelImageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=70",
+        title: "I Gave My Portfolio an MCP Server So Your AI Can Read It",
+        tagLine: "Four tools, no model behind them, and a handful of guardrails so a public endpoint cannot turn into a bill or a problem.",
+        dated: "12th November, 2026 - Canada",
+        description: [
+            ['h3', "Why bother"],
+            ['p', [
+                ['normal', "More and more people read a portfolio through an AI assistant instead of clicking around. If someone asks their assistant about me, I would rather it read my actual case studies than guess from a search snippet. MCP, the Model Context Protocol, is the standard way to let an AI client call tools on someone else's server. So I built a small one for this site."]
+            ]],
+            ['h3', "No model on my side"],
+            ['p', [
+                ['normal', "The decision that shaped everything else was to run no model at all. The visitor's own AI decides which tool to call and writes the answer. My server only returns public text from the site. That means there is no token bill that grows with traffic, and nothing on my end that can be talked into saying something strange. The worst a tool call can do is return a passage I already published."]
+            ]],
+            ['h3', "The four tools"],
+            ['p', [
+                ['code', "get_profile"], ['normal', " returns who I am, my timeline, education and skills. "],
+                ['code', "list_case_studies"], ['normal', " lists the case studies by slug. "],
+                ['code', "get_case_study"], ['normal', " returns one of them in full. "],
+                ['code', "search"], ['normal', " does a keyword search and returns short passages, each labelled with where it came from."]
+            ]],
+            ['p', [
+                ['normal', "The search is plain keyword matching, not embeddings. Terms are scored by how many distinct ones a passage contains, with a small bonus when a term appears in the passage's tag. For a corpus this small that is enough, and it has no database or model to depend on. When nothing matches, the reply says that a missing match does not mean I lack the skill, only that the public site does not mention it. I did not want an empty result read as a negative."]
+            ]],
+            ['h3', "The guardrails"],
+            ['p', [
+                ['normal', "A public endpoint that anyone can call needs limits before it needs features. Each request goes through the same checks in order:"]
+            ]],
+            ['p', [
+                ['strong', "A kill switch. "], ['normal', "Setting "], ['code', "MCP_ENABLED=false"], ['normal', " turns the whole server off without a deploy."]
+            ]],
+            ['p', [
+                ['strong', "Size limits. "], ['normal', "Requests over 10 KB are rejected, queries are capped at 120 characters, and no reply is longer than 12,000 characters."]
+            ]],
+            ['p', [
+                ['strong', "Rate limits that fail closed. "], ['normal', "Tool calls are limited to 30 per visitor per hour and 1,000 a day across everyone. If the limiter or its database is unavailable, the server refuses the call instead of running unmetered. I would rather it be briefly unavailable than briefly unlimited."]
+            ]],
+            ['p', [
+                ['strong', "Logs with nothing sensitive. "], ['normal', "Visitors are counted as a salted hash, and the logs record only the method, the tool name and the outcome. They never hold IP addresses or the arguments a visitor sent."]
+            ]],
+            ['p', [
+                ['normal', "The counters live in one small Postgres table with row-level security switched on and no policies, so only the edge function can touch it. A function deletes buckets older than three days, which keeps the table tiny."]
+            ]],
+            ['h3', "What I chose to leave out"],
+            ['p', [
+                ['normal', "My availability is not in any tool reply. I keep that machine-readable only, so I did not want it leaking into a summary an assistant writes about me. None of the tools write anything, so everything is read-only."]
+            ]],
+            ['h3', "Checking that it works"],
+            ['p', [
+                ['normal', "The protocol handling is a plain function with no network or environment access, so it is easy to test. The HTTP layer takes the rate limiter as a parameter, which let me test the refusal paths without a database. After deploying, I added the URL to Claude Code, saw it listed as connected, and called "],
+                ['code', "get_profile"], ['normal', " to confirm real content came back."]
+            ]],
+            ['h3', "What it does not do"],
+            ['p', [
+                ['normal', "The limiter checks the count and then increments it, which is not atomic. Under heavy concurrent traffic the daily cap could overshoot by a few calls. At this scale I accepted that, and I left a note in the code. The content is also a snapshot of the site that I regenerate myself, so it can drift until I run that again. And keyword search will miss a question phrased in words my pages never use."]
+            ]],
+            ['h3', "If you want to try it"],
+            ['p', [
+                ['normal', "Add the server to any MCP-capable client with this address:"]
+            ]],
+            ['pre', [
+                ['normal', "https://svrkaceygixujjakhfsl.supabase.co/functions/v1/mcp"]
+            ]],
+            ['p', [
+                ['normal', "Then ask it about my case studies or my work history. If it gets something wrong, or the limit stops you, tell me."]
+            ]],
+        ]
+    },
+    {
         id: 13,
         author: "Bhimesh Chauhan",
         panelImageUrl: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=400&q=70",
