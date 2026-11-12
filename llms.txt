@@ -3,6 +3,7 @@
 > Lead AI platform engineer (10+ years of production software) operating at staff scope, with experience embedded with customer teams. Builds and runs production RAG and LLM systems end to end, from retrieval architecture to launch-day reliability, and leads teams of 4-5 engineers and designers. Currently Lead Software Engineer at Rare Days.
 
 Location: Canada. Permanent resident, authorized to work in Canada for any employer, no sponsorship needed.
+Availability: open to contract work (preferred) and full-time roles; can start immediately. Contract engagements as a sole proprietor or through a corporation, 8 to 40 hours a week depending on the needs of the business. Works Pacific and Eastern time zones. US companies are engaged as an independent contractor working from Canada.
 Has lived and worked in Canada, the United States and Spain.
 
 Roles of interest: forward deployed engineer, staff / principal AI platform engineer, lead / founding engineer. Every claim below is backed by a case study on this site. Full detail is in /llms-full.txt; structured data is in /resume.json.
