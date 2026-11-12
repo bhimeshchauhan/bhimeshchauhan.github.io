@@ -1,5 +1,5 @@
 # Everything is public and intended to be found. AI and search crawlers are welcome.
-# LLM-readable profile: https://bhimeshchauhan.github.io/llms.txt (full: /llms-full.txt, structured: /resume.json)
+# LLM-readable profile: https://bhimeshchauhan.com/llms.txt (full: /llms-full.txt, structured: /resume.json)
 User-agent: *
 Allow: /
 
@@ -36,4 +36,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://bhimeshchauhan.github.io/sitemap.xml
+Sitemap: https://bhimeshchauhan.com/sitemap.xml

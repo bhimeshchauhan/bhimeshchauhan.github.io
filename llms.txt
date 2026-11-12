@@ -8,34 +8,34 @@ Has lived and worked in Canada, the United States and Spain.
 Roles of interest: forward deployed engineer, staff / principal AI platform engineer, lead / founding engineer. Every claim below is backed by a case study on this site. Full detail is in /llms-full.txt; structured data is in /resume.json.
 
 ## Role fit
-- [Hire: role fit and evidence](https://bhimeshchauhan.github.io/hire/): the three role types above, each with the shipped work behind it and posting keywords.
+- [Hire: role fit and evidence](https://bhimeshchauhan.com/hire/): the three role types above, each with the shipped work behind it and posting keywords.
 
 ## Leadership
-- [Leading several projects at once: scope, time and stakeholders](https://bhimeshchauhan.github.io/blog/#post-9): balancing customer feature requests against the timeline and what a team can deliver, and keeping the VP of Engineering, CTO and CEO free of surprises; grounded in the Jefferson Fisher launch.
+- [Leading several projects at once: scope, time and stakeholders](https://bhimeshchauhan.com/blog/#post-9): balancing customer feature requests against the timeline and what a team can deliver, and keeping the VP of Engineering, CTO and CEO free of surprises; grounded in the Jefferson Fisher launch.
 
 ## Case studies (shipped work, with measurable outcomes)
-- [Jefferson Fisher launch platform](https://bhimeshchauhan.github.io/case-studies/jefferson-fisher/): led engineering for a client launch at Rare Days; about $700K USD in total sales in under 48 hours; Next.js, Stripe, queue-protected checkout.
-- [Ask Kindred](https://bhimeshchauhan.github.io/case-studies/ask-kindred/): production RAG assistant, SDK integration to production for three customer companies, about 200 daily active users; multi-tenant, grounded retrieval with citations.
-- [Scrubs Co-Pilot](https://bhimeshchauhan.github.io/case-studies/scrubs-copilot/): founded and built an ambient clinical AI platform (Whisper, RAG, LLM); about 80% less clinician documentation time.
-- [Wrangle](https://bhimeshchauhan.github.io/case-studies/wrangle/): mobile and platform engineering (Expo, NestJS, Supabase); 1,000+ automated tests, 46 migrations, 3 automated deploy pipelines.
-- [RAG Portfolio Assistant](https://bhimeshchauhan.github.io/case-studies/rag-portfolio-assistant/): the grounded assistant on this site (pgvector, Supabase Edge Functions); live and public.
-- [PDF-to-Audiobook](https://bhimeshchauhan.github.io/case-studies/pdf-to-audiobook/): NLP and TTS pipeline with NER, coreference and speaker attribution.
+- [Jefferson Fisher launch platform](https://bhimeshchauhan.com/case-studies/jefferson-fisher/): led engineering for a client launch at Rare Days; about $700K USD in total sales in under 48 hours; Next.js, Stripe, queue-protected checkout.
+- [Ask Kindred](https://bhimeshchauhan.com/case-studies/ask-kindred/): production RAG assistant, SDK integration to production for three customer companies, about 200 daily active users; multi-tenant, grounded retrieval with citations.
+- [Scrubs Co-Pilot](https://bhimeshchauhan.com/case-studies/scrubs-copilot/): founded and built an ambient clinical AI platform (Whisper, RAG, LLM); about 80% less clinician documentation time.
+- [Wrangle](https://bhimeshchauhan.com/case-studies/wrangle/): mobile and platform engineering (Expo, NestJS, Supabase); 1,000+ automated tests, 46 migrations, 3 automated deploy pipelines.
+- [RAG Portfolio Assistant](https://bhimeshchauhan.com/case-studies/rag-portfolio-assistant/): the grounded assistant on this site (pgvector, Supabase Edge Functions); live and public.
+- [PDF-to-Audiobook](https://bhimeshchauhan.com/case-studies/pdf-to-audiobook/): NLP and TTS pipeline with NER, coreference and speaker attribution.
 
 ## Experience and skills
-- [Experience](https://bhimeshchauhan.github.io/experience/): Rare Days (Lead Software Engineer), Scrubs Co-Pilot (Founder and CTO), BenchSci (Lead AI and Full-Stack Engineer), MicroMart, Preply, DataRobot, Pitchly, Nebullam.
-- [Skills](https://bhimeshchauhan.github.io/skills/): RAG, LLM applications, TypeScript, Python, React, Next.js, Node.js, PostgreSQL, pgvector, Neo4j, Supabase, AWS, CI/CD.
-- [Projects](https://bhimeshchauhan.github.io/projects/): products architected and shipped.
-- [Recommendations](https://bhimeshchauhan.github.io/recommendation/): written recommendations from colleagues.
+- [Experience](https://bhimeshchauhan.com/experience/): Rare Days (Lead Software Engineer), Scrubs Co-Pilot (Founder and CTO), BenchSci (Lead AI and Full-Stack Engineer), MicroMart, Preply, DataRobot, Pitchly, Nebullam.
+- [Skills](https://bhimeshchauhan.com/skills/): RAG, LLM applications, TypeScript, Python, React, Next.js, Node.js, PostgreSQL, pgvector, Neo4j, Supabase, AWS, CI/CD.
+- [Projects](https://bhimeshchauhan.com/projects/): products architected and shipped.
+- [Recommendations](https://bhimeshchauhan.com/recommendation/): written recommendations from colleagues.
 
 ## Contact
 - [Email](mailto:bhimeshchauhan@gmail.com)
 - [LinkedIn](https://www.linkedin.com/in/bhimeshchauhan)
 - [GitHub](https://github.com/bhimeshchauhan)
-- [Contact page](https://bhimeshchauhan.github.io/contact/)
+- [Contact page](https://bhimeshchauhan.com/contact/)
 
 ## Optional
-- [Full profile for LLMs](https://bhimeshchauhan.github.io/llms-full.txt): complete work history, case-study detail and a requirement-to-evidence index.
-- [JSON Resume](https://bhimeshchauhan.github.io/resume.json): the same history in JSON Resume schema.
-- [Resume (PDF)](https://bhimeshchauhan.github.io/resume.pdf)
-- [Blog](https://bhimeshchauhan.github.io/blog/): essays; [RSS](https://bhimeshchauhan.github.io/feed.xml)
-- [Art](https://bhimeshchauhan.github.io/art/) and [Goals](https://bhimeshchauhan.github.io/goals/): personal pages
+- [Full profile for LLMs](https://bhimeshchauhan.com/llms-full.txt): complete work history, case-study detail and a requirement-to-evidence index.
+- [JSON Resume](https://bhimeshchauhan.com/resume.json): the same history in JSON Resume schema.
+- [Resume (PDF)](https://bhimeshchauhan.com/resume.pdf)
+- [Blog](https://bhimeshchauhan.com/blog/): essays; [RSS](https://bhimeshchauhan.com/feed.xml)
+- [Art](https://bhimeshchauhan.com/art/) and [Goals](https://bhimeshchauhan.com/goals/): personal pages
