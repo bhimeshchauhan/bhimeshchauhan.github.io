@@ -23,7 +23,7 @@ const CaseStudiesPage = () => {
           "@type": "CollectionPage",
           name: "Case Studies by Bhimesh Chauhan",
           description,
-          url: "https://bhimeshchauhan.github.io/case-studies/"
+          url: "https://bhimeshchauhan.com/case-studies/"
         }
       }}
     >

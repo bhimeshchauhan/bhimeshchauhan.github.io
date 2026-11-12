@@ -14,7 +14,7 @@ if (!process.env.GATSBY_SUPABASE_ANON_KEY && process.env.SUPABASE_SERVICE_ROLE_K
 module.exports = {
   siteMetadata: {
     title: "Bhimesh Chauhan",
-    siteUrl: "https://bhimeshchauhan.github.io",
+    siteUrl: "https://bhimeshchauhan.com",
   },
   plugins: [
     {

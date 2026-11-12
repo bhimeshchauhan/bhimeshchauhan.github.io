@@ -1,7 +1,7 @@
 // Pure helpers for the job-fit function. No I/O, so they are unit-tested in lib.test.ts.
 export const MAX_CHARS = 12000;
 export const MIN_CHARS = 200;
-export const SITE = "https://bhimeshchauhan.github.io";
+export const SITE = "https://bhimeshchauhan.com";
 export const CANARY = "fit-canary-7f3a91c2"; // appears only in the system prompt; if the model echoes it, the reply is dropped
 export const NOT_A_JD = "NOT_A_JOB_DESCRIPTION";
 
@@ -56,7 +56,7 @@ export async function hashKey(ip: string, salt: string): Promise<string> {
   return [...new Uint8Array(d)].slice(0, 12).map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-const ORIGINS = new Set([SITE, "http://localhost:8000", "http://localhost:9000"]);
+const ORIGINS = new Set([SITE, "https://bhimeshchauhan.github.io", /* ponytail: old host kept while redirects settle, drop later */ "http://localhost:8000", "http://localhost:9000"]);
 export const originAllowed = (origin: string | null) => origin === null || ORIGINS.has(origin);
 export const corsFor = (origin: string | null) => ({
   "Access-Control-Allow-Origin": origin && ORIGINS.has(origin) ? origin : SITE,

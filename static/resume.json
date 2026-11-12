@@ -3,9 +3,9 @@
   "basics": {
     "name": "Bhimesh Chauhan",
     "label": "Lead AI Platform Engineer",
-    "image": "https://bhimeshchauhan.github.io/me.jpg",
+    "image": "https://bhimeshchauhan.com/me.jpg",
     "email": "bhimeshchauhan@gmail.com",
-    "url": "https://bhimeshchauhan.github.io/",
+    "url": "https://bhimeshchauhan.com/",
     "location": {
       "countryCode": "CA"
     },
@@ -145,37 +145,37 @@
     {
       "name": "Jefferson Fisher launch platform",
       "description": "Checkout, entitlements and course delivery for a client launch: about $700K USD in total sales in under 48 hours.",
-      "url": "https://bhimeshchauhan.github.io/case-studies/jefferson-fisher/"
+      "url": "https://bhimeshchauhan.com/case-studies/jefferson-fisher/"
     },
     {
       "name": "Ask Kindred",
       "description": "Production RAG assistant serving about 200 daily active users across three customer companies.",
-      "url": "https://bhimeshchauhan.github.io/case-studies/ask-kindred/"
+      "url": "https://bhimeshchauhan.com/case-studies/ask-kindred/"
     },
     {
       "name": "RareDaysAI platform",
       "description": "Reusable multi-tenant RAG platform: npm SDK and CLI, config-as-code tenants, staged production deploys, per-tenant capacity caps, under 5 seconds to first token at 99.99% availability.",
-      "url": "https://bhimeshchauhan.github.io/case-studies/raredays-ai-platform/"
+      "url": "https://bhimeshchauhan.com/case-studies/raredays-ai-platform/"
     },
     {
       "name": "Scrubs Co-Pilot",
       "description": "Ambient clinical AI platform; about 80% less clinician documentation time.",
-      "url": "https://bhimeshchauhan.github.io/case-studies/scrubs-copilot/"
+      "url": "https://bhimeshchauhan.com/case-studies/scrubs-copilot/"
     },
     {
       "name": "Wrangle",
       "description": "Mobile and platform engineering: 1,000+ automated tests, 46 migrations, 3 automated deploy pipelines.",
-      "url": "https://bhimeshchauhan.github.io/case-studies/wrangle/"
+      "url": "https://bhimeshchauhan.com/case-studies/wrangle/"
     },
     {
       "name": "RAG Portfolio Assistant",
       "description": "Grounded assistant live on this site.",
-      "url": "https://bhimeshchauhan.github.io/case-studies/rag-portfolio-assistant/"
+      "url": "https://bhimeshchauhan.com/case-studies/rag-portfolio-assistant/"
     },
     {
       "name": "PDF-to-Audiobook",
       "description": "NLP and TTS pipeline with NER, coreference and speaker attribution.",
-      "url": "https://bhimeshchauhan.github.io/case-studies/pdf-to-audiobook/"
+      "url": "https://bhimeshchauhan.com/case-studies/pdf-to-audiobook/"
     }
   ],
   "skills": [

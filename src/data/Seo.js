@@ -1,6 +1,6 @@
 import favicon from '../assets/images/bhimesh-favicon.svg'
 
-const SITE = "https://bhimeshchauhan.github.io"
+const SITE = "https://bhimeshchauhan.com"
 export const personId = `${SITE}/#person`
 
 const title = "Bhimesh Chauhan | Lead / Staff-Level AI Platform Engineer"

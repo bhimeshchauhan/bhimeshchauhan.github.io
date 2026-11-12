@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import favicon from "../assets/images/bhimesh-favicon.svg";
 import { aboutWebsite, personSchema, siteMeta } from "../data/Seo";
 
-const siteUrl = "https://bhimeshchauhan.github.io";
+const siteUrl = "https://bhimeshchauhan.com";
 
 const absoluteUrl = (value) => {
   if (!value) return siteUrl;

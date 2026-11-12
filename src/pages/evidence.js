@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 import results from "../data/retrieval-results.json";
 
 const display = `"Space Grotesk", "Inter", sans-serif`;
-const REPO = "https://github.com/bhimeshchauhan/bhimeshchauhan.github.io/blob/dev";
+const REPO = "https://github.com/bhimeshchauhan/bhimeshchauhan.com/blob/dev";
 
 const Wrap = styled.div`
   margin: 2rem auto 0;

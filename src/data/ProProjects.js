@@ -62,7 +62,7 @@ export default [
     caseStudy: "scrubs-copilot",
     description:
       "Specialized medical LLM for ambient listening, transcription, and structured chart generation. HIPAA-conscious RAG architecture; integrates with EHR systems and voice-based intake.",
-    demoPath: "https://bhimeshchauhan.github.io",
+    demoPath: "https://bhimeshchauhan.com",
     year: "2025",
     techUsed: "OpenAI GPT-4, Whisper, Supabase, pgvector, React, Node.js, Twilio Voice, ElevenLabs, Docker, AWS"
   },
@@ -72,8 +72,8 @@ export default [
     caseStudy: "rag-portfolio-assistant",
     description:
       "Production RAG chatbot powering this portfolio. It retrieves relevant site context from pgvector and prompts an LLM to provide grounded answers, with CORS-safe and cost-aware delivery.",
-    githubPath: "https://github.com/bhimeshchauhan/bhimeshchauhan.github.io",
-    demoPath: "https://bhimeshchauhan.github.io",
+    githubPath: "https://github.com/bhimeshchauhan/bhimeshchauhan.com",
+    demoPath: "https://bhimeshchauhan.com",
     year: "2025",
     techUsed:
       "Supabase Edge Functions, pgvector, Cohere embed-english-v3.0, OpenRouter (Mistral 7B), Node/TypeScript (Deno), React, DOMPurify, GitHub Pages, CI/CD"
@@ -123,7 +123,7 @@ export default [
     description:
       "Interactive cellular automaton simulation with preset seed patterns, adjustable grid size and speed, manual cell toggling, and step-through mode. Canvas-rendered with glow effects.",
     iframe: '<iframe width="100%" height="480" src="/game-of-life-embed" style="border:none;border-radius:4px;background:#0d0f11" allowfullscreen></iframe>',
-    githubPath: "https://github.com/bhimeshchauhan/bhimeshchauhan.github.io",
+    githubPath: "https://github.com/bhimeshchauhan/bhimeshchauhan.com",
     demoPath: "/game-of-life",
     year: "2026",
     techUsed: "React, Canvas API, Styled Components, Gatsby"

@@ -16,19 +16,19 @@ const CaseStudyTemplate = ({ pageContext }) => {
     "@type": "TechArticle",
     headline: study.title,
     description: study.seo.description,
-    mainEntityOfPage: `https://bhimeshchauhan.github.io${pathname}`,
+    mainEntityOfPage: `https://bhimeshchauhan.com${pathname}`,
     author: {
       "@type": "Person",
       name: "Bhimesh Chauhan",
-      url: "https://bhimeshchauhan.github.io/"
+      url: "https://bhimeshchauhan.com/"
     },
     keywords: study.seo.keywords.join(", "),
     breadcrumb: {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://bhimeshchauhan.github.io/" },
-        { "@type": "ListItem", position: 2, name: "Case Studies", item: "https://bhimeshchauhan.github.io/case-studies/" },
-        { "@type": "ListItem", position: 3, name: study.title, item: `https://bhimeshchauhan.github.io${pathname}` }
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://bhimeshchauhan.com/" },
+        { "@type": "ListItem", position: 2, name: "Case Studies", item: "https://bhimeshchauhan.com/case-studies/" },
+        { "@type": "ListItem", position: 3, name: study.title, item: `https://bhimeshchauhan.com${pathname}` }
       ]
     }
   };
