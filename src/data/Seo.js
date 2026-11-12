@@ -26,6 +26,16 @@ export const personSchema = {
     "jobTitle": "Lead AI Platform Engineer",
     "homeLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressCountry": "CA" } },
     "description": "Canada-based (permanent resident, authorized to work in Canada; has also lived and worked in the United States and Spain) lead AI platform engineer operating at staff scope, with experience embedded with customer teams (forward-deployed work). Builds and runs production RAG and LLM systems end to end, from retrieval architecture to launch-day reliability, and leads teams of 4-5 engineers and designers.",
+    "makesOffer": {
+        "@type": "Offer",
+        "itemOffered": {
+            "@type": "Service",
+            "name": "Senior AI platform engineering (contract or full-time)",
+            "description": "Production RAG and LLM systems, multi-tenant AI platforms, forward-deployed and lead engineering. Contract work preferred (8 to 40 hours a week, sole proprietor or corporation); full-time roles also considered. Can start immediately.",
+            "provider": { "@id": personId },
+            "areaServed": ["Canada", "United States"]
+        }
+    },
     "sameAs": [
         "https://www.linkedin.com/in/bhimeshchauhan",
         "https://github.com/bhimeshchauhan"
