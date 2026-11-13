@@ -18,10 +18,11 @@ const roles = [
       ["Led Ask Kindred from SDK integration to production for three customer companies, about 200 daily active users.", "/case-studies/ask-kindred/"],
       ["Led engineering for a client launch (Jefferson Fisher, via Rare Days): about $700K USD in total sales in under 48 hours.", "/case-studies/jefferson-fisher/"],
       ["Validated Scrubs Co-Pilot outputs with working clinicians: about 80% less documentation time.", "/case-studies/scrubs-copilot/"],
+      ["Healthcare and regulated-data work: Scrubs Co-Pilot, RAG over biomedical literature at BenchSci, and OWASP and HIPAA-aligned REST APIs at Pitchly.", "/experience/"],
       ["Built DataRobot integrations with Excel, Snowflake, Tableau and Alteryx (partner visibility +70%).", "/experience/"],
       ["Used customer interviews at Preply to shape personalization releases for 80K+ learners.", "/experience/"]
     ],
-    keywords: "forward deployed engineer, customer-facing, SDK integration, solutions engineering, RAG, launch engineering"
+    keywords: "forward deployed engineer, customer-facing, SDK integration, solutions engineering, healthcare AI, regulated data, RAG, launch engineering"
   },
   {
     title: "Staff / principal AI platform engineer",
@@ -29,13 +30,14 @@ const roles = [
     evidence: [
       ["Designed a multi-tenant SaaS platform with role-aware access control and a production RAG chatbot.", "/case-studies/ask-kindred/"],
       ["Built reusable ingestion and retrieval capabilities shared across other Rare Days projects.", "/case-studies/ask-kindred/"],
+      ["Measure retrieval quality and publish it, including the misses: 29 of 30 found and 19 of 30 in the top 3 on questions I never tuned against.", "/evidence/"],
       ["Delivered 10+ CI improvements and added Sentry across frontend and backend services.", "/case-studies/ask-kindred/"],
       ["Wrangle platform: 1,000+ automated tests, 46 migrations, 3 automated deploy pipelines (counted from the repository).", "/case-studies/wrangle/"],
       ["BenchSci: AI pipelines over 100K+ research artifacts, about 60% less manual curation, plus lineage and auditability practices.", "/experience/"],
       ["Every case study documents its design decisions and reliability approach.", "/case-studies/"],
       ["Wrote up how I balance customer requests, timeline and stakeholder expectations (VP Engineering, CTO, CEO) across several projects.", "/blog/#post-9"]
     ],
-    keywords: "staff engineer, principal engineer, AI platform, architecture, multi-tenant, reliability, RAG, observability"
+    keywords: "staff engineer, principal engineer, AI platform, architecture, multi-tenant, reliability, evals, RAG, observability"
   },
   {
     title: "Lead / founding engineer",
@@ -143,8 +145,9 @@ const Hire = () => (
       <h1>Hire me for AI platform work that has to ship.</h1>
       <p className="lede">
         Lead AI platform engineer with 10+ years of production software. I build and run customer-facing AI systems end to end,
-        from retrieval architecture to launch-day reliability, and lead the teams around them. Below: the three kinds of role
-        I fit, and the shipped work behind each.
+        from retrieval architecture to launch-day reliability, and lead the teams around them. Much of my work is in healthcare
+        and other settings where answers have to be right, so I measure retrieval quality and publish the results, misses included.
+        Below: the three kinds of role I fit, and the shipped work behind each.
       </p>
       <div className="actions">
         {BOOKING_URL && <a className="btn primary" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">Book a 30-minute call</a>}
