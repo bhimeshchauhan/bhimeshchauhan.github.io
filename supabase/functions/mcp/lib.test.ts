@@ -91,3 +91,10 @@ Deno.test("the shipped content has real case studies and nothing private", () =>
     assertFalse(blob.includes(forbidden), `content must not contain: ${forbidden}`);
   }
 });
+
+Deno.test("get_profile on the shipped content has working contact links, no empty Site or Contact values", () => {
+  const out = text((makeServer(content as any).rpc({ jsonrpc: "2.0", id: 1, method: "tools/call", params: { name: "get_profile", arguments: {} } }) as any));
+  assertStringIncludes(out, "Contact: bhimeshchauhan@gmail.com | https://www.linkedin.com/in/bhimeshchauhan | https://github.com/bhimeshchauhan");
+  assertFalse(/Site:\s*(\n|$)/.test(out), "an empty Site: value");
+  assertFalse(out.includes("| |"), "an empty contact field");
+});

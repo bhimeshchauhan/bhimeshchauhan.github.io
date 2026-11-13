@@ -11,6 +11,7 @@ const MAX_QUERY = 120;
 const MAX_HITS = 8;
 const SNIPPET = 420;
 const SITE = "https://bhimeshchauhan.com";
+const CONTACT = "bhimeshchauhan@gmail.com | https://www.linkedin.com/in/bhimeshchauhan | https://github.com/bhimeshchauhan"; // the chunk text has every URL stripped (it feeds the retrieval index), so restore the links here
 const STOP = new Set(["the", "a", "an", "and", "or", "of", "to", "in", "for", "with", "on", "at", "is", "has", "have", "he", "his", "him", "did", "does", "do", "what", "how", "who", "about", "been", "by", "as"]);
 
 const clip = (s: string) => (s.length > MAX_REPLY ? s.slice(0, MAX_REPLY) + "\n[truncated]" : s);
@@ -26,7 +27,8 @@ export function makeServer(chunks: Chunk[]) {
   const tools = [
     { name: "get_profile", description: "Who Bhimesh Chauhan is: role, focus, experience timeline, education, skills and how to contact him. Start here.",
       inputSchema: { type: "object", properties: {} },
-      run: () => reply(chunks.filter((c) => c.source === "profile" && ["overview", "timeline", "education", "skills"].includes(c.tag)).map((c) => c.content).join("\n\n") +
+      run: () => reply(chunks.filter((c) => c.source === "profile" && ["overview", "timeline", "education", "skills"].includes(c.tag)).map((c) => c.content).join("\n\n")
+        .replace(/ Site:$/m, "").replace(/^Contact:.*$/m, `Contact: ${CONTACT}`) + // the "More:" line below carries the site link
         `\n\nMore: ${SITE}/ (site), ${SITE}/evidence/ (published retrieval evaluation), ${SITE}/case-studies/.`) },
     { name: "list_case_studies", description: "List his shipped case studies (slug and title). Use a slug with get_case_study.",
       inputSchema: { type: "object", properties: {} },
