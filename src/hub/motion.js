@@ -105,7 +105,7 @@ const Hero = styled.header`
   align-items: flex-end; display: flex; min-height: clamp(300px, 50vh, 500px); position: relative;
   .img { background-size: cover; height: 118%; inset: 0 0 auto 0; position: fixed; width: 100%; z-index: -2; }
   .shade { background: linear-gradient(180deg, rgba(7, 10, 28, 0.28), rgba(7, 10, 28, 0.5) 40%, rgba(7, 10, 28, 0.72)); inset: 0; position: fixed; z-index: -1; }
-  .txt { padding: clamp(2.4rem, 6vw, 4rem) 0 clamp(1rem, 4vw, 2.2rem); position: relative; width: 100%; }
+  .txt { padding: clamp(2.4rem, 6vw, 4rem) 0 clamp(1rem, 4vw, 2.2rem); position: relative; width: 100%; z-index: 2; }
   .credit { bottom: 0.55rem; color: rgba(255, 255, 255, 0.78); font-size: 0.7rem; position: absolute; right: 1rem; text-align: right; text-shadow: 0 1px 8px rgba(5, 7, 24, 0.9); a { color: inherit; } }
 `;
 export function ArtHero({ art, children }) {

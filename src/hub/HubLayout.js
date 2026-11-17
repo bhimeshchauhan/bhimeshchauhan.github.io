@@ -70,7 +70,7 @@ const Top = styled.header`
 
 const Main = styled.main`
   position: relative;
-  z-index: 1;
+  z-index: 2;
 `;
 
 // Monet at the bottom: soft pads of colour floating like water lilies.

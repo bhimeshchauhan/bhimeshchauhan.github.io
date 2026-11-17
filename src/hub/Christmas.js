@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import styled, { keyframes } from "styled-components";
 import { useReducedMotion } from "framer-motion";
 
@@ -11,7 +12,7 @@ const Lights = styled.div`
   i { animation: ${twinkle} 1.8s ease-in-out infinite; border-radius: 50% 50% 55% 55%; display: block; height: 9px; margin-left: -3px; position: absolute; width: 6px; }
   @media (prefers-reduced-motion: reduce) { i { animation: none; } }
 `;
-const Canvas = styled.canvas`inset: 0; pointer-events: none; position: fixed; z-index: 0;`;
+const Canvas = styled.canvas`inset: 0; pointer-events: none; position: fixed; z-index: -1;`;
 const Toggle = styled.button`
   background: rgba(10, 14, 40, 0.75); border: 1px solid rgba(232, 194, 107, 0.5); border-radius: 999px; bottom: 10px; color: var(--gold2); cursor: pointer; font: inherit; font-size: 0.95rem; height: 34px; left: 12px; position: fixed; width: 38px; z-index: 25;
 `;
@@ -48,11 +49,14 @@ function drawMark(ctx, m, alpha) {
   shape(1.3, 1.6, INK_D); shape(-0.6, -0.8, INK_L); ctx.restore();
 }
 
-export default function Christmas() {
+export default function Christmas({ path }) {
+  const [host, setHost] = useState(null);
+  // The snow lives inside the page itself, between the painting and the content, so it falls behind the cards and text.
+  useEffect(() => { setHost(null); const t = setTimeout(() => setHost(document.querySelector(".hub main")), 80); return () => clearTimeout(t); }, [path]);
   const reduce = useReducedMotion(); const cv = useRef(null); const [on, setOn] = useState(true); const wind = useRef(0);
   useEffect(() => { try { setOn(window.localStorage.getItem("ash-hub-snow") !== "off"); } catch (e) { /* ignore */ } }, []);
   useEffect(() => {
-    if (!on) return undefined; const c = cv.current; const ctx = c.getContext("2d"); let W = 0, H = 0, dead = false, raf = 0;
+    if (!on || !host) return undefined; const c = cv.current; const ctx = c.getContext("2d"); let W = 0, H = 0, dead = false, raf = 0;
     const resize = () => { const dpr = Math.min(window.devicePixelRatio || 1, 2); W = window.innerWidth; H = window.innerHeight; c.width = W * dpr; c.height = H * dpr; c.style.width = `${W}px`; c.style.height = `${H}px`; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
     resize(); window.addEventListener("resize", resize);
     const flakes = Array.from({ length: Math.round(Math.min(160, window.innerWidth / 8)) }, () => ({ x: Math.random() * 2000, y: Math.random() * 1000, r: 1 + Math.random() * 2.6, v: 0.4 + Math.random() * 1.1, p: Math.random() * 6.28, s: 0.4 + Math.random() }));
@@ -91,11 +95,11 @@ export default function Christmas() {
     };
     raf = requestAnimationFrame(frame);
     return () => { dead = true; cancelAnimationFrame(raf); window.removeEventListener("resize", resize); window.removeEventListener("pointermove", move); };
-  }, [on, reduce]);
+  }, [on, reduce, host]);
   const toggle = () => { const n = !on; setOn(n); try { window.localStorage.setItem("ash-hub-snow", n ? "on" : "off"); } catch (e) { /* ignore */ } };
   return (
     <>
-      {on && <Canvas ref={cv} aria-hidden="true" />}
+      {on && host && createPortal(<Canvas ref={cv} aria-hidden="true" />, host)}
       {on && <Garland />}
       <Toggle type="button" aria-label={on ? "Turn the snow and lights off" : "Turn the snow and lights on"} aria-pressed={on} onClick={toggle}>{on ? "❄" : "☃"}</Toggle>
     </>
