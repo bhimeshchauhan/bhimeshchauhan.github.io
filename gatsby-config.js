@@ -28,6 +28,8 @@ module.exports = {
         pluginConfig: {
           // Puts tracking script in the head instead of the body
           head: true,
+          // Ash's private hub: never report its address to analytics.
+          exclude: ["/ash", "/ash/**"],
         },
         gtagConfig: { anonymize_ip: true },
       },
