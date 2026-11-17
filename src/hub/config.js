@@ -14,5 +14,6 @@ export const rooms = [
   { key: "watch", path: "/watch-read/", title: "Watch & Read", icon: "moon", art: "nightmare", blurb: "The lists, and a pick for tonight." },
   { key: "gallery", path: "/gallery/", title: "Gallery", icon: "star", art: "starry", blurb: "Paintings you'd love, and why." },
   { key: "games", path: "/games/", title: "Games", icon: "paw", art: "lilies", blurb: "Find the cat. Match the memories." },
+  { key: "together", path: "/together/", title: "Together", icon: "heart", art: "wanderer", blurb: "Our bucket list, pinned up like a scrapbook." },
   { key: "notes", path: "/notes/", title: "Notes", icon: "envelope", art: "kiss", blurb: "Letters, our timeline, and countdowns." }
 ];
