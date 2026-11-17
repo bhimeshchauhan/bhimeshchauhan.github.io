@@ -22,8 +22,8 @@ export default function Gallery() {
   const known = groups.map((g) => g[0]);
   const shown = artworks.filter((a) => f === "all" || a.artist === f || (f === "other" && !known.includes(a.artist)));
   return (
-    <Room roomKey="gallery" art="starry" kicker="Gallery" title="Paintings she'd love" lede="Free to look at, public domain, and each one with a reason it might be hers.">
-      <Tabs tabs={[["love", "Paintings she'd love"], ["made", "Made for her"]]} value={tab} onChange={setTab} id="gal" />
+    <Room roomKey="gallery" art="starry" kicker="Gallery" title="Art for Ash" lede="Free to look at, and each one picked with her in mind.">
+      <Tabs tabs={[["love", "Chosen for her"], ["made", "Made for her"]]} value={tab} onChange={setTab} id="gal" />
       <Swap k={tab}>
         {tab === "love" ? (
           <>
