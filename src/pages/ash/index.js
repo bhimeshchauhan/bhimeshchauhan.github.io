@@ -3,7 +3,6 @@ import { Link } from "gatsby";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import HubLayout from "../../hub/HubLayout";
-import Portrait3D from "../../hub/Portrait3D";
 import { useRaga, RagaCard, RagaPanel } from "../../hub/RagaNow";
 import Heart from "../../hub/Heart";
 import { ArtHero, Stagger, Item, CountUp } from "../../hub/motion";
@@ -64,7 +63,6 @@ export default function Today() {
                 <Eyebrow>For my star</Eyebrow>
                 <H1 style={{ fontSize: "clamp(2.4rem, 6vw, 4.6rem)", margin: 0 }}>My psych baby!<br /><em>I’m psyched for you.</em></H1>
               </div>
-              <Portrait3D />
             </Hero>
           </motion.div>
         </Wrap>

@@ -100,7 +100,7 @@ export default function Christmas() {
     <>
       {on && <Canvas ref={cv} aria-hidden="true" />}
       {on && <Garland />}
-      {on && !reduce && <motion.div animate={sleigh} initial={{ opacity: 0, x: -500 }} onClick={clickSleigh} style={{ cursor: "pointer", left: 0, position: "fixed", top: 0, zIndex: 3 }}><Sleigh /></motion.div>}
+      {false && on && !reduce && <motion.div animate={sleigh} initial={{ opacity: 0, x: -500 }} onClick={clickSleigh} style={{ cursor: "pointer", left: 0, position: "fixed", top: 0, zIndex: 3 }}><Sleigh /></motion.div>}
       {ho && <Ho key={ho.k} style={{ left: ho.x - 50, top: ho.y - 20 }} initial={{ opacity: 0, y: 0, scale: 0.6 }} animate={{ opacity: [0, 1, 0], y: -60, scale: 1.2 }} transition={{ duration: 1.4 }}>Ho ho ho!</Ho>}
       <Toggle type="button" aria-label={on ? "Turn the snow and lights off" : "Turn the snow and lights on"} aria-pressed={on} onClick={toggle}>{on ? "❄" : "☃"}</Toggle>
     </>
