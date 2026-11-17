@@ -53,7 +53,7 @@ export default function Portrait3D() {
       </div>
       <div className="tools">
         <button type="button" onClick={toggleOutfit}>{outfit === "starry" ? "Pearl earring ✨" : "Starry again 🌌"}</button>
-        <button type="button" aria-pressed={spin} onClick={toggleSpin}>{spin ? "Stop spinning" : "Spin"}</button>
+        <button type="button" aria-pressed={spin} onClick={toggleSpin}>{spin ? "Hold still" : "Sway"}</button>
         <button type="button" onClick={() => her.current && her.current.wave()}>Say hi 👋</button>
       </div>
       <p className="hint">Drag to turn her · poke her · tickle her · pull her face</p>

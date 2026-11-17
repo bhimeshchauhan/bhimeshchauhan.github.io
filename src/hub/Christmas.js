@@ -7,9 +7,9 @@ import { display } from "./ui";
 // and a sleigh that crosses the sky now and then (click it). It all switches off from the little snowflake button.
 const twinkle = keyframes`0%,100%{opacity:1;filter:brightness(1.3)}50%{opacity:.35;filter:brightness(.7)}`;
 const Lights = styled.div`
-  height: 46px; left: 0; pointer-events: none; position: fixed; right: 0; top: 0; z-index: 41;
+  height: 30px; left: 0; pointer-events: none; position: fixed; right: 0; top: 0; z-index: 41;
   svg { display: block; height: 100%; left: 0; position: absolute; top: 0; width: 100%; }
-  i { animation: ${twinkle} 1.8s ease-in-out infinite; border-radius: 50% 50% 55% 55%; display: block; height: 11px; margin-left: -4px; position: absolute; width: 8px; }
+  i { animation: ${twinkle} 1.8s ease-in-out infinite; border-radius: 50% 50% 55% 55%; display: block; height: 9px; margin-left: -3px; position: absolute; width: 6px; }
   @media (prefers-reduced-motion: reduce) { i { animation: none; } }
 `;
 const Canvas = styled.canvas`inset: 0; pointer-events: none; position: fixed; z-index: 4;`;
@@ -22,7 +22,7 @@ const COLORS = ["#ff4a5a", "#ffd24a", "#4ad2ff", "#6bff8f", "#ff7bd5"];
 function Garland() {
   const [w, setW] = useState(1200);
   useEffect(() => { const f = () => setW(window.innerWidth); f(); window.addEventListener("resize", f); return () => window.removeEventListener("resize", f); }, []);
-  const swags = Math.max(2, Math.round(w / 300)); const sw = w / swags; const sag = 26; const bulbs = [];
+  const swags = Math.max(2, Math.round(w / 300)); const sw = w / swags; const sag = 8; const bulbs = [];
   let d = `M0 4`;
   for (let s = 0; s < swags; s++) {
     const x0 = s * sw; d += ` Q${x0 + sw / 2} ${4 + sag * 2} ${x0 + sw} 4`;
@@ -30,8 +30,8 @@ function Garland() {
   }
   return (
     <Lights aria-hidden="true">
-      <svg viewBox={`0 0 ${w} 46`} preserveAspectRatio="none"><path d={d} fill="none" stroke="rgba(30,40,30,.8)" strokeWidth="2" /></svg>
-      {bulbs.map((b, i) => <i key={i} style={{ left: b.x, top: b.y, background: b.c, boxShadow: `0 0 12px 3px ${b.c}`, animationDelay: `${b.d}s` }} />)}
+      <svg viewBox={`0 0 ${w} 30`} preserveAspectRatio="none"><path d={d} fill="none" stroke="rgba(30,40,30,.8)" strokeWidth="2" /></svg>
+      {bulbs.map((b, i) => <i key={i} style={{ left: b.x, top: b.y, background: b.c, boxShadow: `0 0 7px 1px ${b.c}`, animationDelay: `${b.d}s` }} />)}
     </Lights>
   );
 }

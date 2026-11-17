@@ -37,7 +37,7 @@ export async function createHer(el, { compact = false, onSay = () => {}, onHeart
 
   const mat = (color, rough = 0.6, extra = {}) => new THREE.MeshStandardMaterial({ color, roughness: rough, metalness: 0.02, ...extra });
   const skinMat = mat(0xe9b48d, 0.55, { emissive: 0x3a1a10, emissiveIntensity: 0.05 });
-  const skinDark = mat(0xd89a74, 0.6);
+  const skinDark = mat(0xdca27c, 0.6, { emissive: 0x4a2418, emissiveIntensity: 0.18 });
   const hairMat = mat(0x1a1840, 0.38, { metalness: 0.15 });
   const sweaterMat = mat(0xb02c98, 0.85);
   const sweaterLight = mat(0xc84bb0, 0.85);
@@ -79,7 +79,7 @@ export async function createHer(el, { compact = false, onSay = () => {}, onHeart
   const hook = between(new THREE.Vector3(-0.95, -0.27, 0.05), new THREE.Vector3(-0.95, -0.37, 0.05), 0.012, goldMat); head.add(hook); hook.visible = false;
 
   // ---- hair: cap + back shell + bun (the front stays open for her face)
-  const hairBack = tag(new THREE.Mesh(new THREE.SphereGeometry(1.0, 64, 48, Math.PI / 2 + 0.9, Math.PI * 2 - 1.8, 0, 2.05), hairMat), "hair"); hairBack.scale.set(0.97, 1.12, 1.03); head.add(hairBack);
+  const hairBack = tag(new THREE.Mesh(new THREE.SphereGeometry(1.0, 64, 48, Math.PI / 2 + 0.9, Math.PI * 2 - 1.8, 0, 2.6), hairMat), "hair"); hairBack.scale.set(0.97, 1.12, 1.03); head.add(hairBack);
   hairMat.side = THREE.DoubleSide;
   const fringe = tag(new THREE.Mesh(new THREE.SphereGeometry(1.0, 64, 32, 0, Math.PI * 2, 0, 0.82), hairMat), "hair"); fringe.scale.set(0.97, 1.12, 1.03); head.add(fringe);
   const bunG = new THREE.Group(); bunG.position.set(0, 1.26, -0.22); head.add(bunG);
@@ -160,7 +160,7 @@ export async function createHer(el, { compact = false, onSay = () => {}, onHeart
   controls.enablePan = false; controls.enableDamping = true; controls.dampingFactor = 0.08;
   controls.minDistance = 4.5; controls.maxDistance = 12; controls.target.set(0, compact ? -0.3 : -0.35, 0);
   controls.minPolarAngle = 0.5; controls.maxPolarAngle = 2.4;
-  controls.autoRotate = !reduceMotion && !compact; controls.autoRotateSpeed = 1.1;
+  controls.autoRotate = false; let sway = !reduceMotion && !compact, swayA = 0;
   controls.enableZoom = !compact;
   controls.update();
 
@@ -203,7 +203,7 @@ export async function createHer(el, { compact = false, onSay = () => {}, onHeart
     const r = hitTest(e); lastAct = performance.now(); wake();
     if (r) { controls.enabled = false; drag = { x: e.clientX, y: e.clientY, r, moved: false, t: performance.now(), cx: e.clientX, cy: e.clientY, part: r.part };
       try { renderer.domElement.setPointerCapture(e.pointerId); } catch (_) { /* ignore */ } } else { controls.enabled = !compact; }
-    controls.autoRotate = false;
+    sway = false;
   };
   const onMove = (e) => {
     const rect = renderer.domElement.getBoundingClientRect(); pointer.x = e.clientX; pointer.y = e.clientY; pointer.inside = true;
@@ -276,7 +276,7 @@ export async function createHer(el, { compact = false, onSay = () => {}, onHeart
     pearlS += (o.pearl * 1 - pearlS + 0.001) * Math.min(1, dt * 5); pearl.scale.setScalar(Math.max(0.001, pearlS)); stud.scale.setScalar(o.stud ? 1 : 0.001);
     hairMat.color.lerp(tgt.hair, Math.min(1, dt * 4)); sweaterMat.color.lerp(tgt.sweater, Math.min(1, dt * 4)); sweaterLight.color.lerp(tgt.collar, Math.min(1, dt * 4));
     // body
-    root.rotation.y = 0; bodyG.position.y = S.body.x * 0.1; bodyG.scale.set(1, 1 + S.body.x * 0.03, 1);
+    swayA += ((sway ? Math.sin(time * 0.55) * 0.62 : 0) - swayA) * Math.min(1, dt * 3); root.rotation.y = swayA; bodyG.position.y = S.body.x * 0.1; bodyG.scale.set(1, 1 + S.body.x * 0.03, 1);
     // eyes
     const eyeClose = clamp(Math.max(blink, mood.closed, mood.sleepy * 0.85) , 0, 1);
     eyes.forEach((e) => {
@@ -312,7 +312,7 @@ export async function createHer(el, { compact = false, onSay = () => {}, onHeart
   return {
     setOutfit: (n) => { setOutfit(n); },
     getOutfit: () => outfit,
-    setAutoSpin: (on) => { controls.autoRotate = !!on && !reduceMotion; },
+    setAutoSpin: (on) => { sway = !!on && !reduceMotion; },
     say: (t) => say(t, true),
     wave: () => { waveT = 2.4; },
     reactAt: (x, y) => { const r = hitTest({ clientX: x, clientY: y }); if (r) react(r); },
