@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Room from "../../hub/Room";
 import useLocal from "../../hub/useLocal";
 const TogetherMap = React.lazy(() => import("../../hub/TogetherMap"));
-import { Eyebrow, H3, Button, GhostButton, hand, display } from "../../hub/ui";
+import { Eyebrow, H3, GhostButton, hand, display } from "../../hub/ui";
 
 // Our shared bucket list as a scrapbook: tilted Polaroids on a corkboard, a hand-drawn map, ink stamps when something is done.
 // For now it saves on this device only; swapping useLocal for a shared database is the one change needed to share it.
@@ -19,16 +19,23 @@ const seed = [
 const places = { vancouver: [49.2827, -123.1207], victoria: [48.4284, -123.3656], tofino: [49.153, -125.9066], whistler: [50.1163, -122.9574], banff: [51.1784, -115.5708], calgary: [51.0447, -114.0719], jasper: [52.8737, -118.0814], toronto: [43.6532, -79.3832], montreal: [45.5019, -73.5674], paris: [48.8566, 2.3522], tokyo: [35.6762, 139.6503], kyoto: [35.0116, 135.7681], london: [51.5072, -0.1276], reykjavik: [64.1466, -21.9426] };
 
 const Page = styled.div`
-  .tg-bar { align-items: center; display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: space-between; margin-bottom: 1.2rem; }
-  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .chips button { background: rgba(10, 14, 40, 0.6); border: 1px solid rgba(232, 194, 107, 0.45); border-radius: 999px; color: var(--gold2); cursor: pointer; font: inherit; font-size: 0.85rem; font-weight: 600; min-height: 36px; padding: 0 0.9rem; }
-  .chips button[aria-pressed="true"] { background: var(--gold); color: #14122a; }
   .top { align-items: stretch; display: grid; gap: 1.2rem; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); margin-bottom: 1.6rem; }
   @media (max-width: 800px) { .top { grid-template-columns: 1fr; } }
   .map { background: radial-gradient(ellipse at 30% 20%, #f3e6c4, #e4cf9b 70%, #cfb578); border-radius: 6px; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), inset 0 0 60px rgba(120, 80, 20, 0.35); color: #3a2a12; padding: 0.8rem; position: relative; transform: rotate(-0.6deg); }
   .map svg { display: block; height: auto; width: 100%; }
   .map .cap { font-family: ${hand}; font-size: 1.25rem; margin: 0.2rem 0 0; text-align: center; }
-  .board { background: #4a3322 radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.06) 0 2px, transparent 3px) 0 0 / 22px 22px; border-radius: 14px; box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.55), 0 14px 40px rgba(0, 0, 0, 0.4); padding: clamp(1rem, 3vw, 2rem); }
+  .cab { margin-top: 0.5rem; }
+  .tabs { align-items: flex-end; display: flex; flex-wrap: wrap; gap: 4px; padding-left: 14px; position: relative; z-index: 2; }
+  .tabs button { background: linear-gradient(180deg, #c9a45a, #b98f46); border: 0; border-radius: 12px 12px 0 0; box-shadow: inset 0 1px 0 rgba(255, 240, 200, 0.5), 0 -2px 6px rgba(0, 0, 0, 0.25); color: #3a2a12; cursor: pointer; font-family: ${hand}; font-size: 1.35rem; font-weight: 700; height: 42px; margin-bottom: -1px; padding: 0 1.2rem; position: relative; transition: height 0.2s; }
+  .tabs button small { font-family: inherit; font-size: 0.95rem; margin-left: 0.35rem; opacity: 0.65; }
+  .tabs button:hover { height: 48px; }
+  .tabs button[aria-pressed="true"] { background: linear-gradient(180deg, #ecd391, #e3c47a); height: 52px; }
+  .tabs .plus { background: transparent; border: 2px dashed rgba(232, 194, 107, 0.7); border-bottom: 0; box-shadow: none; color: var(--gold2); margin-left: auto; margin-right: 14px; }
+  .folder { background: linear-gradient(180deg, #e3c47a, #d9b565 60%, #cfa955); border-radius: 6px 14px 14px 14px; box-shadow: 0 22px 50px rgba(0, 0, 0, 0.5), inset 0 2px 0 rgba(255, 245, 210, 0.55); padding: clamp(1.4rem, 3vw, 2.2rem); position: relative; }
+  .folder::before { background: repeating-linear-gradient(0deg, transparent 0 28px, rgba(120, 80, 20, 0.07) 28px 29px); border-radius: inherit; content: ""; inset: 0; pointer-events: none; position: absolute; }
+  .folder .label { align-items: baseline; border-bottom: 2px solid rgba(90, 60, 20, 0.35); color: #3a2a12; display: flex; font-family: ${hand}; font-size: 1.7rem; justify-content: space-between; margin-bottom: 1.4rem; padding-bottom: 0.3rem; position: relative; }
+  .folder .label span:last-child { font-family: ${display}; font-size: 0.72rem; letter-spacing: 0.18em; opacity: 0.65; text-transform: uppercase; }
+  .empty { color: #5a4020; font-family: ${hand}; font-size: 1.5rem; margin: 0; position: relative; }
   .grid { display: grid; gap: clamp(1.4rem, 3vw, 2.2rem) 1.4rem; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
   .card { perspective: 900px; }
   .pol { background: #fbf7ee; box-shadow: 0 12px 26px rgba(0, 0, 0, 0.5); color: #2a2218; cursor: pointer; padding: 0.7rem 0.7rem 0.4rem; position: relative; }
@@ -126,10 +133,6 @@ export default function Together() {
             </div>
           </div>
         </div>
-        <div className="tg-bar">
-          <div className="chips" role="group" aria-label="Filter">{cats.map(([k, l]) => <button key={k} type="button" aria-pressed={cat === k} onClick={() => setCat(k)}>{l}</button>)}</div>
-          <Button type="button" onClick={() => setOpen((o) => !o)}>{open ? "Close" : "+ Add an idea"}</Button>
-        </div>
         <AnimatePresence>
           {open && (
             <motion.form className="add" onSubmit={submit} initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} style={{ overflow: "hidden", marginBottom: "1.2rem" }}>
@@ -143,9 +146,16 @@ export default function Together() {
             </motion.form>
           )}
         </AnimatePresence>
-        <div className="board">
-          <div className="grid"><AnimatePresence>{shown.map((it, i) => <Polaroid key={it.id} it={it} i={i} onDone={toggleDone} onDel={del} />)}</AnimatePresence></div>
-          {!shown.length && <p style={{ color: "#f4ecd8", margin: 0 }}>Nothing pinned here yet.</p>}
+        <div className="cab">
+          <div className="tabs" role="tablist" aria-label="Folders">
+            {cats.map(([k, l]) => <button key={k} type="button" role="tab" aria-selected={cat === k} aria-pressed={cat === k} onClick={() => setCat(k)}>{l}<small>{k === "all" ? items.length : items.filter((x) => x.cat === k).length}</small></button>)}
+            <button type="button" className="plus" onClick={() => setOpen((o) => !o)}>{open ? "Close" : "+ Add an idea"}</button>
+          </div>
+          <div className="folder">
+            <div className="label"><span>{cats.find(([k]) => k === cat)[1]}</span><span>{shown.filter((x) => x.done).length} of {shown.length} done</span></div>
+            <div className="grid" style={{ position: "relative" }}><AnimatePresence>{shown.map((it, i) => <Polaroid key={it.id} it={it} i={i} onDone={toggleDone} onDel={del} />)}</AnimatePresence></div>
+            {!shown.length && <p className="empty">This folder is empty. Add an idea!</p>}
+          </div>
         </div>
         <p style={{ color: "var(--muted)", fontSize: "0.82rem", marginTop: "1rem" }}>{view ? `Map view: zoom ${view.zoom}, centred near ${view.center.lat.toFixed(1)}, ${view.center.lng.toFixed(1)}. ` : ""}Saved on this device for now. Sharing it between the two of you needs a small database.</p>
       </Page>
