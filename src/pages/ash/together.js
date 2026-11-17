@@ -19,11 +19,11 @@ const seed = [
 const places = { vancouver: [49.2827, -123.1207], victoria: [48.4284, -123.3656], tofino: [49.153, -125.9066], whistler: [50.1163, -122.9574], banff: [51.1784, -115.5708], calgary: [51.0447, -114.0719], jasper: [52.8737, -118.0814], toronto: [43.6532, -79.3832], montreal: [45.5019, -73.5674], paris: [48.8566, 2.3522], tokyo: [35.6762, 139.6503], kyoto: [35.0116, 135.7681], london: [51.5072, -0.1276], reykjavik: [64.1466, -21.9426] };
 
 const Page = styled.div`
-  .bar { align-items: center; display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: space-between; margin-bottom: 1.2rem; }
+  .tg-bar { align-items: center; display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: space-between; margin-bottom: 1.2rem; }
   .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
   .chips button { background: rgba(10, 14, 40, 0.6); border: 1px solid rgba(232, 194, 107, 0.45); border-radius: 999px; color: var(--gold2); cursor: pointer; font: inherit; font-size: 0.85rem; font-weight: 600; min-height: 36px; padding: 0 0.9rem; }
   .chips button[aria-pressed="true"] { background: var(--gold); color: #14122a; }
-  .top { display: grid; gap: 1.2rem; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); margin-bottom: 1.6rem; }
+  .top { align-items: stretch; display: grid; gap: 1.2rem; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); margin-bottom: 1.6rem; }
   @media (max-width: 800px) { .top { grid-template-columns: 1fr; } }
   .map { background: radial-gradient(ellipse at 30% 20%, #f3e6c4, #e4cf9b 70%, #cfb578); border-radius: 6px; box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), inset 0 0 60px rgba(120, 80, 20, 0.35); color: #3a2a12; padding: 0.8rem; position: relative; transform: rotate(-0.6deg); }
   .map svg { display: block; height: auto; width: 100%; }
@@ -108,17 +108,25 @@ export default function Together() {
           <div style={{ minHeight: 340 }}>
             <Suspense fallback={null}><TogetherMap items={items} picking={picking} picked={f.lat != null ? { lat: f.lat, lng: f.lng } : null} onPick={(p) => setF((c) => ({ ...c, ...p }))} onView={setView} /></Suspense>
           </div>
-          <div className="map next" style={{ transform: "rotate(0.8deg)" }}>
-            <Eyebrow style={{ color: "#8a5a1e", textShadow: "none" }}>Next up</Eyebrow>
-            {next ? (
-              <div className="row">
-                <div className="mini" style={{ backgroundImage: next.img ? `url(${next.img})` : "none" }} />
-                <div><H3 style={{ color: "#2a1a08", fontFamily: hand, fontSize: "1.9rem" }}>{next.t}</H3><p style={{ color: "#4a3820", margin: 0 }}>{next.note}</p></div>
-              </div>
-            ) : <p style={{ color: "#4a3820" }}>Everything's done. Time to dream up more.</p>}
+          <div className="map next" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", transform: "rotate(0.6deg)" }}>
+            <div>
+              <Eyebrow style={{ color: "#8a5a1e", textShadow: "none" }}>Next up</Eyebrow>
+              {next ? (
+                <div className="row">
+                  <div className="mini" style={{ backgroundImage: next.img ? `url(${next.img})` : "none" }} />
+                  <div><H3 style={{ color: "#2a1a08", fontFamily: hand, fontSize: "2.1rem", lineHeight: 1 }}>{next.t}</H3><p style={{ color: "#6b4e1e", fontFamily: display, fontSize: "0.8rem", letterSpacing: "0.14em", margin: "0.3rem 0 0", textTransform: "uppercase" }}>{next.where || next.cat}</p></div>
+                </div>
+              ) : <p style={{ color: "#4a3820" }}>Everything's done. Time to dream up more.</p>}
+              {next && next.note && <p style={{ color: "#3a2a12", fontFamily: hand, fontSize: "1.6rem", lineHeight: 1.15, margin: "1.1rem 0 0", paddingLeft: "0.9rem", borderLeft: "3px solid #b0262e" }}>“{next.note}”</p>}
+            </div>
+            <div style={{ borderTop: "1px dashed #8a6a30", color: "#3a2a12", display: "flex", fontFamily: hand, fontSize: "1.45rem", gap: "1.4rem", justifyContent: "space-around", marginTop: "1rem", paddingTop: "0.7rem" }}>
+              <span><b style={{ color: "#b0262e", fontSize: "1.9rem" }}>{items.filter((x) => x.done).length}</b> done</span>
+              <span><b style={{ color: "#b0262e", fontSize: "1.9rem" }}>{items.filter((x) => !x.done).length}</b> dreaming</span>
+              <span><b style={{ color: "#b0262e", fontSize: "1.9rem" }}>{new Set(items.filter((x) => x.where).map((x) => x.where)).size}</b> places</span>
+            </div>
           </div>
         </div>
-        <div className="bar">
+        <div className="tg-bar">
           <div className="chips" role="group" aria-label="Filter">{cats.map(([k, l]) => <button key={k} type="button" aria-pressed={cat === k} onClick={() => setCat(k)}>{l}</button>)}</div>
           <Button type="button" onClick={() => setOpen((o) => !o)}>{open ? "Close" : "+ Add an idea"}</Button>
         </div>
