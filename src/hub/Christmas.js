@@ -43,6 +43,7 @@ function drawMark(ctx, m, alpha) {
   const shape = (dx, dy, col) => {
     ctx.fillStyle = col; ctx.strokeStyle = col;
     if (m.k === "boot") { ctx.beginPath(); ctx.ellipse(dx, dy, 4.4, 8.6, 0, 0, 6.3); ctx.fill(); ctx.beginPath(); ctx.ellipse(dx, dy + 12.5, 3.4, 3.8, 0, 0, 6.3); ctx.fill(); }
+    else if (m.k === "paw") { ctx.beginPath(); ctx.ellipse(dx, dy + 2.5, 3.2, 2.7, 0, 0, 6.3); ctx.fill(); [[-3.6, -1.6], [-1.3, -4], [1.3, -4], [3.6, -1.6]].forEach(([ox, oy]) => { ctx.beginPath(); ctx.ellipse(dx + ox, dy + oy, 1.25, 1.5, 0, 0, 6.3); ctx.fill(); }); }
     else if (m.k === "hoof") { [-2.2, 2.2].forEach((o) => { ctx.beginPath(); ctx.ellipse(dx + o, dy, 1.7, 4.6, o * 0.08, 0, 6.3); ctx.fill(); }); }
     else { ctx.lineWidth = 4.5; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(dx, dy - 5); ctx.lineTo(dx, dy + 5); ctx.stroke(); }
   };
@@ -65,14 +66,14 @@ export default function Christmas({ path }) {
     // faint, scattered tracks: Santa wandering, single reindeer going their own ways, and the odd sleigh skid
     const walkers = []; let nextSpawn = reduce ? 1e9 : 1; let t = 0, last = performance.now(); const marks = [];
     const spawn = () => {
-      const r = Math.random(); const kind = r < 0.4 ? "boot" : r < 0.88 ? "hoof" : "run";
+      const r = Math.random(); const kind = r < 0.3 ? "boot" : r < 0.55 ? "hoof" : r < 0.82 ? "paw" : "run";
       const side = Math.floor(Math.random() * 4); const m = 40; let x, y, h;
       if (side === 0) { x = -m; y = 140 + Math.random() * (H - 260); h = (Math.random() - 0.5) * 0.9; }
       else if (side === 1) { x = W + m; y = 140 + Math.random() * (H - 260); h = Math.PI + (Math.random() - 0.5) * 0.9; }
       else if (side === 2) { x = 60 + Math.random() * (W - 120); y = H + m; h = -Math.PI / 2 + (Math.random() - 0.5) * 0.9; }
       else { x = 60 + Math.random() * (W - 120); y = 140 - m; h = Math.PI / 2 + (Math.random() - 0.5) * 0.9; }
       const w = { kind, x, y, h, left: kind === "run" ? 70 : 14 + Math.floor(Math.random() * 10), acc: 0, n: 0, turn: (Math.random() - 0.5) * (kind === "run" ? 0.06 : 0.03) };
-      w.step = kind === "boot" ? 44 : kind === "hoof" ? 38 : 6; w.speed = kind === "boot" ? 70 : kind === "hoof" ? 110 : 90; walkers.push(w);
+      w.step = kind === "boot" ? 44 : kind === "hoof" ? 38 : kind === "paw" ? 24 : 6; w.speed = kind === "boot" ? 70 : kind === "hoof" ? 110 : kind === "paw" ? 100 : 90; walkers.push(w);
     };
     const frame = (now) => {
       if (dead) return; raf = requestAnimationFrame(frame); const dt = Math.min((now - last) / 1000, 0.05); last = now; t += dt;
@@ -85,7 +86,7 @@ export default function Christmas({ path }) {
         while (w.acc >= w.step && w.left > 0) {
           w.acc -= w.step; w.left--; w.n++; const nx = Math.cos(w.h + Math.PI / 2), ny = Math.sin(w.h + Math.PI / 2); const side = w.n % 2 ? 1 : -1;
           if (w.kind === "run") { for (const sd of [-1, 1]) marks.push({ k: "run", x: w.x + nx * 11 * sd, y: w.y + ny * 11 * sd, a: w.h, born: t }); }
-          else marks.push({ k: w.kind, x: w.x + nx * (w.kind === "boot" ? 6 : 9) * side, y: w.y + ny * (w.kind === "boot" ? 6 : 9) * side, a: w.h, born: t });
+          else marks.push({ k: w.kind, x: w.x + nx * (w.kind === "boot" ? 6 : w.kind === "paw" ? 5 : 9) * side, y: w.y + ny * (w.kind === "boot" ? 6 : w.kind === "paw" ? 5 : 9) * side, a: w.h, born: t });
         }
         if (w.left <= 0) walkers.splice(i, 1);
       }
