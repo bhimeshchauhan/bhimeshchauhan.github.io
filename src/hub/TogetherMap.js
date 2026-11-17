@@ -26,7 +26,7 @@ export default function TogetherMap({ items, picking, picked, onPick, onView }) 
       const L = mod.default || mod; if (dead || !el.current) return;
       import("leaflet/dist/leaflet.css");
       map = L.map(el.current, { center: [49.2827, -123.1207], zoom: 9, minZoom: 2, worldCopyJump: true, zoomControl: true, attributionControl: true });
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "© OpenStreetMap contributors", maxZoom: 18 }).addTo(map);
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { attribution: "© OpenStreetMap contributors", maxZoom: 18, referrerPolicy: "origin" }).addTo(map);
       const layer = L.layerGroup().addTo(map);
       api.current = { L, map, layer };
       const report = () => { const b = map.getBounds(); onView && onView({ zoom: map.getZoom(), center: map.getCenter(), bounds: { south: b.getSouth(), west: b.getWest(), north: b.getNorth(), east: b.getEast() } }); };

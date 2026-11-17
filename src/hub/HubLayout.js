@@ -60,7 +60,7 @@ const Top = styled.header`
       span { position: relative; }
     }
   }
-  @media (max-width: 1400px) {
+  @media (max-width: 1560px) {
     .hub-bar { flex-wrap: wrap; gap: 0.1rem 1rem; min-height: 0; padding: 0.8rem 0 0.9rem; }
     nav { flex: 1 1 100%; margin: 0 -0.4rem; }
     nav a:first-child { margin-left: 0; }
@@ -115,7 +115,7 @@ export default function HubLayout({ title, description = "A little sky, just for
       <ScrollBar />
       <Top>
         <HeartLine />
-        <Wrap style={{ maxWidth: 1400 }}>
+        <Wrap style={{ maxWidth: 1560 }}>
           <div className="hub-bar">
             <Link className="brand" to={hubPath("/")}>
               Ash, my star

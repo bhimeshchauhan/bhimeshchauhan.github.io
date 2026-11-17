@@ -25,7 +25,7 @@ export const Item = ({ children, as = "div", ...rest }) => {
 // Pills that glide: the active one is a shared-layout highlight that slides between tabs.
 const Bar = styled.div`
   display: flex; gap: 0.3rem; margin: 0 0 1.6rem; overflow-x: auto; padding: 0.3rem; position: sticky; top: 94px; z-index: 12;
-  @media (max-width: 1400px) { top: 150px; }
+  @media (max-width: 1560px) { top: 150px; }
   background: rgba(8, 11, 30, 0.82); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(232, 194, 107, 0.18); border-radius: 999px; scrollbar-width: none;
   &::-webkit-scrollbar { display: none; }
   button { background: none; border: 0; border-radius: 999px; color: var(--muted); cursor: pointer; flex: none; font: inherit; font-size: 0.92rem; font-weight: 600; min-height: 42px; padding: 0 1.1rem; position: relative; }
