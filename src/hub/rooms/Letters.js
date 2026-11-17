@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import HubLayout from "../../hub/HubLayout";
-import { letters } from "../../hub/data/letters";
-import { Wrap, Eyebrow, H2, Lede, Hand, Section, Reveal, glass, display } from "../../hub/ui";
+import { letters } from "../data/letters";
+import { Wrap, Eyebrow, H2, Lede, Hand, Section, Reveal, glass, display } from "../ui";
 
 const Envelope = styled.article`
   ${glass}
@@ -25,9 +24,8 @@ const nice = (iso) => new Date(`${iso}T12:00:00`).toLocaleDateString("en-CA", { 
 export default function Letters() {
   const [open, setOpen] = useState(letters[0] ? letters[0].id : null);
   return (
-    <HubLayout current="letters" title="Letters" description="Notes for Ash.">
-      <Wrap>
-        <Section style={{ paddingTop: "clamp(2rem, 7vw, 4rem)" }}>
+    <>
+      <Section >
           <Reveal>
             <Eyebrow>Letters</Eyebrow>
             <H2>Notes I wrote for you.</H2>
@@ -52,7 +50,7 @@ export default function Letters() {
             );
           })}
         </Section>
-      </Wrap>
-    </HubLayout>
+      
+    </>
   );
 }

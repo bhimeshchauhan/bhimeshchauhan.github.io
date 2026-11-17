@@ -7,12 +7,12 @@ export const HUB = "/ash";
 export const hubPath = (p = "") => `${HUB}${p}`;
 
 export const rooms = [
-  { key: "career", path: "/career/", title: "Career guide", icon: "compass", blurb: "Programs, paths and pay, with the jokes left in." },
-  { key: "letters", path: "/letters/", title: "Letters", icon: "envelope", blurb: "Notes I wrote for you. Open one when you want." },
-  { key: "memories", path: "/memories/", title: "Memories", icon: "hourglass", blurb: "Our story, one star at a time." },
-  { key: "art", path: "/art/", title: "Art", icon: "brush", blurb: "Things I made, just for you." },
-  { key: "music", path: "/music/", title: "Music", icon: "note", blurb: "A raga for exactly this hour." },
-  { key: "firsts", path: "/firsts/", title: "Firsts", icon: "mountain", blurb: "Skiing, boxing, violin, painting. The trail so far." },
-  { key: "afterdark", path: "/after-dark/", title: "After dark", icon: "moon", blurb: "Scary movies, good books, one candle." },
-  { key: "games", path: "/games/", title: "Games", icon: "star", blurb: "Find the cat. Match the memories." }
+  { key: "career", path: "/career/", title: "Career", icon: "compass", art: "wanderer", blurb: "Programs, deadlines and a plan, one step at a time." },
+  { key: "outdoors", path: "/outdoors/", title: "Outdoors", icon: "mountain", art: "cypress", blurb: "Trails, ski days and checklists." },
+  { key: "practice", path: "/practice/", title: "Practice", icon: "brush", art: "bellows", blurb: "Violin, boxing, painting, skiing. Log it, watch it grow." },
+  { key: "music", path: "/music/", title: "Music", icon: "note", art: "lilies", blurb: "A raga for this hour, and where to listen next." },
+  { key: "watch", path: "/watch-read/", title: "Watch & Read", icon: "moon", art: "nightmare", blurb: "The lists, and a pick for tonight." },
+  { key: "gallery", path: "/gallery/", title: "Gallery", icon: "star", art: "starry", blurb: "Paintings you'd love, and why." },
+  { key: "games", path: "/games/", title: "Games", icon: "paw", art: "lilies", blurb: "Find the cat. Match the memories." },
+  { key: "notes", path: "/notes/", title: "Notes", icon: "envelope", art: "kiss", blurb: "Letters, our timeline, and countdowns." }
 ];

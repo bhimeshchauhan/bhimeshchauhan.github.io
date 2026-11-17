@@ -1,16 +1,11 @@
 import React from "react";
-import HubLayout from "../../hub/HubLayout";
+import Room from "../../hub/Room";
 import Games from "../../hub/rooms/Games";
-import { Wrap, Section } from "../../hub/ui";
 
-export default function Page() {
+export default function GamesPage() {
   return (
-    <HubLayout current="games" title="Games" description="Find the cat and match the memories.">
-      <Wrap>
-        <Section style={{ paddingTop: "clamp(2rem, 7vw, 4rem)" }}>
-          <Games />
-        </Section>
-      </Wrap>
-    </HubLayout>
+    <Room roomKey="games" art="lilies" kicker="Games" title="Take a little break" lede="Two tiny games, no timer, no pressure.">
+      <Games />
+    </Room>
   );
 }

@@ -1,4 +1,7 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import { Tabs, CountUp } from "../motion";
+import { deadlines, daysUntil } from "./deadlines";
 import styled from "styled-components";
 import { programs, CHECKED } from "./programs.mjs";
 import { match } from "./match.mjs";
@@ -9,17 +12,11 @@ const A = ({ href, children }) => (
   <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>
 );
 
-const Jump = styled.nav`
-  background: rgba(7, 11, 31, 0.72);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(232, 194, 107, 0.16);
-  position: sticky;
-  top: 60px;
-  z-index: 15;
-  .hub-row { display: flex; gap: 0.4rem; overflow-x: auto; padding: 0.55rem 0; scrollbar-width: none; &::-webkit-scrollbar { display: none; } }
-  a { border: 1px solid rgba(232, 194, 107, 0.3); border-radius: 999px; color: var(--gold2); flex: none; font-size: 0.84rem; font-weight: 600; padding: 0.4rem 0.9rem; text-decoration: none; white-space: nowrap; }
-  a:hover { background: rgba(232, 194, 107, 0.14); }
+const Panel = styled(Section)`
+  &[data-active="false"] { display: none; }
+  animation: panelIn 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  @keyframes panelIn { from { opacity: 0; transform: translateY(16px); } }
+  @media (prefers-reduced-motion: reduce) { animation: none; }
 `;
 
 const HeroBox = styled.section`
@@ -111,15 +108,25 @@ const Resources = styled.div`
   li a { font-weight: 600; }
 `;
 
-const sections = [
-  ["start", "Start here"], ["finder", "Programs"], ["career", "Career paths"], ["own", "Working for yourself"], ["pay", "Pay & jobs"], ["saved", "Saved links"]
-];
+const tabsList = [["start", "Start here"], ["finder", "Programs"], ["deadlines", "Deadlines"], ["career", "Career paths"], ["own", "Working for yourself"], ["pay", "Pay & jobs"], ["saved", "Saved links"]];
 
 const labels = [["Credential", "award"], ["Cost (CAD)", "price"], ["Cost basis", "basis"], ["Duration", "length"], ["Venue", "venue"], ["What you’ll learn", "learn"], ["Where it can lead", "roles"], ["What to check", "check"]];
 
 export default function CareerGuide() {
   const [opts, setOpts] = useState({ goal: "", format: "", budget: "", time: "" });
   const [picked, setPicked] = useState([]); // kept when the filters change
+  const [tab, setTab] = useState("start");
+  const [now, setNow] = useState(null); // dates are read in the browser, so the page and the clock always agree
+  useEffect(() => setNow(new Date()), []);
+  useEffect(() => {
+    const h = window.location.hash.replace("#", "");
+    const fromState = window.history.state && window.history.state.tab;
+    const t = fromState || h;
+    if (tabsList.some(([k]) => k === t)) setTab(t);
+  }, []);
+  const go = (k) => { setTab(k); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  // in-page links such as "#finder" switch tabs instead of scrolling
+  const onLink = (e) => { const a = e.target.closest("a[href^='#']"); if (!a) return; const k = a.getAttribute("href").slice(1); if (tabsList.some(([t]) => t === k)) { e.preventDefault(); go(k); } };
   const results = useMemo(() => match(programs, { goal: opts.goal, format: opts.format, budget: opts.budget ? Number(opts.budget) : "", time: opts.time ? Number(opts.time) : "" }), [opts]);
   const picks = picked.map((id) => programs.find((p) => p.id === id)).filter(Boolean);
   const set = (k) => (e) => setOpts((o) => ({ ...o, [k]: e.target.value }));
@@ -127,28 +134,10 @@ export default function CareerGuide() {
 
   return (
     <>
-      <Jump aria-label="On this page">
-        <Wrap><div className="hub-row">{sections.map(([id, label]) => <a key={id} href={`#${id}`}>{label}</a>)}</div></Wrap>
-      </Jump>
-      <Wrap>
-        <HeroBox>
-          <div>
-            <Eyebrow>A little something for Ash ♡</Eyebrow>
-            <H1>My psych baby!<br /><em>I’m psyched for you.</em></H1>
-            <Lede>
-              Okay, I had to. ♡ I got a little carried away looking up programs for you, so I put the useful bits here: what you’d learn, what it costs, and which ones you can do from Vancouver. You already know the hiring and HR world. I wanted to see where else that could take you.
-            </Lede>
-            <ButtonLink href="#finder">Let’s have a look ↓</ButtonLink>
-          </div>
-          <aside className="note">
-            <span>BOYFRIEND FIELD NOTES</span>
-            <div className="mark" aria-hidden="true">♡</div>
-            <p>You don’t have to<br />figure it all out today.</p>
-            <small>My very unofficial diagnosis: too many tabs open. Prescription: snacks, a little browsing, and absolutely no need to pick a master’s tonight.</small>
-          </aside>
-        </HeroBox>
+      <Wrap onClick={onLink}>
+        <Tabs tabs={tabsList} value={tab} onChange={go} id="career" />
 
-        <Section id="start">
+        <Panel id="start" data-active={tab === "start"}>
           <Reveal>
             <Eyebrow>If you’re still figuring it out</Eyebrow>
             <H2>No need to declare a major over dinner.</H2>
@@ -160,11 +149,9 @@ export default function CareerGuide() {
             <Reveal><Card><H3>I’d love to work for myself someday.</H3><p>Think about who you’d want as a client: a company with a people problem, a manager who wants coaching, or someone seeking therapy. Those lead to different training and credentials.</p><a href="#own">See what having your own practice could mean ↓</a></Card></Reveal>
             <Reveal delay={0.06}><Card><H3>Honestly, I’m still torn.</H3><p>Pick two job titles below and read a few ads for each. Pay attention to the tasks you’d want to do every week. Then compare the education the ads ask for before committing to tuition.</p><a href="#pay">See pay, employers, and job search terms ↓</a></Card></Reveal>
           </Grid>
-        </Section>
+        </Panel>
 
-        <Rule />
-
-        <Section id="finder">
+        <Panel id="finder" data-active={tab === "finder"}>
           <Reveal>
             <Eyebrow>A few places to start</Eyebrow>
             <H2>Time to interview the programs.</H2>
@@ -200,11 +187,11 @@ export default function CareerGuide() {
             <p aria-live="polite">{results.length} of {programs.length} programs shown</p>
             {picks.length > 0 && <a href="#compare">See comparison ({picks.length}/3) ↓</a>}
           </Status>
-          <Grid cols={2}>
+          <Grid cols={2}><AnimatePresence mode="popLayout">
             {results.map((p) => {
               const on = picked.includes(p.id);
               return (
-                <ProgramCard key={p.id}>
+                <ProgramCard key={p.id} layout initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.94 }}>
                   <div className="meta"><span>{p.school}</span>{opts.goal && p.tags.includes(opts.goal) ? <strong>Matches your interest</strong> : null}</div>
                   <H3>{p.name}</H3>
                   <p className="award">{p.award}</p>
@@ -227,7 +214,7 @@ export default function CareerGuide() {
                 </ProgramCard>
               );
             })}
-          </Grid>
+          </AnimatePresence></Grid>
           {results.length === 0 && <Card><p>No programs match these limits. Try expanding your budget or duration, or switching delivery format.</p></Card>}
           {picks.length > 0 && (
             <div id="compare" style={{ marginTop: "2.2rem", scrollMarginTop: "130px" }}>
@@ -242,11 +229,35 @@ export default function CareerGuide() {
               <p style={{ marginTop: "1rem" }}><GhostButton type="button" onClick={() => setPicked([])}>Clear picks</GhostButton></p>
             </div>
           )}
-        </Section>
+        </Panel>
 
-        <Rule />
+        <Panel id="deadlines" data-active={tab === "deadlines"}>
+          <Reveal>
+            <Eyebrow>Dates to know</Eyebrow>
+            <H2>What closes, and when.</H2>
+            <Lede>As listed on each school’s page on {CHECKED}. Deadlines move and some close early when full, so confirm before you plan around one.</Lede>
+          </Reveal>
+          <Grid cols={2}>
+            {deadlines.map((d) => {
+              const n = now ? daysUntil(d.date, now) : null;
+              return (
+                <Reveal key={d.id}>
+                  <Card style={{ opacity: n !== null && n < 0 ? 0.55 : 1 }}>
+                    <div style={{ alignItems: "baseline", display: "flex", gap: "0.6rem" }}>
+                      <span style={{ color: "var(--gold2)", fontFamily: display, fontSize: "3rem", lineHeight: 1 }}>{n === null ? "" : n < 0 ? "–" : <CountUp to={n} />}</span>
+                      <span style={{ color: "var(--muted)" }}>{n === null ? "" : n < 0 ? "passed" : n === 1 ? "day" : "days"} · {new Date(`${d.date}T12:00:00`).toLocaleDateString("en-CA", { month: "short", day: "numeric", year: "numeric" })}</span>
+                    </div>
+                    <H3 style={{ marginTop: "0.6rem" }}>{d.title}</H3>
+                    <p>{d.note}</p>
+                    <A href={d.url}>Check the school’s page ↗</A>
+                  </Card>
+                </Reveal>
+              );
+            })}
+          </Grid>
+        </Panel>
 
-        <Section id="career">
+        <Panel id="career" data-active={tab === "career"}>
           <Reveal>
             <Eyebrow>Where this could take you</Eyebrow>
             <H2>What could your work actually look like?</H2>
@@ -265,11 +276,9 @@ export default function CareerGuide() {
               <p><strong>Something you could try before committing to school:</strong> Ask to own a piece of a reorganization, onboarding redesign or HR systems rollout. For U.S. clients, look for cross-border projects and exposure to compensation, benefits and workforce planning alongside local specialists. <A href="https://www.mercer.com/en-us/solutions/transformation/mergers-and-acquisitions-advisory/integration-planning-and-execution/">See what HR integration involves ↗</A></p>
             </Note>
           </Reveal>
-        </Section>
+        </Panel>
 
-        <Rule />
-
-        <Section id="own">
+        <Panel id="own" data-active={tab === "own"}>
           <Reveal>
             <Eyebrow>In case you want to do your own thing</Eyebrow>
             <H2>Okay, but what if you want to be your own boss?</H2>
@@ -294,11 +303,9 @@ export default function CareerGuide() {
               <p><strong>My vote for a first experiment:</strong> try a change project if you’re curious about mergers, or redesign one part of hiring if you’re curious about I/O. If working for yourself sticks as an idea, start with one service you can describe in a sentence. Before taking U.S. clients, check the rules that apply to your services, along with contracts, insurance, and employee data handling. <A href="https://www2.gov.bc.ca/gov/content/employment-business/business/managing-a-business/permits-licences/businesses-incorporated-companies/proprietorships-partnerships">B.C.’s guide to setting up on your own ↗</A></p>
             </Note>
           </Reveal>
-        </Section>
+        </Panel>
 
-        <Rule />
-
-        <Section id="pay">
+        <Panel id="pay" data-active={tab === "pay"}>
           <Reveal>
             <Eyebrow>The money and who might hire you</Eyebrow>
             <H2>Okay, but does it pay for snacks?</H2>
@@ -314,11 +321,9 @@ export default function CareerGuide() {
           <p style={{ color: "var(--muted)", fontSize: "0.9rem", lineHeight: 1.6, marginTop: "1rem" }}>
             For the hourly jobs, I did the math at 40 hours a week for 52 weeks. Your actual pay depends on the hours, benefits, and any bonus. Job Bank figures are broad medians for an area, a job ad is one employer’s offer, and a freelancer’s fees are revenue before expenses and taxes. They aren’t the same thing.
           </p>
-        </Section>
+        </Panel>
 
-        <Rule />
-
-        <Section id="saved">
+        <Panel id="saved" data-active={tab === "saved"}>
           <Reveal>
             <Eyebrow>Saved these for you</Eyebrow>
             <H2>I saved you {resourceCount} open tabs.</H2>
@@ -350,7 +355,7 @@ export default function CareerGuide() {
               <p><strong>One last thing, babe:</strong> all prices are in Canadian dollars. I first looked these up on Nov. 11, 2026 and re-checked the main details on {CHECKED}. A few things I couldn’t confirm (Adler’s total price and Royal Roads’ details) are marked as older examples. Before you spend anything, give the school a quick check for the price, dates, and what you need to get in. The jobs are ideas to explore. See which ones make you think, “Wait, I’d actually love that.”</p>
             </Note>
           </Reveal>
-        </Section>
+        </Panel>
       </Wrap>
     </>
   );

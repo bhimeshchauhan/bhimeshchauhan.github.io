@@ -1,3 +1,5 @@
+import React from "react";
+import Addons from "./src/hub/Addons";
 import { track } from "./src/utils/track";
 import { BOOKING_URL } from "./src/utils/connect";
 
@@ -25,4 +27,15 @@ export const onClientEntry = () => {
   );
   // The Role-fit box and the assistant announce a job-description analysis with this browser event.
   window.addEventListener("assistant-fit", () => track("role_fit_used", { page: window.location.pathname }));
+};
+
+// Ash's private hub keeps a few things alive across its pages (see src/hub/Addons.js). Nothing loads outside /ash.
+export const wrapRootElement = ({ element }) => (
+  <>
+    {element}
+    <Addons />
+  </>
+);
+export const onRouteUpdate = ({ location }) => {
+  window.dispatchEvent(new CustomEvent("ash-route", { detail: location.pathname }));
 };

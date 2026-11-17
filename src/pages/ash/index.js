@@ -1,136 +1,117 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "gatsby";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import HubLayout from "../../hub/HubLayout";
-import RagaNow from "../../hub/RagaNow";
-import Countdown from "../../hub/Countdown";
+import Portrait3D from "../../hub/Portrait3D";
+import { useRaga, RagaCard, RagaPanel } from "../../hub/RagaNow";
+import Heart from "../../hub/Heart";
+import { ArtHero, Stagger, Item, CountUp } from "../../hub/motion";
+import { artworks, ofTheDay, byId } from "../../hub/artworks";
+import { upcoming, daysUntil } from "../../hub/career/deadlines";
 import { hubPath, rooms } from "../../hub/config";
-import { Wrap, Eyebrow, H1, H2, H3, Lede, Hand, Card, Grid, Section, Reveal, Icon, ButtonLink, Rule, display, glass } from "../../hub/ui";
+import { Wrap, Eyebrow, H1, H2, H3, Card, Grid, Section, Hand, display } from "../../hub/ui";
 
-const Hero = styled.section`
-  align-items: center;
-  display: flex;
-  min-height: calc(100vh - 60px);
-  padding: clamp(2rem, 8vw, 5rem) 0 clamp(3rem, 8vw, 5rem);
-  .cue { color: var(--gold2); display: inline-block; font-size: 0.85rem; letter-spacing: 0.16em; margin-top: 2.2rem; text-decoration: none; text-transform: uppercase; }
-  .cue span { animation: drift 2.4s ease-in-out infinite; display: inline-block; margin-left: 0.5rem; }
-  @keyframes drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
-  @media (prefers-reduced-motion: reduce) { .cue span { animation: none; } }
+const RoomCard = styled(motion.create(Link))`
+  border-radius: 18px; color: inherit; display: block; min-height: 190px; overflow: hidden; position: relative; text-decoration: none;
+  .bg { background-size: cover; inset: 0; position: absolute; }
+  .shade { background: linear-gradient(180deg, rgba(7, 10, 28, 0.15), rgba(7, 10, 28, 0.88)); inset: 0; position: absolute; }
+  .t { bottom: 0; left: 0; padding: 1.1rem; position: absolute; right: 0; }
+  h3 { font-family: ${display}; font-size: 1.7rem; font-weight: 600; margin: 0 0 0.2rem; }
+  p { color: #e6e9f7; font-size: 0.9rem; line-height: 1.45; margin: 0; }
+  border: 1px solid rgba(232, 194, 107, 0.3);
 `;
-
-const Line = styled.span`
-  display: block;
-  overflow: hidden;
-  padding-bottom: 0.08em;
-  > span { animation: up 1s cubic-bezier(0.22, 1, 0.36, 1) both; animation-delay: ${(p) => p.delay || 0}s; display: block; }
-  @keyframes up { from { opacity: 0; transform: translateY(105%); } }
-  @media (prefers-reduced-motion: reduce) { > span { animation: none; } }
+const Hero = styled.div`
+  align-items: center; display: flex; gap: clamp(1.5rem, 5vw, 4rem); justify-content: space-between;
+  @media (max-width: 760px) { flex-direction: column-reverse; align-items: flex-start; }
 `;
-
-const Room = styled(Link)`
-  ${glass}
-  color: inherit;
-  display: block;
-  padding: 1.3rem 1.3rem 1.4rem;
-  text-decoration: none;
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-  &:hover { border-color: rgba(246, 227, 166, 0.7); box-shadow: 0 14px 50px rgba(232, 194, 107, 0.18); transform: translateY(-4px); }
-  .ic { color: var(--gold); display: block; margin-bottom: 0.9rem; }
-  h3 { font-family: ${display}; font-size: 1.6rem; font-weight: 600; margin: 0 0 0.4rem; }
-  p { color: var(--muted); font-size: 0.95rem; line-height: 1.55; margin: 0; }
-  .go { color: var(--gold2); display: inline-block; font-size: 0.84rem; font-weight: 600; margin-top: 0.9rem; }
+// Her portrait lives in the git-ignored static/ash/private/ folder, so it only shows where that file exists (it hides itself otherwise).
+const Portrait = styled(motion.div)`
+  border: 2px solid rgba(232, 194, 107, 0.8); border-radius: 999px 999px 24px 24px; box-shadow: 0 0 0 8px rgba(232, 194, 107, 0.12), 0 24px 70px rgba(0, 0, 12, 0.6); flex: none; height: clamp(220px, 30vw, 340px); overflow: hidden; width: clamp(180px, 24vw, 280px);
+  img { height: 100%; object-fit: cover; width: 100%; }
 `;
-
-const Chips = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  justify-content: center;
-  span {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(232, 194, 107, 0.28);
-    border-radius: 999px;
-    color: var(--cream);
-    font-size: 0.95rem;
-    padding: 0.5rem 1rem;
-  }
-`;
-
-const loves = ["🥾 Hiking", "🎻 Violin (new!)", "🎶 Indian classical", "🎿 Skiing (new!)", "🥊 Boxing (new!)", "🎨 Painting", "📚 Books", "🎬 Movies", "👻 Horror, especially", "🐈 Cats, obviously", "🌌 Van Gogh", "🪷 Monet", "✨ Klimt"];
-
-export default function HubHome() {
+function HerPortrait() {
+  const [ok, setOk] = useState(true);
+  if (!ok) return null;
   return (
-    <HubLayout current="home" title="Home">
+    <Portrait initial={{ opacity: 0, scale: 0.9, rotate: 3 }} animate={{ opacity: 1, scale: 1, rotate: 0, y: [0, -8, 0] }} transition={{ opacity: { duration: 1, delay: 0.5 }, scale: { duration: 1, delay: 0.5 }, rotate: { duration: 1, delay: 0.5 }, y: { duration: 6, repeat: Infinity, ease: "easeInOut" } }}>
+      <img src="/ash/private/portrait.jpg" alt="" onError={() => setOk(false)} />
+    </Portrait>
+  );
+}
+// Cards in a row share one height, however much each one holds.
+const Equal = styled(Grid)`
+  align-items: stretch;
+  & > * { height: 100%; }
+  & > * > article { height: 100%; }
+`;
+const Big = styled.div`color: var(--gold2); font-family: ${display}; font-size: 3.6rem; line-height: 1; small { color: var(--muted); font-family: inherit; font-size: 1rem; margin-left: 0.4rem; }`;
+
+export default function Today() {
+  const [art, setArt] = useState(artworks[0]);
+  const [next, setNext] = useState(null);
+  const raga = useRaga();
+  const [listen, setListen] = useState(false);
+  useEffect(() => { setArt(ofTheDay()); setNext(upcoming()[0] || null); }, []);
+  const left = next ? daysUntil(next.date) : null;
+  return (
+    <HubLayout current="home" title="Today">
+      <ArtHero art={byId.starry}>
+        <Wrap>
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}>
+            <Hero>
+              <div>
+                <Eyebrow>For my star</Eyebrow>
+                <H1 style={{ fontSize: "clamp(2.4rem, 6vw, 4.6rem)", margin: 0 }}>My psych baby!<br /><em>I’m psyched for you.</em></H1>
+              </div>
+              <Portrait3D />
+            </Hero>
+          </motion.div>
+        </Wrap>
+      </ArtHero>
       <Wrap>
-        <Hero>
-          <div>
-            <Eyebrow>A little sky for Ash ♡</Eyebrow>
-            <H1>
-              <Line delay={0.1}><span>My psych baby!</span></Line>
-              <Line delay={0.28}><span><em>I'm psyched for you.</em></span></Line>
-            </H1>
-            <Lede>
-              Okay, I had to. I got a little carried away and built you a whole night sky. The career homework is ready, the art is on its way, and there's a cat hiding in the stars. Wander wherever you like. I'm not grading any of it.
-            </Lede>
-            <ButtonLink href="#rooms">Step inside ✦</ButtonLink>
-            <br />
-            <a className="cue" href="#tonight">Or see what the sky says tonight<span aria-hidden="true">↓</span></a>
-          </div>
-        </Hero>
-
-        <Section id="tonight">
-          <Reveal>
-            <Eyebrow>Tonight</Eyebrow>
-            <H2>Look up, there's a lot going on.</H2>
-          </Reveal>
-          <Grid cols={2}>
-            <Reveal><RagaNow /></Reveal>
-            <Reveal delay={0.1}>
-              <Card>
-                <Eyebrow>Something hidden</Eyebrow>
-                <H3>There's a cat in the sky</H3>
-                <p>Bottom left, in the stars: two ears, two eyes, one very smug face. Found her yet? <Hand>She says hi.</Hand></p>
-                <p>If you want to catch her properly, there's a game for that.</p>
-                <ButtonLink as={Link} to={hubPath("/games/")}>Find the cat 🐈</ButtonLink>
-              </Card>
-            </Reveal>
-          </Grid>
-          <Reveal><div style={{ marginTop: "1.2rem" }}><Countdown /></div></Reveal>
-        </Section>
-
-        <Rule />
-
-        <Section id="rooms">
-          <Reveal>
-            <Eyebrow>The rooms</Eyebrow>
-            <H2>Pick a star.</H2>
-            <Lede>Each one opens a little room. Start with whatever you're in the mood for.</Lede>
-          </Reveal>
-          <Grid cols={4}>
-            {rooms.map((r, i) => (
-              <Reveal key={r.key} delay={(i % 4) * 0.07}>
-                <Room to={hubPath(r.path)}>
-                  <span className="ic"><Icon name={r.icon} size={30} /></span>
-                  <h3>{r.title}</h3>
-                  <p>{r.blurb}</p>
-                  <span className="go">Open →</span>
-                </Room>
-              </Reveal>
-            ))}
-          </Grid>
-        </Section>
-
-        <Rule />
-
         <Section>
-          <Reveal>
-            <Eyebrow style={{ textAlign: "center" }}>I've been paying attention</Eyebrow>
-            <H2 style={{ textAlign: "center" }}>A few of my favourite things about you.</H2>
-            <Chips>{loves.map((l) => <span key={l}>{l}</span>)}</Chips>
-            <p style={{ color: "var(--muted)", margin: "1.6rem auto 0", maxWidth: "36rem", textAlign: "center", lineHeight: 1.65 }}>
-              The sky is painted in the spirit of Van Gogh. The gold edges are for Klimt, and the soft water light at the very bottom is Monet's. <Hand>It's all yours.</Hand>
-            </p>
-          </Reveal>
+          <Eyebrow>Right now</Eyebrow>
+          <Stagger>
+            <Equal cols={3}>
+              <Item><RagaCard r={raga} open={listen} onToggle={() => setListen((o) => !o)} /></Item>
+              <Item>
+                <Card>
+                  <Eyebrow>Next deadline</Eyebrow>
+                  {next ? (<>
+                    <Big><CountUp to={left} /><small>{left === 1 ? "day" : "days"}</small></Big>
+                    <H3 style={{ marginTop: "0.5rem" }}>{next.title}</H3>
+                    <p><Link to={hubPath("/career/")} state={{ tab: "deadlines" }}>See all deadlines →</Link></p>
+                  </>) : <p>No dates coming up. Breathe.</p>}
+                </Card>
+              </Item>
+              <Item>
+                <Card>
+                  <Eyebrow>Painting of the day</Eyebrow>
+                  <H3>{art.title}</H3>
+                  <p>{art.why}</p>
+                  <p><Hand>{art.artist}, {art.year}</Hand></p>
+                </Card>
+              </Item>
+            </Equal>
+            <RagaPanel r={raga} open={listen} />
+          </Stagger>
+        </Section>
+        <Section>
+          <H2>Pick a room</H2>
+          <Stagger>
+            <Grid cols={3}>
+              {rooms.map((r) => (
+                <Item key={r.key}>
+                  <RoomCard to={hubPath(r.path)} whileHover={{ y: -6 }} whileTap={{ scale: 0.98 }} transition={{ type: "spring", stiffness: 300, damping: 22 }}>
+                    <motion.div className="bg" style={{ backgroundImage: `url(${byId[r.art].src})`, backgroundPosition: byId[r.art].focus }} whileHover={{ scale: 1.08 }} transition={{ duration: 0.8 }} />
+                    <div className="shade" />
+                    <div className="t"><h3>{r.title}</h3><p>{r.blurb}</p></div>
+                  </RoomCard>
+                </Item>
+              ))}
+            </Grid>
+          </Stagger>
         </Section>
       </Wrap>
     </HubLayout>

@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import HubLayout from "../../hub/HubLayout";
-import Countdown from "../../hub/Countdown";
-import { memories } from "../../hub/data/memories";
-import { Wrap, Eyebrow, H2, Lede, Hand, Section, Reveal, Card, display } from "../../hub/ui";
+import Countdown from "../Countdown";
+import { memories } from "../data/memories";
+import { Wrap, Eyebrow, H2, Lede, Hand, Section, Reveal, Card, display } from "../ui";
 
 const Line = styled.ol`
   list-style: none;
@@ -26,9 +25,8 @@ const nice = (iso) => new Date(`${iso}T12:00:00`).toLocaleDateString("en-CA", { 
 export default function Memories() {
   const sorted = [...memories].sort((a, b) => (a.date < b.date ? 1 : -1));
   return (
-    <HubLayout current="memories" title="Memories" description="Our story, one star at a time.">
-      <Wrap>
-        <Section style={{ paddingTop: "clamp(2rem, 7vw, 4rem)" }}>
+    <>
+      <Section >
           <Reveal>
             <Eyebrow>Memories</Eyebrow>
             <H2>Our story, one star at a time.</H2>
@@ -50,7 +48,7 @@ export default function Memories() {
             ))}
           </Line>
         </Section>
-      </Wrap>
-    </HubLayout>
+      
+    </>
   );
 }

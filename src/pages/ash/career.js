@@ -1,11 +1,11 @@
 import React from "react";
-import HubLayout from "../../hub/HubLayout";
+import Room from "../../hub/Room";
 import CareerGuide from "../../hub/career/CareerGuide";
 
 export default function Career() {
   return (
-    <HubLayout current="career" title="Career guide" description="Workplace psychology and change management programs, careers and pay, compared for Ash.">
+    <Room roomKey="career" art="wanderer" kicker="Career" title="Figure it out, one step at a time" lede="Programs, deadlines and a plan. Pick a tab, take your time.">
       <CareerGuide />
-    </HubLayout>
+    </Room>
   );
 }

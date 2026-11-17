@@ -44,7 +44,7 @@
     "rehype-sanitize": "^6.0.0",
     "remark-gfm": "^4.0.1",
     "styled-components": "^6.1.8",
-    "three": "^0.161.0",
+    "three": "^0.169.0",
     "typed.js": "^3.0.0"
   },
   "keywords": [

@@ -119,11 +119,6 @@ function Pairs() {
 export default function Games() {
   return (
     <>
-      <Reveal>
-        <Eyebrow>Games</Eyebrow>
-        <H2>Find the cat. Match the memories.</H2>
-        <Lede>Two tiny games, both made of things you love. <Hand>No timer, no pressure.</Hand></Lede>
-      </Reveal>
       <Grid cols={2}>
         <Reveal><Card><H3>Find the cat</H3><p>There's a cat hiding in the sky. Connect the stars to find her.</p><FindTheCat /></Card></Reveal>
         <Reveal delay={0.08}><Card><H3>Pairs</H3><p>Match the pairs: the cat, the trail, the violin, the skis, the gloves, the paint, the book and the ghost.</p><Pairs /></Card></Reveal>

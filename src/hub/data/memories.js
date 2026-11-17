@@ -5,5 +5,10 @@ export const memories = [
     date: "2026-11-16",
     title: "The day I built you a sky",
     body: "I made this little corner of the internet for you. It's the first star on our timeline, and there are a lot more to come."
+  },
+  {
+    date: "2026-08-20",
+    title: "The day we met",
+    body: "Where it all started."
   }
 ];

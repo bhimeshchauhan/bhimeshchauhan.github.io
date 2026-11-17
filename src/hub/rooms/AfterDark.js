@@ -4,7 +4,7 @@ import useLocal from "../useLocal";
 import { Eyebrow, H2, H3, Lede, Hand, Card, Grid, Reveal, GhostButton, Rule, display } from "../ui";
 
 // Scary movies, good books, one candle. Everything she ticks or adds is saved on her own device only.
-const films = [
+export const films = [
   ["Hereditary", 2018], ["The Babadook", 2014], ["The Thing", 1982], ["Let the Right One In", 2008],
   ["The Witch", 2015], ["Suspiria", 1977], ["Get Out", 2017], ["Midsommar", 2019]
 ];
@@ -43,7 +43,7 @@ const Add = styled.form`
   input { background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(232, 194, 107, 0.35); border-radius: 999px; color: var(--cream); flex: 1; font: inherit; min-height: 44px; min-width: 180px; padding: 0 1rem; }
 `;
 
-function Checklist({ storeKey, seed, placeholder, empty }) {
+export function Checklist({ storeKey, seed, placeholder, empty }) {
   const [items, setItems] = useLocal(storeKey, seed);
   const [text, setText] = useState("");
   return (

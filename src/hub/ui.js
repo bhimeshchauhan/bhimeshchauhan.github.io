@@ -3,9 +3,10 @@ import styled, { css } from "styled-components";
 import { motion, useReducedMotion } from "framer-motion";
 
 // Shared look for Ash's hub: a night sky (Van Gogh), gold leaf (Klimt) and soft water light (Monet).
-export const display = `"Cormorant Garamond", "Playfair Display", Georgia, serif`;
+export const display = `"Bodoni Moda", "Cormorant Garamond", "Playfair Display", Georgia, serif`;
+export const accent = `"Cormorant Garamond", Georgia, serif`;
 export const hand = `"Caveat", "Segoe Script", cursive`;
-export const sans = `"Inter", system-ui, -apple-system, "Segoe UI", sans-serif`;
+export const sans = `"DM Sans", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif`;
 
 export const Wrap = styled.div`
   margin: 0 auto;
@@ -15,7 +16,8 @@ export const Wrap = styled.div`
 `;
 
 export const Eyebrow = styled.p`
-  color: var(--gold);
+  color: var(--gold2);
+  text-shadow: 0 1px 10px rgba(4, 7, 28, 0.95);
   font-family: ${sans};
   font-size: 0.74rem;
   font-weight: 600;
@@ -28,21 +30,23 @@ export const H1 = styled.h1`
   color: var(--cream);
   font-family: ${display};
   font-size: clamp(2.7rem, 9vw, 6rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 0.98;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1;
   margin: 0 0 1.2rem;
-  em { color: var(--gold2); font-style: italic; font-weight: 500; }
+  text-shadow: 0 2px 22px rgba(4, 7, 28, 0.85);
+  em { color: var(--gold2); font-family: ${accent}; font-style: italic; font-weight: 500; letter-spacing: -0.01em; }
 `;
 
 export const H2 = styled.h2`
   color: var(--cream);
   font-family: ${display};
   font-size: clamp(1.9rem, 5vw, 3rem);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.08;
   margin: 0 0 0.8rem;
+  text-shadow: 0 2px 18px rgba(4, 7, 28, 0.85);
 `;
 
 export const H3 = styled.h3`
@@ -81,7 +85,7 @@ export const glass = css`
   position: relative;
 `;
 
-export const Card = styled.article`
+export const Card = styled(motion.article).attrs({ whileHover: { y: -5, scale: 1.012 }, whileTap: { scale: 0.99 }, transition: { type: "spring", stiffness: 320, damping: 22 } })`
   ${glass}
   padding: clamp(1.1rem, 3vw, 1.6rem);
   &::after {
@@ -118,7 +122,7 @@ const buttonStyle = css`
   border: 0;
   border-radius: 999px;
   box-shadow: 0 6px 24px rgba(232, 194, 107, 0.28);
-  color: #14122a;
+  && { color: #14122a; }
   cursor: pointer;
   display: inline-flex;
   font-family: ${sans};
@@ -163,7 +167,7 @@ export const Rule = styled.div`
 
 export const Section = styled.section`
   padding: clamp(1.6rem, 5vw, 3.2rem) 0;
-  scroll-margin-top: 78px;
+  scroll-margin-top: 170px;
 `;
 
 // Fade-and-rise as things scroll into view (skipped entirely for people who ask for less motion).
