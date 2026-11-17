@@ -46,7 +46,7 @@ const Shell = styled(motion.div)`
   .rd-bar { align-items: center; display: flex; gap: 0.6rem; padding: 0.7rem clamp(12px, 3vw, 24px); }
   .rd-ttl { color: #f0e6cc; flex: 1; font-family: ${display}; font-size: 1.05rem; font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .rd-bar button { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(240, 230, 204, 0.35); border-radius: 999px; color: #f0e6cc; cursor: pointer; font: inherit; font-size: 0.9rem; min-height: 38px; min-width: 38px; padding: 0 0.8rem; }
-  .rd-desk { align-items: center; display: flex; flex: 1; justify-content: center; min-height: 0; padding: 0 clamp(8px, 3vw, 32px); perspective: 2200px; }
+  .rd-desk { align-items: center; display: flex; flex: 1; justify-content: center; min-height: 0; padding: 0 clamp(8px, 3vw, 32px); perspective: 2600px; }
   .rd-book { background: ${(p) => p.$t.edge}; border-radius: 6px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 0, 0, 0.35); display: flex; height: min(100%, 780px); max-width: ${(p) => (p.$spread ? "1180px" : "620px")}; padding: 6px 6px 8px; position: relative; width: 100%; }
   .rd-book::after { background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.28) 46%, rgba(0, 0, 0, 0.42) 50%, rgba(0, 0, 0, 0.28) 54%, transparent); bottom: 6px; content: ""; display: ${(p) => (p.$spread ? "block" : "none")}; left: 50%; margin-left: -30px; pointer-events: none; position: absolute; top: 6px; width: 60px; }
   .rd-leaf { background: ${(p) => p.$t.page}; color: ${(p) => p.$t.fg}; display: flex; flex: 1; flex-direction: column; min-width: 0; overflow: hidden; padding: clamp(1.2rem, 3.4vw, 2.6rem) clamp(1.2rem, 3.6vw, 3rem) 0.8rem; position: relative; }
@@ -59,6 +59,9 @@ const Shell = styled(motion.div)`
   .rd-text p.rd-first { text-indent: 0; }
   .rd-text p.rd-first::first-letter { float: left; font-family: ${display}; font-size: 3.1em; line-height: 0.85; padding: 0.06em 0.1em 0 0; }
   .rd-text p.rd-h { font-family: ${display}; font-weight: 600; letter-spacing: 0.06em; margin: 0.8em 0; text-align: center; text-indent: 0; }
+  .rd-flip { backface-visibility: hidden; inset: 0; position: absolute; }
+  .rd-flip .rd-leaf { height: 100%; width: 100%; }
+  .rd-flip.back { transform: rotateY(180deg); }
   .rd-folio { color: ${(p) => p.$t.mute}; font-size: 0.78rem; padding-top: 0.5rem; text-align: center; }
   .rd-nav { align-items: center; display: flex; gap: 0.8rem; padding: 0.7rem clamp(12px, 3vw, 24px); }
   .rd-pg { color: #cbbf9f; flex: 1; font-size: 0.85rem; text-align: center; }
@@ -89,6 +92,7 @@ function Reader({ book, onClose }) {
   const [size, setSize] = useLocal("ash-hub-reader-size2", 19);
   const [i, setI] = useState(saved[book.id] || 0);
   const [dir, setDir] = useState(1);
+  const [flip, setFlip] = useState(null);
   const [wide, setWide] = useState(typeof window !== "undefined" && window.innerWidth >= 1000);
   useEffect(() => { const f = () => setWide(window.innerWidth >= 1000); window.addEventListener("resize", f); return () => window.removeEventListener("resize", f); }, []);
   useEffect(() => {
@@ -98,7 +102,15 @@ function Reader({ book, onClose }) {
   }, [book.id]);
   const n = pages ? pages.length : 0; const step = wide ? 2 : 1;
   const left = wide ? i - (i % 2) : i;
-  const go = useCallback((d) => { setDir(d); setI((x) => { const base = wide ? x - (x % 2) : x; return Math.min(Math.max(base + d * step, 0), Math.max(n - 1, 0)); }); }, [n, step, wide]);
+  const go = useCallback((d) => {
+    if (flip) return;
+    setDir(d);
+    const base = wide ? i - (i % 2) : i; const next = Math.min(Math.max(base + d * step, 0), Math.max(n - 1, 0));
+    if (next === base) return;
+    if (!wide) { setI(next); return; }
+    setFlip({ d, L: base });
+    setTimeout(() => { setI(next); setFlip(null); }, 720);
+  }, [n, step, wide, i, flip]);
   useEffect(() => { if (pages) setSaved((s) => ({ ...s, [book.id]: i })); }, [i, pages]); // eslint-disable-line
   useEffect(() => {
     const k = (e) => { if (e.key === "ArrowRight") go(1); else if (e.key === "ArrowLeft") go(-1); else if (e.key === "Escape") onClose(); };
@@ -120,11 +132,23 @@ function Reader({ book, onClose }) {
       <div className="rd-desk">
         {err && <p style={{ color: "#f0e6cc" }}>The book didn't load. Check your connection and try again.</p>}
         {!ok && !err && <p style={{ color: "#f0e6cc" }}>Opening…</p>}
-        {ok && (
+        {ok && wide && (
+          <div className="rd-book" style={{ transformStyle: "preserve-3d" }}>
+            <Leaf page={pages[flip ? (flip.d > 0 ? flip.L : flip.L - 2) : left]} n={(flip ? (flip.d > 0 ? flip.L : flip.L - 2) : left) + 1} cls="l" first={left === 0 && !flip} />
+            <Leaf page={pages[flip ? (flip.d > 0 ? flip.L + 3 : flip.L + 1) : left + 1]} n={(flip ? (flip.d > 0 ? flip.L + 3 : flip.L + 1) : left + 1) + 1} cls="r" />
+            {flip && (
+              <motion.div key={`${flip.L}${flip.d}`} style={{ bottom: 8, left: flip.d > 0 ? "50%" : 6, position: "absolute", top: 6, transformOrigin: flip.d > 0 ? "0% 50%" : "100% 50%", transformStyle: "preserve-3d", width: "calc(50% - 6px)", zIndex: 5 }}
+                initial={{ rotateY: 0 }} animate={{ rotateY: flip.d > 0 ? -180 : 180 }} transition={{ duration: 0.7, ease: [0.45, 0.05, 0.25, 1] }}>
+                <div className="rd-flip"><Leaf page={pages[flip.d > 0 ? flip.L + 1 : flip.L]} n={(flip.d > 0 ? flip.L + 1 : flip.L) + 1} cls={flip.d > 0 ? "r" : "l"} /></div>
+                <div className="rd-flip back"><Leaf page={pages[flip.d > 0 ? flip.L + 2 : flip.L - 1]} n={(flip.d > 0 ? flip.L + 2 : flip.L - 1) + 1} cls={flip.d > 0 ? "l" : "r"} /></div>
+              </motion.div>
+            )}
+          </div>
+        )}
+        {ok && !wide && (
           <AnimatePresence mode="wait" initial={false} custom={dir}>
-            <motion.div key={left} className="rd-book" custom={dir} variants={{ in: (d) => ({ opacity: 0, rotateY: d * 14, x: d * 40 }), on: { opacity: 1, rotateY: 0, x: 0 }, out: (d) => ({ opacity: 0, rotateY: d * -14, x: d * -40 }) }} initial="in" animate="on" exit="out" transition={{ duration: 0.28, ease: "easeOut" }} style={{ transformOrigin: "50% 50%" }}>
-              <Leaf page={pages[left]} n={left + 1} cls={wide ? "l" : "one"} first={left === 0} />
-              {wide && <Leaf page={pages[left + 1]} n={left + 2 <= n ? left + 2 : ""} cls="r" />}
+            <motion.div key={left} className="rd-book" custom={dir} variants={{ in: (d) => ({ opacity: 0, x: d * 40 }), on: { opacity: 1, x: 0 }, out: (d) => ({ opacity: 0, x: d * -40 }) }} initial="in" animate="on" exit="out" transition={{ duration: 0.25 }}>
+              <Leaf page={pages[left]} n={left + 1} cls="one" first={left === 0} />
             </motion.div>
           </AnimatePresence>
         )}
